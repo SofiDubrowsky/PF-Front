@@ -61,5 +61,12 @@ const juanMora = () =>{
   };
   return datos
 }
-  
+ const leidy = () =>{
+ const info ={
+ nombre: "Leidy",
+ nacionalidad: "Colombiana",
+ edad:"32"
+} 
+return info
+};
 
