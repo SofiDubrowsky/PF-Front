@@ -1,11 +1,34 @@
 function laCajaDePandora(numero){
-    let resto = numero % 2;
-    if (resto === 0) {
-      return numero.toString(2);
-    } else {
-      return numero.toString(16);
+   return numero % 2 === 0 ? numero.toString(2) : numero.toString(16);
+};
+
+
+const nadiaMartel = () =>{
+  const datos = {
+    nombre: "Nadia Martel",
+    nacionalidad: "Argentina",
+    edad: 32
+  };
+  return datos
+};
+
+const agus = () =>{
+    const info = {
+        nombre : "agus",
+        nacionalidad: "argentina",
+        edad: 28
     }
-}
+    return info;
+};
+
+const fabriVettorelo = ()=>{
+    const datos = {
+        nombre: "Fabri Vettorelo",
+        edad: 26,
+        nacionalidad: "Argentina" 
+    }
+    return datos
+};
 
 const SofiDubrowsky = () => {
     const obj = {
@@ -13,6 +36,6 @@ const SofiDubrowsky = () => {
         edad: 26,
         nacionalidad: 'Argentina',
     }
-
     return obj;
-}
+};
+  
