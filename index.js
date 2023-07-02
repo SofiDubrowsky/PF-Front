@@ -1,13 +1,3 @@
-function laCajaDePandora(numero){
-    if (numero % 2 === 0) {
-        // El número es par
-        return numero.toString(2); // Convierte a binario y devuelve el resultado
-      } else {
-        // El número es impar
-        return numero.toString(16); // Convierte a hexadecimal y devuelve el resultado
-      }
-}
-
 //funcion con datos
 const fabriVettorelo = ()=>{
     const datos = {
@@ -16,4 +6,21 @@ const fabriVettorelo = ()=>{
         nacionalidad: "Argentina" 
     }
     return datos
+  
+function laCajaDePandora(numero){
+  if(numero % 2 === 0){
+    return numero.toString(2)
+  }else{
+    return numero.toString(16);
+  }
+}
+
+const nadiaMartel = () =>{
+  const datos = {
+    nombre: "Nadia Martel",
+    nacionalidad: "Argentina",
+    edad: 32
+  };
+  return datos
+
 }
