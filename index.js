@@ -6,3 +6,13 @@ function laCajaDePandora(numero){
       return numero.toString(16);
     }
 }
+
+const SofiDubrowsky = () => {
+    const obj = {
+        nombre: 'Sofia',
+        edad: 26,
+        nacionalidad: 'Argentina',
+    }
+
+    return obj;
+}
