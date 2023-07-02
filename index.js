@@ -1,4 +1,4 @@
-function laCajaDePandora(numero){
+ function laCajaDePandora(numero){
    return numero % 2 === 0 ? numero.toString(2) : numero.toString(16);
 };
 
@@ -48,7 +48,15 @@ const gonzaloSchmidt = () => {
 const lucianoVel = () =>{
   const datos = {
     nombre: "Luciano",
-    nacionalidad: "Argentina",
+    nacionalidad: "Argentina",    edad: 27
+  };
+  return datos
+}   
+
+const juanMora = () =>{
+  const datos = {
+    nombre: "Juan Pablo Mora",
+    nacionalidad: "México",    
     edad: 27
   };
   return datos
