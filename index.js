@@ -1,9 +1,7 @@
-//funcion con datos
 function laCajaDePandora(numero){
-
-  //proximamente escribiremos codigo aqui
    return numero % 2 === 0 ? numero.toString(2) : numero.toString(16);
-}
+};
+
 
 const nadiaMartel = () =>{
   const datos = {
@@ -12,16 +10,16 @@ const nadiaMartel = () =>{
     edad: 32
   };
   return datos
-}
+};
 
-function agus(){
+const agus = () =>{
     const info = {
         nombre : "agus",
         nacionalidad: "argentina",
         edad: 28
     }
     return info;
-}
+};
 
 const fabriVettorelo = ()=>{
     const datos = {
@@ -30,4 +28,14 @@ const fabriVettorelo = ()=>{
         nacionalidad: "Argentina" 
     }
     return datos
+};
+
+const SofiDubrowsky = () => {
+    const obj = {
+        nombre: 'Sofia',
+        edad: 26,
+        nacionalidad: 'Argentina',
+    }
+    return obj;
+};
   
