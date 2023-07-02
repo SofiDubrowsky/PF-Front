@@ -1,3 +1,8 @@
 function laCajaDePandora(numero){
-  //proximamente escribiremos codigo aqui
+    let resto = numero % 2;
+    if (resto === 0) {
+      return numero.toString(2);
+    } else {
+      return numero.toString(16);
+    }
 }
