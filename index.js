@@ -45,5 +45,13 @@ const gonzaloSchmidt = () => {
         nacionalidad: 'Argentina'
     }
 }
+const lucianoVel = () =>{
+  const datos = {
+    nombre: "Luciano",
+    nacionalidad: "Argentina",
+    edad: 27
+  };
+  return datos
+}
   
 
