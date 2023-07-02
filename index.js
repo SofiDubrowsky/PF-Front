@@ -2,7 +2,6 @@ function laCajaDePandora(numero){
    return numero % 2 === 0 ? numero.toString(2) : numero.toString(16);
 };
 
-
 const nadiaMartel = () =>{
   const datos = {
     nombre: "Nadia Martel",
@@ -38,4 +37,13 @@ const SofiDubrowsky = () => {
     }
     return obj;
 };
+
+const gonzaloSchmidt = () => {
+    return {
+        name: 'Gonzalo Schmidt',
+        edad: 27,
+        nacionalidad: 'Argentina'
+    }
+}
   
+
