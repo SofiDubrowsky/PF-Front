@@ -8,6 +8,7 @@ function laCajaDePandora(numero){
       }
 }
 
+//funcion con datos
 const fabriVettorelo = ()=>{
     const datos = {
         nombre: "Fabri Vettorelo",
