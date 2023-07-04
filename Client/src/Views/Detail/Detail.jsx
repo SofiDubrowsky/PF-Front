@@ -1,8 +1,32 @@
 const Detail = () => {
     return (
-        <div >
-            <h1>Soy Detail</h1>
+    <div>
+        <div>
+            <h3>Nombre de actividad</h3>
         </div>
+
+        <div>
+            contenedor de imagen
+        </div>
+
+        <div>
+            info de la actividad
+        </div>
+
+        <div>
+           React big calendar
+        </div> 
+
+        <div>
+           <button>Reservar</button> 
+           <button>volver</button>
+        </div>
+    <hr/>
+        <div>Valoraciones de usuarios
+            <div>reseña#1</div>
+        </div>
+
+    </div>
     )
 }
 
