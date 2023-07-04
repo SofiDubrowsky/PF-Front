@@ -1,3 +1,4 @@
+import CalendarComponent from "../../Components/Calendar/Calendar"
 const Detail = () => {
     return (
     <div>
@@ -14,7 +15,8 @@ const Detail = () => {
         </div>
 
         <div>
-           React big calendar
+           <CalendarComponent />
+           
         </div> 
 
         <div>
