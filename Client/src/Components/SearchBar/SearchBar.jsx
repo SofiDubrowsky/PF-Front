@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import getactbyname from '../../actions/getactbyname';
+//import getactbyname from '../../actions/getactbyname';
 import stl from './SearchBar.module.css'
 
 export default function SearchBar() {
@@ -15,7 +15,7 @@ export default function SearchBar() {
 
    function handleSubmit(e) {
         e.preventDefault()
-        dispatch(getactbyname(name))
+        //dispatch(getactbyname(name))
         setName("")
     }
 

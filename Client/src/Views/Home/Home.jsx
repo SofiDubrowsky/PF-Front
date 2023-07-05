@@ -3,20 +3,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import stl from '../Home/Home.module.css';
 
-import getactivities from '../../actions/getactivities';
-import Card from '../../Components/Card/Card';
+//import getactivities from '../../actions/getactivities';
+import Card from '../../Components/Card/Card'
 import Paging from '../../Components/Paging/Paging';
-import playerfilter from '../../actions/playerfilter';
-import agefilter from '../../actions/agefilter';
-import actorigin from '../../actions/actorigin';
-import sortactivities from '../../actions/sortactivities';
-import SearchBar from '../../Components/SearchBar/SearchBar';
-import getages from '../../actions/getages'
-import getplayers from '../../actions/getplayers';
+import SearchBar from '../../Components/SearchBar/SearchBar'
+//import playerfilter from '../../actions/playerfilter';
+//import agefilter from '../../actions/agefilter';
+//import actorigin from '../../actions/actorigin';
+//import sortactivities from '../../actions/sortactivities';
+//import SearchBar from '../../Components/SearchBar/SearchBar';
+//import getages from '../../actions/getages'
+//import getplayers from '../../actions/getplayers';
 
 let Home = () => {
-    const dispatch = useDispatch();
-    const allActivities = useSelector((state) => state.activities);
+    //const dispatch = useDispatch();
+    let allActivities = useSelector((state) => state.activities);
     const allplayers = useSelector((state) => state.players);
     const [currentPage, setCurrentPage] = useState(1);
     const [activitiesPerPage, setActivitiesPerPage] = useState(4);
@@ -26,47 +27,47 @@ let Home = () => {
     const [render, setRender] = useState('');
 
     //Get Activities from DB 
-    useEffect(() => {
-        dispatch(getactivities());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getactivities());
+    // }, [dispatch]);
 
     //Get Ages from DB 
-    useEffect(() => {
-        dispatch(getages());
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getages());
+    // }, [dispatch])
 
     //Get Players from DB
-    useEffect(() => {
-        dispatch(getplayers());
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(getplayers());
+    // }, [dispatch])
 
 
     function handleAgeFilter(e) {
         e.preventDefault();
-        dispatch(agefilter(e.target.value));
+        //dispatch(agefilter(e.target.value));
         setCurrentPage(1);
     }
 
     function handlePlayerFilter(e) {
         e.preventDefault();
-        dispatch(playerfilter(e.target.value));
+        //dispatch(playerfilter(e.target.value));
         setCurrentPage(1);
     }
 
     function handleOriginFilter(e) {
-        dispatch(actorigin(e.target.value));
+        //dispatch(actorigin(e.target.value));
         setCurrentPage(1);
     }
 
     function handleShowAll(e) {
-        dispatch(actorigin('All'));
-        dispatch(sortactivities('asc'));
+        //dispatch(actorigin('All'));
+        //dispatch(sortactivities('asc'));
         setCurrentPage(1);
     }
 
     function handleSortactivities(e) {
         e.preventDefault();
-        dispatch(sortactivities(e.target.value));
+        //dispatch(sortactivities(e.target.value));
         setRender(`Order ${e.target.value}`);
         setCurrentPage(1);
     }
@@ -82,18 +83,18 @@ let Home = () => {
         <div className={stl.c1}>
             <h6>Sportiverse</h6>
             <h3>Ven y diviertete en grande</h3>
-        //*Buscador*//
+        {/*Buscador*/}
             <div>
                 <SearchBar />
             </div>
-        //*Todas las actividades*//
+        {/*Todas las actividades*/}
             <div className={stl.c2}>
                 <div>
                     <button className={stl.hpbot} onClick={handleShowAll}>
                         Todas las actividades
                     </button>
                 </div>
-        //*Sucursales*//
+        {/*Sucursales*/}
 //        <div>
 //        <select className={stl.hpfilter} onChange={handleOriginFilter}>
 //            <option value="All"> + Todas las sucursales</option>
@@ -103,23 +104,23 @@ let Home = () => {
 //        </select>
 //    </div>
 
-        //*Edades*//
+        {/*Edades*/}
                 <div>
                     <select className={stl.hpfilter} onChange={handleAgeFilter}>
-                        {allages.sort().map((e) => {
+                        {/*allages.sort().map((e) => {
                             return <option value={e}>{e}</option>;
-                        })}
+                        })*/}
                     </select>
                 </div>
-        //*Jugadores*//
+        {/*Jugadores*/}
                 <div>
                     <select className={stl.hpfilter} onChange={handlePlayerFilter}>
-                        {allplayers.sort().map((e) => {
+                        {/*allplayers.sort().map((e) => {
                             return <option value={e}>{e}</option>;
-                        })}
+                        })*/}
                     </select>
                 </div>
-        //*Ordenar*//
+        {/*Ordenar*/}
                 <div>
                     <select
                         className={stl.hpfilter}
@@ -133,12 +134,12 @@ let Home = () => {
                         <option value="price">Precio</option>
                     </select>
                 </div>
-        //*Inicio*//
+        {/*Inicio*/}
                 <Link to="/">
                     <button className={stl.hpbot}>Inicio</button>
                 </Link>
             </div>
-        //*Paginado*//
+        {/*Paginado*/}
             <div className={stl.c4}>
                 <Paging
                     activitiesPerPage={activitiesPerPage}
@@ -147,7 +148,8 @@ let Home = () => {
                     actualPage={setCurrentPage}
                 />
             </div>
-        //*Valor no existe*//
+        {/*Valor no existe*/}
+        <Card></Card>
             <div className={stl.c5}>
                 {Array.isArray(currentActivities) ? (
                     currentActivities.map((p) => (
