@@ -1,0 +1,33 @@
+.sbcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+
+}
+
+.sbbot {
+    background-color: rgb(42, 48, 48);
+    color: whitesmoke;
+    padding-top: 1px;
+    cursor: pointer;
+    text-align: center;
+    padding: 8px 24px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    height: 55px;
+    font-size: 100%;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.sbbot:hover {
+    background-color: rgb(174, 174, 174);
+    color: rgb(4, 4, 4);
+}
+
+.sbinput {
+    border: 4px solid black
+}
