@@ -1,0 +1,56 @@
+/* Estilo del contenedor del calendario */
+.calendar-container {
+    width: 310px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    padding: 10px;
+  }
+  .current-day {
+  background-color: #ffc107;
+  color: #fff;
+  font-weight: bold;
+}
+  /* Estilo del título del calendario */
+  .calendar-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo de las celdas de los días */
+  .calendar-cell {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ccc;
+  }
+  
+  /* Estilo de los días de la semana */
+  .calendar-weekdays {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  /* Estilo del texto de los días de la semana */
+  .calendar-weekday-text {
+    font-size: 14px;
+    font-weight: bold;
+    width: 40px;
+    text-align: center;
+  }
+  
+  /* Estilo de los días del mes */
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 40px);
+    grid-gap: 5px;
+  }
+  
+  /* Estilo del texto de los días del mes */
+  .calendar-day-text {
+    font-size: 14px;
+    text-align: center;
+  }
