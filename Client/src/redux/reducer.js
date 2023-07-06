@@ -1,11 +1,12 @@
 //import { GET_ACTIVITIES, SORT_ACTIVITIES, GET_PLAYERS, GET_AGES, PLAYERS_FILTER, AGE_FILTER } from './Actions';
-//import { GET_ACT_BY_NAME, ACT_ORIGIN } from './Actions';
+//import { GET_ACT_BY_NAME, ACT_ORIGIN, GET_ACTIVITY_DETAIL } from './Actions';
 
 const initialState = {
     activities: [],
     actfilter: [],
     players: [],
-    ages: []
+    ages: [],
+    detail:[]
 }
 
 const reducer = (state = initialState, action) => {
@@ -68,6 +69,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 activities: action.payload === 'All' ? state.actfilter : originfilter
             }
+
+        case GET_ACTIVITY_DETAIL:
+                return{...state, detail:payload}
+
         case 'SORT_ACTIVITIES':
             if (action.payload === 'valoration') {
                 let sortedArr = state.activities.sort(function (a, b) {
