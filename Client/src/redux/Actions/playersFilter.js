@@ -1,4 +1,4 @@
-const PLAYERS_FILTER = "PLAYERS_FILTER";
+export const PLAYERS_FILTER = "PLAYERS_FILTER";
 
 export default function playersFilter(payload) {
     return {

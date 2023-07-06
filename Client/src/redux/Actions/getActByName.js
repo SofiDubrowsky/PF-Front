@@ -1,6 +1,6 @@
-const GET_ACT_BY_NAME = "GET_ACT_BY_NAME";
-
 import axios from 'axios';
+
+export const GET_ACT_BY_NAME = "GET_ACT_BY_NAME";
 
 export default function getActByName(name) {
     return async function (dispatch) {

@@ -1,4 +1,4 @@
-const SORT_ACTIVITIES = "SORT_ACTIVITIES" ;
+export const SORT_ACTIVITIES = "SORT_ACTIVITIES" ;
 
 export default function sortActivities(payload) {
     return {
