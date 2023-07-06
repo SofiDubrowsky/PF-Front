@@ -15,14 +15,14 @@ export default function SearchBar() {
 
    function handleSubmit(e) {
         e.preventDefault()
-        //dispatch(getactbyname(name))
+        dispatch(getactbyname(name))
         setName("")
     }
 
     return (
         <div className={stl.sbcontainer}>
             <input className={stl.sbinput} onChange={(e) => handleinputChange(e)} type='text' placeholder='Search by name' value={name} />
-            <button className={stl.sbbot} onClick={(e) => handleSubmit(e)} type='submit'>Buscar🔎</button>
+            <button className={stl.sbbot} onClick={(e) => handleSubmit(e)} type='submit'> Buscar</button>
         </div>
     )
 }
