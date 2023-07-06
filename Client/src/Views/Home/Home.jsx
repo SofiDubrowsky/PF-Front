@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import stl from '../Home/Home.module.css';
 
-//import getactivities from '../../actions/getactivities';
+
+//import getActivities from '../../actions/getActivities';
 import Card from '../../Components/Card/Card'
 import Paging from '../../Components/Paging/Paging';
 import SearchBar from '../../Components/SearchBar/SearchBar'
-//import playerfilter from '../../actions/playerfilter';
-//import agefilter from '../../actions/agefilter';
-//import actorigin from '../../actions/actorigin';
-//import sortactivities from '../../actions/sortactivities';
-//import SearchBar from '../../Components/SearchBar/SearchBar';
-//import getages from '../../actions/getages'
-//import getplayers from '../../actions/getplayers';
+//import playerFilter from '../../actions/playerFilter';
+//import ageFilter from '../../actions/ageFilter';
+//import actOrigin from '../../actions/actOrigin';
+//import sortActivities from '../../actions/sortActivities';
+//import getAges from '../../actions/getAges'
+//import getPlayers from '../../actions/getPlayers';
 
 let Home = () => {
     //const dispatch = useDispatch();
@@ -28,46 +28,46 @@ let Home = () => {
 
     //Get Activities from DB 
     // useEffect(() => {
-    //     dispatch(getactivities());
+    //   dispatch(getActivities());
     // }, [dispatch]);
 
     //Get Ages from DB 
     // useEffect(() => {
-    //     dispatch(getages());
+    //     dispatch(getAges());
     // }, [dispatch])
 
     //Get Players from DB
     // useEffect(() => {
-    //     dispatch(getplayers());
+    //     dispatch(getPlayers());
     // }, [dispatch])
 
 
     function handleAgeFilter(e) {
         e.preventDefault();
-        //dispatch(agefilter(e.target.value));
+        //dispatch(ageFilter(e.target.value));
         setCurrentPage(1);
     }
 
     function handlePlayerFilter(e) {
         e.preventDefault();
-        //dispatch(playerfilter(e.target.value));
+        //dispatch(playerFilter(e.target.value));
         setCurrentPage(1);
     }
 
     function handleOriginFilter(e) {
-        //dispatch(actorigin(e.target.value));
+        //dispatch(actOrigin(e.target.value));
         setCurrentPage(1);
     }
 
     function handleShowAll(e) {
-        //dispatch(actorigin('All'));
-        //dispatch(sortactivities('asc'));
+        //dispatch(actOrigin('All'));
+        //dispatch(sortActivities('asc'));
         setCurrentPage(1);
     }
 
-    function handleSortactivities(e) {
+    function handleSortActivities(e) {
         e.preventDefault();
-        //dispatch(sortactivities(e.target.value));
+        //dispatch(sortActivities(e.target.value));
         setRender(`Order ${e.target.value}`);
         setCurrentPage(1);
     }
@@ -82,7 +82,7 @@ let Home = () => {
     return (
         <div className={stl.c1}>
             <h6>Sportiverse</h6>
-            <h3>Ven y diviertete en grande</h3>
+            <h4>Ven y diviertete en grande</h4>
         {/*Buscador*/}
             <div>
                 <SearchBar />
@@ -95,14 +95,14 @@ let Home = () => {
                     </button>
                 </div>
         {/*Sucursales*/}
-//        <div>
-//        <select className={stl.hpfilter} onChange={handleOriginFilter}>
-//            <option value="All"> + Todas las sucursales</option>
-//           <option value="DBROSAS">Actividades de Cerro de las Rosa </option>
-//            <option value="DBCENTRO">Actividades de Centro </option>
-//            <option value="DBJARDIN">Actividades de Barrio Jardin </option>
-//        </select>
-//    </div>
+        <div>
+        <select className={stl.hpfilter} onChange={handleOriginFilter}>
+            <option value="All"> Todas las sucursales</option>
+           <option value="DBROSAS">Actividades Cerro de las Rosa </option>
+            <option value="DBCENTRO">Actividades Centro </option>
+            <option value="DBJARDIN">Actividades Barrio Jardin </option>
+        </select>
+    </div>
 
         {/*Edades*/}
                 <div>
@@ -124,8 +124,8 @@ let Home = () => {
                 <div>
                     <select
                         className={stl.hpfilter}
-                        onChange={handleSortactivities}
-                        onBlur={handleSortactivities}
+                        onChange={handleSortActivities}
+                        onBlur={handleSortActivities}
                     >
                         <option value="asc">Ordenar</option>
                         <option value="asc">Asecendente</option>

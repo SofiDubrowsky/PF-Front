@@ -87,17 +87,29 @@
     font-weight: bold;
   }
   h6{
-    text-shadow: 5px 5px 6px #0a0a0a;
+    text-shadow: 5px 5px 6px #84cde1;
     font-size:65px;
-    color: white;
+    color: rgb(19, 100, 27);
     margin: auto;
     margin-top: 20px;
     margin-bottom: 20px;
+    justify-content:center;
   }
   h3{
-    text-shadow: 5px 5px 6px #0a0a0a;
+    text-shadow: 5px 5px 6px #c9d688;
     font-size:25px;
-    color: white;
+    color: rgb(23, 139, 255);
     font-weight: bold;
+    align-content: center;
+    justify-content:center;
+    
   }
-  
+  h4{
+    text-shadow: 5px 5px 6px #84cde1;
+    font-size:26px;
+    color: rgb(19, 100, 27);
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    justify-content:center;
+  }
