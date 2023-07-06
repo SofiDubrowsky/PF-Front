@@ -3,7 +3,7 @@
 
 const initialState = {
     activities: [],
-    actfilter: [],
+    actFilter: [],
     players: [],
     ages: [],
     detail:[]
@@ -70,7 +70,7 @@ const reducer = (state = initialState, action) => {
                 activities: action.payload === 'All' ? state.actfilter : originfilter
             }
 
-        case GET_ACTIVITY_DETAIL:
+        case 'GET_ACTIVITY_DETAIL':
                 return{...state, detail:payload}
 
         case 'SORT_ACTIVITIES':
