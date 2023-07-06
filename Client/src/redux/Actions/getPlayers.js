@@ -1,6 +1,6 @@
-const GET_PLAYERS = "GET_PLAYERS";
-
 import axios from 'axios'
+
+export const GET_PLAYERS = "GET_PLAYERS";
 
 export default function getPlayers() {
     return async function (dispatch) {

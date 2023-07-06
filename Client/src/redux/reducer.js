@@ -1,25 +1,33 @@
-//import { GET_ACTIVITIES, SORT_ACTIVITIES, GET_PLAYERS, GET_AGES, PLAYERS_FILTER, AGE_FILTER } from './Actions';
-//import { GET_ACT_BY_NAME, ACT_ORIGIN, GET_ACTIVITY_DETAIL } from './Actions';
-
 import { GET_STORES } from "./Actions/getStores";
 import { POST_ACTIVITY } from "./Actions/postActivity";
+import { GET_ACTIVITIES } from "./Actions/getActivities";
+import { GET_ACT_BY_NAME } from "./Actions/getActByName";
+import { GET_PLAYERS } from "./Actions/getPlayers";
+import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
+import { PLAYERS_FILTER } from "./Actions/playersFilter";
+import { AGE_FILTER } from "./Actions/ageFilter";
+import { ACT_ORIGIN } from "./Actions/actOrigin";
+import { SORT_ACTIVITIES } from "./Actions/sortActivities";
+
+//la unica que me falto fue 'GET_AGES', que no la encontre dentro de las actions 
 
 const initialState = {
     activities: [],
     actFilter: [],
     players: [],
     ages: [],
-    detail:[]
+    detail:[],
+    stores:[],
 }
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'GET_ACTIVITIES':
+        case GET_ACTIVITIES:
             if (action.payload) {
                 return {
                     ...state,
                     activities: action.payload,
-                    actfilter: action.payload
+                    actFilter: action.payload
                 }
             } else {
                 return {
@@ -29,14 +37,14 @@ const reducer = (state = initialState, action) => {
             }
 
         case GET_STORES:
-            return { ...state, stores: payload };
+            return { ...state, stores: action.payload };
 
-        case 'GET_ACT_BY_NAME':
+        case GET_ACT_BY_NAME:
             return {
                 ...state,
                 activities: action.payload
             }
-        case 'GET_PLAYERS':
+        case GET_PLAYERS:
             return {
                 ...state,
                 players: action.payload
@@ -50,7 +58,7 @@ const reducer = (state = initialState, action) => {
         case POST_ACTIVITY: 
             return { ...state}
 
-        case 'PLAYERS_FILTER':
+        case PLAYERS_FILTER:
             const allActivities = state.actfilter
             const playerfilter = action.payload === 'All' ? allActivities : allActivities.filter(p => p.players.includes(action.payload))
             if (playerfilter.length === 0) {
@@ -62,7 +70,7 @@ const reducer = (state = initialState, action) => {
                     activities: playerfilter
                 }
             }
-        case 'AGE_FILTER':
+        case AGE_FILTER:
             const agefilter = action.payload === 'All' ? allActivities : allActivities.filter(p => p.ages.includes(action.payload))
                 if (agefilter.length === 0) {
                     alert(`No activities found for ${action.payload} ages`)
@@ -73,7 +81,7 @@ const reducer = (state = initialState, action) => {
                         activities: agefilter
                     }
                 }
-        case 'ACT_ORIGIN':
+        case ACT_ORIGIN:
             const originAct = state.actfilter
             const originfilter = action.payload === 'DB' ? originAct.filter(p => p.origin === 'DB') : originAct.filter(p => p.origin === 'API')
             return {
@@ -81,10 +89,10 @@ const reducer = (state = initialState, action) => {
                 activities: action.payload === 'All' ? state.actfilter : originfilter
             }
 
-        case 'GET_ACTIVITY_DETAIL':
-                return{...state, detail:payload}
+        case GET_ACTIVITY_DETAIL:
+                return{...state, detail:action.payload}
 
-        case 'SORT_ACTIVITIES':
+        case SORT_ACTIVITIES:
             if (action.payload === 'valoration') {
                 let sortedArr = state.activities.sort(function (a, b) {
                     if (a.valoration > b.valoration) {

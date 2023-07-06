@@ -1,4 +1,4 @@
-import { AGE_FILTER } from '.';
+export const AGE_FILTER = 'AGE_FILTER';
 
 export default function ageFilter(payload) {
     return {

@@ -1,4 +1,4 @@
-const ACT_ORIGIN = 'ACT_ORIGIN';
+export const ACT_ORIGIN = 'ACT_ORIGIN';
 
 export default function actOrigin(payload) {
     return {
