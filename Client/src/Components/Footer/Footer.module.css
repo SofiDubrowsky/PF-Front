@@ -1,0 +1,15 @@
+.mainConatiner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(212, 211, 211);
+    height: 80px;
+    width: 100%;
+}
+
+.enlaceRedes{
+    margin: 15px;
+    height: 50px;
+    width: 50px;
+}

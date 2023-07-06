@@ -1,18 +1,18 @@
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ name, id, imagen, sucursal, precio}) => {
+const Card = ({ name, id, picture, stores, cost}) => {
   return (
       <NavLink to={`/detail/${id}`}>
     <div className={style.container}>
-        <h3 className={style.nameContainer}>Football</h3>
+        <h3 className={style.nameContainer}>{name}</h3>
         <img
-          src='https://recreadeportiva.mx/wp-content/uploads/2017/04/Reynosa-Tec.jpg'
+          src={picture}
           alt={name}
           className={style.cardImg}
           />
-      <h3 className={style.sucursalName}>Centro</h3>
-      <h5 className={style.priceTxt}>Precio: $400</h5>
+      <h3 className={style.sucursalName}>{store[0].name}</h3>
+      <h5 className={style.priceTxt}>`Precio: ${cost}`</h5>
 
     </div>
         </NavLink>
