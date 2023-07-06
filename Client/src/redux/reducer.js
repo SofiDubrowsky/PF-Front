@@ -70,8 +70,10 @@ const reducer = (state = initialState, action) => {
                 activities: action.payload === 'All' ? state.actfilter : originfilter
             }
 
-        case 'GET_ACTIVITY_DETAIL':
-                return{...state, detail:payload}
+        case GET_ACTIVITY_DETAIL:
+                return{...state, detail:action.payload}
+
+
 
         case 'SORT_ACTIVITIES':
             if (action.payload === 'valoration') {
