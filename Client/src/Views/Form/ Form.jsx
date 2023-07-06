@@ -1,6 +1,11 @@
+import React from "react";
+// import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import style from "./Form.module.css"
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
+// import { postActivity } from "../../redux/Actions/postActivity";
+// import { getActivities } from "../../redux/Actions/getActivities";
+// import { getStores } from "../../redux/Actions/getStores";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME
 const API_KEY = import.meta.env.VITE_API_KEY
@@ -8,6 +13,10 @@ const API_SECRET = import.meta.env.VITE_API_SECRET
 const PRESET = import.meta.env.VITE_PRESET
 
 const Form = () => {
+    // const dispatch = useDispatch();
+    // const allActivities = useSelector((state) => state.activities);
+    // const allStores = useSelector((state) => state.stores);
+
     const [form,setForm] = useState({
         name:"",
         description:"",
@@ -15,14 +24,18 @@ const Form = () => {
         cost:"",
         hours:[],
         days:[],
-        sucursalId:[],
+        storeId:[],
+        players:[],
+        age:[],
     })
 
     const [errors, setErrors] = useState({});
 
     const [selectedDay, setSelectedDay] = useState("");
     const [selectedHour, setSelectedHour] = useState("");
-    const [selectedSucursal, setSelectedSucursal] = useState("");
+    const [selectedStore, setSelectedStore] = useState("");
+    const [selectedAge, setSelectedAge] = useState("");
+    const [selectedPlayers, setSelectedPlayers] = useState("");
 
     const handleChange = (event) => {
       setForm({
@@ -60,9 +73,13 @@ const Form = () => {
         setSelectedDay("");
       } else if (key === 'hours') {
         setSelectedHour("");
-      } else if (key === 'sucursalId') {
-        setSelectedSucursal("");
-      }
+      } else if (key === 'storeId') {
+        setSelectedStore("");
+      } else if (key === 'age') {
+        setSelectedAge("");
+      } else if (key === 'players') {
+        setSelectedPlayers("");
+      } 
     };
 
     const handleRemoveImage = (imageUrl) => {
@@ -95,6 +112,37 @@ const Form = () => {
           console.error("Error al subir la imagen a Cloudinary:", error);
         });
     };
+
+    // const handleSubmit = (event) => {
+    //   event.preventDefault();
+    //   const errorSave = validate(form);
+    //   const existName = allActivities.find(activity => activity.name.toLowerCase() === form.name.toLocaleLowerCase()) ? 1 : 0;
+    //   if(existName === 1) alert(`Ya existe la actividad ${form.name}`)
+    //   else if(Object.values(errorSave).length !== 0) alert('Debes completar todos los datos obligatorios');
+    //   else {
+    //     dispatch(postActivity(form))
+    //     alert('Actividad creada!')
+    //     setForm({
+    //       name:"",
+    //       description:"",
+    //       picture:[],
+    //       cost:"",
+    //       hours:[],
+    //       days:[],
+    //       storeId:[],
+    //       players:[],
+    //       age:[],
+    //     })
+    //   }
+    // }
+
+    // useEffect(() => {
+    //   dispatch(getActivities())
+    // }, [dispatch]);
+
+    // useEffect(() => {
+    //   dispatch(getStores())
+    // }, [dispatch]);
   
     return (
         <div >
@@ -140,7 +188,7 @@ const Form = () => {
                   form?.days?.length > 0 ?
                   (
                     form?.days?.map((day) => (
-                      <div className="day">
+                      <div className="day" key={day}>
                         <h3>{day}</h3>
                         <button onClick={() => handleRemove('days', day)}>X</button>
                       </div>
@@ -170,7 +218,7 @@ const Form = () => {
                   form?.hours?.length > 0 ?
                   (
                     form?.hours?.map((hour) => (
-                      <div className="hour">
+                      <div className="hour" key={hour}>
                         <h3>{hour}hs</h3>
                         <button onClick={() => handleRemove('hours', hour)}>X</button>
                       </div>
@@ -180,22 +228,69 @@ const Form = () => {
                 </div>
               </div>
 
+              <label>Edades</label>
+              <select type="text" name="age" value={selectedAge} onChange={handleSelect}>
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Niños">Niños</option>
+                <option value="Adultos">Adultos</option>
+              </select>
+
+              <div className="agesConteiner">
+                <div className="agesSelected">
+                  {
+                  form?.age?.length > 0 ?
+                  (
+                    form?.age?.map((ag) => (
+                      <div className="age" key={ag}>
+                        <h3>{ag}</h3>
+                        <button onClick={() => handleRemove('age', ag)}>X</button>
+                      </div>
+                      )))
+                  : (<p>No se han seleccionado edades</p>)  
+                  }
+                </div>
+              </div>
+
+              <label>Cantidad de jugadores</label>
+              <select type="text" name="players" value={selectedPlayers} onChange={handleSelect}>
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="2-4">2 a 4 jugadores</option>
+                <option value="4-8">4 a 8 jugadores</option>
+                <option value="+8">+8 jugadores</option>
+              </select>
+
+              <div className="playersConteiner">
+                <div className="playersSelected">
+                  {
+                  form?.players?.length > 0 ?
+                  (
+                    form?.players?.map((player) => (
+                      <div className="players" key={player}>
+                        <h3>{player} jugadores</h3>
+                        <button onClick={() => handleRemove('players', player)}>X</button>
+                      </div>
+                      )))
+                  : (<p>No se han seleccionado cantidades de jugadores</p>)  
+                  }
+                </div>
+              </div>
+
 
               <label>Sucursales</label>
-                <select type="text" name='sucursalId' value={selectedSucursal} onChange={handleSelect}>
+                <select type="text" name='storeId' value={selectedStore} onChange={handleSelect}>
                   <option value="" disabled selected>Seleccionar</option>
                   <option value="cerroID">Cerro de las Rosas</option>
                 </select>
 
-              <div className="sucursalsConteiner">
-                <div className="sucursalsSelected">
+              <div className="storesConteiner">
+                <div className="storesSelected">
                   {
-                  form?.sucursalId?.length > 0 ?
+                  form?.storeId?.length > 0 ?
                   (
-                    form?.sucursalId?.map((sucursal) => (
-                      <div className="sucursal">
-                        <h3>{sucursal}</h3>
-                        <button onClick={() => handleRemove('sucursalId', sucursal)}>X</button>
+                    form?.storeId?.map((store) => (
+                      <div className="store" key={store}>
+                        <h3>{store}</h3>
+                        <button onClick={() => handleRemove('storeId', store)}>X</button>
                       </div>
                       )))
                   : (<p>No se han seleccionado sucursales</p>)  

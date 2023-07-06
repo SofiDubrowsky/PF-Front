@@ -1,6 +1,9 @@
 //import { GET_ACTIVITIES, SORT_ACTIVITIES, GET_PLAYERS, GET_AGES, PLAYERS_FILTER, AGE_FILTER } from './Actions';
 //import { GET_ACT_BY_NAME, ACT_ORIGIN, GET_ACTIVITY_DETAIL } from './Actions';
 
+import { GET_STORES } from "./Actions/getStores";
+import { POST_ACTIVITY } from "./Actions/postActivity";
+
 const initialState = {
     activities: [],
     actFilter: [],
@@ -24,6 +27,10 @@ const reducer = (state = initialState, action) => {
                     activities: []
                 }
             }
+
+        case GET_STORES:
+            return { ...state, stores: payload };
+
         case 'GET_ACT_BY_NAME':
             return {
                 ...state,
@@ -39,6 +46,10 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 ages: action.payload
             }
+
+        case POST_ACTIVITY: 
+            return { ...state}
+
         case 'PLAYERS_FILTER':
             const allActivities = state.actfilter
             const playerfilter = action.payload === 'All' ? allActivities : allActivities.filter(p => p.players.includes(action.payload))
