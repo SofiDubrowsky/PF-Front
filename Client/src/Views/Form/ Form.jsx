@@ -1,5 +1,11 @@
 import { useState } from "react";
 import style from "./Form.module.css"
+import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
+
+const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME
+const API_KEY = import.meta.env.VITE_API_KEY
+const API_SECRET = import.meta.env.VITE_API_SECRET
+const PRESET = import.meta.env.VITE_PRESET
 
 const Form = () => {
     const [form,setForm] = useState({
@@ -59,15 +65,60 @@ const Form = () => {
       }
     };
 
+    const handleRemoveImage = (imageUrl) => {
+      setForm((prevForm) => ({
+        ...prevForm,
+        picture: prevForm.picture.filter((url) => url !== imageUrl),
+      }));
+    };
+
+    const handleImageUpload = (event) => {
+      const files = event.target.files;
+      const formData = new FormData();
+      formData.append("file", files[0]);
+      formData.append("upload_preset", PRESET); // Usamos el preset definido en el archivo .env
+    
+      // Realizar la solicitud de subida a Cloudinary
+      fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
+        method: "POST",
+        body: formData,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Obtener la URL de la imagen subida y actualizar el estado del formulario
+          setForm((prevForm) => ({
+            ...prevForm,
+            picture: [...prevForm.picture, data.secure_url],
+          }));
+        })
+        .catch((error) => {
+          console.error("Error al subir la imagen a Cloudinary:", error);
+        });
+    };
+  
     return (
         <div >
             <h1>Añadir nueva actividad</h1>
             <form className={style.form}>
             <label>Titulo</label>
             <input type="text" value={form.name} name="name" onChange={handleChange}/>
-
-            <label>Fotos</label>
-            <input type="text" value={form.picture} name="picture"/>
+            
+            <label>Subir Fotos</label>
+            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <div className={style.imagepreview}>
+  {form.picture.map((imageUrl) => (
+    <div key={imageUrl} className={style.imagecontainer}>
+      <Image publicId={imageUrl} cloudName={CLOUD_NAME}>
+        <Transformation width="100" height="100" crop="thumb" />
+      </Image>
+      <button
+        className={style.removebutton}
+        onClick={() => handleRemoveImage(imageUrl)}>
+        X
+      </button>
+    </div>
+  ))}
+</div>
 
             <label>Descripción</label>
             <textarea type="text" value={form.description} name="description" onChange={handleChange}/>

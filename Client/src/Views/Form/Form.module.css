@@ -12,3 +12,26 @@
     margin-left: 50px;
     margin-right:50px;
   }
+  .imagepreview {  
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .imagecontainer {
+    position: relative;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    object-fit: cover;
+    display: inline-block
+  }
+  .imagepreview img {
+    width: 30%;
+    object-fit: cover;
+  }
+  .removebutton {
+    position: absolute;
+    border: none;
+    color: red;
+    cursor: pointer;
+  }
