@@ -1,0 +1,31 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+
+    background-color: aquamarine;
+    border: solid 3px black;
+    border-radius: 10px;
+    width: 300px;
+    height: 500px;
+}
+
+.sucursalName{
+    position: absolute;
+    top: -20px;
+    left: 15px;
+}
+
+.nameContainer{
+    margin-top: 50px;
+}
+
+.cardImg{
+    height: 300px;
+    width: 250px;
+}
+
+.priceTxt{
+    font-size: larger;
+}
