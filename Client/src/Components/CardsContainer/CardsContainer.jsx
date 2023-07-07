@@ -112,8 +112,8 @@ const CardsContainer = () => {
                 picture={picture}
                 name={name}
                 cost={cost}
-                stores={stores.map((element) => element.name)}
-                players={players.map((player) => player)}
+                stores={stores?.map((element) => element.name)}
+                players={players?.map((player) => player)}
               />
             );
           }

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-//import getactbyname from '../../actions/getactbyname';
+import getActByName from "../../redux/Actions/getActByName";
 import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
@@ -15,7 +15,7 @@ export default function SearchBar() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(getactbyname(name));
+    dispatch(getActByName(name));
     setName("");
   }
 
@@ -46,6 +46,7 @@ export default function SearchBar() {
             <path d="M21 21l-6 -6" />
           </svg>
         </div>
+          <input type="submit" onClick={handleSubmit} value="buscar" />
       </div>
     </div>
   );
