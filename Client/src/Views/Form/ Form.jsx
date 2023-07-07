@@ -22,7 +22,7 @@ const Form = () => {
         name:"",
         description:"",
         picture:[],
-        cost:0,
+        cost:undefined,
         hours:[],
         days:[],
         store:[],
@@ -51,6 +51,7 @@ const Form = () => {
 
     const handleSelect = (event) => {
       const repet = form[event.target.name].includes(event.target.value)
+      console.log(selectedStore);
       if(!repet){
           setForm({
               ...form,
@@ -74,7 +75,7 @@ const Form = () => {
         setSelectedDay("");
       } else if (key === 'hours') {
         setSelectedHour("");
-      } else if (key === 'storeId') {
+      } else if (key === 'store') {
         setSelectedStore("");
       } else if (key === 'age') {
         setSelectedAge("");
@@ -109,6 +110,10 @@ const Form = () => {
             ...prevForm,
             picture: [...prevForm.picture, data.secure_url],
           }));
+          setErrors(validate({
+            ...form,
+            picture: [...form.picture, data.secure_url],
+          }));
         })
         .catch((error) => {
           console.error("Error al subir la imagen a Cloudinary:", error);
@@ -128,7 +133,7 @@ const Form = () => {
           name:"",
           description:"",
           picture:[],
-          cost:0,
+          cost:undefined,
           hours:[],
           days:[],
           store:[],
@@ -155,7 +160,7 @@ const Form = () => {
             {errors.name && <p>{errors.name}</p>}
             
             <label>Subir Fotos</label>
-            <input type="file" accept="image/*" onChange={handleImageUpload} />
+            <input type="file" accept="image/*" onChange={handleImageUpload} disabled={form.picture.length >= 3}/>
             <div className={style.imagepreview}>
              {form.picture?.map((imageUrl) => (
                <div key={imageUrl} className={style.imagecontainer}>
@@ -177,7 +182,7 @@ const Form = () => {
             {errors.description && <p>{errors.description}</p>}
 
             <label>Precio: $</label>
-            <input type={"number"} min="0" value={form.cost} name="cost" onChange={handleChange}/>
+            <input type="number" min="0" value={form.cost} name="cost" onChange={handleChange}/>
             {errors.cost && <p>{errors.cost}</p>}
 
             <label>Dias: </label>
@@ -304,8 +309,26 @@ const Form = () => {
                 ))}
               </select> 
               {errors.store && <p>{errors.store}</p>}
+              
+              <div className="storesSelected">
+              {form?.store?.length > 0 ? (
+                form?.store?.map((storeId) => {
+                  const selectedStore = allStores.find((store) => Number(store.id) === Number(storeId));
+                  // const storeName = selectedStore.name
+                  return (
+                  <div className="store" key={storeId}>
+                    <h3>{selectedStore.name}</h3>
+                    <button onClick={() => handleRemove('store', storeId)}>X</button>
+                  </div>
+                  );
+                })
+              ) : (
+              <p>No se han seleccionado sucursales</p>
+              )}
+               </div>
 
-              <div className="storesConteiner">
+
+              {/* <div className="storesConteiner">
                 <div className="storesSelected">
                   {
                   form?.store?.length > 0 ?
@@ -319,7 +342,7 @@ const Form = () => {
                   : (<p>No se han seleccionado sucursales</p>)  
                   }
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className="storesConteiner">
                 <div className="storesSelected">
