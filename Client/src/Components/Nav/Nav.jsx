@@ -3,12 +3,12 @@ import style from './Nav.module.css'
 
 const Nav = () => {
     return (
-      <div className={style.mainContainer}>
-      <NavLink to="/home" className={style.logo}>Logo</NavLink>
-      <NavLink to="/about">Nosotros</NavLink>
-      <NavLink to="/post">Crear Actividad</NavLink>
-      <NavLink to="">Iniciar Sesion/Registrarse</NavLink>
-      <NavLink to="/">Salir</NavLink>
+      <div className={style.container}>
+      {/* <NavLink to="/home" className={style.navlink}>Landing</NavLink> */}
+      <NavLink to="/about" className={style.navlink}>Nosotros</NavLink>
+      <NavLink to="/post" className={style.navlink}>Crear Actividad</NavLink>
+      <NavLink to="/home" className={style.navlink}>Iniciar Sesion/Registrarse</NavLink>
+      <NavLink to="/" className={style.navlink}>Salir</NavLink>
       </div>
     )
 }

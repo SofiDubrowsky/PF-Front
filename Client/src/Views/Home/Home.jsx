@@ -1,8 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import stl from '../Home/Home.module.css';
-import SearchBar from '../../Components/SearchBar/SearchBar'
+import style from '../Home/Home.module.css';
 import CardsContainer from '../../Components/CardsContainer/CardsContainer';
 import getActivities from '../../redux/Actions/getActivities';
 
@@ -77,13 +76,10 @@ let Home = () => {
     // }
 
     return (
-        <div className={stl.c1}>
-            <h6>Sportiverse</h6>
+        <div className={style.head}>
+            <h1>Sportiverse</h1>
             <h4>Ven y diviertete en grande</h4>
         {/*Buscador*/}
-            <div>
-                <SearchBar />
-            </div>
             <CardsContainer/>
         {/*Todas las actividades*/}
             {/* <div className={stl.c2}>

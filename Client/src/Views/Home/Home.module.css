@@ -1,4 +1,16 @@
-  .cardsContainer{
+.head{
+  text-align: center;
+}
+
+.head h1{
+  text-transform: uppercase;
+}
+
+.head h4{
+  letter-spacing: 3px;
+}
+
+/* .cardsContainer{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -120,4 +132,4 @@
     margin-top: 20px;
     margin-bottom: 20px;
     justify-content:center;
-  }
+  } */

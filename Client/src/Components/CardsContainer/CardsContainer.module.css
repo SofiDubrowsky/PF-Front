@@ -11,14 +11,15 @@
     align-items: center;
     padding: 30px;
     justify-content: space-between;
+    gap: 2rem;
+    margin: 2rem 0 1rem 0 ;
   }
-  
+
   .filtersContainer .filters select {
     cursor: pointer;
     height: 35px;
     border-radius: 50px;
     border: 1px solid #c4c4c4;
-    /* color: #75706f; */
     color: #303030;
     outline: none;
     padding: 0 30px 0 30px;
@@ -27,7 +28,7 @@
     font-family: var(--manrope);
     letter-spacing: 1px;
   }
-  
+
   .container {
     display: flex;
     flex-direction: row;
@@ -37,7 +38,7 @@
     align-items: center;
   }
   
-  .btn {
+  /* .btn {
     cursor: pointer;
     height: 35px;
     border-radius: 50px;
@@ -54,5 +55,4 @@
   
   .btn:hover {
     background: url(../../Img/fondo1.JPG);
-  }
-  
+  } */

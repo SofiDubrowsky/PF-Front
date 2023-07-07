@@ -7,13 +7,13 @@
 }
 
 .navBar{
-    background-color: aqua;
+    background-color: #E3F4F4;
     height: 75px;
     width: 100%;
 }
 
 .footer{
-    background-color: aqua;
+    background-color: #E3F4F4;
     height: 80px;
     width: 100%;
 }
@@ -30,20 +30,22 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-top: 5rem;
 }
 
-
-
-.description{
+.textContainer p{
     width: 60%;
     height: 55%;
     text-align: center;
+    letter-spacing: 1px;
+    margin-top: 1.5rem
 }
 
 .principalImg{
     grid-area: 1 / 2 / 2 / 2;
     height: 100%;
     width: 100%;
+    border-radius: 3rem;
 }
 
 .imgContainer{
@@ -56,4 +58,36 @@
 .secondaryImg{
     height: 70px;
     width: 25%;
+    border-radius: 1rem;
+
 }
+
+.navlink {
+    width: 10rem;
+    height: 4rem;
+    text-decoration: none;
+    text-align: center;
+    background-color: #E3F4F4;
+    opacity: 0.7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    transition: all 0.5s;
+    cursor: pointer;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border: none;
+    font-family: var(--manrope);
+    font-size: 12px;
+    margin-top: 1rem;
+    transition: .5s;
+    margin-bottom: 7rem;
+  }
+  
+  .navlink:hover{
+    opacity: 1;
+    font-weight: bold;
+  }

@@ -2,14 +2,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
     background-color: rgb(212, 211, 211);
     height: 80px;
     width: 100%;
+    position: relative;
+}
+.content{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 2%;
+    gap: 1rem
+    
 }
 
 .enlaceRedes{
-    margin: 15px;
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
+}
+
+
+.navlink{
+    text-decoration: none;
+    opacity: 0.8;
+    color: #000;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2px;
+
+}
+
+.navlink:hover {
+  opacity: 1;
 }
