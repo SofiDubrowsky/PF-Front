@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Paging from "../Paging/Paging";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import {
   orderCost,
-  allFilters
+  allFilters,
+  setFilters
 } from "../../redux/Actions/filters";
 import style from "./CardsContainer.module.css";
 
@@ -14,6 +15,7 @@ const CardsContainer = () => {
 
   const activities = useSelector((state) => state.activities);
   const all = useSelector((state) => state.allActivities);
+  const filtersSelected = useSelector((state) => state.filters)
 
   const [currentPage, setCurrentPage] = useState(1);
   const [activitiesPerPage, setactivitiesPerPage] = useState(4);
@@ -29,6 +31,7 @@ const CardsContainer = () => {
   const [activityFilter,setActivityFilter] = useState("all")
   const [activityPlayers,setPlayersFilter] = useState("all")
   const [activityAges,setAgesFilter] = useState("all")
+
 
   const handleFilterPlayers = (event) => {
     event.preventDefault();
@@ -52,6 +55,7 @@ const CardsContainer = () => {
       activity: activityFilter,
       ages: activityAges,
     };
+    dispatch(setFilters(filters))
     dispatch(allFilters(filters));
     setCost(""); 
   };
@@ -76,18 +80,12 @@ const CardsContainer = () => {
           </div>
           <div className={style.filters}>
             <select onChange={(event) => orderBy(event)} value={cost}>
-              <option value="" disabled hidden>
-                Precio
-              </option>
               <option value="ascendent">Menor Precio</option>
               <option value="descendent">Mayor Precio</option>
             </select>
           </div>
           <div className={style.filters}>
-            <select onChange={handleFilterPlayers}>
-              <option value="" disabled hidden>
-                Jugadores
-              </option>
+            <select onChange={handleFilterPlayers} >
               <option value="all">Todos</option>
               <option value="2-4">2 - 4</option>
               <option value="4-8">4 - 8</option>
@@ -96,10 +94,7 @@ const CardsContainer = () => {
           </div>
           
           <div className={style.filters}>
-            <select onChange={(event) => handleFilterActivity(event)}>
-              <option value="" disabled hidden>
-                Actividades
-              </option>
+            <select onChange={(event) => handleFilterActivity(event)} >
               <option value="all">Todas</option>
               {all.map((activity) => (
                 <option key={activity.id} value={activity.name}>
@@ -110,7 +105,7 @@ const CardsContainer = () => {
           </div>
                 
           <div className={style.filters}>
-            <select onChange={(event) => handleFilterAges(event)}>
+            <select onChange={(event) => handleFilterAges(event)} >
               <option value="all">Todas las edades</option>
               <option value="Niños">Niños</option>
               <option value="Adultos">Adultos</option>
@@ -125,7 +120,6 @@ const CardsContainer = () => {
       <div className={style.container}>
         {currentActivities?.map(
           ({ id, name, picture, cost, stores, players }) => {
-            console.log(players);
             return (
               <Card
                 key={id}

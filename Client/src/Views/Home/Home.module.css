@@ -1,13 +1,16 @@
 .head{
   text-align: center;
+  background-color: black;
 }
 
 .head h1{
   text-transform: uppercase;
+  color: white;
 }
 
 .head h4{
   letter-spacing: 3px;
+  color: white;
 }
 
 /* .cardsContainer{

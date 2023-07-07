@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import style from '../Home/Home.module.css';
 import CardsContainer from '../../Components/CardsContainer/CardsContainer';
 import getActivities from '../../redux/Actions/getActivities';
@@ -7,9 +7,13 @@ import getActivities from '../../redux/Actions/getActivities';
 
 let Home = () => {
     const dispatch = useDispatch();
+    const allActivities = useSelector((state) => state.allActivities)
+    const activities = useSelector((state) => state.activities)
     
     useEffect(() => {
-      dispatch(getActivities());
+        if(activities.length === allActivities.length){
+            dispatch(getActivities());
+        }
     }, [dispatch]);
 
     return (

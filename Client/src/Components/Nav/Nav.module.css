@@ -4,21 +4,21 @@
     justify-content: space-around;
     height: 75px;
     width: 100%;
-    background-color: #ABB2B9;
+    background-color: #9AC71F;
     font-size: 15px;
-    margin: 0 10px;
+
     transition: all 0.5s;
     font-family: var(--manrope);
     letter-spacing: 2px;
     padding: 0 1rem;
-    margin-bottom: 2rem;
+    
 }
 
 
 .navlink{
     text-decoration: none;
     opacity: 0.8;
-    color: #FDFEFE;
+    color: black;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 2px;
