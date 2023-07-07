@@ -1,0 +1,58 @@
+:root {
+    --manrope: "Manrope", sans-serif;
+  }
+  
+  @import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+  
+  .filtersContainer {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    justify-content: space-between;
+  }
+  
+  .filtersContainer .filters select {
+    cursor: pointer;
+    height: 35px;
+    border-radius: 50px;
+    border: 1px solid #c4c4c4;
+    /* color: #75706f; */
+    color: #303030;
+    outline: none;
+    padding: 0 30px 0 30px;
+    text-align: center;
+    transition: all 0.3s;
+    font-family: var(--manrope);
+    letter-spacing: 1px;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .btn {
+    cursor: pointer;
+    height: 35px;
+    border-radius: 50px;
+    border: 1px solid #c4c4c4;
+    color: #303030;
+    outline: none;
+    padding: 0 20px 0 20px;
+    text-align: center;
+    transition: all 0.3s;
+    font-family: var(--manrope);
+    background: transparent;
+    letter-spacing: 1px;
+  }
+  
+  .btn:hover {
+    background: url(../../Img/fondo1.JPG);
+  }
+  

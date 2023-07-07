@@ -1,4 +1,4 @@
-.pagination {
+/* .pagination {
   list-style-type: none;
   cursor: pointer;
   margin: 4%;
@@ -56,4 +56,31 @@ a {
 .arrowButton .arrow-icon {
   font-size: 24px;
   color: #000;
+} */
+:root {
+  --lila: #a886dd;
+}
+.ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  gap: 2rem;
+}
+
+.ul .li {
+  position: relative;
+  list-style-type: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.li:hover {
+  color: var(--lila);
+}
+
+.colorNumber {
+  color: var(--lila);
+  font-weight: bold;
+  font-size: 20px;
 }

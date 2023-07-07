@@ -5,7 +5,7 @@ import style from "./Form.module.css"
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import validate from "./validate";
 import { postActivity } from "../../redux/Actions/postActivity";
-import { getActivities } from "../../redux/Actions/getActivities";
+import  getActivities  from "../../redux/Actions/getActivities";
 import { getStores } from "../../redux/Actions/getStores";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME
