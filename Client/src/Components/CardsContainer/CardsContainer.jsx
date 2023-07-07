@@ -5,8 +5,7 @@ import Paging from "../Paging/Paging";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import {
   orderCost,
-  filterByPlayers,
-  filterByActivity,
+  allFilters
 } from "../../redux/Actions/filters";
 import style from "./CardsContainer.module.css";
 
@@ -25,35 +24,47 @@ const CardsContainer = () => {
     indexOfLastActivitie
   );
 
-  const [orden, setOrden] = useState("");
   const [cost, setCost] = useState("");
-  const [players, setPlayers] = useState("");
-  const [activity, setActivity] = useState("");
+
+  const [activityFilter,setActivityFilter] = useState("all")
+  const [activityPlayers,setPlayersFilter] = useState("all")
+  const [activityAges,setAgesFilter] = useState("all")
+
+  const handleFilterPlayers = (event) => {
+    event.preventDefault();
+    setPlayersFilter(event.target.value)
+  }
+
+  const handleFilterActivity = (event) => {
+    event.preventDefault();
+    setActivityFilter(event.target.value)
+  }
+
+  const handleFilterAges = (event) => {
+    event.preventDefault();
+    setAgesFilter(event.target.value)
+  }
+
+  const handleFilter = () => {
+    setCurrentPage(1);
+    let filters = {
+      players: activityPlayers,
+      activity: activityFilter,
+      ages: activityAges,
+    };
+    dispatch(allFilters(filters));
+    setCost(""); 
+  };
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  const orderByName = (event) => {
+  const orderBy = (event) => {
+    setCurrentPage(1);
     event.preventDefault();
     dispatch(orderCost(event.target.value));
     setCost(event.target.value);
-    setOrden(event.target.value);
-    // setCurrentPage(1);
-  };
-
-  const filterPlayers = (event) => {
-    dispatch(filterByPlayers(event.target.value));
-    setPlayers(event.target.value);
-    setOrden(event.target.value);
-    setCurrentPage(1);
-  };
-
-  const filterActivity = (event) => {
-    dispatch(filterByActivity(event.target.value));
-    setActivity(event.target.value);
-    setOrden(event.target.value);
-    setCurrentPage(1);
   };
 
   return (
@@ -64,7 +75,7 @@ const CardsContainer = () => {
             <SearchBar />
           </div>
           <div className={style.filters}>
-            <select onChange={(event) => orderByName(event)} value={cost}>
+            <select onChange={(event) => orderBy(event)} value={cost}>
               <option value="" disabled hidden>
                 Precio
               </option>
@@ -73,7 +84,7 @@ const CardsContainer = () => {
             </select>
           </div>
           <div className={style.filters}>
-            <select onChange={(event) => filterPlayers(event)} value={players}>
+            <select onChange={handleFilterPlayers}>
               <option value="" disabled hidden>
                 Jugadores
               </option>
@@ -83,11 +94,9 @@ const CardsContainer = () => {
               <option value="+8">+8</option>
             </select>
           </div>
+          
           <div className={style.filters}>
-            <select
-              onChange={(event) => filterActivity(event)}
-              value={activity}
-            >
+            <select onChange={(event) => handleFilterActivity(event)}>
               <option value="" disabled hidden>
                 Actividades
               </option>
@@ -99,8 +108,20 @@ const CardsContainer = () => {
               ))}
             </select>
           </div>
+                
+          <div className={style.filters}>
+            <select onChange={(event) => handleFilterAges(event)}>
+              <option value="all">Todas las edades</option>
+              <option value="Niños">Niños</option>
+              <option value="Adultos">Adultos</option>
+            </select> 
+         </div>   
+
+         <button type="submit" onClick={handleFilter}>Aplicar Filtros</button>
+
         </div>
       </div>
+
       <div className={style.container}>
         {currentActivities?.map(
           ({ id, name, picture, cost, stores, players }) => {
