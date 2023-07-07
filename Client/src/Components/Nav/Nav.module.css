@@ -4,7 +4,7 @@
     justify-content: space-around;
     height: 75px;
     width: 100%;
-    background-color: rgb(212, 211, 211);
+    background-color: #ABB2B9;
     font-size: 15px;
     margin: 0 10px;
     transition: all 0.5s;
@@ -18,13 +18,19 @@
 .navlink{
     text-decoration: none;
     opacity: 0.8;
-    color: #000;
+    color: #FDFEFE;
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 2px;
+    font-weight: bold;
 
 }
 
 .navlink:hover {
   opacity: 1;
+}
+
+.img{
+  height: 100px;
+  margin-top: 15px;
 }
