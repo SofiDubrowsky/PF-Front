@@ -51,12 +51,19 @@
   height: 25rem;
   margin: 20px;
   border-radius: 40px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.236);
+  /*box-shadow: 0 5px 15px rgba(179, 255, 104, 0.666);*/
+  border: 1px solid rgba(179, 255, 104, 0.666);
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url(../../Img/fondo2.JPG);
   padding: 2rem;
+  transition: .5s;
+}
+
+.card:hover{
+  transform: scale(1.1);
+  box-shadow: 0 15px 30px rgb(128, 255, 0);
 }
 
 .sucursal{

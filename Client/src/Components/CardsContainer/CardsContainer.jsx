@@ -77,7 +77,7 @@ const CardsContainer = () => {
               <option value="" disabled hidden>
                 Jugadores
               </option>
-              <option value="all">All</option>
+              <option value="all">Todos</option>
               <option value="2-4">2 - 4</option>
               <option value="4-8">4 - 8</option>
               <option value="+8">+8</option>
@@ -91,7 +91,7 @@ const CardsContainer = () => {
               <option value="" disabled hidden>
                 Actividades
               </option>
-              <option value="all">All</option>
+              <option value="all">Todas</option>
               {all.map((activity) => (
                 <option key={activity.id} value={activity.name}>
                   {activity.name}
