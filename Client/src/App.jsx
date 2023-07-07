@@ -7,6 +7,7 @@ import About from './Views/About/About'
 import Nav from './Components/Nav/Nav'
 import Stores from './Views/Stores/Stores'
 import Footer from './Components/Footer/Footer'
+import Store from './Components/Stores/Stores'
 import './App.css'
 
 
@@ -24,6 +25,7 @@ function App() {
       <Route path='/post' element={<Form />} />
       <Route path='/about' element={<About />} />
       <Route path='/stores' element={<Stores />} />
+
     </Routes>
       {
         location.pathname !== '/' && <Footer></Footer>
