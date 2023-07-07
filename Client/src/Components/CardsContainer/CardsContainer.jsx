@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import Card from "../Card/Card";
 import Paging from "../Paging/Paging";
+import SearchBar from "../../Components/SearchBar/SearchBar";
 import {
   orderCost,
   filterByPlayers,
@@ -57,38 +58,49 @@ const CardsContainer = () => {
 
   return (
     <div>
-      <div>
-        <select onChange={(event) => orderByName(event)} value={cost}>
-          <option value="" disabled hidden>
-            Precio
-          </option>
-          <option value="ascendent">Menor Precio</option>
-          <option value="descendent">Mayor Precio</option>
-        </select>
+      <div className={style.nav}>
+        <div className={style.filtersContainer}>
+          <div className={style.search}>
+            <SearchBar />
+          </div>
+          <div className={style.filters}>
+            <select onChange={(event) => orderByName(event)} value={cost}>
+              <option value="" disabled hidden>
+                Precio
+              </option>
+              <option value="ascendent">Menor Precio</option>
+              <option value="descendent">Mayor Precio</option>
+            </select>
+          </div>
+          <div className={style.filters}>
+            <select onChange={(event) => filterPlayers(event)} value={players}>
+              <option value="" disabled hidden>
+                Jugadores
+              </option>
+              <option value="all">All</option>
+              <option value="2-4">2 - 4</option>
+              <option value="4-8">4 - 8</option>
+              <option value="+8">+8</option>
+            </select>
+          </div>
+          <div className={style.filters}>
+            <select
+              onChange={(event) => filterActivity(event)}
+              value={activity}
+            >
+              <option value="" disabled hidden>
+                Actividades
+              </option>
+              <option value="all">All</option>
+              {all.map((activity) => (
+                <option key={activity.id} value={activity.name}>
+                  {activity.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
       </div>
-
-      <select onChange={(event) => filterPlayers(event)} value={players}>
-        <option value="" disabled hidden>
-          Jugadores
-        </option>
-        <option value="all">All</option>
-        <option value="2-4">2 - 4</option>
-        <option value="4-8">4 - 8</option>
-        <option value="+8">+8</option>
-      </select>
-
-      <select onChange={(event) => filterActivity(event)} value={activity}>
-        <option value="" disabled hidden>
-          Actividades
-        </option>
-        <option value="all">All</option>
-        {all.map((activity) => (
-          <option key={activity.id} value={activity.name}>
-            {activity.name}
-          </option>
-        ))}
-      </select>
-
       <div className={style.container}>
         {currentActivities?.map(
           ({ id, name, picture, cost, stores, players }) => {

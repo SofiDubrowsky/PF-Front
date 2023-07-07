@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+:root{
+    --manrope: "Manrope", sans-serif;
+
+}
+
+
+*{
+    font-family: var(--manrope);
+}
+
+h1{
+    letter-spacing: 4px;
+    font-weight: 500;
+    font-size: 3rem;
+
+}

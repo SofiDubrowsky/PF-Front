@@ -1,4 +1,4 @@
-.container{
+/* .container{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,4 +28,80 @@
 
 .priceTxt{
     font-size: larger;
+} */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+  height: 25rem;
+  margin: 20px;
+  border-radius: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.236);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../Img/fondo2.JPG);
+  padding: 2rem;
+}
+
+.sucursal{
+    position: absolute;
+    top: -3%;
+    left: -4%;
+    color: #000;
+    background-color: #AFD3E2;
+    width: 8rem;
+    height: 2rem;
+    border-radius: .5rem;
+}
+
+.sucursal:first-letter{
+    text-transform: uppercase;
+}
+
+.navlink {
+  text-decoration: none;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+}
+
+.img img {
+  width: 15rem;
+  height: 15rem;
+  object-fit: contain;
+  object-position: center;
+  border-radius: 2.5rem;
+  border-radius: 3rem;
+}
+
+.text h3 {
+  text-decoration: none;
+  color: #000;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 1.5rem;
+}
+
+.content {
+  text-decoration: none;
+  color: #000;
+  letter-spacing: 3px;
 }
