@@ -2,8 +2,6 @@ import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 
 const Card = ({ name, id, picture, stores, cost, players }) => {
-  const im = picture.replace("{", "").replace("}", "")
-  const images = im.split(",")
   return (
     <NavLink to={`/detail/${id}`} className={style.navlink}>
       <div className={style.container}>
@@ -15,7 +13,7 @@ const Card = ({ name, id, picture, stores, cost, players }) => {
             <h3>{name}</h3>
           </div>
           <div className={style.img}>
-          <img src={images[0]} alt={name} className={style.cardImg} />
+          <img src={picture[0]} alt={name} className={style.cardImg} />
           </div>
           <div className={style.content}>
             <h5>${cost} /hora</h5>
