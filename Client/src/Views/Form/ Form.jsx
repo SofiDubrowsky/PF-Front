@@ -13,6 +13,10 @@ const API_KEY = import.meta.env.VITE_API_KEY
 const API_SECRET = import.meta.env.VITE_API_SECRET
 const PRESET = import.meta.env.VITE_PRESET
 
+const reload = () => {
+  window.location.reload(false);
+}
+
 const Form = () => {
     const dispatch = useDispatch();
     const allActivities = useSelector((state) => state.activities);
@@ -141,6 +145,7 @@ const Form = () => {
           age:[],
         })
       }
+      reload();
     }
 
     useEffect(() => {
