@@ -9,9 +9,10 @@ let Home = () => {
     const dispatch = useDispatch();
     const allActivities = useSelector((state) => state.allActivities)
     const activities = useSelector((state) => state.activities)
+    const order = useSelector((state) => state.order)
     
     useEffect(() => {
-        if(activities.length === allActivities.length){
+        if(activities.length === allActivities.length && order === "" ){
             dispatch(getActivities());
         }
     }, [dispatch]);

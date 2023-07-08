@@ -3,7 +3,7 @@ import { POST_ACTIVITY } from "./Actions/postActivity";
 import { GET_ACTIVITIES } from "./Actions/getActivities";
 import { GET_ACT_BY_NAME } from "./Actions/getActByName";
 import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
-import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS } from "./Actions/filters";
+import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
 
 const initialState = {
   activities: [],
@@ -14,7 +14,8 @@ const initialState = {
     activity: "all",
     ages: "all",
     players: "all"
-  }
+  },
+  order: ""
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,19 +44,33 @@ const reducer = (state = initialState, action) => {
 
 
     case ORDER_BY_COST:
-      let filtered =
-        action.payload === "ascendent"
-          ? state.activities.sort((prev, next) => {
-            if (parseInt(prev.cost) > parseInt(next.cost)) return 1;
-            if (parseInt(prev.cost) < parseInt(next.cost)) return -1;
-            return 0;
-          })
-          : state.activities.sort((prev, next) => {
-            if (parseInt(prev.cost) > parseInt(next.cost)) return -1;
-            if (parseInt(prev.cost) < parseInt(next.cost)) return 1;
-            return 0;
-          });
-      console.log(filtered);
+      let filtered = [...state.activities]
+      if (state.order === "ascendent") {
+        filtered = state.activities.sort((prev, next) => {
+          if (parseInt(prev.cost) > parseInt(next.cost)) return 1;
+          if (parseInt(prev.cost) < parseInt(next.cost)) return -1;
+          return 0;
+        })
+      }
+      if (state.order === "descendent") {
+        filtered = state.activities.sort((prev, next) => {
+          if (parseInt(prev.cost) > parseInt(next.cost)) return -1;
+          if (parseInt(prev.cost) < parseInt(next.cost)) return 1;
+          return 0;
+        });
+      }
+      
+      // state.order === "ascendent"
+      //   ? state.activities.sort((prev, next) => {
+      //     if (parseInt(prev.cost) > parseInt(next.cost)) return 1;
+      //     if (parseInt(prev.cost) < parseInt(next.cost)) return -1;
+      //     return 0;
+      //   })
+      //   : state.activities.sort((prev, next) => {
+      //     if (parseInt(prev.cost) > parseInt(next.cost)) return -1;
+      //     if (parseInt(prev.cost) < parseInt(next.cost)) return 1;
+      //     return 0;
+      //   });
       return {
         ...state,
         activities: filtered,
@@ -88,10 +103,15 @@ const reducer = (state = initialState, action) => {
         ages: action.payload.ages,
         players: action.payload.players
       }
-      console.log(filtersChanged);
       return {
         ...state,
         filters: filtersChanged
+      }
+
+    case SET_ORDER:
+      return {
+        ...state,
+        order: action.payload
       }
 
 
