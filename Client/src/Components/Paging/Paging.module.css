@@ -66,6 +66,8 @@ a {
   align-items: center;
   padding: 30px;
   gap: 2rem;
+  color: white;
+
 }
 
 .ul .li {
@@ -73,7 +75,11 @@ a {
   list-style-type: none;
   cursor: pointer;
   font-size: 18px;
+<<<<<<< Updated upstream
   color: white;
+=======
+  color: white
+>>>>>>> Stashed changes
 }
 
 .li:hover {
