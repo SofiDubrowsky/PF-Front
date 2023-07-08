@@ -1,7 +1,8 @@
 import style from "./Stores.module.css"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { NavLink } from "react-router-dom";
 import { getStores } from "../../redux/Actions/getStores";
+import { useEffect } from "react";
 
 
 const Stores = () => { 
