@@ -1,11 +1,13 @@
 .mainConatiner{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    background-color: rgb(212, 211, 211);
-    height: 80px;
+    background-color:#9AC71F;
+    height: 250px;
     width: 100%;
     position: relative;
+    bottom: 0;
+    left: 0;
 }
 .content{
     position: absolute;
@@ -13,15 +15,22 @@
     align-items: center;
     justify-content: center;
     right: 2%;
-    gap: 1rem
-    
+    gap: 1rem;
+    flex-direction: row-reverse;
+    width: 100%;
 }
 
-.enlaceRedes{
+.enlaceRedes {
     height: 30px;
     width: 30px;
+    margin: 5%;
+    white-space: nowrap;
+    translate: 2s;
 }
-
+.enlaceRedes:hover {
+    transform: scale(1.2);
+    
+}
 
 .navlink{
     text-decoration: none;
@@ -32,7 +41,19 @@
     letter-spacing: 2px;
 
 }
-
 .navlink:hover {
-  opacity: 1;
+  opacity: 3;
+  
 }
+.logo{
+    height: 100px;
+    width: 350px;
+}
+
+.box {
+    width: 100%;/* Puedes ajustar el ancho según tus necesidades */
+    margin: 0 7%; /* Puedes ajustar el margen según tus necesidades */
+    background-color: transparent;
+    display: inline-block;
+    margin-top: 2rem;
+  }
