@@ -132,14 +132,13 @@ const Form = () => {
     const existName = allActivities.find(activity => activity.name.toLowerCase() === form.name.toLocaleLowerCase()) ? 1 : 0;
     if (existName === 1) {
       Swal.fire({
-        text: `Ya existe la actividad ${form.name}`,
+        text: `Ya existe la actividad "${form.name}"`,
         icon: 'error',
         timer: 3000,
         showConfirmButton: false,
         timerProgressBar: true
       });
     }
-    //  alert(`Ya existe la actividad ${form.name}`)
     else if (Object.values(errorSave).length !== 0) {
       Swal.fire({
         text: 'Debes completar todos los datos obligatorios',
@@ -149,28 +148,23 @@ const Form = () => {
         timerProgressBar: true
       })
     }
-    // alert('Debes completar todos los datos obligatorios');
     else {
       dispatch(postActivity(form))
       Swal.fire({
         text: 'Actividad Creada!',
         icon: 'success',
-        timer: 3000,
-        showConfirmButton: false,
-        timerProgressBar: true,
+        showConfirmButton: true,
         showCancelButton: true, 
-        cancelButtonText: 'Volver al Inicio', 
         confirmButtonText: 'Agregar nueva actividad', 
-        willClose: (dismiss) => {
-          if (dismiss === 'cancel') {
-            window.location.href = 'http://localhost:3000/home';
-          } else {
-            window.location.href = 'http://localhost:3000/post';
-          }
+        cancelButtonText: 'Volver al Inicio', 
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'http://localhost:3000/post';
+          setTimeout(reload, 3000);  // Espera 3 segundos antes de llamar a reload()
+        } else {
+          window.location.href = 'http://localhost:3000/home';
         }
       })
-
-      // alert('Actividad creada!')
       setForm({
         name: "",
         description: "",
@@ -182,7 +176,6 @@ const Form = () => {
         players: [],
         age: [],
       })
-      // reload();
     }
   }
 

@@ -22,6 +22,7 @@ export default function getActByName(name) {
                     //   },
                     background: '#FFFFFF',
                     timerProgressBar: true,
+                    backdrop: true,
                     showClass: {
                         popup: 'animate__animated animate__fadeInDown'
                     },
