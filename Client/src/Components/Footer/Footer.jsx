@@ -100,7 +100,7 @@ const Footer = () => {
             target="_blank"
             rel="noreferrer"
           >
-            <h3 className={style.navlink}>Gonzalo Schmidthttps</h3>
+            <h3 className={style.navlink}>Gonzalo Schmidt</h3>
           </a>
         </div>
 
