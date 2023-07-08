@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import getActByName from "../../redux/Actions/getActByName";
 import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
+  
 
   function handleinputChange(e) {
     e.preventDefault();
@@ -28,7 +29,7 @@ export default function SearchBar() {
           placeholder="Buscar actividad"
           value={name}
         />
-        <div type="submit"  onClick={handleSubmit} value="buscar" className={style.icon}>
+        <div type="submit" onClick={handleSubmit} value="buscar" className={style.icon}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-search"
@@ -46,10 +47,9 @@ export default function SearchBar() {
             <path d="M21 21l-6 -6" />
           </svg>
         </div>
-          {/* <input type="submit" onClick={handleSubmit} value="buscar" /> */}
       </div>
     </div>
   );
 }
 
-//se debe crear las actions getactbyname y la ruta sugerir que me dejen hacer activities en el back
+
