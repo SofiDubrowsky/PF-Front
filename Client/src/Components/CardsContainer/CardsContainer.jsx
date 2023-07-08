@@ -6,7 +6,8 @@ import SearchBar from "../../Components/SearchBar/SearchBar";
 import {
   orderCost,
   allFilters,
-  setFilters
+  setFilters,
+  setOrder
 } from "../../redux/Actions/filters";
 import style from "./CardsContainer.module.css";
 
@@ -28,6 +29,7 @@ const CardsContainer = () => {
   const [cost, setCost] = useState("");
 
   const filtersSelected = useSelector((state) => state.filters);
+  const orderSelected = useSelector((state) => state.order);
 
   const [activityFilter, setActivityFilter] = useState(filtersSelected.activity);
   const [activityPlayers, setPlayersFilter] = useState(filtersSelected.players);
@@ -69,6 +71,7 @@ const CardsContainer = () => {
   const orderBy = (event) => {
     setCurrentPage(1);
     event.preventDefault();
+    dispatch(setOrder(event.target.value))
     dispatch(orderCost(event.target.value));
     setCost(event.target.value);
   };
@@ -81,14 +84,15 @@ const CardsContainer = () => {
             <SearchBar />
           </div>
           <div className={style.filters}>
-            <select onChange={(event) => orderBy(event)} value={cost}>
+            <select onChange={(event) => orderBy(event)} value={orderSelected}>
+              <option value="" disabled selected>Ordenar por precio</option>
               <option value="ascendent">Menor Precio</option>
               <option value="descendent">Mayor Precio</option>
             </select>
           </div>
           <div className={style.filters}>
             <select onChange={handleFilterPlayers} value={activityPlayers}>
-              <option value="all">Todos</option>
+              <option value="all">N° de jugadores</option>
               <option value="2-4">2 - 4</option>
               <option value="4-8">4 - 8</option>
               <option value="+8">+8</option>
@@ -97,7 +101,7 @@ const CardsContainer = () => {
           
           <div className={style.filters}>
             <select onChange={(event) => handleFilterActivity(event)} value={activityFilter}>
-              <option value="all">Todas</option>
+              <option value="all">Todas las actividades</option>
               {all.map((activity) => (
                 <option key={activity.id} value={activity.name}>
                   {activity.name}

@@ -73,6 +73,7 @@ a {
   list-style-type: none;
   cursor: pointer;
   font-size: 18px;
+  color: white;
 }
 
 .li:hover {
