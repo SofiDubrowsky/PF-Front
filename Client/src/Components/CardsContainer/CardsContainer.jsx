@@ -15,7 +15,6 @@ const CardsContainer = () => {
 
   const activities = useSelector((state) => state.activities);
   const all = useSelector((state) => state.allActivities);
-  const filtersSelected = useSelector((state) => state.filters)
 
   const [currentPage, setCurrentPage] = useState(1);
   const [activitiesPerPage, setactivitiesPerPage] = useState(4);
@@ -28,9 +27,11 @@ const CardsContainer = () => {
 
   const [cost, setCost] = useState("");
 
-  const [activityFilter,setActivityFilter] = useState("all")
-  const [activityPlayers,setPlayersFilter] = useState("all")
-  const [activityAges,setAgesFilter] = useState("all")
+  const filtersSelected = useSelector((state) => state.filters);
+
+  const [activityFilter, setActivityFilter] = useState(filtersSelected.activity);
+  const [activityPlayers, setPlayersFilter] = useState(filtersSelected.players);
+  const [activityAges, setAgesFilter] = useState(filtersSelected.ages);
 
 
   const handleFilterPlayers = (event) => {
@@ -55,10 +56,11 @@ const CardsContainer = () => {
       activity: activityFilter,
       ages: activityAges,
     };
-    dispatch(setFilters(filters))
+    dispatch(setFilters(filters));
     dispatch(allFilters(filters));
-    setCost(""); 
+    setCost("");
   };
+  
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -85,7 +87,7 @@ const CardsContainer = () => {
             </select>
           </div>
           <div className={style.filters}>
-            <select onChange={handleFilterPlayers} >
+            <select onChange={handleFilterPlayers} value={activityPlayers}>
               <option value="all">Todos</option>
               <option value="2-4">2 - 4</option>
               <option value="4-8">4 - 8</option>
@@ -94,7 +96,7 @@ const CardsContainer = () => {
           </div>
           
           <div className={style.filters}>
-            <select onChange={(event) => handleFilterActivity(event)} >
+            <select onChange={(event) => handleFilterActivity(event)} value={activityFilter}>
               <option value="all">Todas</option>
               {all.map((activity) => (
                 <option key={activity.id} value={activity.name}>
@@ -105,7 +107,7 @@ const CardsContainer = () => {
           </div>
                 
           <div className={style.filters}>
-            <select onChange={(event) => handleFilterAges(event)} >
+            <select onChange={(event) => handleFilterAges(event)} value={activityAges} >
               <option value="all">Todas las edades</option>
               <option value="Niños">Niños</option>
               <option value="Adultos">Adultos</option>
