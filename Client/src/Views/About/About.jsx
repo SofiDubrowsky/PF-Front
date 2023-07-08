@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import style from "./About.module.css";
-import img1 from "../../images/paintball.jpg";
-import img2 from "../../images/futbol.jpg";
-import img3 from "../../images/paddel.jpg";
+import img1 from "../../assets/images/paintball.png";
+import img2 from "../../assets/images/futbol.png";
+import img3 from "../../assets/images/paddel.png";
 
 const About = () => {
   const [currentImage, setCurrentImage] = useState(img1); 
