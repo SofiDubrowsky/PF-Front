@@ -1,23 +1,21 @@
 .mainConatiner{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    background-color:#9AC71F;
-    height: 250px;
-    width: 100%;
     position: relative;
-    bottom: 0;
-    left: 0;
+    background-color:#9AC71F;
+    height: 15rem;
+    width: 100%;
 }
 .content{
     position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    grid-template: 1fr / 30% 40% 30%;
+
     right: 2%;
     gap: 1rem;
     flex-direction: row-reverse;
     width: 100%;
+    height: 100%;
+    bottom: 0;
+    background-color:#9AC71F;
 }
 
 .enlaceRedes {
@@ -39,8 +37,13 @@
     font-size: 18px;
     font-weight: 500;
     letter-spacing: 2px;
-
 }
+
+a:link, a:visited, a:active {
+    text-decoration:none;
+    color: black;
+}
+
 .navlink:hover {
   opacity: 3;
   
@@ -50,10 +53,28 @@
     width: 350px;
 }
 
-.box {
-    width: 100%;/* Puedes ajustar el ancho según tus necesidades */
-    margin: 0 7%; /* Puedes ajustar el margen según tus necesidades */
+.box{
+    margin-top: 4rem;
+    grid-area: 1 / 3 / 2 / 4;
+}
+
+.boxNames {
+    width: 100%;
+    height: 100%;
     background-color: transparent;
-    display: inline-block;
-    margin-top: 2rem;
-  }
+    grid-area: 1 / 2 / 2 / 3;
+    padding: 3rem;
+}
+
+.boxLogo{
+    grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gridContainer{
+    display: grid;
+    grid-template: repeat(4, 1fr) / repeat(2, 1fr);
+    gap: .5rem; 
+}

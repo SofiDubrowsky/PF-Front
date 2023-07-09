@@ -19,8 +19,8 @@ let Home = () => {
 
     return (
         <div className={style.head}>
-            <h1>Sportiverse</h1>
-            <h4>Ven y diviertete en grande</h4>
+            {/*<h1>Sportiverse</h1>
+            <h4>Ven y diviertete en grande</h4>*/}
         
             <CardsContainer/>
         

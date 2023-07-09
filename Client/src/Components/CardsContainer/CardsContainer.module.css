@@ -18,6 +18,7 @@
   .filtersContainer .filters select {
     cursor: pointer;
     height: 35px;
+    width: 12rem;
     border-radius: 50px;
     border: 1px solid rgba(179, 255, 104, 0.666);
     background-color: black;
@@ -34,19 +35,21 @@
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-    margin-top: 5em;
+    margin-top: 2em;
+    padding: 0 25px 0 25px;
     gap: 1rem;
     justify-content: space-around;
     align-items: center;
   }
   
-  /* .btn {
+   .btn {
     cursor: pointer;
     height: 35px;
     border-radius: 50px;
-    border: 1px solid #c4c4c4;
-    color: #303030;
+    border: 1px solid rgba(179, 255, 104, 0.666);
+    color: white;
     outline: none;
+    margin-right: 20px;
     padding: 0 20px 0 20px;
     text-align: center;
     transition: all 0.3s;
@@ -57,4 +60,4 @@
   
   .btn:hover {
     background: url(../../Img/fondo1.JPG);
-  } */
+  } 

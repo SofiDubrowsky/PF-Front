@@ -1,13 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import getActByName from "../../redux/Actions/getActByName";
 import style from "./SearchBar.module.css";
 
 export default function SearchBar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
-  
 
   function handleinputChange(e) {
     e.preventDefault();
@@ -29,7 +28,12 @@ export default function SearchBar() {
           placeholder="Buscar actividad"
           value={name}
         />
-        <div type="submit" onClick={handleSubmit} value="buscar" className={style.icon}>
+        <div
+          type="submit"
+          onClick={handleSubmit}
+          value="buscar"
+          className={style.icon}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-search"
@@ -37,7 +41,7 @@ export default function SearchBar() {
             height="20"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
-            stroke="#000000"
+            stroke="#FFFFFF"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -51,5 +55,3 @@ export default function SearchBar() {
     </div>
   );
 }
-
-
