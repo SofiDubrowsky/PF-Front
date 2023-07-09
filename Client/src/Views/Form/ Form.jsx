@@ -141,12 +141,38 @@ const Form = () => {
     )
       ? 1
       : 0;
-    if (existName === 1) alert(`Ya existe la actividad ${form.name}`);
-    else if (Object.values(errorSave).length !== 0)
-      alert("Debes completar todos los datos obligatorios");
+    if (existName === 1){
+      Swal.fire({
+        text: `Ya existe la actividad "${form.name}"`,
+        icon: 'error',
+        timer: 3000,
+        showConfirmButton: false,
+        timerProgressBar: true
+      });
+    }
+    else if (Object.values(errorSave).length !== 0){
+      Swal.fire({
+        text: 'Debes completar todos los datos obligatorios',
+        timerProgressBar: true
+      })
+    }
     else {
       dispatch(postActivity(form));
-      alert("Actividad creada!");
+      Swal.fire({
+        text: 'Actividad Creada!',
+        icon: 'success',
+        showConfirmButton: true,
+        showCancelButton: true, 
+        confirmButtonText: 'Agregar nueva actividad', 
+        cancelButtonText: 'Volver al Inicio', 
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'http://localhost:3000/post';
+          setTimeout(reload, 3000);  // Espera 3 segundos antes de llamar a reload()
+        } else {
+          window.location.href = 'http://localhost:3000/home';
+        }
+      })
       setForm({
         name: "",
         description: "",
@@ -159,7 +185,6 @@ const Form = () => {
         age: [],
       });
     }
-    reload();
   };
 
   useEffect(() => {
