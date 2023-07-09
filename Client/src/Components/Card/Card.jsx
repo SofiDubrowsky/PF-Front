@@ -1,7 +1,7 @@
 import style from "./Card.module.css";
 import { NavLink } from "react-router-dom";
 
-const Card = ({ name, id, picture, stores, cost, players }) => {
+const Card = ({ name, id, picture, stores, cost, players, age }) => {
   return (
     <NavLink to={`/detail/${id}`} className={style.navlink}>
       <div className={style.card}>
@@ -16,7 +16,8 @@ const Card = ({ name, id, picture, stores, cost, players }) => {
           <div className={style.info}>
             
             <h3>${cost} /hora</h3>
-            <h3>Jugadores: {players.map((player) => player)}</h3>
+            <h3>{age[0]}</h3>
+            <h3>Jugadores: {players.map((player) => player).join("   ")}</h3>
 
           </div>
         

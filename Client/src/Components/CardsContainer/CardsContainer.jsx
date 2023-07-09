@@ -85,14 +85,14 @@ const CardsContainer = () => {
           </div>
           <div className={style.filters}>
             <select onChange={(event) => orderBy(event)} value={orderSelected}>
-              <option value="" disabled selected>Ordenar por precio</option>
+              <option value="" disabled selected>Ordenar</option>
               <option value="ascendent">Menor Precio</option>
               <option value="descendent">Mayor Precio</option>
             </select>
           </div>
           <div className={style.filters}>
             <select onChange={handleFilterPlayers} value={activityPlayers}>
-              <option value="all">N° de jugadores</option>
+              <option value="all">Jugadores</option>
               <option value="2-4">2 - 4</option>
               <option value="4-8">4 - 8</option>
               <option value="+8">+8</option>
@@ -101,7 +101,7 @@ const CardsContainer = () => {
           
           <div className={style.filters}>
             <select onChange={(event) => handleFilterActivity(event)} value={activityFilter}>
-              <option value="all">Todas las actividades</option>
+              <option value="all">Actividades</option>
               {all.map((activity) => (
                 <option key={activity.id} value={activity.name}>
                   {activity.name}
@@ -112,20 +112,20 @@ const CardsContainer = () => {
                 
           <div className={style.filters}>
             <select onChange={(event) => handleFilterAges(event)} value={activityAges} >
-              <option value="all">Todas las edades</option>
+              <option value="all">Edades</option>
               <option value="Niños">Niños</option>
               <option value="Adultos">Adultos</option>
             </select> 
          </div>   
 
-         <button type="submit" onClick={handleFilter}>Aplicar Filtros</button>
+         <button type="submit" onClick={handleFilter} className={style.btn}>Aplicar Filtros</button>
 
         </div>
       </div>
 
       <div className={style.container}>
         {currentActivities?.map(
-          ({ id, name, picture, cost, stores, players }) => {
+          ({ id, name, picture, cost, stores, players, age }) => {
             return (
               <Card
                 key={id}
@@ -133,6 +133,7 @@ const CardsContainer = () => {
                 picture={picture}
                 name={name}
                 cost={cost}
+                age={age}
                 stores={stores?.map((element) => element.name)}
                 players={players?.map((player) => player)}
               />

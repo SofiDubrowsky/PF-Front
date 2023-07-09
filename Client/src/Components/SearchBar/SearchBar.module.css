@@ -14,17 +14,16 @@
   
   .principal .inputSearch input {
     height: 35px;
+    width: 100%;
     border-radius: 50px;
-    border: 1px solid #c4c4c4;
-    color: #75706f;
+    border: 1px solid rgba(179, 255, 104, 0.666);
     outline: none;
     padding: 0 50px 0 30px;
   }
   
   .principal .inputSearch input::placeholder {
     letter-spacing: 3px;
-    color: #303030;
-  
+    color: white;
     font-family: var(--manrope);
   }
   

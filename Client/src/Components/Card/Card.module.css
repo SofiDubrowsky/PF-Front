@@ -37,8 +37,8 @@
 }
 
 .card {
-  width: 440px;
-  height: 660px;
+  width: 20rem;
+  height: 35rem;
   padding: 2em 1em;
   position: relative;
   display: flex;
@@ -103,7 +103,7 @@
   top: 40%;
 }
 .info h3{
-  padding: 1em;
+  padding: 1em 1em, 0, 1em;
   font-size: 1.5em;
 }
 /* .card {
