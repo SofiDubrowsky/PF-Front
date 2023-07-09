@@ -172,9 +172,10 @@ const Form = () => {
 
   return (
     <div className={style.contenedor}>
-      <h2>Añadir nueva actividad</h2>
 
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
+      <h2>Crear nueva actividad:</h2>
+        <div className={style.allInputs}>
         <div className={style.content}>
           {/* <h3>Titulo: </h3> */}
           <input
@@ -183,20 +184,9 @@ const Form = () => {
             name="name"
             onChange={handleChange}
             placeholder="Nombre"
+            className={style.inputForm}
           />
           {errors.name && <p>{errors.name}</p>}
-        </div>
-
-        <div className={style.content}>
-          {/* <h3>Descripción: </h3> */}
-          <textarea
-            type="text"
-            value={form.description}
-            name="description"
-            onChange={handleChange}
-            placeholder="Descripción"
-          />
-          {errors.description && <p>{errors.description}</p>}
         </div>
 
         <div className={style.content}>
@@ -208,7 +198,9 @@ const Form = () => {
             name="cost"
             onChange={handleChange}
             placeholder="Precio"
-          />
+            className={style.inputForm}
+
+            />
           {errors.cost && <p>{errors.cost}</p>}
         </div>
 
@@ -219,6 +211,8 @@ const Form = () => {
             name="days"
             value={selectedDay}
             onChange={handleSelect}
+            className={style.inputForm}
+
           >
             <option value="" disabled selected hidden>
               Días
@@ -231,13 +225,13 @@ const Form = () => {
             <option value="Sabado">Sabado</option>
           </select>
           {errors.days && <p>{errors.days}</p>}
-          <div className="daysConteiner">
-            <div className="daysSelected">
+          <div>
+            <div className={style.inputDelete}>
               {form?.days?.length > 0 ? (
                 form?.days?.map((day) => (
-                  <div className="day" key={day}>
-                    <h3>{day}</h3>
+                  <div className={style.inputDel} key={day}>
                     <button onClick={() => handleRemove("days", day)}>X</button>
+                    <h3>{day}</h3>
                   </div>
                 ))
               ) : (
@@ -254,6 +248,8 @@ const Form = () => {
             name="hours"
             value={selectedHour}
             onChange={handleSelect}
+            className={style.inputForm}
+
           >
             <option value="" disabled selected>
               Horarios
@@ -269,15 +265,15 @@ const Form = () => {
             <option value="19-20">19hs a 20hs</option>
           </select>
           {errors.hours && <p>{errors.hours}</p>}
-          <div className="hoursConteiner">
-            <div className="hoursSelected">
+          <div>
+            <div className={style.inputDelete}>
               {form?.hours?.length > 0 ? (
                 form?.hours?.map((hour) => (
-                  <div className="hour" key={hour}>
-                    <h3>{hour}hs</h3>
+                  <div className={style.inputDel} key={hour}>
                     <button onClick={() => handleRemove("hours", hour)}>
                       X
                     </button>
+                    <h3>{hour}hs</h3>
                   </div>
                 ))
               ) : (
@@ -294,6 +290,8 @@ const Form = () => {
             name="age"
             value={selectedAge}
             onChange={handleSelect}
+            className={style.inputForm}
+
           >
             <option value="" disabled selected>
               Edades
@@ -302,13 +300,13 @@ const Form = () => {
             <option value="Adultos">Adultos</option>
           </select>
           {errors.age && <p>{errors.age}</p>}
-          <div className="agesConteiner">
-            <div className="agesSelected">
+          <div>
+            <div className={style.inputDelete}>
               {form?.age?.length > 0 ? (
                 form?.age?.map((ag) => (
-                  <div className="age" key={ag}>
-                    <h3>{ag}</h3>
+                  <div className={style.inputDel} key={ag}>
                     <button onClick={() => handleRemove("age", ag)}>X</button>
+                    <h3>{ag}</h3>
                   </div>
                 ))
               ) : (
@@ -325,6 +323,8 @@ const Form = () => {
             name="players"
             value={selectedPlayers}
             onChange={handleSelect}
+            className={style.inputForm}
+
           >
             <option value="" disabled selected>
               Participantes
@@ -334,15 +334,15 @@ const Form = () => {
             <option value="+8">+8 jugadores</option>
           </select>
           {errors.players && <p>{errors.players}</p>}
-          <div className="playersConteiner">
-            <div className="playersSelected">
+          <div >
+            <div className={style.inputDelete}>
               {form?.players?.length > 0 ? (
                 form?.players?.map((player) => (
-                  <div className="players" key={player}>
-                    <h3>{player} jugadores</h3>
+                  <div className={style.inputDel} key={player}>
                     <button onClick={() => handleRemove("players", player)}>
                       X
                     </button>
+                    <h3>{player} jugadores</h3>
                   </div>
                 ))
               ) : (
@@ -366,6 +366,8 @@ const Form = () => {
             name="store"
             value={selectedStore}
             onChange={handleSelect}
+            className={style.inputForm}
+
           >
             <option value="" disabled selected>
               Sucursales
@@ -375,7 +377,7 @@ const Form = () => {
             ))}
           </select>
           {errors.store && <p>{errors.store}</p>}
-          <div className="storesSelected">
+          <div className={style.inputDelete}>
             {form?.store?.length > 0 ? (
               form?.store?.map((storeId) => {
                 const selectedStore = allStores.find(
@@ -383,11 +385,11 @@ const Form = () => {
                 );
                 // const storeName = selectedStore.name
                 return (
-                  <div className="store" key={storeId}>
-                    <h3>{selectedStore.name}</h3>
+                  <div className={style.inputDel} key={storeId}>
                     <button onClick={() => handleRemove("store", storeId)}>
                       X
                     </button>
+                    <h3>{selectedStore.name}</h3>
                   </div>
                 );
               })
@@ -396,6 +398,20 @@ const Form = () => {
             )}
           </div>
         </div>
+
+        <div className={style.content}>
+          {/* <h3>Descripción: </h3> */}
+          <textarea
+            type="text"
+            value={form.description}
+            name="description"
+            onChange={handleChange}
+            placeholder="Descripción"
+            className={style.textareaForm}
+
+            />
+          {errors.description && <p>{errors.description}</p>}
+        </div>
         <div className={style.content}>
           {/* <h3>Subir Fotos</h3> */}
           <input
@@ -403,7 +419,7 @@ const Form = () => {
             accept="image/*"
             onChange={handleImageUpload}
             disabled={form.picture.length >= 3}
-            className={style.inputUpload}
+            className={style.inputForm}
           />
           <div className={style.imagepreview}>
             {form.picture?.map((imageUrl) => (
@@ -422,7 +438,7 @@ const Form = () => {
           </div>
           {errors.picture && <p>{errors.picture}</p>}
         </div>
-
+        </div>
         {/* <div className="storesConteiner">
                 <div className="storesSelected">
                   {
@@ -459,10 +475,12 @@ const Form = () => {
                   }
                 </div>
               </div> */}
+        <div className={style.btnContainer}>
 
         <button className={style.btn} type="submit">
           Crear
         </button>
+        </div>
       </form>
     </div>
   );

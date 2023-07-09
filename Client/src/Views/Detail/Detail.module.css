@@ -1,6 +1,8 @@
+
 .title{
     width: 100vh;
 }
+
 .detailcontainer{
     overflow: auto;
     display: flex;
@@ -23,14 +25,42 @@
 
 .description {
     width: 30%;
-    height: 500px;
+    height: 31rem;
     text-align: center;
     background-color: rgb(216, 215, 215);
     padding: 10px;
-    margin: 20px;
+    margin-top: 40px;
+    border-radius: 1rem;
+}
+
+.text{
     display: flex;
     flex-direction: column; 
+    align-items: flex-start;
+    justify-content: center;
+    align-content: center;
+    border-radius: 1rem;
+    gap: 1rem;
+    letter-spacing: 2px;
+    margin-top: 3rem;
+    
+
 }
+.description h2{
+    text-transform: capitalize;
+    letter-spacing: 7px;
+    font-size: 40px;
+    margin-top: -1rem
+}
+
+.description h3{
+    font-size: 25px;
+}
+
+.description span{
+    font-size: 15px;
+}
+
 .containerImage {
     display: flex;
     flex-direction: column;
@@ -42,7 +72,9 @@
     height:500px;
     min-width: 220px;
     background-color:rgba(137, 43, 226, 0.11);
+    border-radius: 1rem;
 }
+
 .bigImage {
     display: flex;
     flex-direction: column;
@@ -50,9 +82,10 @@
     align-items: center;
     align-self: top;
     margin:10px;
-    height: 350px;
-    width: 95%;
-    background-color:rgba(137, 43, 226, 0.11);
+    width: 15rem;
+    height: 15rem;
+    border-radius: 2rem;
+    object-fit: cover;
 }
 .minimage{
     display: flex;
@@ -62,6 +95,7 @@
     background-repeat: no-repeat;
     width: 100%;
     justify-content: center;
+    border-radius: 1rem;
 }
 .image{
     display: flex;
@@ -73,6 +107,7 @@
     height:90px;
     width: 130px;
     background-color:rgba(137, 43, 226, 0.11); 
+    border-radius: 2rem;
 }  
 .calendar {
     border-color: black;
@@ -82,6 +117,7 @@
     align-self: center;
     font-size: medium;
     margin-left: 80px;
+    
 }
 
 .buyButton{

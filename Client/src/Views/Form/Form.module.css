@@ -1,18 +1,32 @@
+:root{
+  --input-focus: #9AC71F;
+  --font-color: #323232;
+  --font-color-sub: #666;
+  --bg-color: #fff;
+  --main-color: #424242;
+}
 body {
-  background-color: black;
-  color: white;
+  background: linear-gradient(#000000, #0a1017);
 }
 
-h1,
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ .form h1,
 h2,
 h3,
 h4 {
   color: white;
 }
 
-div p {
+.contenedor .form div p {
   color: white;
   font-size: 10px;
+  margin: 0;
+  
 }
 
 .contenedor {
@@ -20,67 +34,109 @@ div p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -1rem;
 }
 
-.contenedor h2 {
+.form h2 {
   font-weight: bold;
+  text-shadow: 2px 2px var(--main-color), 2px 2px rgba(242, 242, 242, 0.361);
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 8px;
   color: #fff;
   text-align: center;
   margin-bottom: 1rem;
 }
 
-.form {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  text-align: center;
-  border: 1px solid green;
-  box-shadow: 0px 0px 5px green;
-  width: fit-content;
-  height: fit-content;
-  border-radius: 2rem;
-  padding: 1rem;  
-  margin-bottom: 3rem;
 
+.form {
+  width: 40rem;
+  /* background: rgba(0,0,0,.5); */
+  background-color: rgba(33, 32, 32, 0.559);
+  box-shadow: 0 15px 25px rgba(80, 79, 79, 0.896);
+  font-size: 14px;
+  font-family: inherit;
+  color: white;
+  border-radius: 16px;
+  margin-bottom: 5rem;
+  margin-top: 2rem;
+  
+}
+
+.allInputs{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  /* justify-items: flex-start; */
+  gap: 20px;
+  
 }
 
 .form h3 {
   font-weight: 500;
   letter-spacing: 1px;
-  color: white;
-  padding: .5rem;
-  
+  color: white;  
 }
 
 .content{
-  padding: .5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem 0
 }
 
-input,
-select, textarea {
-  border-radius: 50px;
-  border: 1px solid green;
+.inputForm {
+  width: 250px;
+  height: 40px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
   outline: none;
-  text-align: center;
-  cursor: pointer;
-  background-color: black;
-  color: white;
-  width: 8rem;
-  height: 2rem;
-  text-align: center;
+  margin-bottom: 3px;
 }
 
-input::placeholder{
-  color: white;
+ .textareaForm{
+  width: 250px;
+  height: fit-content;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--font-color);
+  padding: 5px 10px;
+  outline: none;
 }
 
-textarea::placeholder{
-  color: white;
+.inputForm input::placeholder{
+  /* color: white; */
+  color: var(--font-color-sub);
+  opacity: 0.8;
 }
 
+input:focus {
+  border: 2px solid var(--input-focus);
+}
+
+.textareaForm textarea::placeholder{
+  color: var(--font-color-sub);
+  opacity: 0.8;
+ 
+}
+textarea:focus {
+  border: 2px solid var(--input-focus);
+}
+
+ select:focus{
+  border: 2px solid var(--input-focus);
+
+}
 .imagepreview {
   display: flex;
   flex-wrap: wrap;
@@ -106,15 +162,26 @@ textarea::placeholder{
 .removebutton {
   position: absolute;
   border: none;
-  color: red;
+  color: white;
   cursor: pointer;
   border: none;
   background: none;
 }
 
+.btnContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+
+}
+
+
 .btn{
   border: none;
-  border: 1px solid green;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
   background: none;
   width: 7rem;
   height: 2rem;
@@ -135,4 +202,38 @@ textarea::placeholder{
 
 .inputUpload{
   background: none;
+}
+
+.inputDelete {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: .7rem;
+  font-size: 10px;
+}
+
+.inputDel {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputDel button {
+  width: 1.3rem;
+  border: none;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 5rem;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  color: white;
+  font-size: 10px;
+
+}
+
+.inputDel h3 {
+  font-weight: 400;
+  color: #ffffff;
 }
