@@ -1,101 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-/* .mainContainer{
-    padding: 0;
-    margin: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: blue;
-}
-
-.navBar{
-    background-color: #E3F4F4;
-    height: 75px;
-    width: 100%;
-}
-
-.footer{
-    background-color: #E3F4F4;
-    height: 80px;
-    width: 100%;
-}
-
-.gridContainer{
-    height: 81vh;
-    display: grid;
-    grid-template: 80% 20% / repeat(2, 1fr);
-}
-
-.textContainer{
-    grid-area: 1 / 1 / 2 / 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 5rem;
-}
-
-.textContainer p{
-    width: 60%;
-    height: 55%;
-    text-align: center;
-    letter-spacing: 1px;
-    margin-top: 1.5rem
-}
-
-.principalImg{
-    grid-area: 1 / 2 / 2 / 2;
-    height: 100%;
-    width: 100%;
-    border-radius: 3rem;
-}
-
-.imgContainer{
-    grid-area: 2 / 1 / 3 / 3;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.secondaryImg{
-    height: 70px;
-    width: 25%;
-    border-radius: 1rem;
-
-}
-
-.navlink {
-    width: 10rem;
-    height: 4rem;
-    text-decoration: none;
-    text-align: center;
-    background-color: #E3F4F4;
-    opacity: 0.7;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    transition: all 0.5s;
-    cursor: pointer;
-    color: #000;
-    text-transform: uppercase;
-    font-weight: bold;
-    letter-spacing: 1px;
-    border: none;
-    font-family: var(--manrope);
-    font-size: 12px;
-    margin-top: 1rem;
-    transition: .5s;
-    margin-bottom: 7rem;
-  }
-  
-  .navlink:hover{
-    opacity: 1;
-    font-weight: bold;
-  } */
 
 * {
   margin: 0;
@@ -181,16 +83,6 @@ h2 {
   }
 }
 
-/* .title{
-    position: absolute;
-    top: 40%;
-    right: 12%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-} */
 .column {
   position: relative;
   display: flex;
@@ -210,13 +102,17 @@ h2 {
   text-align: center;
 }
 
-.title h1 {
+/* .title h1 {
   text-transform: uppercase;
   color: white;
   font-size: 5rem;
   letter-spacing: 2rem;
   font-weight: bold;
   text-shadow: 0px 0px 5px #7b7b7b, 0px 0px 15px #000;
+} */
+
+.title img{
+  width: 75rem;
 }
 
 .navlink {
@@ -241,6 +137,7 @@ h2 {
   align-items: center;
   justify-content: center;
   opacity: .9;
+  margin-top: 1rem;
 }
 
 

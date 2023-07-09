@@ -17,21 +17,21 @@ const Detail = () => {
     },[id]);
 
 
-
+    // const storeName = activity.stores.map(store => store.name)[0];
     return (
     <div className={style.detailCont}>
-        {/* <div className={style.title}> 
-            <h1>{activity?.name}</h1><h3>{activity?.store}</h3>
-        </div> */}
+        <div className={style.title}> 
+            <h3>Sucursal: {activity?.stores?.map(store => store.name)}</h3>
+        </div>
 
         <div  className={style.detailcontainer}> 
          <div className={style.containerImage} >
             <img className={style.bigImage} src={activity?.picture} alt="activity"/>
-            <div className={style.minimage}>
+            {/* <div className={style.minimage}>
                 <div className={style.image}>img1</div>
                 <div className={style.image}>img2</div>
                 <div className={style.image}>img3</div>  
-            </div>
+            </div> */}
         </div>
 
         <div className={style.description}>
@@ -43,7 +43,7 @@ const Detail = () => {
             <h3>Edad: <span>{activity?.age}</span></h3>
             <h3>Día: <span>{activity?.days}</span></h3>
             <h3>Hora: <span>{activity?.hours}</span></h3>
-            <h3>Costo: <span>${activity?.cost}</span></h3>
+            <h5 className={style.cost}>${activity?.cost}</h5><span>/hora</span>
             </div>
         </div>
 
@@ -55,7 +55,7 @@ const Detail = () => {
         </div>
     <hr/>
         <div className={style.review}><h2>Valoraciones de usuarios</h2>
-            <div className={style.reviewbox}>-----Calificacion ☆☆☆☆☆ ------- "__________________________________________________________reseña#1__________________________________________________________________" -----Usuario-----</div>
+            <div className={style.reviewbox}>-----Calificacion ☆☆☆☆☆ ------- "______________________________reseña#1______________________________" -----Usuario-----</div>
         </div>
 
     </div>
