@@ -19,10 +19,10 @@ const Detail = () => {
 
 
     return (
-    <div>
-        <div className={style.title}> 
+    <div className={style.detailCont}>
+        {/* <div className={style.title}> 
             <h1>{activity?.name}</h1><h3>{activity?.store}</h3>
-        </div>
+        </div> */}
 
         <div  className={style.detailcontainer}> 
          <div className={style.containerImage} >
@@ -35,13 +35,16 @@ const Detail = () => {
         </div>
 
         <div className={style.description}>
-            <h3>Esta es la informacion de la actividad traida del backend {activity?.description}</h3>
-            <h3>{activity?.players}</h3>
-            <h3>{activity?.age}</h3>
-            <h3>{activity?.days}</h3>
-            <h3>{activity?.hours}</h3>
-            <hr/>
-            <h1>Reserva: ${activity?.cost}</h1>
+            <h2>{activity?.name}</h2>
+            <div className={style.text}>
+
+            <h3>Descripción: <span>{activity?.description}</span></h3>
+            <h3>Jugadores: <span>{activity?.players}</span></h3>
+            <h3>Edad: <span>{activity?.age}</span></h3>
+            <h3>Día: <span>{activity?.days}</span></h3>
+            <h3>Hora: <span>{activity?.hours}</span></h3>
+            <h3>Costo: <span>${activity?.cost}</span></h3>
+            </div>
         </div>
 
 
