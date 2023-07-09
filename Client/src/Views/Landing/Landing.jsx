@@ -4,10 +4,11 @@ import imagen1 from "../../Components/Img/img1.jpg";
 import imagen2 from "../../Components/Img/img2.jpg";
 import imagen3 from "../../Components/Img/img3.jpg";
 import imagen4 from "../../Components/Img/img4.png";
+import logoBlanco from "../../assets/logo-blanco.png"
 
 const Landing = () => {
   return (
-    <div>
+    <div className={style.mainContainer}>
       {/* <HeaderSlider/> */}
       <div className={style.sliderFrame}>
         <ul>
@@ -27,7 +28,8 @@ const Landing = () => {
       </div>
      
       <div className={style.title}>
-        <h1>sportiverse</h1>
+        <img src={logoBlanco} alt="logo" />
+
       </div>
       <NavLink to="/home" className={style.navlink}>
         Busca tu actividad
