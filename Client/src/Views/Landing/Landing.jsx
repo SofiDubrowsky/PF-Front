@@ -4,7 +4,7 @@ import imagen1 from "../../Components/Img/img1.jpg";
 import imagen2 from "../../Components/Img/img2.jpg";
 import imagen3 from "../../Components/Img/img3.jpg";
 import imagen4 from "../../Components/Img/img4.png";
-import logoBlanco from "../../assets/logo-blanco.png"
+import logoBlanco from "../../assets/logo-shadow.png"
 
 const Landing = () => {
   return (
