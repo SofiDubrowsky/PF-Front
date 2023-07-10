@@ -20,7 +20,7 @@ const Stores = () => {
     <div className={style.mainContainer}>
       <div className={style.title}>
         <h1>Ubicaciones</h1>
-        <h3>Contamos con {stores.length} sucursales disponibles</h3>
+        <h3>Nuestras Sucursales:</h3>
       </div>
 
       {stores.length !== 0 ? (
@@ -37,11 +37,11 @@ const Stores = () => {
               <div className={style.containerData}>
                 <div className={style.data}>
                   <h3>
-                    Sucursal: {store.id} "{store.name}"
+                    Sucursal: <span>"{store.name}"</span>
                   </h3>
-                  <h3>Dirección: {store.address}</h3>
-                  <h3>Teléfono: {store.phone}</h3>
-                  <h3>Email: {store.email}</h3>
+                  <h3>Dirección: <span>{store.address}</span></h3>
+                  <h3>Teléfono: <span>{store.phone}</span></h3>
+                  <h3>Email: <span>{store.email}</span></h3>
                 </div>
               </div>
               <div className={style.map}>

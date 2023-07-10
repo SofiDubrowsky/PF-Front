@@ -3,7 +3,8 @@
     width: 310px;
     border: 1px solid #ccc;
     background-color: #f0f0f0;
-    padding: 10px;
+    /* padding: 10px; */
+    
   }
   .react-calendar {
     width: 350px;
@@ -12,6 +13,10 @@
     border: 1px solid #a0a096;
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
+    border-radius: 2rem;
+    height: 23rem;
+    box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896);
+
   }
   
   .react-calendar--doubleView {
