@@ -1,65 +1,70 @@
-import CalendarComponent from "../../Components/Calendar/Calendar"
+import CalendarComponent from "../../Components/Calendar/Calendar";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {  useEffect } from "react";
+import { useEffect } from "react";
 import { getActivityDetail } from "../../redux/Actions/getActivityDetail";
 import { NavLink } from "react-router-dom";
-import style from "./Detail.module.css"
+import style from "./Detail.module.css";
 
 const Detail = () => {
+  const { id } = useParams();
+  const activity = useSelector((state) => state.detail);
+  const dispatch = useDispatch();
 
-    const {id} = useParams()
-    const activity = useSelector(state=>state.detail)
-    const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getActivityDetail(id));
+  }, [id]);
 
-    useEffect(() => {
-      dispatch(getActivityDetail(id))
-    },[id]);
-
-
-    // const storeName = activity.stores.map(store => store.name)[0];
-    return (
-    <div className={style.detailCont}>
-        <div className={style.title}> 
-            <h3>Sucursal: {activity?.stores?.map(store => store.name)}</h3>
+  // const storeName = activity.stores.map(store => store.name)[0];
+  return (
+    <div>
+        <div className={style.sucursal}>
+            <h3>Sucursal: <span>{activity?.stores?.map((store) => store.name)}</span></h3>
         </div>
 
-        <div  className={style.detailcontainer}> 
-         <div className={style.containerImage} >
-            <img className={style.bigImage} src={activity?.picture} alt="activity"/>
-            {/* <div className={style.minimage}>
+    <div className={style.contenedor}>
+        <div className={style.containerImage}>
+          <img className={style.bigImage} src={activity?.picture} alt="activity"/>
+        </div>
+          {/* <div className={style.minimage}>
                 <div className={style.image}>img1</div>
                 <div className={style.image}>img2</div>
                 <div className={style.image}>img3</div>  
             </div> */}
-        </div>
 
         <div className={style.description}>
-            <h2>{activity?.name}</h2>
-            <div className={style.text}>
+            <div>
 
+          <h2>{activity?.name}</h2>
+            </div>
+          <div className={style.text}>
             <h3>Descripción: <span>{activity?.description}</span></h3>
             <h3>Jugadores: <span>{activity?.players}</span></h3>
             <h3>Edad: <span>{activity?.age}</span></h3>
             <h3>Día: <span>{activity?.days}</span></h3>
             <h3>Hora: <span>{activity?.hours}</span></h3>
-            <h5 className={style.cost}>${activity?.cost}</h5><span>/hora</span>
-            </div>
+            <h5 className={style.cost}>${activity?.cost}<span>/hora</span></h5>
         </div>
+      </div>
 
-
-         <div className={style.calendar}><CalendarComponent />       
-           <button className={style.buyButton}>Reservar</button> 
-           <button className={style.backButton}><NavLink to="/home">Volver</NavLink></button>
-         </div> 
+        <div className={style.calendar}>
+          <CalendarComponent />
+          <div className={style.btns}>
+          <button className={style.buyButton}>Reservar</button>
+          </div>
         </div>
-    <hr/>
-        <div className={style.review}><h2>Valoraciones de usuarios</h2>
-            <div className={style.reviewbox}>-----Calificacion ☆☆☆☆☆ ------- "______________________________reseña#1______________________________" -----Usuario-----</div>
-        </div>
-
     </div>
-    )
-}
+      
+      <div className={style.review}>
+        <h2>Valoraciones de usuarios</h2>
+        <div className={style.reviewbox}>
+          -----Calificacion ☆☆☆☆☆ -------
+          "______________________________reseña#1______________________________"
+          -----Usuario-----
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Detail;

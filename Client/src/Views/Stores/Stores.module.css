@@ -1,12 +1,23 @@
+:root{
+    --input-focus: #9AC71F;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #424242;
+}
+
 .mainContainer {
     min-height: 67vh;
 
 }
-
+.title h1{
+    color: white;
+}
 .title {
     width: 100%;
     padding-left: 1.5rem;
     padding-top: 1.5rem;
+    text-align: center;
 }
 
 .buttonContainer {
@@ -19,11 +30,11 @@
     overflow: auto;
     display: flex;
     flex-wrap: wrap;
-    border: 1px solid rgba(179, 255, 104, 0.666); 
-    border-radius: 15px;
-    background-color: black;
-    background-repeat: no-repeat;
+    background: black;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
     margin: 2rem;
+    border-radius: 1rem;
 }
 
 .map {
@@ -74,8 +85,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    align-self: top;
+    align-items: flex-start;
+    align-self: center;
     margin: 10px;
     height: 350px;
     width: 95%;
@@ -105,21 +116,21 @@
 }
 
 .backButton {
-    align-self: center;
-    cursor: pointer;
-    height: 35px;
-    border-radius: 50px;
-    border: 1px solid rgba(179, 255, 104, 0.666);
+    border: none;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    background: none;
+    width: 7rem;
+    height: 2rem;
     color: white;
-    outline: none;
-    margin-right: 20px;
-    padding: 0 20px 0 20px;
-    text-align: center;
-    transition: all 0.3s;
-    font-family: var(--manrope);
-    background: transparent;
-    letter-spacing: 1px;
+    border-radius: 2rem;
     transition: .5s;
+    cursor: pointer;
+    transform: translate(20%);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
 }
 
 
@@ -130,4 +141,9 @@
 .backButton a:link, a:visited, a:active {
     text-decoration:none;
     color: white;
+}
+
+.data span{
+    font-weight: 500;
+    font-size: 30px;
 }
