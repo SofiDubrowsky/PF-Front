@@ -3,6 +3,8 @@ import { POST_ACTIVITY } from "./Actions/postActivity";
 import { GET_ACTIVITIES } from "./Actions/getActivities";
 import { GET_ACT_BY_NAME } from "./Actions/getActByName";
 import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
+import { LOGIN } from "./Actions/login";
+import { CREATE_USER } from "./Actions/createUser"
 import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
 
 const initialState = {
@@ -59,7 +61,7 @@ const reducer = (state = initialState, action) => {
           return 0;
         });
       }
-      
+
       // state.order === "ascendent"
       //   ? state.activities.sort((prev, next) => {
       //     if (parseInt(prev.cost) > parseInt(next.cost)) return 1;
@@ -114,6 +116,15 @@ const reducer = (state = initialState, action) => {
         order: action.payload
       }
 
+    case LOGIN:
+      return {
+        ...state,
+      }
+
+    case CREATE_USER:
+      return {
+        ...state,
+      }
 
     default:
       return state;

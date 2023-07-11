@@ -13,7 +13,7 @@ const Nav = () => {
       <NavLink to="/about" className={style.navlink}>Nosotros</NavLink>
       <NavLink to="/stores" className={style.navlink}>Sucursales</NavLink>
       <NavLink to="/post" className={style.navlink}>Crear Actividad</NavLink>
-      <NavLink to="/home" className={style.navlink}>Iniciar Sesion/Registrarse</NavLink>
+      <NavLink to="/login" className={style.navlink}>Iniciar Sesion/Registrarse</NavLink>
       </div>
     )
 }
