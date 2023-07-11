@@ -8,6 +8,7 @@ import { postActivity } from "../../redux/Actions/postActivity";
 import getActivities from "../../redux/Actions/getActivities";
 import { getStores } from "../../redux/Actions/getStores";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const API_KEY = import.meta.env.VITE_API_KEY;
@@ -20,8 +21,10 @@ const reload = () => {
 
 const Form = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const allActivities = useSelector((state) => state.activities);
   const allStores = useSelector((state) => state.stores);
+  const isClient = useSelector((state) => state.isClient)
 
   const [form, setForm] = useState({
     name: "",
@@ -42,6 +45,10 @@ const Form = () => {
   const [selectedStore, setSelectedStore] = useState("");
   const [selectedAge, setSelectedAge] = useState("");
   const [selectedPlayers, setSelectedPlayers] = useState("");
+
+  useEffect(() => {
+    isClient && navigate('/home')
+  },[isClient])
 
   const handleChange = (event) => {
     setForm({

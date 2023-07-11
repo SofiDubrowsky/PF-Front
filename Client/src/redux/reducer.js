@@ -4,6 +4,7 @@ import { GET_ACTIVITIES } from "./Actions/getActivities";
 import { GET_ACT_BY_NAME } from "./Actions/getActByName";
 import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
 import { LOGIN } from "./Actions/login";
+import { LOGOUT } from "./Actions/logout";
 import { CREATE_USER } from "./Actions/createUser"
 import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
 
@@ -120,13 +121,20 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGIN:
-      console.log(action.payload);
       return {
         ...state,
         clientId: action.payload.id,
         isClient: action.payload.client,
         access: true
       }
+
+      case LOGIN:
+        return {
+          ...state,
+          clientId: 0,
+          isClient: true,
+          access: false
+        }
 
     case CREATE_USER:
       return {

@@ -38,3 +38,14 @@
   height: 100px;
   margin-top: 15px;
 }
+
+.logoutButton{
+  border: none;
+  background-color: none;
+  background: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-weight: bold;
+}

@@ -32,7 +32,7 @@ const Login = () => {
           password: "",
         });
         
-        //navigate("/home");
+        navigate("/home");
       })
       .catch((error) => {
         if (error.response) {
