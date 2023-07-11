@@ -12,10 +12,11 @@ export const login = (user) => {
         if (homeURL) {
           window.location.href = homeURL;
         }
-  
-        return  response;
+        console.log(response.data.user);
+        return  dispatch({type: LOGIN, payload: response.data.user});
       } catch (error) {
         throw error;
       }
+      
     };
   };
