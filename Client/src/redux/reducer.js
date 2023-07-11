@@ -17,7 +17,10 @@ const initialState = {
     ages: "all",
     players: "all"
   },
-  order: ""
+  order: "",
+  clientId: 0,
+  isClient: true,
+  access: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -117,8 +120,12 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGIN:
+      console.log(action.payload);
       return {
         ...state,
+        clientId: action.payload.id,
+        isClient: action.payload.client,
+        access: true
       }
 
     case CREATE_USER:

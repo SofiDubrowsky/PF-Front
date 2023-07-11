@@ -9,6 +9,7 @@ import Stores from './Views/Stores/Stores'
 import Footer from './Components/Footer/Footer'
 import Login from './Views/Login/Login'
 import Account from './Views/Account/Account'
+import Admin from'./Views/Admin/Admin'
 import './App.css'
 
 
@@ -17,7 +18,7 @@ function App() {
   return (
     <div>
       {
-        location.pathname !== '/' && <Nav></Nav>
+        location.pathname !== '/'  && <Nav></Nav>
       }
       <Routes>
       <Route path='/' element={<Landing />} />
@@ -28,10 +29,11 @@ function App() {
       <Route path='/stores' element={<Stores />} />
       <Route path='/login' element={<Login/>} />
       <Route path='/account' element={<Account/>} />
+      <Route path='/admin' element={<Admin/>} />
 
     </Routes>
       {
-        location.pathname !== '/' && <Footer></Footer>
+        location.pathname !== '/' || location.pathname !== '/' && <Footer></Footer>
       }
     </div>
     
