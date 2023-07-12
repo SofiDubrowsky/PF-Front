@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/Actions/createUser";
+import validate from "../Account/validate";
+import Swal from "sweetalert2";
 
 const Account = () => {
   const navigate = useNavigate();
@@ -15,34 +17,67 @@ const Account = () => {
     phone: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (event) => {
     setUser({
       ...user,
       [event.target.name]: event.target.value,
     });
+
+    setErrors(
+      validate({
+        ...user,
+        [event.target.name]: event.target.value,
+      })
+    );
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(user);
-    dispatch(createUser(user))
-      .then((response) => {
-        alert("Created");
-        setUser({
-          email: "",
-          password: "",
-          name: "",
-          phone: "",
+    const errorSave = validate(user);
+
+    if (Object.keys(errorSave).length === 0) {
+      dispatch(createUser(user))
+        .then((response) => {
+          Swal.fire({
+            icon: "success",
+            title: "Cuenta creada exitosamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          setUser({
+            email: "",
+            password: "",
+            name: "",
+            phone: "",
+          });
+
+          navigate("/login");
+        })
+        .catch((error) => {
+          if (error.response) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: error.response.data.error,
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: error.message,
+            });
+          }
         });
-        navigate("/login");
-      })
-      .catch((error) => {
-        if (error.response) {
-          alert(error.response.data.error);
-        } else {
-          alert(error.message);
-        }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error de validación",
+        text: "Por favor, complete correctamente todos los campos.",
       });
+    }
   };
 
   return (
@@ -53,7 +88,7 @@ const Account = () => {
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-arrow-narrow-left"
             width="32"
-            height="32"
+            height="50"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
             stroke="#9e9e9e"
@@ -67,40 +102,46 @@ const Account = () => {
             <path d="M5 12l4 -4" />
           </svg>
         </div>
-        <h2>Create account:</h2>
+        <h2>Crear cuenta:</h2>
         <div className={style.text}>
-
-        <label>Nombre:</label>
+          <h3 className={style.label2}>Nombre:</h3>
           <input
             type="text"
             name="name"
             value={user.name}
             onChange={(event) => handleChange(event)}
           />
-          <label>Telefono:</label>
+          {errors.name && <span className={style.error}>{errors.name}</span>}
+
+          <h3 className={style.label2}>Movil:</h3>
           <input
             type="text"
             name="phone"
             value={user.phone}
             onChange={(event) => handleChange(event)}
           />
-          <label>Email:</label>
+          {errors.phone && <span className={style.error}>{errors.phone}</span>}
+
+          <h3 className={style.label2}>Correo electrónico:</h3>
           <input
             type="text"
             name="email"
             value={user.email}
             onChange={(event) => handleChange(event)}
           />
-          <label>Password:</label>
+          {errors.email && <span className={style.error}>{errors.email}</span>}
+
+          <h3 className={style.label2}>Contraseña:</h3>
           <input
             type="password"
             name="password"
             value={user.password}
             onChange={(event) => handleChange(event)}
           />
+          {errors.password && <span className={style.error}>{errors.password}</span>}
         </div>
         <div>
-          <button className={style.btn}>Submit</button>
+          <button className={style.btn}>Crear</button>
         </div>
       </form>
     </div>
