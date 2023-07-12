@@ -7,6 +7,7 @@ import { LOGIN } from "./Actions/login";
 import { LOGOUT } from "./Actions/logout";
 import { CREATE_USER } from "./Actions/createUser"
 import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
+import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
 
 const initialState = {
   activities: [],
@@ -22,6 +23,7 @@ const initialState = {
   clientId: 0,
   isClient: true,
   access: false,
+  reservation: {},
 };
 
 const reducer = (state = initialState, action) => {
@@ -141,8 +143,15 @@ const reducer = (state = initialState, action) => {
         ...state,
       }
 
+    case SAVE_RESERVATION:
+      return {
+        ...state,
+        reservation: action.payload
+      }
+
     default:
       return state;
   }
+   
 };
 export default reducer;
