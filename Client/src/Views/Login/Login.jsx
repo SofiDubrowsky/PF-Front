@@ -1,11 +1,13 @@
 import style from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { login } from "../../redux/Actions/login";
 import validate from "./validate";
 import Swal from "sweetalert2";
+import GoogleLogin from "react-google-login"
+import { gapi } from "gapi-script"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,8 +18,33 @@ const Login = () => {
     password: "",
   });
 
+  const [googleUser, setGoogleUser] = useState();
+
   const [errors, setErrors] = useState({});
 
+
+  //Autenticación con Google
+  const clientID = "799510211200-rga3f3jto5ngstqpo52vkjospb5inmrh.apps.googleusercontent.com"
+
+  useEffect(() => {
+    const start = () => {
+      gapi.auth2.init({
+        clientId: clientID
+      })
+    }
+    gapi.load("client:auth2", start)
+  },[])
+
+  const onSuccess = (response) => {
+    setGoogleUser(response.profileObj);
+    
+  }
+
+  const onFailure = () => {
+    console.log("no se pudo iniciar sesión");
+  }
+
+  //--------------------------
   const handleChange = (event) => {
     setUser({
       ...user,
@@ -111,6 +138,15 @@ const Login = () => {
         </div>
         <div>
           <button className={style.btn}>Acceder</button>
+        </div>
+        <div className={style.googleContainer}> 
+          <p>Or</p>
+          <GoogleLogin
+            clientId = {clientID}
+            onSuccess={onSuccess}
+            onFailure={onFailure}
+            cookiePolicy={"single_host_origin"}
+          />
         </div>
         <div>
           <NavLink to="/account" className={style.navlink}>
