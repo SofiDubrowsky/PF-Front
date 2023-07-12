@@ -3,10 +3,16 @@ import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { format, isSameDay } from 'date-fns';
 import es from 'date-fns/locale/es';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch} from 'react-redux';
+import {initMercadoPago, Wallet} from '@mercadopago/sdk-react';
+import axios from "axios";
+import {saveInfoReservation} from '../../redux/Actions/saveInfoReservation';
+import Swal from 'sweetalert2';
 
 
 export default function CalendarComponent() {
+  const dispatch = useDispatch();
+
   const [value, onChange] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
@@ -16,6 +22,7 @@ export default function CalendarComponent() {
   const dayReservations = activity?.reservations?.find(reserv=>reserv.date===selected)
   const id = activity?.id
   const cost = activity?.cost
+  const name = activity?.name
   
   const [reservation,setReservation] = useState({
     date:'',
@@ -25,8 +32,6 @@ export default function CalendarComponent() {
     idActivity:id
   })
   
-
-
   const week = ["Domingo", "Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
   const forbiddenDays = week.filter((day) => !(activity?.days?.includes(day)));
 
@@ -61,10 +66,40 @@ export default function CalendarComponent() {
       setReservation({
         ...reservation,
         hour:hour,
-        date:selected
+        date:selected,
+        cost:cost,
+        idActivity:id,
+        idUser:idUser,
       })
     }
   };
+
+  //Mercado Pago Funciones 
+  const [preferenceId, setPreferenceId] = useState(null);
+  initMercadoPago('APP_USR-f77b254e-b7df-4f4e-9da7-82b3a2e8be04')
+
+  const createPreference = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/create_preference', {
+        description: name,
+        price: cost,
+        quantity: 1
+      })
+
+      const {id} = response.data
+      return id
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const handleBuy = async () => {
+    const id = await createPreference(); 
+    if (id) {
+      setPreferenceId(id)
+      dispatch(saveInfoReservation(reservation))
+    }
+  }
 
   return (
     <div >
@@ -91,6 +126,9 @@ export default function CalendarComponent() {
            ))
          ) : ( <p>Sin Horarios</p>)
         }
+
+        <button onClick={handleBuy}>Reservar</button> 
+        {preferenceId && <Wallet initialization={{preferenceId}} />}
       </div>
     </div>
   );
