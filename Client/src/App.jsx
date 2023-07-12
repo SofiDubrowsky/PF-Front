@@ -11,6 +11,8 @@ import Login from './Views/Login/Login'
 import Account from './Views/Account/Account'
 import Admin from'./Views/Admin/Admin'
 import './App.css'
+import Success from './Views/Success/Success'
+import Failure from './Views/Failure/Failure'
 
 
 function App() {
@@ -30,6 +32,8 @@ function App() {
       <Route path='/login' element={<Login/>} />
       <Route path='/account' element={<Account/>} />
       <Route path='/admin' element={<Admin/>} />
+      <Route path='/success' element={<Success/>} />
+      <Route path='/failure' element={<Failure/>} />
 
     </Routes>
       {
