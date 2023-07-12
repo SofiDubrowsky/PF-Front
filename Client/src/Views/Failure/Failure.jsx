@@ -14,7 +14,7 @@ const Failure = () => {
         </div>
         <img src="https://static.vecteezy.com/system/resources/thumbnails/011/148/562/small/right-and-wrong-vector-design-illustration-isolated-on-transparent-background-free-png.png" className={style.check} alt="" />
         <div className={style.nav}>
-        <NavLink to="/">
+        <NavLink to="/dashboard">
          Ver mis reservas
         </NavLink>
         </div>

@@ -13,6 +13,7 @@ import Admin from'./Views/Admin/Admin'
 import './App.css'
 import Success from './Views/Success/Success'
 import Failure from './Views/Failure/Failure'
+import UserDashboard from './Views/UserDashboard/UserDashboard'
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
       <Route path='/admin' element={<Admin/>} />
       <Route path='/success' element={<Success/>} />
       <Route path='/failure' element={<Failure/>} />
-
+      <Route path='/dashboard' element={<UserDashboard/>} />
     </Routes>
       {
         location.pathname !== '/'  && <Footer></Footer>

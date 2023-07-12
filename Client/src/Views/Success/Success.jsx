@@ -14,8 +14,8 @@ const Success = () => {
         </div>
         <img src="https://www.freeiconspng.com/uploads/check-mark-ok-png-10.png" className={style.check} alt="" />
         <div className={style.nav}>
-        <NavLink to="/">
-         Ver mis reservas
+        <NavLink to="/dashboard">
+        Ver mis reservas
         </NavLink>
         </div>
         </div>

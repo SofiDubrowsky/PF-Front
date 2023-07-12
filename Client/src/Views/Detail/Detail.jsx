@@ -51,9 +51,6 @@ const Detail = () => {
 
         <div className={style.calendar}>
           <CalendarComponent />
-          <div className={style.btns}>
-          <button className={style.buyButton}>Reservar</button>
-          </div>
         </div>
     </div>
       
