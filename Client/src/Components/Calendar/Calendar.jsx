@@ -1,4 +1,4 @@
-import './calendar.css';
+import styles from './Calendar.module.css'
 import { useState } from 'react';
 import Calendar from 'react-calendar';
 import { format, isSameDay } from 'date-fns';
@@ -11,6 +11,24 @@ export default function CalendarComponent() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const activity = useSelector((state) => state.detail);
+  const idUser = useSelector((state) => state.clientId);
+  let selected = selectedDate? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}`: null
+  const dayReservations = activity?.reservations?.find(reserv=>reserv.date===selected)
+  const id = activity?.id
+  const cost = activity?.cost
+  
+  const [reservation,setReservation] = useState({
+    date:'',
+    cost:cost,
+    hour:'',
+    idUser:idUser,
+    idActivity:id
+  })
+  
+
+
+  const week = ["Domingo", "Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
+  const forbiddenDays = week.filter((day) => !(activity?.days?.includes(day)));
 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
@@ -18,15 +36,19 @@ export default function CalendarComponent() {
 
   const handleDateChange = (date) => {
     const currentDate = new Date();
+
     if (isSameDay(date, currentDate) || date > currentDate) {
       setSelectedDate({
         date,
         dayName: capitalize(format(date, 'EEEE', { locale: es }))
       });
     }
+    if(!activity.days.includes(capitalize(format(date, 'EEEE', { locale: es })))){
+      setSelectedDate({date,dayName:"Día no válido"})
+    }
     if(!isSameDay(date, currentDate)&&date<currentDate){
       setSelectedDate({
-        date,dayName:"Fecha Inválida!"
+        date,dayName:"Fecha pasada"
       })
     }
   };
@@ -36,44 +58,39 @@ export default function CalendarComponent() {
       setSelectedHour(null);
     } else {
       setSelectedHour(hour);
+      setReservation({
+        ...reservation,
+        hour:hour,
+        date:selected
+      })
     }
-  };
-  const buttonStyle = (hour) => {
-    return {
-      backgroundColor: selectedHour === hour ? '#9AC71F' : 'white',
-      color: selectedHour === hour ? 'white' : 'black',
-    };
-  };
-
-  const selectCurrentDate = () => {
-    const currentDate = new Date();
-    onChange(currentDate);
-    handleDateChange(currentDate);
   };
 
   return (
-    <div>
-      <div>
-      <Calendar onChange={handleDateChange} value={value} />
+    <div >
+      <div className={styles['calendar-container']}>
+      <Calendar onChange={handleDateChange}
+  value={value}
+  tileClassName={({ date }) =>
+    forbiddenDays.includes(capitalize(format(date, 'EEEE', { locale: es }))) ? styles.forbidden : ''
+  }/>
       <p style={{color:"white"}}>
         Fecha seleccionada:{' '}
         {selectedDate
           ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}`
           : 'Ninguna'}
       </p>
-      <button onClick={selectCurrentDate}>Seleccionar fecha actual</button>
       </div>
       <div style={{color:"white"}}>
-      {activity?.hours?.length > 0 ? (
-  activity?.hours?.map((hour) => (
-    <div key={hour}>
-      <button style={buttonStyle(hour)} onClick={() => handleClick(hour)}>
-        {hour} hs
-      </button>
-    </div>
-  ))
-      ) : ( <p>Sin Horarios</p>)}
-
+        {!selectedDate || selectedDate.dayName==="Fecha pasada"||selectedDate.dayName=== "Día no válido"?null: 
+         activity?.hours?.length > 0 ? 
+         (activity?.hours?.map((hour) => (
+           <div key={hour}>
+              <button  className={selectedHour === hour ? styles.selected : styles.notSelected} value={hour} disabled={dayReservations?.hour===hour} onClick={() => handleClick(hour) }>{hour} hs</button>
+           </div>
+           ))
+         ) : ( <p>Sin Horarios</p>)
+        }
       </div>
     </div>
   );
