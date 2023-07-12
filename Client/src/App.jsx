@@ -33,7 +33,7 @@ function App() {
 
     </Routes>
       {
-        location.pathname !== '/' || location.pathname !== '/' && <Footer></Footer>
+        location.pathname !== '/'  && <Footer></Footer>
       }
     </div>
     
