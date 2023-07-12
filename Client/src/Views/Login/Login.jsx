@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { login } from "../../redux/Actions/login";
+import validate from "./validate";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,34 +16,66 @@ const Login = () => {
     password: "",
   });
 
+  const [errors, setErrors] = useState({});
+
   const handleChange = (event) => {
     setUser({
       ...user,
-      [event.target.name] : event.target.value
-    })
-  }
+      [event.target.name]: event.target.value
+    });
+
+    setErrors(
+      validate({
+        ...user,
+        [event.target.name]: event.target.value,
+      })
+    );
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    
-    dispatch(login(user))
-      .then(() => {
-        alert("Login successful");
-        setUser({
-          email: "",
-          password: "",
+    const errorSave = validate(user);
+
+    if (Object.keys(errorSave).length === 0) {
+      dispatch(login(user))
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Inicio de sesión exitoso",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          setUser({
+            email: "",
+            password: "",
+          });
+
+          navigate("/home");
+        })
+        .catch((error) => {
+          if (error.response) {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: error.response.data.error,
+            });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Error",
+              text: error.message,
+            });
+          }
         });
-        
-        navigate("/home");
-      })
-      .catch((error) => {
-        if (error.response) {
-          alert(error.response.data.error);
-        } else {
-          alert(error.message);
-        }
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Error de validación",
+        text: "Por favor, complete correctamente todos los campos.",
       });
-  }
+    }
+  };
 
   return (
     <div className={style.container}>
@@ -65,15 +99,18 @@ const Login = () => {
             <path d="M5 12l4 -4" />
           </svg>
         </div>
-        <h2>Login:</h2>
+        <h2>Inicia sesión:</h2>
         <div className={style.text}>
-          <label>Email:</label>
+          <h3 className={style.label2} box-shadow="transparent">Correo electrónico:</h3>
           <input type="text" name="email" value={user.email} onChange={(event) => handleChange(event)} />
-          <label>Password:</label>
+          {errors.email && <span className={style.error}>{errors.email}</span>}
+
+          <h3 className={style.label2} box-shadow="transparent">Contraseña:</h3>
           <input type="password" name="password" value={user.password} onChange={(event) => handleChange(event)} />
+          {errors.password && <span className={style.error}>{errors.password}</span>}
         </div>
         <div>
-          <button className={style.btn}>Submit</button>
+          <button className={style.btn}>Acceder</button>
         </div>
         <div>
           <NavLink to="/account" className={style.navlink}>

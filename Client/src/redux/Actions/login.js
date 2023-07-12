@@ -7,8 +7,8 @@ export const login = (user) => {
       try {
         const response = await axios.post("http://localhost:3001/login", user);
         
-        console.log(response.data.user);
-        return  dispatch({type: LOGIN, payload: response.data.user});
+        console.log(response.data);
+        return  dispatch({type: LOGIN, payload: response.data});
       } catch (error) {
         throw error;
       }
