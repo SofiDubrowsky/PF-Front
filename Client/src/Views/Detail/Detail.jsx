@@ -41,16 +41,16 @@ const Detail = () => {
             </div>
           <div className={style.text}>
             <h3>Descripción: <span>{activity?.description}</span></h3>
-            <h3>Jugadores: <span>{activity?.players.join(', ')}</span></h3>
-            <h3>Edad: <span>{activity?.age.join(', ')}</span></h3>
+            <h3>Jugadores: <span>{activity?.players?.join(', ')}</span></h3>
+            <h3>Edad: <span>{activity?.age?.join(', ')}</span></h3>
             <h3>Días: <span>{activity?.days?.join(', ')}</span></h3>
-            <h3>Hora: <span>{activity?.hours.join('hs, ')}hs</span></h3>
+            <h3>Hora: <span>{activity?.hours?.join('hs, ')}hs</span></h3>
             <h5 className={style.cost}>${activity?.cost}<span>/hora</span></h5>
         </div>
       </div>
 
         <div className={style.calendar}>
-          {/* <CalendarComponent /> */}
+          <CalendarComponent />
           <div className={style.btns}>
           <button className={style.buyButton}>Reservar</button>
           </div>
