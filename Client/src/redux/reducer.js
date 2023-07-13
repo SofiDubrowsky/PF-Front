@@ -8,6 +8,7 @@ import { LOGOUT } from "./Actions/logout";
 import { CREATE_USER } from "./Actions/createUser"
 import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
 import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
+import { GET_USER } from "./Actions/getUser";
 
 const initialState = {
   activities: [],
@@ -20,10 +21,11 @@ const initialState = {
     players: "all"
   },
   order: "",
-  clientId: 0,
+  clientId: 1,
   isClient: true,
   access: false,
   reservation: {},
+  userDetail:[],
 };
 
 const reducer = (state = initialState, action) => {
@@ -142,7 +144,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
       }
-
+    
+    case GET_USER:
+      return{
+        ...state, userDetail: action.payload
+      }
     case SAVE_RESERVATION:
       return {
         ...state,
