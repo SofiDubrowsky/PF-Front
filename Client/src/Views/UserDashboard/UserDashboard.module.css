@@ -15,10 +15,17 @@
     text-align: center;
     color: white;
 }
+.notFound{
+    width: 100%;
+    color:white;
+    justify-content: center;
+    text-align: center;
+}
 .gameContainer{
     overflow: auto;
     display: flex;
     flex-wrap: wrap;
+    width: 100%;
     background: black;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
@@ -40,8 +47,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    height: 80%;
     border-radius: 15px;
     padding: 3rem 1.5rem 3rem 1.5rem;
 }
@@ -80,6 +86,7 @@
 }
 .backButton:hover {
     scale: 1.2;
+    background-color: #9AC71F;
 }
 .backButton a:link, a:visited, a:active {
     text-decoration:none;
