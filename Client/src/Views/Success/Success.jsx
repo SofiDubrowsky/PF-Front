@@ -4,7 +4,7 @@ import style from "./Success.module.css";
 import { NavLink } from "react-router-dom";
 import { getUser } from "../../redux/Actions/getUser";
 import getActivities from "../../redux/Actions/getActivities";
-// import axios from 'axios';
+import axios from 'axios';
 
 // const handleReservationPost = async (reservation) => {
 //   await axios.post('http://localhost:3001/reservations', reservation);
@@ -19,9 +19,16 @@ const Success = () => {
   const storedReservation = localStorage.getItem('reservation');
   const reservation = storedReservation ? JSON.parse(storedReservation) : null;
   const idUser = reservation?.userId
-  
+  const idReserva = reservation?.id
 
+  useEffect(()=>{
+    async function putReserva(){
+      await axios.put(`http://localhost:3001/reservations/${idReserva}`)
+    }
+    putReserva()
+  }, [])
   const activityName = ((activities?.find(act=>act?.id==Number(reservation?.activityId)))?.name)
+
 
   useEffect(() => {
     dispatch(getUser(idUser));
