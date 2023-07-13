@@ -21,7 +21,7 @@ const initialState = {
     players: "all"
   },
   order: "",
-  clientId: 1,
+  clientId: 0,
   isClient: true,
   access: false,
   reservation: {},
