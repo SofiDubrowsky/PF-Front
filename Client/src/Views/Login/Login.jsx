@@ -6,8 +6,8 @@ import { NavLink } from "react-router-dom";
 import { login } from "../../redux/Actions/login";
 import validate from "./validate";
 import Swal from "sweetalert2";
-//import GoogleLogin from "react-google-login"
-//import { gapi } from "gapi-script"
+import GoogleLogin from "react-google-login"
+import { gapi } from "gapi-script"
 
 const Login = () => {
   const navigate = useNavigate();
