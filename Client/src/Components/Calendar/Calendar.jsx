@@ -1,5 +1,5 @@
 import styles from './Calendar.module.css'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Calendar from 'react-calendar';
 import { format, isSameDay } from 'date-fns';
 import es from 'date-fns/locale/es';
@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 
 
 export default function CalendarComponent() {
+
   const dispatch = useDispatch();
 
   const [value, onChange] = useState(new Date());
@@ -23,7 +24,7 @@ export default function CalendarComponent() {
   const id = activity?.id
   const cost = activity?.cost
   const name = activity?.name
-  
+
   const [reservation,setReservation] = useState({
     date:'',
     cost:cost,
@@ -31,7 +32,7 @@ export default function CalendarComponent() {
     idUser:idUser,
     idActivity:id
   })
-  
+
   const week = ["Domingo", "Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
   const forbiddenDays = week.filter((day) => !(activity?.days?.includes(day)));
 
@@ -51,7 +52,7 @@ export default function CalendarComponent() {
     if(!activity.days.includes(capitalize(format(date, 'EEEE', { locale: es })))){
       setSelectedDate({date,dayName:"Día no válido"})
     }
-    if(!isSameDay(date, currentDate)&&date<currentDate){
+    if(date<currentDate){
       setSelectedDate({
         date,dayName:"Fecha pasada"
       })
@@ -69,12 +70,12 @@ export default function CalendarComponent() {
         date:selected,
         cost:cost,
         idActivity:id,
-        idUser:idUser,
+        idUser: 1,
       })
     }
   };
 
-  //Mercado Pago Funciones 
+  //Mercado Pago Funciones
   const [preferenceId, setPreferenceId] = useState(null);
   initMercadoPago('APP_USR-f77b254e-b7df-4f4e-9da7-82b3a2e8be04')
 
@@ -94,12 +95,16 @@ export default function CalendarComponent() {
   }
 
   const handleBuy = async () => {
-    const id = await createPreference(); 
+    const id = await createPreference();
     if (id) {
       setPreferenceId(id)
-      dispatch(saveInfoReservation(reservation))
+      // dispatch(saveInfoReservation(reservation))
     }
   }
+
+  useEffect(() => {
+    localStorage.setItem('reservation', JSON.stringify(reservation));
+  }, [reservation]);
 
   return (
     <div >
@@ -117,8 +122,8 @@ export default function CalendarComponent() {
       </p>
       </div>
       <div style={{color:"white"}}>
-        {!selectedDate || selectedDate.dayName==="Fecha pasada"||selectedDate.dayName=== "Día no válido"?null: 
-         activity?.hours?.length > 0 ? 
+        {!selectedDate || selectedDate.dayName==="Fecha pasada"||selectedDate.dayName=== "Día no válido"?null:
+         activity?.hours?.length > 0 ?
          (activity?.hours?.map((hour) => (
            <div key={hour}>
               <button  className={selectedHour === hour ? styles.selected : styles.notSelected} value={hour} disabled={dayReservations?.hour===hour} onClick={() => handleClick(hour) }>{hour} hs</button>
@@ -127,7 +132,7 @@ export default function CalendarComponent() {
          ) : ( <p>Sin Horarios</p>)
         }
 
-        <button onClick={handleBuy}>Reservar</button> 
+        <button onClick={handleBuy} disabled={selectedHour === null}>Reservar</button>
         {preferenceId && <Wallet initialization={{preferenceId}} />}
       </div>
     </div>

@@ -8,6 +8,7 @@ import { LOGOUT } from "./Actions/logout";
 import { CREATE_USER } from "./Actions/createUser"
 import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
 import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
+import { POST_RESERVATION } from "./Actions/postReservation";
 
 const initialState = {
   activities: [],
@@ -48,6 +49,9 @@ const reducer = (state = initialState, action) => {
       return { ...state, detail: action.payload };
 
     case POST_ACTIVITY:
+      return { ...state };
+
+    case POST_RESERVATION:
       return { ...state };
 
 
