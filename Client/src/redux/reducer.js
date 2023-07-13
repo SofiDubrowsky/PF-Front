@@ -11,6 +11,7 @@ import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/fil
 import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
 import { POST_RESERVATION } from "./Actions/postReservation";
 import { GET_USER } from "./Actions/getUser";
+import {GET_RESERVATIONS} from "./Actions/getReservations";
 
 const initialState = {
   activities: [],
@@ -28,6 +29,7 @@ const initialState = {
   access: false,
   reservation: {},
   userDetail: [],
+  allReservations: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -166,6 +168,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         reservation: action.payload
+      }
+
+    case GET_RESERVATIONS:
+      return{
+        ...state,
+        allReservations: action.payload
       }
 
     default:
