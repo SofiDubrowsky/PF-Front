@@ -26,4 +26,27 @@
     color:white
   }
   
+.receipt{
+    justify-content: center;
+    text-align: center;
+    margin: 1rem;
+}
 
+.buttons{
+    display: flex;
+    flex-direction: row;
+}
+
+.column{
+    display: flex;
+    flex-direction: column;
+}
+
+.nav1{
+    margin:1rem;
+    color:white;
+    background-color: #94b447;
+    padding: 1%;
+    border-radius: 2em;
+
+} 
