@@ -43,21 +43,24 @@ export default function CalendarComponent() {
 
   const handleDateChange = (date) => {
     const currentDate = new Date();
-
     if (isSameDay(date, currentDate) || date > currentDate) {
       setSelectedDate({
         date,
         dayName: capitalize(format(date, 'EEEE', { locale: es }))
       });
+      setSelectedHour(null)
     }
     if(!activity.days.includes(capitalize(format(date, 'EEEE', { locale: es })))){
       setSelectedDate({date,dayName:"Día no válido"})
+      setSelectedHour(null)
     }
     if(date<currentDate){
       setSelectedDate({
         date,dayName:"Fecha pasada"
       })
+      setSelectedHour(null)
     }
+    
   };
 
   const handleClick = (hour) => {
@@ -74,6 +77,15 @@ export default function CalendarComponent() {
         idUser: 1,
       })
     }
+  };
+
+  const getTileClassName = ({ date }) => {
+    if(forbiddenDays.includes(capitalize(format(date, 'EEEE', { locale: es })))){
+      return styles.forbidden
+    }else if (selectedDate && isSameDay(date, selectedDate.date)) {
+      return styles.selected;
+    }
+    return '';
   };
 
   //Mercado Pago Funciones
@@ -107,14 +119,11 @@ export default function CalendarComponent() {
   //   localStorage.setItem('reservation', JSON.stringify(reservation));
   // }, [reservation]);
 
+
   return (
     <div >
       <div className={styles['calendar-container']}>
-      <Calendar onChange={handleDateChange}
-  value={value}
-  tileClassName={({ date }) =>
-    forbiddenDays.includes(capitalize(format(date, 'EEEE', { locale: es }))) ? styles.forbidden : ''
-  }/>
+      <Calendar onChange={handleDateChange} value={value} tileClassName={getTileClassName}/>
       <p style={{color:"white"}}>
         Fecha seleccionada:{' '}
         {selectedDate
