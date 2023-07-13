@@ -12,10 +12,11 @@ import axios from 'axios';
 // };
 
 const Success = () => {
+  const [emailSent, setEmailSent] = useState(false)
   const userDetail = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const activities = useSelector((state)=>state.allActivities)
-  
+  const stores = useSelector((state)=>state.stores)
   const storedReservation = localStorage.getItem('reservation');
   const reservation = storedReservation ? JSON.parse(storedReservation) : null;
   const idUser = reservation?.userId
@@ -27,8 +28,22 @@ const Success = () => {
     }
     putReserva()
   }, [])
-  const activityName = ((activities?.find(act=>act?.id==Number(reservation?.activityId)))?.name)
 
+  const activityName = ((activities?.find(act=>act?.id==Number(reservation?.activityId)))?.name);
+  const store = (activities?.find(act=>act?.id==Number(reservation?.activityId))?.stores)?.map(e=>e.name);
+  const storeAddress = (stores?.find(str=>str?.id==Number(reservation?.activityId))?.stores)?.map(e=>e.address);
+ 
+  //datos para enviar por email:
+  const emailInfo={
+    reservId:reservation?.id,
+    activity:activityName,
+    date:reservation?.date,
+    hour:reservation?.hour,
+    cost:reservation?.cost,
+    user:userDetail?.name,
+    store:store,
+    storeAddress:storeAddress
+  }
 
   useEffect(() => {
     dispatch(getUser(idUser));
@@ -36,6 +51,16 @@ const Success = () => {
   useEffect(() => {
     dispatch(getActivities());
   }, [dispatch]);
+
+  const sendEmailData = async () => {
+    try {
+      await axios.post('http://localhost3001/reservationsEmail', emailInfo);
+      console.log('Datos enviados por email exitosamente');
+      setEmailSent(true);
+    } catch (error) {
+      console.error('Error al enviar los datos por email:', error);
+    }
+  };
 
   return (
     <div className={style.success}>
@@ -52,7 +77,7 @@ const Success = () => {
                 <h4>Horario: {reservation?.hour} hs</h4>
                 <h4>Monto: ${reservation?.cost}</h4>
               </div>
-              <button className={style.nav1}>Enviar Datos a mi e-mail</button>
+              <button className={style.nav1} onClick={sendEmailData} disabled={emailSent}>Enviar Datos a mi e-mail</button>
             </div>
 
             <div className={style.buttons}>
