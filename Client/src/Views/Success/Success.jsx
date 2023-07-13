@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
 import style from "./Success.module.css";
 import { NavLink } from "react-router-dom";
+import axios from 'axios';
+
+const handleReservationPost = async (reservation) => {
+  await axios.post('http://localhost:3001/reservations', reservation);
+  // localStorage.removeItem('reservation');
+};
 
 const Success = () => {
+  const storedReservation = localStorage.getItem('reservation');
+  const reservation = storedReservation ? JSON.parse(storedReservation) : null;
+
+  useEffect(() => {
+    if (reservation) {
+      handleReservationPost(reservation);
+    }
+  }, []);
+
   return (
     <div className={style.success}>
         <h1>Se ha resgistrado tu reserva exitosamente!</h1>
