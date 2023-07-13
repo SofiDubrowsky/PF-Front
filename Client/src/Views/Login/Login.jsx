@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { login } from "../../redux/Actions/login";
+import { loginGoogle } from "../../redux/Actions/loginGoogle";
 import validate from "./validate";
 import Swal from "sweetalert2";
 import GoogleLogin from "react-google-login"
@@ -20,7 +21,12 @@ const Login = () => {
 
   const [googleUser, setGoogleUser] = useState();
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    email: "",
+    googleId: "",
+    imageUrl: "",
+    name: "",
+  });
 
 
   //Autenticación con Google
@@ -36,8 +42,14 @@ const Login = () => {
   },[])
 
   const onSuccess = (response) => {
-    setGoogleUser(response.profileObj);
-    
+    const user = {
+      email: response.profileObj.email,
+      googleId: response.profileObj.googleId,
+      name: response.profileObj.name,
+    }
+    console.log(user);
+    dispatch(loginGoogle(user))
+
   }
 
   const onFailure = () => {
