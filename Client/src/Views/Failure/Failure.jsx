@@ -1,7 +1,29 @@
+import { useEffect } from "react";
 import style from "./Failure.module.css";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
+
 
 const Failure = () => {
+  const reservation = localStorage.getItem('reservation');
+  
+  const reservationParse = reservation ? JSON.parse(reservation) : null;
+
+  const id = reservationParse.id
+
+  useEffect(() => {
+    const deleteReservation = async () => {
+      try {
+        await axios.delete(`http://localhost:3001/reservations/${id}`); 
+        console.log('Reserva eliminada exitosamente');
+      } catch (error) {
+        console.error('Error al eliminar la reserva', error);
+      }
+    };
+  
+    deleteReservation();
+  }, []);
+
   return (
     <div className={style.failure}>
         <h1>Error: tu reserva no se ha registrado!</h1>

@@ -6,8 +6,9 @@ import es from 'date-fns/locale/es';
 import { useSelector, useDispatch} from 'react-redux';
 import {initMercadoPago, Wallet} from '@mercadopago/sdk-react';
 import axios from "axios";
-import {saveInfoReservation} from '../../redux/Actions/saveInfoReservation';
-import Swal from 'sweetalert2';
+// import {saveInfoReservation} from '../../redux/Actions/saveInfoReservation';
+// import Swal from 'sweetalert2';
+import { postReservation } from '../../redux/Actions/postReservation';
 
 
 export default function CalendarComponent() {
@@ -98,13 +99,13 @@ export default function CalendarComponent() {
     const id = await createPreference();
     if (id) {
       setPreferenceId(id)
-      // dispatch(saveInfoReservation(reservation))
+      dispatch(postReservation(reservation))
     }
   }
 
-  useEffect(() => {
-    localStorage.setItem('reservation', JSON.stringify(reservation));
-  }, [reservation]);
+  // useEffect(() => {
+  //   localStorage.setItem('reservation', JSON.stringify(reservation));
+  // }, [reservation]);
 
   return (
     <div >
