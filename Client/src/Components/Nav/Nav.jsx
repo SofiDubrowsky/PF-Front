@@ -1,21 +1,22 @@
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux"
 import { useDispatch } from "react-redux";
 import style from "./Nav.module.css";
 import logo from "../../assets/logo.png";
 import { logout } from "../../redux/Actions/logout";
 
+
 const Nav = () => {
 
   const dispatch = useDispatch();
-  const access = useSelector((state) => state.access);
-  const isClient = useSelector((state) => state.isClient);
+  const access = localStorage.getItem("access")
+  const isClient = localStorage.getItem("isClient");
+  
 
   const handleLogout = () => {
-    dispatch(logout).then(
-      window.location.href = "/home"
-    )
-  }
+    dispatch(logout()).then(() => {
+      window.location.href = "/home";
+    });
+  };
 
   return (
     <div className={style.container}>
@@ -31,7 +32,7 @@ const Nav = () => {
         Sucursales
       </NavLink>
       {
-        isClient?
+        isClient || isClient === undefined ?
         <></>:
         <NavLink to="/post" className={style.navlink}>
         Crear Actividad
@@ -39,11 +40,11 @@ const Nav = () => {
       }
 
       {
-        !access ? 
-        <NavLink to="/login" className={style.navlink}>
+        access ? 
+        (<button className={style.logoutButton} onClick={handleLogout}>Cerrar sesión</button>):
+        (<NavLink to="/login" className={style.navlink}>
         Iniciar Sesion
-        </NavLink> :
-        <button className={style.logoutButton} onClick={handleLogout}>Cerrar sesión</button>
+        </NavLink> )
       }
       
     </div>
