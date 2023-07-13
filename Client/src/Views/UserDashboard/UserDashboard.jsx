@@ -35,7 +35,7 @@ console.log(activities);
           return (
             <div className={style.gameContainer}>
               <div className={style.containerImage}>
-                <img className={style.image} src="https://www.iconpacks.net/icons/2/free-check-mark-icon-3281-thumb.png" alt="notFound"/>
+                {(reserv?.pay===true)?<img className={style.image} src="https://www.iconpacks.net/icons/2/free-check-mark-icon-3281-thumb.png" alt="notFound"/>:<img className={style.image} src="https://cdn-icons-png.flaticon.com/128/399/399426.png" alt="notFound"/>}
               </div>
               <div className={style.containerData}>
                 <div className={style.data}>
@@ -44,7 +44,7 @@ console.log(activities);
                   <h4>Fecha: {reserv?.date} a las {reserv?.hour} hs</h4>
                   <h4>Sucursal: {(activities?.find(act=>act?.id==Number(reserv?.activityId))?.stores)?.map(e=>e.name)}</h4>
                   <h4>$ {((activities?.find(act=>act?.id==Number(reserv?.activityId)))?.cost)}</h4>
-                  <h3>Estado: reserv.status</h3>
+                  <h3>Estado: {(reserv?.pay===true)?"Pago Aprobado":"No Aprobado"}</h3>
               </div>
              </div>
              <div className={style.containerImage}>
