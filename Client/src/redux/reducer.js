@@ -4,6 +4,7 @@ import { GET_ACTIVITIES } from "./Actions/getActivities";
 import { GET_ACT_BY_NAME } from "./Actions/getActByName";
 import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
 import { LOGIN } from "./Actions/login";
+import { LOGIN_GOOGLE } from "./Actions/loginGoogle";
 import { LOGOUT } from "./Actions/logout";
 import { CREATE_USER } from "./Actions/createUser"
 import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
@@ -26,7 +27,7 @@ const initialState = {
   isClient: true,
   access: false,
   reservation: {},
-  userDetail:[],
+  userDetail: [],
 };
 
 const reducer = (state = initialState, action) => {
@@ -136,22 +137,30 @@ const reducer = (state = initialState, action) => {
         access: true
       }
 
-      case LOGIN:
-        return {
-          ...state,
-          clientId: 0,
-          isClient: true,
-          access: false
-        }
+    case LOGOUT:
+      return {
+        ...state,
+        clientId: 0,
+        isClient: true,
+        access: false
+      }
+
+    case LOGIN_GOOGLE:
+      return {
+        ...state,
+        clientId: action.payload.id,
+        isClient: action.payload.client,
+        access: true
+      }
 
     case CREATE_USER:
       return {
         ...state,
       }
-      case GET_USER:
-    return{
-      ...state, userDetail: action.payload
-    }
+    case GET_USER:
+      return {
+        ...state, userDetail: action.payload
+      }
 
     case SAVE_RESERVATION:
       return {
@@ -162,6 +171,6 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-   
+
 };
 export default reducer;
