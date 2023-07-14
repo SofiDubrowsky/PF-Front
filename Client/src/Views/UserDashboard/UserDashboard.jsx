@@ -7,8 +7,9 @@ import getActivities from "../../redux/Actions/getActivities";
 const UserDashboard = () => {
 const userDetail = useSelector((state) => state.userDetail);
 const dispatch = useDispatch();
-const idUser = useSelector((state)=>state.clientId)
+const idUser = localStorage.getItem('clientId')
 const activities = useSelector((state)=>state.allActivities)
+
 
 useEffect(() => {
     dispatch(getUser(idUser));
