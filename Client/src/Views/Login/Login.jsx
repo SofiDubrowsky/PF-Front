@@ -19,12 +19,21 @@ const Login = () => {
     password: "",
   });
 
+  const [loger, setLoger] = useState(
+    localStorage.getItem('loger') ?? false
+  )
+
   const [errors, setErrors] = useState({
     email: "",
     googleId: "",
     imageUrl: "",
     name: "",
   });
+
+  useEffect(() => {
+    localStorage.setItem('loger', loger)
+  }, [loger])
+  
 
 
   //Autenticación con Google
@@ -46,6 +55,7 @@ const Login = () => {
       name: response.profileObj.name,
     }
     dispatch(loginGoogle(user)).then(() => {
+      navigate("/home");
       //window.location.href = "/home";
     });
 
@@ -90,6 +100,7 @@ const Login = () => {
           });
 
           navigate("/home");
+          localStorage.setItem('loger', true)
         })
         .catch((error) => {
           if (error.response) {

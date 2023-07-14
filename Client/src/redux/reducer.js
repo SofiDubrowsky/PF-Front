@@ -120,9 +120,10 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGIN:
-      localStorage.setItem("clientId", action.payload.id)
-      localStorage.setItem("isClient", action.payload.client)
-      localStorage.setItem("access", true)
+      console.log(action.payload);
+      localStorage.setItem("clientId", action.payload.user.id)
+      localStorage.setItem("isClient", action.payload.user.client)
+      /* localStorage.setItem("access", true) */
       return {
         ...state,
         clientId: action.payload.id,

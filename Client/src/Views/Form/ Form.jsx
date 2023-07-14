@@ -24,7 +24,7 @@ const Form = () => {
   const navigate = useNavigate();
   const allActivities = useSelector((state) => state.activities);
   const allStores = useSelector((state) => state.stores);
-  const isClient = useSelector((state) => state.isClient)
+  const isClient = localStorage.getItem('isClient')
 
   const [form, setForm] = useState({
     name: "",
@@ -47,7 +47,7 @@ const Form = () => {
   const [selectedPlayers, setSelectedPlayers] = useState("");
 
   useEffect(() => {
-    isClient && navigate('/home')
+    isClient === 'true' && navigate('/home')
   },[isClient])
 
   const handleChange = (event) => {

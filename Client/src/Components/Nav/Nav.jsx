@@ -8,7 +8,8 @@ import { logout } from "../../redux/Actions/logout";
 const Nav = () => {
 
   const dispatch = useDispatch();
-  const access = localStorage.getItem("access")
+  const loger = localStorage.getItem('loger')
+  console.log(loger);
   const isClient = localStorage.getItem("isClient");
   
 
@@ -16,6 +17,7 @@ const Nav = () => {
     dispatch(logout()).then(() => {
       window.location.href = "/home";
     });
+    localStorage.setItem('loger', false)
   };
 
   return (
@@ -32,21 +34,22 @@ const Nav = () => {
         Sucursales
       </NavLink>
       {
-        isClient || isClient === undefined ?
-        <></>:
-        <NavLink to="/post" className={style.navlink}>
+        isClient === 'false' && <NavLink to="/post" className={style.navlink}>
         Crear Actividad
         </NavLink>
-      }
+        } 
+        {isClient === 'true' && <NavLink to='/dashboard' className={style.navlink}>Perfil de Usuario</NavLink>}
+        {isClient === 'false' && <NavLink to='/admin' className={style.navlink}>Perfil del Admin</NavLink> }
 
-      {
-        access ? 
-        (<button className={style.logoutButton} onClick={handleLogout}>Cerrar sesión</button>):
-        (<NavLink to="/login" className={style.navlink}>
-        Iniciar Sesion
-        </NavLink> )
-      }
       
+       {loger === 'true' ? <button className={style.logoutButton} onClick={handleLogout}>Cerrar sesión</button> :
+       <NavLink to="/login" className={style.navlink}>
+        Iniciar Sesion
+        </NavLink>
+       }
+       
+      
+    
     </div>
   );
 };

@@ -3,14 +3,21 @@ import Nav from "../../Components/Nav/Nav";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getReservations } from "../../redux/Actions/getReservations";
+import { useNavigate } from "react-router-dom";
 const Admin = () => {
   const dispatch = useDispatch();
 
   const reservations = useSelector((state) => state.allReservations);
+  const isClient = localStorage.getItem('isClient')
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getReservations());
   }, []);
+
+  useEffect(() => {
+    isClient === 'true' && navigate('/home')
+  },[isClient])
 
   return (
     <div>
