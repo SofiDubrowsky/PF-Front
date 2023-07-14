@@ -76,18 +76,6 @@ const reducer = (state = initialState, action) => {
           return 0;
         });
       }
-
-      // state.order === "ascendent"
-      //   ? state.activities.sort((prev, next) => {
-      //     if (parseInt(prev.cost) > parseInt(next.cost)) return 1;
-      //     if (parseInt(prev.cost) < parseInt(next.cost)) return -1;
-      //     return 0;
-      //   })
-      //   : state.activities.sort((prev, next) => {
-      //     if (parseInt(prev.cost) > parseInt(next.cost)) return -1;
-      //     if (parseInt(prev.cost) < parseInt(next.cost)) return 1;
-      //     return 0;
-      //   });
       return {
         ...state,
         activities: filtered,
@@ -132,6 +120,9 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGIN:
+      localStorage.setItem("clientId", action.payload.id)
+      localStorage.setItem("isClient", action.payload.client)
+      localStorage.setItem("access", true)
       return {
         ...state,
         clientId: action.payload.id,
@@ -140,6 +131,7 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGOUT:
+
       return {
         ...state,
         clientId: 0,
@@ -148,6 +140,10 @@ const reducer = (state = initialState, action) => {
       }
 
     case LOGIN_GOOGLE:
+      localStorage.setItem("clientId", action.payload.id)
+      localStorage.setItem("isClient", action.payload.client)
+      localStorage.setItem("access", true)
+      console.log(action.payload);
       return {
         ...state,
         clientId: action.payload.id,

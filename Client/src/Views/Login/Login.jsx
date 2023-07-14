@@ -19,8 +19,6 @@ const Login = () => {
     password: "",
   });
 
-  const [googleUser, setGoogleUser] = useState();
-
   const [errors, setErrors] = useState({
     email: "",
     googleId: "",
@@ -47,8 +45,9 @@ const Login = () => {
       googleId: response.profileObj.googleId,
       name: response.profileObj.name,
     }
-    console.log(user);
-    dispatch(loginGoogle(user))
+    dispatch(loginGoogle(user)).then(() => {
+      //window.location.href = "/home";
+    });
 
   }
 
