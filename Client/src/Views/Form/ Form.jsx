@@ -174,10 +174,10 @@ const Form = () => {
         cancelButtonText: 'Volver al Inicio', 
       }).then((result) => {
         if (result.isConfirmed) {
-          window.location.href = 'http://localhost:3000/post';
+          window.location.href = 'https://sportiverse-server.onrender.com/post';
           setTimeout(reload, 3000);  // Espera 3 segundos antes de llamar a reload()
         } else {
-          window.location.href = 'http://localhost:3000/home';
+          window.location.href = 'https://sportiverse-server.onrender.com/home';
         }
       })
       setForm({
