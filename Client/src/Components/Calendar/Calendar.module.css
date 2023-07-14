@@ -174,44 +174,54 @@
   color: white
 }
 
-/* .popup {
+.popup {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(171, 226, 19, 0.932);
+  background-color: white;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 9999;
   color: #000000;
   border-radius: 13px;
-  height: 60%;
+  width: 45%;
   height: auto;
+  justify-content: center;
 }
 
 .popup h2 {
-  color: #000000;
+  color: black;
   padding-top: 3px;
-} */
+}
 
-/* .popup p {
-  font-size: 21px;
+.popup h4 {
+  font-size: 19px;
+  margin-top: 7px;
+  color: black;
 }
 
 .btnCancel,
 .btnConfirm {
-  height: 60%;
-  width: 80%;
+  height: 80%;
+  width: 100%;
   font-size: 19px;
   border-radius: 13px;
   font-weight: bold;
   border: none;
-  transition: .3 ease;
+  transition: height 0.3s ease, width 0.3s ease, font-size 0.3s ease;
 }
 
 .btnCancel {
-  background-color: #E74C3C;
+  background-color: #9AC71F;
   color: #FDF2E9;
+  margin-top: 7px;
+}
+
+.containerBtn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .btnConfirm {
@@ -240,11 +250,12 @@
 .container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  
 }
 
 .popup,
-.container h4 {
-  display: flex;
-  align-items: center;  
-}  */
+.container button {
+ justify-content: center;  
+}
 
