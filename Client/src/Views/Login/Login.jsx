@@ -14,6 +14,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const detail = localStorage.getItem('detail');
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -55,8 +57,12 @@ const Login = () => {
       name: response.profileObj.name,
     }
     dispatch(loginGoogle(user)).then(() => {
-      navigate("/home");
-      //window.location.href = "/home";
+      
+      if(detail !== 'null'){
+        navigate(`/detail/${Number(detail)}`)
+      } else {
+        navigate("/home");
+      }
     });
 
   }

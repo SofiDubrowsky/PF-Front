@@ -9,7 +9,6 @@ const Nav = () => {
 
   const dispatch = useDispatch();
   const loger = localStorage.getItem('loger')
-  console.log(loger);
   const isClient = localStorage.getItem("isClient");
   
 
@@ -18,6 +17,7 @@ const Nav = () => {
       window.location.href = "/home";
     });
     localStorage.setItem('loger', false)
+    localStorage.setItem('detail', null)
   };
 
   return (

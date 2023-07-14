@@ -143,7 +143,7 @@ const reducer = (state = initialState, action) => {
     case LOGIN_GOOGLE:
       localStorage.setItem("clientId", action.payload.id)
       localStorage.setItem("isClient", action.payload.client)
-      localStorage.setItem("access", true)
+      localStorage.setItem("loger", true)
       console.log(action.payload);
       return {
         ...state,

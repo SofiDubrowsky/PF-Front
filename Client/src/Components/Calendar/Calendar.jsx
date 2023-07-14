@@ -22,12 +22,14 @@ export default function CalendarComponent() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedHour, setSelectedHour] = useState(null);
   const activity = useSelector((state) => state.detail);
-  const idUser = useSelector((state) => state.clientId);
   let selected = selectedDate ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}` : null
   const dayReservations = activity?.reservations?.find(reserv => reserv.date === selected)
   const id = activity?.id
   const cost = activity?.cost
   const name = activity?.name
+
+  const idUser = localStorage.getItem('clientId');
+  const loger = localStorage.getItem('loger')
 
   const [reservation, setReservation] = useState({
     date: '',
@@ -77,7 +79,7 @@ export default function CalendarComponent() {
         date: selected,
         cost: cost,
         idActivity: id,
-        idUser: 1,
+        idUser: idUser,
       })
     }
   };
@@ -113,15 +115,23 @@ export default function CalendarComponent() {
   const [showAlert, setShowAlert] = useState(false);
   const [showWallet, setShowWallet] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
-
+  const [showAlertLog, setShowAlertLog] = useState(false);
+  
+  
+  
+  
   const handleBuy = async () => {
-    const id = await createPreference();
-    if (id) {
-      dispatch(postReservation(reservation));
-      setPreferenceId(id)
-      setShowAlert(true);
-      setShowBackdrop(true);
+    if(loger==='true'){
+        const id = await createPreference();
+        if (id) {
+            dispatch(postReservation(reservation));
+            setPreferenceId(id)
+            setShowAlert(true);
+            setShowBackdrop(true);
+        }
     }
+    setShowAlertLog(true);
+    setShowBackdrop(true);
   }
 
   const reservationLs = localStorage.getItem('reservation');
@@ -162,10 +172,20 @@ export default function CalendarComponent() {
 
   };
 
-  // useEffect(() => {
-  //   localStorage.setItem('reservation', JSON.stringify(reservation));
-  // }, [reservation]);
-
+  const handleClose = () => {
+    setShowAlertLog(false);
+    setShowBackdrop(false);
+  }
+  
+  const handleRedirectLog = () => {
+      const detailReservation= localStorage.getItem('detail');
+          if (detailReservation) {
+              localStorage.setItem('detail', null)
+            }
+          localStorage.setItem('detail', id)
+          
+          navigate('/login')
+  }
 
   return (
     <div >
@@ -214,6 +234,18 @@ export default function CalendarComponent() {
             </div>
           </div>
         )}
+
+        {showAlertLog && (
+            <div className={styles.popup}>
+              <div className={styles.container}>
+                <h2>Para realizar una reserva debes iniciar sesion</h2>
+              </div>
+              <div className={styles.containerBtn}>
+                <button className={styles.btnCancel} onClick={handleRedirectLog}>Iniciar Sesion</button>
+                <button className={styles.btnConfirm} onClick={handleClose}>Cancelar</button>
+              </div>
+            </div>
+          )}
 
         {showBackdrop && <div className={styles.backdrop} />}
 
