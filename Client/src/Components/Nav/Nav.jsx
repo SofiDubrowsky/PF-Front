@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import style from "./Nav.module.css";
 import logo from "../../assets/logo.png";
 import { logout } from "../../redux/Actions/logout";
 
 
-const Nav = () => {
 
+const Nav = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const loger = localStorage.getItem('loger')
   const isClient = localStorage.getItem("isClient");
@@ -14,7 +15,7 @@ const Nav = () => {
 
   const handleLogout = () => {
     dispatch(logout()).then(() => {
-      window.location.href = "/home";
+      navigate("/home");
     });
     localStorage.setItem('loger', false)
     localStorage.setItem('detail', null)
