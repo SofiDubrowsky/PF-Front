@@ -159,7 +159,7 @@ export default function CalendarComponent() {
 
   const handleRenderWallet = () => {
     preferenceId && setShowWallet(true);
-  
+
   };
 
   // useEffect(() => {
@@ -171,26 +171,31 @@ export default function CalendarComponent() {
     <div >
       <div className={styles['calendar-container']}>
         <Calendar onChange={handleDateChange} value={value} tileClassName={getTileClassName} />
-        <p style={{ color: "white" }}>
-          Fecha seleccionada:{' '}
+        <p style={{ color: "white" }} className={styles.fechaSeleccionada}>
+          ✔ Fecha seleccionada:{' '}
           {selectedDate
             ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}`
             : 'Ninguna'}
         </p>
       </div>
-      <div style={{ color: "white" }}>
-        {!selectedDate || selectedDate.dayName === "Fecha pasada" || selectedDate.dayName === "Día no válido" ? null :
-          activity?.hours?.length > 0 ?
-            (activity?.hours?.map((hour) => (
-              <div key={hour}>
-                <button className={selectedHour === hour ? styles.selected : styles.notSelected} value={hour} disabled={dayReservations?.hour === hour} onClick={() => handleClick(hour)}>{hour} hs</button>
-              </div>
-            ))
-            ) : (<p>Sin Horarios</p>)
-        }
+      <div>
+        <div style={{ color: "white" }} className={styles.horarios}>
+          {!selectedDate || selectedDate.dayName === "Fecha pasada" || selectedDate.dayName === "Día no válido" ? null :
+            activity?.hours?.length > 0 ?
+              (activity?.hours?.map((hour) => (
+                <div key={hour}>
+                  <button className={selectedHour === hour ? styles.selected : styles.notSelected} value={hour} disabled={dayReservations?.hour === hour} onClick={() => handleClick(hour)}>{hour} hs</button>
+                </div>
+              ))
+              ) : (<p>Sin Horarios</p>)
+          }
+        </div>
+
+        <div className={styles.reservar}>
+          <button onClick={handleBuy} disabled={selectedHour === null} className={styles.reservarBtn}>Reservar</button>
+        </div>
 
 
-        <button onClick={handleBuy} disabled={selectedHour === null}>Reservar</button>
 
         {showAlert && (
           <div className={styles.popup}>
