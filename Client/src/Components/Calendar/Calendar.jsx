@@ -132,7 +132,7 @@ export default function CalendarComponent() {
 
   const deleteReservation = async () => {
     try {
-      if(idReservation){
+      if (idReservation) {
         await axios.delete(`http://localhost:3001/reservations/${idReservation}`);
         Swal.fire({
           icon: 'success',
@@ -141,7 +141,7 @@ export default function CalendarComponent() {
           timerProgressBar: true
         });
       }
-      
+
     } catch (error) {
       Swal.fire({
         icon: 'error',
@@ -154,10 +154,12 @@ export default function CalendarComponent() {
   const handleCancelTransaction = () => {
     setShowAlert(false);
     deleteReservation();
+    setShowBackdrop(false); //nuevo
   };
 
   const handleRenderWallet = () => {
     preferenceId && setShowWallet(true);
+  
   };
 
   // useEffect(() => {
@@ -193,15 +195,18 @@ export default function CalendarComponent() {
         {showAlert && (
           <div className={styles.popup}>
             <div className={styles.container}>
-              <h2>Datos de su reserva:</h2>
+              <h2>✔ Datos de su reserva:</h2>
               <h4>Actividad: {capitalize(name)}</h4>
               <h4>Dia: {selectedDate.dayName}</h4>
               <h4>Hora: {selectedHour} hs</h4>
               <h4>Precio: ${cost}</h4>
             </div>
-            <button className={styles.btnCancel} onClick={handleCancelTransaction}>Cancelar reserva</button>
-            <button className={styles.btnConfirm} onClick={handleRenderWallet} disabled={showWallet}>Continuar con Mercado Pago</button>
-            {showWallet && <Wallet initialization={{ preferenceId }} />}
+            <div className={styles.containerBtn}>
+              <button className={styles.btnCancel} onClick={handleCancelTransaction}>Cancelar reserva</button>
+              <button className={styles.btnConfirm} onClick={handleRenderWallet} disabled={showWallet}>Continuar con Mercado Pago</button>
+              {showWallet && <Wallet initialization={{ preferenceId }} />}
+
+            </div>
           </div>
         )}
 
