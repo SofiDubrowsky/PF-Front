@@ -99,7 +99,7 @@ export default function CalendarComponent() {
 
   const createPreference = async () => {
     try {
-      const response = await axios.post('http://localhost:3001/create_preference', {
+      const response = await axios.post('https://sportiverse-server.onrender.com/create_preference', {
         description: name,
         price: cost,
         quantity: 1
@@ -124,10 +124,14 @@ export default function CalendarComponent() {
     if(loger==='true'){
         const id = await createPreference();
         if (id) {
+            localStorage.setItem('reservation' , null);
             dispatch(postReservation(reservation));
             setPreferenceId(id)
-            setShowAlert(true);
-            setShowBackdrop(true);
+            setTimeout(() => {
+              setShowAlert(true);
+              setShowBackdrop(true);
+              
+            }, 3000);
         }
     } else {
       setShowAlertLog(true);
@@ -144,7 +148,7 @@ export default function CalendarComponent() {
   const deleteReservation = async () => {
     try {
       if (idReservation) {
-        await axios.delete(`http://localhost:3001/reservations/${idReservation}`);
+        await axios.delete(`https://sportiverse-server.onrender.com/reservations/${idReservation}`);
         Swal.fire({
           icon: 'success',
           title: 'Reserva cancelada',

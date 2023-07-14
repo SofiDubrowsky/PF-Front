@@ -104,8 +104,13 @@ const Login = () => {
             email: "",
             password: "",
           });
-
-          navigate("/home");
+          
+          if(detail !== 'null'){
+            navigate(`/detail/${Number(detail)}`)
+          } else {
+            navigate("/home");
+          }
+          
           localStorage.setItem('loger', true)
         })
         .catch((error) => {
