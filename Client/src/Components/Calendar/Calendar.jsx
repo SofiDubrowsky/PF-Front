@@ -129,9 +129,10 @@ export default function CalendarComponent() {
             setShowAlert(true);
             setShowBackdrop(true);
         }
+    } else {
+      setShowAlertLog(true);
+      setShowBackdrop(true);
     }
-    setShowAlertLog(true);
-    setShowBackdrop(true);
   }
 
   const reservationLs = localStorage.getItem('reservation');
