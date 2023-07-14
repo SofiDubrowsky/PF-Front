@@ -1,0 +1,149 @@
+:root{
+    --input-focus: #9AC71F;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #424242;
+}
+
+.mainContainer {
+    min-height: 67vh;
+
+}
+.title h1{
+    color: white;
+}
+.title {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 1rem 0;
+}
+
+.storeContainer {
+    overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    background: black;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    margin: 2rem;
+    border-radius: 1rem;
+}
+
+.map {
+    width: 25%;
+    height: 22.5rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+
+    padding: 3rem 1.5rem 3rem 1.5rem;
+    margin-left: 1.5rem;
+
+    display: flex;
+}
+
+.map iframe {
+    height: 100%;
+}
+
+.containerData {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: top;
+
+    width: 43%;
+    height: 22.5rem;
+    min-width: 20rem;
+
+    font-size: 30px;
+}
+
+.containerImage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    width: 25%;
+    height: 22.5rem;
+    min-width: 20rem;
+    margin-left: 1.5rem;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    align-self: center;
+    margin: 10px;
+    height: 350px;
+    width: 95%;
+}
+
+.image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: 3rem 1.5rem 3rem 1.5rem;
+}
+
+.calendar {
+    border-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    font-size: medium;
+    margin-left: 80px;
+}
+
+.backButton {
+    border: none;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    background: none;
+    width: 7rem;
+    height: 2rem;
+    color: white;
+    border-radius: 2rem;
+    transition: .5s;
+    cursor: pointer;
+    transform: translate(20%);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+
+.backButton:hover {
+    scale: 1.2;
+}
+
+.backButton a:link, a:visited, a:active {
+    text-decoration:none;
+    color: white;
+}
+
+.data span{
+    font-weight: 500;
+    font-size: 30px;
+}
