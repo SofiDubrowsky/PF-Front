@@ -54,7 +54,7 @@ const Success = () => {
 
   const sendEmailData = async () => {
     try {
-      await axios.post('http://localhost3001/reservationsEmail', emailInfo);
+      await axios.post('http://localhost3001/emailReservation', emailInfo);
       console.log('Datos enviados por email exitosamente');
       setEmailSent(true);
     } catch (error) {
