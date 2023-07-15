@@ -66,11 +66,15 @@ const Success = () => {
 
   return (
     <div className={style.success}>
-        <h1>Se ha resgistrado tu pago exitosamente!</h1>
         <div className={style.image}>
         <img src="https://www.jagranimages.com/images/newimg/19052020/19_05_2020-tiding_shoe_lace_20283980.jpg" alt="Ready!" />
+        
            <div className={style.column}>
+            <div >
+           <h1 className={style.title}>Se ha resgistrado tu pago exitosamente!</h1>
+           </div>
             <div className={style.receipt}>
+            <img src="https://www.iconpacks.net/icons/2/free-check-mark-icon-3281-thumb.png" className={style.check} alt="Okay!" />
               <div>
                 <h3>Gracias {userDetail?.name}!</h3>
                 <h3>Estos son los datos de tu reserva:</h3>
@@ -79,20 +83,20 @@ const Success = () => {
                 <h4>Horario: {reservation?.hour} hs</h4>
                 <h4>Monto: ${reservation?.cost}</h4>
               </div>
-              <button className={style.nav1} onClick={()=>{setTimeout(() => {
+              <button className={style.emailBtn} onClick={()=>{setTimeout(() => {
                sendEmailData() 
               }, 3000);}} disabled={emailSent}>Enviar Datos a mi e-mail</button>
             </div>
 
             <div className={style.buttons}>
-              <div className={style.nav}>
-              <NavLink to="/home">
+              <div className={style.btn}>
+              <NavLink to="/home" className={style.navlink}>
                 Volver al inicio
               </NavLink>
               </div>
-              <img src="https://www.freeiconspng.com/uploads/check-mark-ok-png-10.png" className={style.check} alt="" />
-              <div className={style.nav}>
-              <NavLink to="/dashboard">
+             
+              <div className={style.btn}>
+              <NavLink to="/dashboard" className={style.navlink}>
               Ver mis reservas
               </NavLink>
               </div>
