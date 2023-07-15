@@ -4,14 +4,9 @@ import style from "./Nav.module.css";
 import logo from "../../assets/logo.png";
 import { logout } from "../../redux/Actions/logout";
 
-<<<<<<< Updated upstream
-
 
 const Nav = () => {
   const navigate = useNavigate()
-=======
-const Nav = () => {
->>>>>>> Stashed changes
   const dispatch = useDispatch();
   const loger = localStorage.getItem("loger");
   const isClient = localStorage.getItem("isClient");
