@@ -12,6 +12,7 @@ import { postReservation } from '../../redux/Actions/postReservation';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
+const VITE_CREDENTIAL_SELLER = import.meta.env.VITE_CREDENTIAL_SELLER;
 
 export default function CalendarComponent() {
 
@@ -95,7 +96,7 @@ export default function CalendarComponent() {
 
   //Mercado Pago Funciones
   const [preferenceId, setPreferenceId] = useState(null);
-  initMercadoPago('APP_USR-f77b254e-b7df-4f4e-9da7-82b3a2e8be04')
+  initMercadoPago(VITE_CREDENTIAL_SELLER)
 
   const createPreference = async () => {
     try {
