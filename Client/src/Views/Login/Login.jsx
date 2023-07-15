@@ -99,7 +99,6 @@ const Login = () => {
             email: "",
             password: "",
           });
-<<<<<<< Updated upstream
           
           if(detail !== 'null'){
             navigate(`/detail/${Number(detail)}`)
@@ -108,11 +107,7 @@ const Login = () => {
           }
           
           localStorage.setItem('loger', true)
-=======
 
-          navigate("/home");
-          localStorage.setItem("loger", true);
->>>>>>> Stashed changes
         })
         .catch((error) => {
           if (error.response) {
