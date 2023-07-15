@@ -196,7 +196,7 @@ export default function CalendarComponent() {
   }
 
   return (
-    <div >
+    <div className={styles.containerGeneral}>
       <div className={styles['calendar-container']}>
         <Calendar onChange={handleDateChange} value={value} tileClassName={getTileClassName} />
         <p style={{ color: "white" }} className={styles.fechaSeleccionada}>
@@ -250,7 +250,7 @@ export default function CalendarComponent() {
               </div>
               <div className={styles.containerBtn}>
                 <button className={styles.btnCancel} onClick={handleRedirectLog}>Iniciar Sesion</button>
-                <button className={styles.btnConfirm} onClick={handleClose}>Cancelar</button>
+                <button className={styles.btnCancelarInicio} onClick={handleClose}>Cancelar</button>
               </div>
             </div>
           )}

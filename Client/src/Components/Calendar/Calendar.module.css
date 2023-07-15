@@ -16,6 +16,7 @@
   border-radius: 2rem;
   height: 23rem;
   box-shadow: 0 13px 25px rgba(153, 247, 47, 0.712);
+  
 }
 
 :global .react-calendar--doubleView {
@@ -264,7 +265,8 @@
 }
 
 .btnCancel,
-.btnConfirm {
+.btnConfirm,
+.btnCancelarInicio {
   height: 80%;
   width: 100%;
   font-size: 19px;
@@ -303,7 +305,8 @@
 }
 
 .btnCancel:hover,
-.btnConfirm:hover {
+.btnConfirm:hover,
+.btnCancelarInicio:hover {
   height: 60%;
   width: 90%;
   font-size: 21px;
@@ -327,6 +330,7 @@
   font-size: 18px;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 .horarios{
@@ -358,7 +362,7 @@
     margin-top: 13px;
     font-weight: bold;
   }
-  
+ 
   .reservarBtn::before {
     position: absolute;
     content: "RESERVA AHORA!";
@@ -386,4 +390,30 @@
   
   .reservarBtn:active {
     transform: scale(0.95);
+  } 
+
+  .reservarBtn:disabled {
+    background: gray;
+    cursor: not-allowed;
+    
+  }
+  
+  .reservarBtn:disabled::before {
+    background-color: gray;
+    color: black;
+  }
+
+  .btnCancelarInicio{
+    color: #FADBD8;
+    background-color: #E74C3C;
+    margin-top: 7px;
+  }
+
+  .containerGeneral{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-right: -10px;
+    
+    
   }
