@@ -1,7 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
 :root{
     --manrope: "Manrope", sans-serif;
-
+   
+        --input-focus: #9AC71F;
+        --font-color: #323232;
+        --font-color-sub: #666;
+        --bg-color: #fff;
+        --main-color: #424242;
+      
 }
 
 *{

@@ -4,23 +4,25 @@ import style from "./Nav.module.css";
 import logo from "../../assets/logo.png";
 import { logout } from "../../redux/Actions/logout";
 
+<<<<<<< Updated upstream
 
 
 const Nav = () => {
   const navigate = useNavigate()
+=======
+const Nav = () => {
+>>>>>>> Stashed changes
   const dispatch = useDispatch();
-  const loger = localStorage.getItem('loger')
+  const loger = localStorage.getItem("loger");
   const isClient = localStorage.getItem("isClient");
-  
 
   const handleLogout = () => {
     dispatch(logout()).then(() => {
       navigate("/home");
     });
-    localStorage.setItem('loger', false)
-    localStorage.setItem('detail', null)
+    localStorage.setItem("loger", false);
+    localStorage.setItem("detail", null);
   };
-
   return (
     <div className={style.container}>
       <NavLink to="/home" className={style.navlink}>
@@ -38,20 +40,18 @@ const Nav = () => {
         isClient === 'false' && <NavLink to="/post" className={style.navlink}>
         Crear Actividad
         </NavLink>
-        } 
+        }
         {isClient === 'true' && <NavLink to='/dashboard' className={style.navlink}>Perfil de Usuario</NavLink>}
         {isClient === 'false' && <NavLink to='/admin' className={style.navlink}>Perfil del Admin</NavLink> }
 
-      
        {loger === 'true' ? <button className={style.logoutButton} onClick={handleLogout}>Cerrar sesión</button> :
        <NavLink to="/login" className={style.navlink}>
         Iniciar Sesion
         </NavLink>
        }
-       
-      
-    
+
     </div>
   );
+ 
 };
 export default Nav;

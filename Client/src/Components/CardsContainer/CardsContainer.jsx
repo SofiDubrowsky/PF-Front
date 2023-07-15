@@ -7,7 +7,7 @@ import {
   orderCost,
   allFilters,
   setFilters,
-  setOrder
+  setOrder,
 } from "../../redux/Actions/filters";
 import style from "./CardsContainer.module.css";
 
@@ -31,25 +31,26 @@ const CardsContainer = () => {
   const filtersSelected = useSelector((state) => state.filters);
   const orderSelected = useSelector((state) => state.order);
 
-  const [activityFilter, setActivityFilter] = useState(filtersSelected.activity);
+  const [activityFilter, setActivityFilter] = useState(
+    filtersSelected.activity
+  );
   const [activityPlayers, setPlayersFilter] = useState(filtersSelected.players);
   const [activityAges, setAgesFilter] = useState(filtersSelected.ages);
 
-
   const handleFilterPlayers = (event) => {
     event.preventDefault();
-    setPlayersFilter(event.target.value)
-  }
+    setPlayersFilter(event.target.value);
+  };
 
   const handleFilterActivity = (event) => {
     event.preventDefault();
-    setActivityFilter(event.target.value)
-  }
+    setActivityFilter(event.target.value);
+  };
 
   const handleFilterAges = (event) => {
     event.preventDefault();
-    setAgesFilter(event.target.value)
-  }
+    setAgesFilter(event.target.value);
+  };
 
   const handleFilter = () => {
     setCurrentPage(1);
@@ -62,7 +63,6 @@ const CardsContainer = () => {
     dispatch(allFilters(filters));
     setCost("");
   };
-  
 
   const paginado = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -71,7 +71,7 @@ const CardsContainer = () => {
   const orderBy = (event) => {
     setCurrentPage(1);
     event.preventDefault();
-    dispatch(setOrder(event.target.value))
+    dispatch(setOrder(event.target.value));
     dispatch(orderCost(event.target.value));
     setCost(event.target.value);
   };
@@ -79,13 +79,15 @@ const CardsContainer = () => {
   return (
     <div>
       <div className={style.nav}>
+      <div className={style.search}>
+        <SearchBar />
+      </div>
         <div className={style.filtersContainer}>
-          <div className={style.search}>
-            <SearchBar />
-          </div>
           <div className={style.filters}>
             <select onChange={(event) => orderBy(event)} value={orderSelected}>
-              <option value="" disabled selected>Ordenar</option>
+              <option value="" disabled selected>
+                Ordenar
+              </option>
               <option value="ascendent">Menor Precio</option>
               <option value="descendent">Mayor Precio</option>
             </select>
@@ -98,9 +100,12 @@ const CardsContainer = () => {
               <option value="+8">+8</option>
             </select>
           </div>
-          
+
           <div className={style.filters}>
-            <select onChange={(event) => handleFilterActivity(event)} value={activityFilter}>
+            <select
+              onChange={(event) => handleFilterActivity(event)}
+              value={activityFilter}
+            >
               <option value="all">Actividades</option>
               {all.map((activity) => (
                 <option key={activity.id} value={activity.name}>
@@ -109,17 +114,21 @@ const CardsContainer = () => {
               ))}
             </select>
           </div>
-                
+
           <div className={style.filters}>
-            <select onChange={(event) => handleFilterAges(event)} value={activityAges} >
+            <select
+              onChange={(event) => handleFilterAges(event)}
+              value={activityAges}
+            >
               <option value="all">Edades</option>
               <option value="Niños">Niños</option>
               <option value="Adultos">Adultos</option>
-            </select> 
-         </div>   
+            </select>
+          </div>
 
-         <button type="submit" onClick={handleFilter} className={style.btn}>Aplicar Filtros</button>
-
+          <button type="submit" onClick={handleFilter} className={style.btn}>
+            Aplicar Filtros
+          </button>
         </div>
       </div>
 
