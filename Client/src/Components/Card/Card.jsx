@@ -4,25 +4,26 @@ import { NavLink } from "react-router-dom";
 const Card = ({ name, id, picture, stores, cost, players, age }) => {
   return (
     <NavLink to={`/detail/${id}`} className={style.navlink}>
-      <div className={style.card}>
-        
-        <img src={picture} alt='image' />
+      <div className={style.container}>
+        <div className={style.card}>
+          <div>
+            <img src={picture} alt="image" />
+          </div>
           <div className={style.sucursal}>
             <h3>{stores}</h3>
           </div>
-          <div className={style.text}>
-            <h3>{name}</h3>
-          </div>
           <div className={style.info}>
-            
-            <h3>${cost} /hora</h3>
-            <h3>{age[0]}</h3>
-            <h3>Jugadores: {players.map((player) => player).join("   ")}</h3>
-
+            <div className={style.text}>
+              <h3>{name}</h3>
+            </div>
+            <div className={style.description}>
+              <h4>{age[0]}</h4>
+              <h4>Jugadores: {players.map((player) => player).join("   ")}</h4>
+              <h4>${cost} /hora</h4>
+            </div>
           </div>
-        
-      </div>
-{/*        <div className={style.container}>
+        </div>
+        {/*        <div className={style.container}>
         <div className={style.card}>
           <div className={style.sucursal}>
             <h3>{stores}</h3>
@@ -39,6 +40,7 @@ const Card = ({ name, id, picture, stores, cost, players, age }) => {
           </div>
         </div>
       </div>  */}
+      </div>
     </NavLink>
   );
 };

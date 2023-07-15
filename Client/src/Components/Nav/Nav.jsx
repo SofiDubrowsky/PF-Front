@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import style from "./Nav.module.css";
-import logo from "../../assets/logo.png";
+import logoBlanco from "../../assets/logo-shadow-1.png";
 import { logout } from "../../redux/Actions/logout";
 
 
@@ -22,7 +22,7 @@ const Nav = () => {
     <div className={style.container}>
       <NavLink to="/home" className={style.navlink}>
         <div>
-          <img src={logo} alt="logo" className={style.img} />
+          <img src={logoBlanco} alt="logo" className={style.img} />
         </div>
       </NavLink>
       <NavLink to="/about" className={style.navlink}>

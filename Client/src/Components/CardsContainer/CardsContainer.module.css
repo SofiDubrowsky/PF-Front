@@ -4,15 +4,17 @@
   --manrope: "Manrope", sans-serif;
 }
 body {
-  background: linear-gradient(#000000, #0a1017);
+background-color: black;
 }
 
+.background{
+  background-color: black;
+}
 .nav{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(23, 23, 23, 0.559);
   height: 10rem;
   width: 100%;
   padding-bottom: -2rem;
@@ -23,7 +25,6 @@ body {
 .filtersContainer {
   display: flex;
   align-items: center;
-  padding: 0;
   justify-content: space-between;
   gap: 1rem;
 }
@@ -62,7 +63,6 @@ body {
   flex-wrap: wrap;
   width: 100%;
   margin-top: 2em;
-  padding: 0 25px 0 25px;
   gap: 1rem;
   justify-content: space-around;
   align-items: center;
