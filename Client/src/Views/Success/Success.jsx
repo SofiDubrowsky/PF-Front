@@ -26,7 +26,9 @@ const Success = () => {
     async function putReserva(){
       await axios.put(`https://sportiverse-server.onrender.com/reservations/${idReserva}`)
     }
-    putReserva()
+    setTimeout(() => {
+      putReserva()  
+    }, 3000);
   }, [])
 
   const activityName = ((activities?.find(act=>act?.id==Number(reservation?.activityId)))?.name);
