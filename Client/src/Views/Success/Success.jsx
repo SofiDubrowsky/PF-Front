@@ -79,7 +79,9 @@ const Success = () => {
                 <h4>Horario: {reservation?.hour} hs</h4>
                 <h4>Monto: ${reservation?.cost}</h4>
               </div>
-              <button className={style.nav1} onClick={sendEmailData} disabled={emailSent}>Enviar Datos a mi e-mail</button>
+              <button className={style.nav1} onClick={()=>{setTimeout(() => {
+               sendEmailData() 
+              }, 3000);}} disabled={emailSent}>Enviar Datos a mi e-mail</button>
             </div>
 
             <div className={style.buttons}>
