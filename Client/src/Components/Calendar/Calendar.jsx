@@ -126,7 +126,9 @@ export default function CalendarComponent() {
         const id = await createPreference();
         if (id) {
             localStorage.setItem('reservation' , null);
-            dispatch(postReservation(reservation));
+            setTimeout(() => {
+              dispatch(postReservation(reservation));
+            }, 3000);
             setPreferenceId(id)
             setTimeout(() => {
               setShowAlert(true);
