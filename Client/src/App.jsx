@@ -17,7 +17,8 @@ import UserDashboard from './Views/UserDashboard/UserDashboard'
 
 
 function App() {
-  const location = useLocation()
+  const location = useLocation();
+  const isLandingPage = location.pathname === '/'
   return (
     <div>
       {
@@ -37,9 +38,8 @@ function App() {
       <Route path='/failure' element={<Failure/>} />
       <Route path='/dashboard' element={<UserDashboard/>} />
     </Routes>
-      {
-        location.pathname !== '/'  && <Footer></Footer>
-      }
+    {!isLandingPage && location.pathname !== '/admin' && <Footer />}
+      
     </div>
     
   )

@@ -20,11 +20,11 @@ const Nav = () => {
   };
   return (
     <div className={style.container}>
-      <NavLink to="/home" className={style.navlink}>
+      
         <div>
           <img src={logoBlanco} alt="logo" className={style.img} />
         </div>
-      </NavLink>
+     
       <NavLink to="/about" className={style.navlink}>
         Nosotros
       </NavLink>

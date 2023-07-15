@@ -1,3 +1,7 @@
+  body{
+    background-color: black;
+  }
+  
   .editButton {
     width: 40px;
     height: 40px;
@@ -46,7 +50,7 @@
     width: 120px;
     border-radius: 50px;
     transition-duration: 0.3s;
-    background-color: rgb(255, 69, 69);
+    background-color: rgb(53, 73, 225);
     align-items: center;
   }
   .editButton2:hover {
