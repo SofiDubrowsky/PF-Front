@@ -13,11 +13,11 @@
 
 .principal .inputSearch input {
   height: 35px;
-  width: 100%;
+  width: 20rem;
   color: white;  
-  padding: 10px 25px;
+  /* padding: 10px 25px; */
   outline: none;
-  padding: 0 50px 0 30px;
+  /* padding: 0 50px 0 30px; */
   border: none;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
@@ -35,6 +35,7 @@
   color: white;
   font-family: var(--manrope); 
   opacity: 0.8;
+  text-align: center;
 
 }
 

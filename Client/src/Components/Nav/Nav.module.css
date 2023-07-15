@@ -8,16 +8,12 @@
   width: 100%;
   background-color: #9AC71F;
   font-size: 15px;
-
   transition: all 0.5s;
   font-family: var(--manrope);
   letter-spacing: 2px;
   padding: 0 1rem;
-
   z-index: 10000;
-
 }
-
 
 .navlink {
   text-decoration: none;
@@ -35,8 +31,7 @@
 }
 
 .img {
-  height: 100px;
-  margin-top: 15px;
+  height: 5rem;
 }
 
 .logoutButton{
