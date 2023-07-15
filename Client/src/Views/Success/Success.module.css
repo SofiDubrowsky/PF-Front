@@ -31,6 +31,9 @@
     text-align: center;
     margin: 1rem;
 }
+.receipt img{
+    margin: auto;
+}
 
 .buttons{
     display: flex;
@@ -40,8 +43,16 @@
 .column{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
-
+.h1{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+}
+    
 .nav1{
     margin:1rem;
     color:white;
@@ -50,3 +61,92 @@
     border-radius: 2em;
 
 } 
+.emailBtn{
+    width: 350px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right,#0a7719,#2ca713,#1a490c,#77530a,#09f758,#0a5a15);
+    background-size: 250%;
+    background-position: left;
+    color: #9AC71F;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition-duration: 1s;
+    overflow: hidden;
+    margin-top: 13px;
+    font-weight: bold;
+  } .emailBtn::before {
+    position: absolute;
+    content: "✉ Enviar Comprobante";
+    color: #9AC71F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 97%;
+    height: 90%;
+    border-radius: 8px;
+    transition-duration: 1s;
+    background-color: rgba(0, 0, 0, 0.842);
+    background-size: 200%;
+  }
+  
+  .emailBtn:hover {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  
+  .emailBtn:hover::before {
+    background-position: right;
+    transition-duration: 1s;
+  }
+  
+  .emailBtn:active {
+    transform: scale(0.95);
+  }
+  .btn {
+    border: none;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    background: none;
+    height: 35px;
+    width: 12rem;
+    transition: all .5s;
+    cursor: pointer;
+    margin: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+    opacity: 0.8;
+    text-align: center;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn:hover {
+    background-color: white;
+    color: black;
+  }
+  .nav .search{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+  .title{
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    text-align: center;
+  }
+  .navlink:hover{
+    color: black;
+  }
