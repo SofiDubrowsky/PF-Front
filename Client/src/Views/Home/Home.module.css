@@ -1,3 +1,15 @@
+:root{
+  --input-focus: #9AC71F;
+        --font-color: #323232;
+        --font-color-sub: #666;
+        --bg-color: #fff;
+        --main-color: #424242;
+}
+
+body {
+  background: linear-gradient(#000000, #0a1017);
+}
+
 .head{
   text-align: center;
   background-color: black;
