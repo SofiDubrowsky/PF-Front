@@ -1,5 +1,6 @@
 .failure{
-    color:white
+    color:white;
+    background-color: black;
 }
 .check{
     height: 20vh;

@@ -1,5 +1,6 @@
 .success{
-    color:white
+    color:white;
+    background-color: black;
 }
 .check{
     height: 20vh;
@@ -79,7 +80,8 @@
     overflow: hidden;
     margin-top: 13px;
     font-weight: bold;
-  } .emailBtn::before {
+  } 
+  .emailBtn::before {
     position: absolute;
     content: "✉ Enviar Comprobante";
     color: #9AC71F;
@@ -107,6 +109,18 @@
   .emailBtn:active {
     transform: scale(0.95);
   }
+
+  .emailBtn:disabled {
+    background: gray;
+    cursor: not-allowed;
+    
+  }
+  
+  .emailBtn:disabled::before {
+    background-color: gray;
+    color: black;
+  }
+
   .btn {
     border: none;
     border: 2px solid var(--main-color);
