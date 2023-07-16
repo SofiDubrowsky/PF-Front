@@ -1,19 +1,54 @@
 .user{
     overflow: auto;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
+    margin: 2rem;
     background: black;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
-    margin: 2rem;
     border-radius: 1rem;
+    justify-content: center;
+}
+.img{
+    height: 30vh;
+    align-self: center;
+    justify-self: center;
+}
+.imgBox{
+    display: flex;
+    background-color: grey;
+    height: 32vh;
+    width: 25vw;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    margin:1rem
+}
+.data{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 65%;
+}
+.data img{
+    height: 12vh;
+    margin-top: 1rem;
 }
 .title {
-    width: 100%;
-    padding-left: 1.5rem;
-    padding-top: 1.5rem;
+    display: flex;
+    width: 50vw;
     text-align: center;
     color: white;
+    margin: 2rem;
+    border-radius: 1rem;
+    flex-direction: row;
+    background: linear-gradient( rgb(53, 51, 51), black);
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    border-radius: 1rem;
 }
 .notFound{
     width: 100%;
@@ -32,6 +67,15 @@
     margin: 2rem;
     border-radius: 1rem;
 }
+h1{
+    font-size: 4vh;
+    color: #9AC71F;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+h2{
+    padding: .5rem;
+}
 .containerImage {
     display: flex;
     flex-direction: column;
@@ -47,7 +91,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80%;
+    height: 100%;
     border-radius: 15px;
     padding: 3rem 1.5rem 3rem 1.5rem;
 }
@@ -79,7 +123,7 @@
     border-radius: 2rem;
     transition: .5s;
     cursor: pointer;
-    transform: translate(20%);
+   
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: bold;
@@ -92,3 +136,34 @@
     text-decoration:none;
     color: white;
 }
+.btn {
+    border: none;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    background: none;
+    height: 35px;
+    width: 12rem;
+    transition: all .5s;
+    cursor: pointer;
+    margin: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+    opacity: 0.8;
+    text-align: center;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .btn:hover {
+    background-color: white;
+    color: black;
+  }
+  .btn:hover a{
+    color: black;
+    transition: all .5s;
+  }
