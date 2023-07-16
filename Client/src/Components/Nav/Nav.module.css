@@ -2,6 +2,7 @@
   position: sticky;
   top: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 75px;
@@ -15,21 +16,21 @@
   /* border-bottom: 1px solid #9AC71F; */
 }
 
-
+.navegacion{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
 .navlink {
   text-decoration: none;
   color: black;
-  font-size: 16px;
+  font-size: 10px;
   font-weight: 500;
   letter-spacing: 3px;
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0 1.5rem;
-  transform: translate(0%);
 
-  
 }
 
 .navlink:hover {
@@ -42,7 +43,7 @@
   margin-right: 28rem;
 }
 
-/* .logoutButton{
+.logoutButton{
   border: none;
   background-color: none;
   background: none;
@@ -51,8 +52,7 @@
   font-weight: 500;
   letter-spacing: 2px;
   font-weight: bold;
- 
-} */
+}
 
 
 

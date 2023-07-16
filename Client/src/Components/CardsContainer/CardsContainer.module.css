@@ -4,13 +4,13 @@
   --manrope: "Manrope", sans-serif;
 }
 body {
-background-color: black;
-}
-
-.background{
   background-color: black;
 }
-.nav{
+
+.background {
+  background-color: black;
+}
+.nav {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,28 +31,28 @@ background-color: black;
 
 .filtersContainer .filters select {
   border: none;
-  border: 2px solid var(--main-color);
+  border: 2px solid white;
   background-color: var(--bg-color);
-  box-shadow: 4px 4px var(--main-color);
   background: none;
+  box-shadow: 4px 4px white;
   height: 35px;
   width: 12rem;
-  transition: .5s;
+  transition: 0.5s;
   cursor: pointer;
   transform: translate(20%);
   text-transform: uppercase;
-  font-weight: bold;
+  /* font-weight: bold; */
   border-radius: 5px;
   color: white;
-  opacity: 0.8;
+  /* opacity: 0.8; */
   text-align: center;
   letter-spacing: 4px;
 }
 
-.filters  option{
+.filters option {
   background: black;
   color: white;
-  opacity: .8;
+  opacity: 0.8;
 }
 .filtersContainer .filters select:active {
   box-shadow: 2px 2px 10px #919191 inset;
@@ -67,7 +67,7 @@ background-color: black;
   justify-content: space-around;
   align-items: center;
 }
-
+/* 
 .btn {
   border: none;
   border: 2px solid var(--main-color);
@@ -93,9 +93,56 @@ background-color: black;
 .btn:hover {
   background-color: white;
   color: black;
+  box-shadow: 0px 0px var(--main-color);
+  transform: translate(3px, 3px);
+} */
+
+.btn {
+  width: 12rem;
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid white;
+  /* background-color: var(--bg-color); */
+  box-shadow: 4px 4px white;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  /* opacity: 0.8; */
+  text-align: center;
+  letter-spacing: 4px;
+  margin: 0 0 0 3rem;
+  font-weight: 500;
+ }
+
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0 50%;
+  }
 }
 
-.nav .search{
+.btn:hover {
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(-45deg, #bbf86b, #59e65e, #65ee9ced, #6ee659);
+  background-size: 1000% 1000%;
+  animation: gradient 3s ease infinite;
+  transition-duration: 0.1s;
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  transition-duration: 0.1s;
+}
+.nav .search {
   display: flex;
   flex-direction: row;
   align-items: center;

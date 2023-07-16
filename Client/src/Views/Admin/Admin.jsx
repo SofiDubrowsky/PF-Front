@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getReservations } from "../../redux/Actions/getReservations";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 const Admin = () => {
   const dispatch = useDispatch();
 
@@ -21,7 +23,31 @@ const Admin = () => {
 
   return (
     <div>
-      <SearchbarAdmin/>
+      <NavLink to="/post">
+        <button className={style.button} type="button">
+          <span className={style.button__text}>Crear actividad</span>
+          <span className={style.button__icon}>
+            <svg
+              className={style.svg}
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+          </span>
+        </button>
+      </NavLink>
+      {/* <div className={style.components}>
+        <SearchbarAdmin />
+      </div> */}
       <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
           <thead class=" text-white text-base uppercase  bg-dark-grey ">
