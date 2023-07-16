@@ -5,11 +5,8 @@ import { NavLink } from "react-router-dom";
 import { getUser } from "../../redux/Actions/getUser";
 import getActivities from "../../redux/Actions/getActivities";
 import axios from 'axios';
+import Swal from "sweetalert2";
 
-// const handleReservationPost = async (reservation) => {
-//   await axios.post('https://sportiverse-server.onrender.com/reservations', reservation);
-//   // localStorage.removeItem('reservation');
-// };
 
 const Success = () => {
   const [emailSent, setEmailSent] = useState(false)
@@ -59,10 +56,23 @@ const Success = () => {
       await axios.post('https://sportiverse-server.onrender.com/emailReservation', emailInfo);
       console.log('Datos enviados por email exitosamente');
       setEmailSent(true);
-    } catch (error) {
-      console.error('Error al enviar los datos por email:', error);
-    }
-  };
+    // Mostrar la alerta de éxito
+    Swal.fire({
+      icon: 'success',
+      title: 'Email enviado',
+      text: 'El correo ha sido enviado correctamente',
+    });
+  } catch (error) {
+    console.error('Error al enviar los datos por email:', error);
+
+    // Mostrar la alerta de error
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: 'Hubo un error al enviar el correo',
+    });
+  }
+};
 
   return (
     <div className={style.success}>
