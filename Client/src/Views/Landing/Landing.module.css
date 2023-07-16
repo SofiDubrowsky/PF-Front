@@ -128,7 +128,7 @@ h2 {
   font-weight: bold;
   text-shadow: 0px 0px 10px #000000;
   text-align: center;
-  background-color: rgb(128, 255, 0);
+  background-color: rgba(128, 255, 0, 0.912);
   width: 13rem;
   height: 3rem;
   border-radius: 2rem;
