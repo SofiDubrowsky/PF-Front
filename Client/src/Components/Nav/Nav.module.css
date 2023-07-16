@@ -4,7 +4,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 75px;
   width: 100%;
   background-color: #9AC71F;
@@ -22,6 +22,7 @@
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
+  margin-right: 1rem;
 }
 
 .navlink {
@@ -41,7 +42,7 @@
 
 .img {
   height: 5rem;
-  margin-right: 28rem;
+  margin-left: 1rem;
 }
 
 .logoutButton{
@@ -127,10 +128,13 @@
   /* border: .5px solid black; */
   border-radius: 50%;
   cursor: pointer;
+  height: 100%;
+  
   /* padding: 0; */
 }
 
 .avatarImage {
+  margin-top: 0.5rem;
   width: 40px; /* Ajusta el tamaño según tus necesidades */
   height: 40px;
   border-radius: 50%;

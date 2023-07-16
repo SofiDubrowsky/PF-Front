@@ -22,7 +22,12 @@ const Admin = () => {
   }, [isClient]);
 
   return (
-    <div>
+    <div >
+      <div className={style.main}>
+      <div className={style.components}>
+        <SearchbarAdmin />
+      </div>
+      <div className={style.activity}>
       <NavLink to="/post">
         <button className={style.button} type="button">
           <span className={style.button__text}>Crear actividad</span>
@@ -45,9 +50,11 @@ const Admin = () => {
           </span>
         </button>
       </NavLink>
-      <div className={style.components}>
-        <SearchbarAdmin />
       </div>
+      
+    
+      </div>
+     
       <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
           <thead class=" text-white text-base uppercase  bg-dark-grey ">
