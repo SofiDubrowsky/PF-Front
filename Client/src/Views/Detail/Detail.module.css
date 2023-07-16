@@ -31,7 +31,6 @@
   align-items: center;
   justify-content: center;
   justify-items: center;
-  margin-top: 1rem;
 }
 
 .image_info {
@@ -95,7 +94,8 @@
 .cost {
   font-size: 20px;
   color: #94b447;
-  margin-left: 6.5rem;
+  text-align: center;
+  justify-content: center;
 }
 
 .bigImage {
@@ -116,7 +116,6 @@
   align-self: center;
   font-size: medium;
   /* margin-left: 80px; */
-  margin-top: 4.5rem;
 }
 
 .calendar h5 {
