@@ -99,15 +99,14 @@ const Login = () => {
             email: "",
             password: "",
           });
-          
-          if(detail !== 'null'){
-            navigate(`/detail/${Number(detail)}`)
+
+          if (detail !== "null") {
+            navigate(`/detail/${Number(detail)}`);
           } else {
             navigate("/home");
           }
-          
-          localStorage.setItem('loger', true)
 
+          localStorage.setItem("loger", true);
         })
         .catch((error) => {
           if (error.response) {
@@ -136,25 +135,6 @@ const Login = () => {
   return (
     <div className={style.container}>
       <form className={style.form} onSubmit={(event) => handleSubmit(event)}>
-        {/* <div onClick={() => navigate("/home")} className={style.arrow}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="icon icon-tabler icon-tabler-arrow-narrow-left"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="#ffffff"
-            fill="none"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M5 12l14 0" />
-            <path d="M5 12l4 4" />
-            <path d="M5 12l4 -4" />
-          </svg>
-        </div> */}
         <h2>Inicia sesión</h2>
         <div className={style.text}>
           <div className={style.content}>
@@ -195,7 +175,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <NavLink to="/account" className={style.navlink}>
+          <NavLink to="/account" className={style.account}>
             <p>¿Aún no tienes cuenta?</p>
           </NavLink>
         </div>

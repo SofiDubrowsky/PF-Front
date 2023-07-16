@@ -5,7 +5,8 @@ export default {
     extend: {
       colors: {
         "dark-grey": "#828385",
-        "verde-feo": "#9AC71F"
+        "verde-feo": "#9AC71F",
+        "light-grey": "#b9b8b6"
       },
     },
   },

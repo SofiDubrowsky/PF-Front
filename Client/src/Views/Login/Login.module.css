@@ -12,7 +12,7 @@ body {
 .form {
   position: relative;
   width: 25rem;
-  height: 29rem;
+  height: auto;
   background-color: rgba(33, 32, 32, 0.559);
   box-shadow: 0 15px 25px rgba(80, 79, 79, 0.896);
   font-size: 14px;
@@ -26,6 +26,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   gap: 1rem;
+  padding: 3rem 0;
 }
 
 .form h2 {
@@ -36,6 +37,7 @@ body {
   color: #fff;
   text-align: center;
   margin-bottom: 1rem;
+
 }
 
 .text {
@@ -130,7 +132,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 1rem;
   transform: translate(0%);
 }
 
@@ -176,5 +177,22 @@ body {
 }
 
 .navlink p:hover {
+  transform: translate(0%) scale(1.2);
+}
+
+.account{
+  font-weight: bold;
+  text-shadow: 0px 0px var(--main-color), 0px 0px rgba(242, 242, 242, 0.361);
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  font-size: 5px;
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  transform: translate(0%);
+}
+
+.account p:hover {
   transform: translate(0%) scale(1.2);
 }

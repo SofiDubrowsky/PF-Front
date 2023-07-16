@@ -2,41 +2,47 @@
   position: sticky;
   top: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   height: 75px;
   width: 100%;
   background-color: #9AC71F;
-  font-size: 15px;
-
   transition: all 0.5s;
   font-family: var(--manrope);
   letter-spacing: 2px;
-  padding: 0 1rem;
-
+  padding: 0 .5rem;
   z-index: 10000;
-
+  /* border-bottom: 1px solid #9AC71F; */
 }
 
+.navegacion{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-right: 1rem;
+}
 
 .navlink {
   text-decoration: none;
-  opacity: 0.8;
   color: black;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   font-weight: bold;
 
 }
 
 .navlink:hover {
-  opacity: 1;
+  transform: translate(0%) scale(1.1);
+
 }
 
 .img {
-  height: 100px;
-  margin-top: 15px;
+  height: 5rem;
+  margin-left: 1rem;
 }
 
 .logoutButton{
@@ -50,5 +56,87 @@
   font-weight: bold;
 }
 
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition-duration: .3s;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
+  background-color:white;
+}
 
+/* plus sign */
+.sign {
+  width: 100%;
+  transition-duration: .3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.sign svg {
+  width: 15px;
+}
+
+.sign svg path {
+  fill: black;
+}
+/* text */
+.text {
+  position: absolute;
+  right: 0%;
+  width: 0%;
+  opacity: 0;
+  color: black;
+  font-size: .8em;
+  font-weight: 600;
+  transition-duration: .3s;
+}
+/* hover effect on button width */
+.btn:hover {
+  width: 125px;
+  border-radius: 40px;
+  transition-duration: .3s;
+}
+
+.btn:hover .sign {
+  width: 30%;
+  transition-duration: .3s;
+  padding-left: 20px;
+}
+/* hover effect button's text */
+.btn:hover .text {
+  opacity: 1;
+  width: 70%;
+  transition-duration: .3s;
+  padding-right: 10px;
+}
+/* button click effect*/
+.btn:active {
+  transform: translate(2px ,2px);
+}
+
+.avatarButton {
+  background-color: transparent;
+  /* border: .5px solid black; */
+  border-radius: 50%;
+  cursor: pointer;
+  height: 100%;
+  
+  /* padding: 0; */
+}
+
+.avatarImage {
+  margin-top: 0.5rem;
+  width: 40px; /* Ajusta el tamaño según tus necesidades */
+  height: 40px;
+  border-radius: 50%;
+  fill: white;
+}

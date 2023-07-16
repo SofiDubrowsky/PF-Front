@@ -77,11 +77,11 @@ const CardsContainer = () => {
   };
 
   return (
-    <div>
+    <div className={style.background}>
       <div className={style.nav}>
-      <div className={style.search}>
-        <SearchBar />
-      </div>
+        <div className={style.search}>
+          <SearchBar />
+        </div>
         <div className={style.filtersContainer}>
           <div className={style.filters}>
             <select onChange={(event) => orderBy(event)} value={orderSelected}>
@@ -126,9 +126,10 @@ const CardsContainer = () => {
             </select>
           </div>
 
-          <button type="submit" onClick={handleFilter} className={style.btn}>
+          {/* <button type="submit" onClick={handleFilter} className={style.btn}>
             Aplicar Filtros
-          </button>
+          </button> */}
+          <button type="submit" onClick={handleFilter}  className={style.btn}>APLICAR</button>
         </div>
       </div>
 

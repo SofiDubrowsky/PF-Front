@@ -196,15 +196,15 @@ export default function CalendarComponent() {
   }
 
   return (
-    <div >
-      <div className={styles['calendar-container']}>
+    <div className={styles.containerGeneral}>
+      <div >
         <Calendar onChange={handleDateChange} value={value} tileClassName={getTileClassName} />
-        <p style={{ color: "white" }} className={styles.fechaSeleccionada}>
+        <h1 style={{ color: "white" }} className={styles.fechaSeleccionada}>
           ✔ Fecha seleccionada:{' '}
           {selectedDate
             ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}`
             : 'Ninguna'}
-        </p>
+        </h1>
       </div>
       <div>
         <div style={{ color: "white" }} className={styles.horarios}>
@@ -250,7 +250,7 @@ export default function CalendarComponent() {
               </div>
               <div className={styles.containerBtn}>
                 <button className={styles.btnCancel} onClick={handleRedirectLog}>Iniciar Sesion</button>
-                <button className={styles.btnConfirm} onClick={handleClose}>Cancelar</button>
+                <button className={styles.btnCancelarInicio} onClick={handleClose}>Cancelar</button>
               </div>
             </div>
           )}

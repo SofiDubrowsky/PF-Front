@@ -1,20 +1,17 @@
 :global .calendar-container {
-  width: 310px;
   border: 1px solid #ccc;
   background-color: #f0f0f0;
-
-
 }
 
 :global .react-calendar {
-  width: 350px;
+  width: 100%;
   max-width: 100%;
   background: white;
   border: 1px solid #a0a096;
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
   border-radius: 2rem;
-  height: 23rem;
+  height: 29rem;
   box-shadow: 0 13px 25px rgba(153, 247, 47, 0.712);
 }
 
@@ -60,6 +57,7 @@
 :global .react-calendar__navigation button {
   min-width: 44px;
   background: none;
+  font-size: 2rem;
 }
 
 :global .react-calendar__navigation button:disabled {
@@ -109,7 +107,8 @@
   padding: 10px 6.6667px;
   background: none;
   text-align: center;
-  line-height: 16px;
+  line-height: 2rem; 
+  font-size: 1.5rem;
 }
 
 :global .react-calendar__tile:disabled {
@@ -162,10 +161,9 @@
 .selected {
   background-color: #9AC71F;
   color: white;
-  width: 65px;
-  height: 35px;
+
   font-weight: bold;
-  font-size: 15px;
+  
 }
 
 .notSelected {
@@ -264,7 +262,8 @@
 }
 
 .btnCancel,
-.btnConfirm {
+.btnConfirm,
+.btnCancelarInicio {
   height: 80%;
   width: 100%;
   font-size: 19px;
@@ -303,7 +302,8 @@
 }
 
 .btnCancel:hover,
-.btnConfirm:hover {
+.btnConfirm:hover,
+.btnCancelarInicio:hover {
   height: 60%;
   width: 90%;
   font-size: 21px;
@@ -327,16 +327,21 @@
   font-size: 18px;
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  margin: 0;
+  text-align: center;
 }
 
 .horarios{
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 1px;
+  grid-gap: */
+  display: flex;
+  justify-content: space-around;
 }
 
 .reservar{
   display: grid;
+  justify-content: center;
 }
 
 .reservarBtn{
@@ -358,7 +363,7 @@
     margin-top: 13px;
     font-weight: bold;
   }
-  
+ 
   .reservarBtn::before {
     position: absolute;
     content: "RESERVA AHORA!";
@@ -386,4 +391,27 @@
   
   .reservarBtn:active {
     transform: scale(0.95);
+  } 
+
+  .reservarBtn:disabled {
+    background: gray;
+    cursor: not-allowed;
+    
+  }
+  
+  .reservarBtn:disabled::before {
+    background-color: gray;
+    color: black;
+  }
+
+  .btnCancelarInicio{
+    color: #FADBD8;
+    background-color: #E74C3C;
+    margin-top: 7px;
+  }
+
+  .containerGeneral{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
