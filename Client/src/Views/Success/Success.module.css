@@ -148,6 +148,10 @@
     background-color: white;
     color: black;
   }
+  .btn:hover a{
+    color: black;
+    transition: all .5s;
+  }
   .nav .search{
     display: flex;
     flex-direction: row;
