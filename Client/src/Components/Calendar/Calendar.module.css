@@ -328,12 +328,15 @@
   font-weight: bold;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   margin: 0;
+  text-align: center;
 }
 
 .horarios{
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 0px;
+  grid-gap: */
+  display: flex;
+  justify-content: space-around;
 }
 
 .reservar{
