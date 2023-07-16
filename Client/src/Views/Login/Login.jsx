@@ -175,7 +175,7 @@ const Login = () => {
           />
         </div>
         <div>
-          <NavLink to="/account" className={style.navlink}>
+          <NavLink to="/account" className={style.account}>
             <p>¿Aún no tienes cuenta?</p>
           </NavLink>
         </div>
