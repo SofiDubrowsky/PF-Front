@@ -26,6 +26,10 @@ export default function CalendarComponent() {
   let selected = selectedDate ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}` : null
   const dayReservations = activity?.reservations?.find(reserv => reserv.date === selected)
   const id = activity?.id
+  
+  const idActLs = localStorage.getItem('detail');
+  
+  const idAct = id === null? idActLs : id
   const cost = activity?.cost
   const name = activity?.name
 
@@ -79,7 +83,7 @@ export default function CalendarComponent() {
         hour: hour,
         date: selected,
         cost: cost,
-        idActivity: id,
+        idActivity: idAct,
         idUser: idUser,
       })
     }
@@ -172,7 +176,12 @@ export default function CalendarComponent() {
   const handleCancelTransaction = () => {
     setShowAlert(false);
     deleteReservation();
-    setShowBackdrop(false); //nuevo
+    setShowBackdrop(false); 
+    Swal.fire({
+      icon: 'error',
+      title: 'Reserva Cancelada',
+      text: error.message,
+    });
   };
 
   const handleRenderWallet = () => {
