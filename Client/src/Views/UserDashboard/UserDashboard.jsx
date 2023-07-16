@@ -38,7 +38,7 @@ console.log(activities);
         <button className={style.btn}>Editar Datos</button>
       </div>
       </div>
-    
+    <div className={style.games}>
       {reservations?.length > 0 ? (
         reservations?.map((reserv) => {
           return (
@@ -68,6 +68,7 @@ console.log(activities);
         <button className={style.backButton}>
           <NavLink to="/home" className={style.navStyle} style={{color: "white"}}>Volver</NavLink>
         </button>
+      </div>
       </div>
     </div>
   );
