@@ -4,9 +4,8 @@ import style from "./Nav.module.css";
 import logoBlanco from "../../assets/logo-shadow-1.png";
 import { logout } from "../../redux/Actions/logout";
 
-
 const Nav = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loger = localStorage.getItem("loger");
   const isClient = localStorage.getItem("isClient");
@@ -20,33 +19,45 @@ const Nav = () => {
   };
   return (
     <div className={style.container}>
-      <NavLink to="/home" className={style.navlink}>
+      <NavLink to="/home">
         <div>
           <img src={logoBlanco} alt="logo" className={style.img} />
         </div>
       </NavLink>
-      <NavLink to="/about" className={style.navlink}>
-        Nosotros
-      </NavLink>
-      <NavLink to="/stores" className={style.navlink}>
-        Sucursales
-      </NavLink>
-      {
-        isClient === 'false' && <NavLink to="/post" className={style.navlink}>
-        Crear Actividad
+      <div className={style.navegacion}>
+        <NavLink to="/about" className={style.navlink}>
+          Nosotros
         </NavLink>
-        }
-        {isClient === 'true' && <NavLink to='/dashboard' className={style.navlink}>Perfil de Usuario</NavLink>}
-        {isClient === 'false' && <NavLink to='/admin' className={style.navlink}>Perfil del Admin</NavLink> }
-
-       {loger === 'true' ? <button className={style.logoutButton} onClick={handleLogout}>Cerrar sesión</button> :
-       <NavLink to="/login" className={style.navlink}>
-        Iniciar Sesion
+        <NavLink to="/stores" className={style.navlink}>
+          Sucursales
         </NavLink>
-       }
+        {/* {isClient === "false" && (
+        <NavLink to="/post" className={style.navlink}>
+          Crear Actividad
+        </NavLink>
+      )} */}
+        {isClient === "true" && (
+          <NavLink to="/dashboard" className={style.navlink}>
+            Perfil Usuario
+          </NavLink>
+        )}
+        {isClient === "false" && (
+          <NavLink to="/admin" className={style.navlink}>
+            Perfil Admin
+          </NavLink>
+        )}
 
+        {loger === "true" ? (
+          <NavLink  to="" className={style.navlink} onClick={handleLogout}>
+            Cerrar Sesión
+          </NavLink>
+        ) : (
+          <NavLink to="/login" className={style.navlink}>
+            Inicia Sesión
+          </NavLink>
+        )}
+      </div>
     </div>
   );
- 
 };
 export default Nav;

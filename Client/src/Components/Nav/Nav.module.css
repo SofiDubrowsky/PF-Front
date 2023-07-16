@@ -2,36 +2,45 @@
   position: sticky;
   top: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   height: 75px;
   width: 100%;
   background-color: #9AC71F;
-  font-size: 15px;
   transition: all 0.5s;
   font-family: var(--manrope);
   letter-spacing: 2px;
-  padding: 0 1rem;
+  padding: 0 .5rem;
   z-index: 10000;
+  /* border-bottom: 1px solid #9AC71F; */
 }
 
+.navegacion{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
 .navlink {
   text-decoration: none;
-  opacity: 0.8;
   color: black;
-  font-size: 18px;
+  font-size: 10px;
   font-weight: 500;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   font-weight: bold;
 
 }
 
 .navlink:hover {
-  opacity: 1;
+  transform: translate(0%) scale(1.1);
+
 }
 
 .img {
   height: 5rem;
+  margin-right: 28rem;
 }
 
 .logoutButton{

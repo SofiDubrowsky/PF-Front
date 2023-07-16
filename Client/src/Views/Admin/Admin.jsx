@@ -1,9 +1,11 @@
 import style from "./Admin.module.css";
-import Nav from "../../Components/Nav/Nav";
+import SearchbarAdmin from "../../Components/SearchbarAdmin/SearchbarAdmin";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getReservations } from "../../redux/Actions/getReservations";
 import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
 const Admin = () => {
   const dispatch = useDispatch();
 
@@ -21,10 +23,34 @@ const Admin = () => {
 
   return (
     <div>
-      <h2>Reservas:</h2>
+      <NavLink to="/post">
+        <button className={style.button} type="button">
+          <span className={style.button__text}>Crear actividad</span>
+          <span className={style.button__icon}>
+            <svg
+              className={style.svg}
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+          </span>
+        </button>
+      </NavLink>
+      {/* <div className={style.components}>
+        <SearchbarAdmin />
+      </div> */}
       <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
-        <table class=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-white uppercase  bg-dark-grey dark:text-gray-400">
+        <table class=" w-full  text-sm text-left text-white">
+          <thead class=" text-white text-base uppercase  bg-dark-grey ">
             <tr>
               <th scope="col" class="px-6 py-3 ">
                 Actividad
@@ -55,14 +81,14 @@ const Admin = () => {
           {reservations?.map((reservation) => {
             return (
               <tbody>
-                <tr class=" border-b  dark:border-white ">
+                <tr class="border-b bg-light-grey dark:border-white ">
                   <th
                     scope="row"
-                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-grey"
+                    class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                   >
                     {reservation?.activity?.name}
                   </th>
-                  <td class="px-6 py-4">{reservation?.user?.name}</td>
+                  <td class="px-6 py-4 ">{reservation?.user?.name}</td>
                   <td class="px-6 py-4">{reservation?.date}</td>
                   <td class="px-6 py-4">{reservation?.hour}</td>
                   <td class="px-6 py-4">

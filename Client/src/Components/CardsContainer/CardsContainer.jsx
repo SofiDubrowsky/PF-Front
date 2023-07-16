@@ -126,9 +126,10 @@ const CardsContainer = () => {
             </select>
           </div>
 
-          <button type="submit" onClick={handleFilter} className={style.btn}>
+          {/* <button type="submit" onClick={handleFilter} className={style.btn}>
             Aplicar Filtros
-          </button>
+          </button> */}
+          <button type="submit" onClick={handleFilter}  className={style.btn}>Aplicar Filtros</button>
         </div>
       </div>
 
