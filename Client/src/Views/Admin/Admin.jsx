@@ -45,9 +45,9 @@ const Admin = () => {
           </span>
         </button>
       </NavLink>
-      {/* <div className={style.components}>
+      <div className={style.components}>
         <SearchbarAdmin />
-      </div> */}
+      </div>
       <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
           <thead class=" text-white text-base uppercase  bg-dark-grey ">
