@@ -26,10 +26,8 @@ export default function CalendarComponent() {
   let selected = selectedDate ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}` : null
   const dayReservations = activity?.reservations?.find(reserv => reserv.date === selected)
   const id = activity?.id
-  
   const idActLs = localStorage.getItem('detail');
-  
-  const idAct = id === null? idActLs : id
+ 
   const cost = activity?.cost
   const name = activity?.name
 
@@ -72,6 +70,8 @@ export default function CalendarComponent() {
     }
 
   };
+
+  const idAct = id === undefined? idActLs : id
 
   const handleClick = (hour) => {
     if (selectedHour === hour) {
