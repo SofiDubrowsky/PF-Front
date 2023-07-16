@@ -6,19 +6,19 @@
   --main-color: #424242;
 }
 
+.body {
+  background-color: black;
+}
+
 .sucursal {
   text-align: center;
-  font-size: 35px;
   margin: 2rem 0;
-  margin-bottom: -2rem;
 }
 
-.sucursal h3{
-    letter-spacing: 3px;
-    font-weight: 500;
-}
 
 .sucursal span{
+    font-size: 40px;
+    color: white;
     letter-spacing: 7px;
     font-weight: bold;
     text-transform: uppercase;
@@ -26,34 +26,48 @@
 }
 
 .contenedor {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   justify-items: center;
-  gap: 2rem;
+  margin-top: 1rem;
 }
 
+.image_info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10rem;
+  margin: 0;
+  width: 90%;
+}
+
+
+
 .description {
-  width: 23rem;
-  border-radius: 2rem;
-  height: 23rem;
+  width: 95%;
   text-align: center;
-  background-color: rgba(38, 36, 36, 0.559);
-  box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896);
+  background-color: rgb(0, 0, 0)
+/*   box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896); */
 }
 
 .text {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
   align-content: center;
   letter-spacing: 2px;
-  height: 16.5rem;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   gap: 15px;
   margin-bottom: 2rem;
+}
+
+.text span {
+  color: white;
+  margin-left: 2em;
+  align-items: flex-start;
 }
 
 .description h2 {
@@ -63,13 +77,20 @@
 }
 
 .description h3 {
-  font-size: 17px;
+  font-size: 24px;
+  color:#9ac71f;
+}
+.description p {
+  font-size: 18px;
 }
 
-.description span {
-  font-size: 13px;
-  
+.text h5 {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 30px;
 }
+
 
 .cost {
   font-size: 20px;
@@ -78,12 +99,14 @@
 }
 
 .bigImage {
-  width: 23rem;
-  height: 23rem;
-  border-radius: 2rem;
+  width: 100%;
+  height: 40rem;
   object-fit: cover;
-  box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896);
+  border-radius: 1rem;
+/*   box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896); */
 }
+
+
 
 .calendar {
   border-color: black;
@@ -94,6 +117,10 @@
   font-size: medium;
   /* margin-left: 80px; */
   margin-top: 4.5rem;
+}
+
+.calendar h5 {
+  font-size: 35px;
 }
 
 .btns {
