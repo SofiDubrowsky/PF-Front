@@ -178,9 +178,8 @@ export default function CalendarComponent() {
     deleteReservation();
     setShowBackdrop(false); 
     Swal.fire({
-      icon: 'error',
+      icon: 'success',
       title: 'Reserva Cancelada',
-      text: error.message,
     });
   };
 
@@ -221,7 +220,7 @@ export default function CalendarComponent() {
             activity?.hours?.length > 0 ?
               (activity?.hours?.map((hour) => (
                 <div key={hour}>
-                  <button className={selectedHour === hour ? styles.selected : styles.notSelected} value={hour} disabled={dayReservations?.hour === hour} onClick={() => handleClick(hour)}>{hour} hs</button>
+                  <button className={selectedHour === hour ? styles.selectedHour : styles.notSelected} value={hour} disabled={dayReservations?.hour === hour} onClick={() => handleClick(hour)}>{hour} hs</button>
                 </div>
               ))
               ) : (<p>Sin Horarios</p>)
