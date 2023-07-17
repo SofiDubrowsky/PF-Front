@@ -90,7 +90,6 @@ export default function CalendarComponent() {
         idUser: idUser,
       })
     }
-    alert(hour)
   };
 
   const getTileClassName = ({ date }) => {
