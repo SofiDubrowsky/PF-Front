@@ -24,7 +24,10 @@ export default function CalendarComponent() {
   const [selectedHour, setSelectedHour] = useState(null);
   const activity = useSelector((state) => state.detail);
   let selected = selectedDate ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}` : null
-  const dayReservations = activity?.reservations?.find(reserv => reserv.date === selected)
+ 
+  const dayReservations = activity?.reservations?.filter(reserv => reserv.date === selected)
+  const hoursReserved = dayReservations?.map(reserv => reserv.hour)
+
   const id = activity?.id
   const idActLs = localStorage.getItem('detail');
  
@@ -87,6 +90,7 @@ export default function CalendarComponent() {
         idUser: idUser,
       })
     }
+    alert(hour)
   };
 
   const getTileClassName = ({ date }) => {
@@ -104,6 +108,7 @@ export default function CalendarComponent() {
 
   const createPreference = async () => {
     try {
+      // const response = await axios.post('http://localhost:3001/create_preference', {
       const response = await axios.post('https://sportiverse-server.onrender.com/create_preference', {
         description: name,
         price: cost,
@@ -130,15 +135,12 @@ export default function CalendarComponent() {
         const id = await createPreference();
         if (id) {
             localStorage.setItem('reservation' , null);
-            setTimeout(() => {
-              dispatch(postReservation(reservation));
-            }, 3000);
+            dispatch(postReservation(reservation));
             setPreferenceId(id)
-            setTimeout(() => {
-              setShowAlert(true);
-              setShowBackdrop(true);
+            setShowAlert(true);
+            setShowBackdrop(true);
               
-            }, 3000);
+            
         }
     } else {
       setShowAlertLog(true);
@@ -220,7 +222,7 @@ export default function CalendarComponent() {
             activity?.hours?.length > 0 ?
               (activity?.hours?.map((hour) => (
                 <div key={hour}>
-                  <button className={selectedHour === hour ? styles.selectedHour : styles.notSelected} value={hour} disabled={dayReservations?.hour === hour} onClick={() => handleClick(hour)}>{hour} hs</button>
+                  <button className={selectedHour === hour ? styles.selectedHour : styles.notSelected} value={hour} disabled={hoursReserved.includes(hour)} onClick={() => handleClick(hour)}>{hour} hs</button>
                 </div>
               ))
               ) : (<p>Sin Horarios</p>)
