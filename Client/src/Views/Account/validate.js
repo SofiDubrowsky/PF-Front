@@ -1,7 +1,7 @@
 const validate = (account) => {
   let errors = {};
 
-  if (!account.name || !/^[A-Za-z0-9\s]+$/.test(account.name) || account.name.length < 3 || account.name.length >= 25) {
+  if (!account.name || !/^(?!^\s*$)[A-Za-z0-9\s]{3,25}$/.test(account.name) || account.name.length < 3 || account.name.length >= 25) {
     errors.name = 'El nombre debe contener de 3 a 25 caracteres, solo letras y números';
   }
 
