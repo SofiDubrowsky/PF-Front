@@ -5,7 +5,12 @@ import { useEffect } from "react";
 import { getUser } from "../../redux/Actions/getUser";
 import getActivities from "../../redux/Actions/getActivities";
 import image from "../../assets/logo-blanco.png";
+import { useState } from "react";
+
 const UserDashboard = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [gamesPerPage] = useState(3);
+
   const userDetail = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const idUser = localStorage.getItem("clientId");
@@ -18,10 +23,20 @@ const UserDashboard = () => {
     dispatch(getActivities());
   }, [dispatch]);
 
-  const reservations = userDetail?.reservations;
-  // const ids = reservations?.map(act=>act.activityId)
-  // const activitiesReserv = activities?.filter((act)=>(ids?.includes(act?.id)))
-  console.log(activities);
+  const reservations = (userDetail?.reservations)?.sort((a, b) => b.id - a.id);
+ 
+  const indexOfLastGame = currentPage * gamesPerPage;
+  const indexOfFirstGame = indexOfLastGame - gamesPerPage;
+  const currentGames = reservations?.slice(indexOfFirstGame, indexOfLastGame);
+  
+  
+  
+  const paginate = (pageNumber) => {
+    const totalPages = Math.ceil(reservations?.length / gamesPerPage);
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   return (
     <div className={style.user}>
@@ -39,13 +54,64 @@ const UserDashboard = () => {
           <h2>E-mail: {userDetail?.email}</h2>
           <h2>Telefono: {userDetail?.phone} </h2>
           <button className={style.btn}>Editar Datos</button>
+          
+        <button className={style.btn}>
+          <NavLink
+            to="/home"
+            className={style.nav}
+          >
+            Volver
+          </NavLink>
+        </button>
         </div>
       </div>
+      
       <div className={style.games}>
-        {reservations?.length > 0 ? (
-          reservations?.map((reserv) => {
+      <h1 className={style.reserva}>Reservas </h1>
+      <div className={style.pagination}>
+  <button
+    className={style.paginationButton}
+    disabled={currentPage === 1}
+    onClick={() => paginate(currentPage - 1)}
+  >
+    <h3>🡸</h3>
+  </button>
+
+  {Array.from({ length: Math.min(3, Math.ceil(reservations?.length / gamesPerPage)) }).map(
+    (item, index) => {
+      const pageNumber = currentPage + index - 1;
+      const totalPages = Math.ceil(reservations?.length / gamesPerPage);
+
+      if (pageNumber >= 1 && pageNumber <= totalPages) {
+        return (
+          <button
+            key={pageNumber}
+            onClick={() => paginate(pageNumber)}
+            className={`${style.paginationButton} ${
+              currentPage === pageNumber ? style.active : ""
+            }`}
+          >
+            {pageNumber}
+          </button>
+        );
+      }
+
+      return null;
+    }
+  )}
+
+  <button
+    className={style.paginationButton}
+    disabled={currentPage === Math.ceil(reservations?.length / gamesPerPage)}
+    onClick={() => paginate(currentPage + 1)}
+  >
+    <h3>🡺</h3>
+  </button>
+</div>
+      {currentGames?.length > 0 ? (
+          currentGames?.map((reserv) => {
             return (
-              <div className={style.gameContainer}>
+              <div className={style.gameContainer} key={reserv.id}>
                 <div className={style.containerImageReservation}>
                   {reserv?.pay === true ? (
                     <img
@@ -66,7 +132,7 @@ const UserDashboard = () => {
                     <h3 style={{ color: "#9AC71F" }}>
                       Reserva:{" "}
                       {activities
-                        ?.find((act) => act?.id == Number(reserv?.activityId))
+                        ?.find((act) => act?.id === Number(reserv?.activityId))
                         ?.name?.toUpperCase()}
                     </h3>
                     <h4>
@@ -75,26 +141,24 @@ const UserDashboard = () => {
                     <h4>
                       Sucursal:{" "}
                       {activities
-                        ?.find((act) => act?.id == Number(reserv?.activityId))
+                        ?.find((act) => act?.id === Number(reserv?.activityId))
                         ?.stores?.map((e) => e.name)}
                     </h4>
                     <h4>
                       ${" "}
                       {
                         activities?.find(
-                          (act) => act?.id == Number(reserv?.activityId)
+                          (act) => act?.id === Number(reserv?.activityId)
                         )?.cost
                       }
                     </h4>
-                    <h3>
+                    
                       {reserv?.pay === true ? (
-                        <h3 style={{ color: "green" }}>
-                          Estado: Pago Aprobado
-                        </h3>
+                        <h3 style={{ color: "green" }}>Estado: Pago Aprobado</h3>
                       ) : (
                         <h3 style={{ color: "red" }}>Estado: No Aprobado</h3>
                       )}
-                    </h3>
+                    
                   </div>
                 </div>
                 <div className={style.containerImage}>
@@ -102,7 +166,7 @@ const UserDashboard = () => {
                     className={style.image}
                     src={
                       activities?.find(
-                        (act) => act?.id == Number(reserv?.activityId)
+                        (act) => act?.id === Number(reserv?.activityId)
                       )?.picture[0]
                     }
                     alt="notFound"
@@ -115,17 +179,8 @@ const UserDashboard = () => {
           <h2 className={style.notFound}>No hay reservas por el momento</h2>
         )}
       </div>
-      <div className={style.buttonContainer}>
-        <button className={style.backButton}>
-          <NavLink
-            to="/home"
-            className={style.navStyle}
-            style={{ color: "white" }}
-          >
-            Volver
-          </NavLink>
-        </button>
-      </div>
+    
+
     </div>
   );
 };

@@ -6,7 +6,7 @@
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
     border-radius: 1rem;
-    height: 100%;
+    height: fit-content
 }
 .img{
     height: 30vh;
@@ -65,8 +65,8 @@
 .games{
     grid-area: 1 / 2 / 2 / 3;
     width: 100%;
-    overflow: scroll;
 }
+
 .gameContainer{
     
     display: grid;
@@ -179,7 +179,7 @@ h2{
     width: 12rem;
     transition: all .5s;
     cursor: pointer;
-    margin: 1rem;
+    margin-bottom: 2rem;
     text-transform: uppercase;
     font-weight: bold;
     border-radius: 5px;
@@ -200,4 +200,32 @@ h2{
 .btn:hover a{
     color: black;
     transition: all .5s;
+}
+.reserva{
+    text-align: center
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.paginationButton {
+  background-color: transparent;
+  color: #9ac71f;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.paginationButton:hover {
+  text-decoration: underline;
+}
+
+.paginationButton.active {
+  color: white;
+  font-weight: bold;
+}
+.nav:hover{
+    color: black;
 }
