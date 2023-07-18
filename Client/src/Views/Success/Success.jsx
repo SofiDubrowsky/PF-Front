@@ -4,6 +4,7 @@ import style from "./Success.module.css";
 import { NavLink } from "react-router-dom";
 import { getUser } from "../../redux/Actions/getUser";
 import getActivities from "../../redux/Actions/getActivities";
+import { getStores } from "../../redux/Actions/getStores";
 import axios from 'axios';
 import Swal from "sweetalert2";
 
@@ -18,20 +19,25 @@ const Success = () => {
   const reservation = storedReservation ? JSON.parse(storedReservation) : null;
   const idUser = reservation?.userId
   const idReserva = reservation?.id
+  const idActivity = reservation?.activityId
 
   useEffect(()=>{
     async function putReserva(){
       // await axios.put(`http://localhost:3001/reservations/${idReserva}`)
       await axios.put(`https://sportiverse-server.onrender.com/reservations/${idReserva}`)
     }
-    setTimeout(() => {
       putReserva()  
-    }, 3000);
   }, [])
 
-  const activityName = ((activities?.find(act=>act?.id==Number(reservation?.activityId)))?.name);
-  const store = (activities?.find(act=>act?.id==Number(reservation?.activityId))?.stores)?.map(e=>e.name);
-  const storeAddress = (stores?.find(str=>str?.id==Number(reservation?.activityId))?.stores)?.map(e=>e.address);
+  useEffect(() => {
+    dispatch(getStores());
+  }, [dispatch]);
+
+  const activityName = (activities?.find(act => Number(act?.id) === Number(idActivity)))?.name
+  const store = (activities?.find(act => Number(act?.id) === Number(idActivity)))?.stores[0]?.name
+  const storee = stores?.find(str => str?.name?.toLowerCase()=== store?.toLowerCase())
+  const storeAddress = storee?.address
+ 
  
   //datos para enviar por email:
   const emailInfo={
@@ -42,7 +48,7 @@ const Success = () => {
     cost:reservation?.cost,
     user:userDetail?.name,
     store:store,
-    storeAddress:storeAddress
+    storeAddress:storeAddress,
   }
 
   useEffect(() => {
@@ -54,8 +60,8 @@ const Success = () => {
 
   const sendEmailData = async () => {
     try {
-      // await axios.post('http://localhost:3001/emailReservation', emailInfo);
-      await axios.post('https://sportiverse-server.onrender.com/emailReservation', emailInfo);
+      await axios.post('http://localhost:3001/emailReservation', emailInfo);
+      // await axios.post('https://sportiverse-server.onrender.com/emailReservation', emailInfo);
       console.log('Datos enviados por email exitosamente');
       setEmailSent(true);
     // Mostrar la alerta de éxito
