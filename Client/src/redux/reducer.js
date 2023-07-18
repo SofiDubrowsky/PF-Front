@@ -19,7 +19,7 @@ const initialState = {
   detail: [],
   stores: [],
   filters: {
-    activity: "all",
+    store: "all",
     ages: "all",
     players: "all"
   },
@@ -84,9 +84,8 @@ const reducer = (state = initialState, action) => {
     case ALL_FILTER:
       let activitiesFiltered = [...state.allActivities]
 
-
-      if (state.filters.activity !== "all") {
-        activitiesFiltered = activitiesFiltered.filter(el => el.name.includes(state.filters.activity))
+      if (state.filters.store !== "all") {
+        activitiesFiltered = activitiesFiltered.filter(el => el.stores[0]?.name.includes(state.filters.store))
       }
 
       if (state.filters.players !== "all") {
@@ -104,7 +103,7 @@ const reducer = (state = initialState, action) => {
 
     case SET_FILTERS:
       const filtersChanged = {
-        activity: action.payload.activity,
+        store: action.payload.store,
         ages: action.payload.ages,
         players: action.payload.players
       }

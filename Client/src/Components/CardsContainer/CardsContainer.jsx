@@ -10,12 +10,17 @@ import {
   setOrder,
 } from "../../redux/Actions/filters";
 import style from "./CardsContainer.module.css";
+import { getStores } from "../../redux/Actions/getStores";
 
 const CardsContainer = () => {
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getStores());
+  }, [dispatch]);
+
   const activities = useSelector((state) => state.activities);
-  const all = useSelector((state) => state.allActivities);
+  const allStores = useSelector((state) => state.stores);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [activitiesPerPage, setactivitiesPerPage] = useState(4);
@@ -31,8 +36,8 @@ const CardsContainer = () => {
   const filtersSelected = useSelector((state) => state.filters);
   const orderSelected = useSelector((state) => state.order);
 
-  const [activityFilter, setActivityFilter] = useState(
-    filtersSelected.activity
+  const [storeFilter, setStoreFilter] = useState(
+    filtersSelected.store
   );
   const [activityPlayers, setPlayersFilter] = useState(filtersSelected.players);
   const [activityAges, setAgesFilter] = useState(filtersSelected.ages);
@@ -42,9 +47,9 @@ const CardsContainer = () => {
     setPlayersFilter(event.target.value);
   };
 
-  const handleFilterActivity = (event) => {
+  const handleFilterStore = (event) => {
     event.preventDefault();
-    setActivityFilter(event.target.value);
+    setStoreFilter(event.target.value);
   };
 
   const handleFilterAges = (event) => {
@@ -56,7 +61,7 @@ const CardsContainer = () => {
     setCurrentPage(1);
     let filters = {
       players: activityPlayers,
-      activity: activityFilter,
+      store: storeFilter,
       ages: activityAges,
     };
     dispatch(setFilters(filters));
@@ -101,15 +106,15 @@ const CardsContainer = () => {
             </select>
           </div>
 
-          <div className={style.filters}>
+           <div className={style.filters}>
             <select
-              onChange={(event) => handleFilterActivity(event)}
-              value={activityFilter}
+              onChange={(event) => handleFilterStore(event)}
+              value={storeFilter}
             >
-              <option value="all">Actividades</option>
-              {all.map((activity) => (
-                <option key={activity.id} value={activity.name}>
-                  {activity.name}
+              <option value="all">Sucursales</option>
+              {allStores.map((store) => (
+                <option key={store.id} value={store.name}>
+                  {store.name}
                 </option>
               ))}
             </select>
