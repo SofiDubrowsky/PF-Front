@@ -13,7 +13,8 @@ import { POST_RESERVATION } from "./Actions/postReservation";
 import { GET_USER } from "./Actions/getUser";
 import {GET_RESERVATIONS} from "./Actions/getReservations";
 import { POST_STORE } from "./Actions/postStore";
-
+import { GET_ALL_USERS } from "./Actions/getAllUsers";
+import {GET_USER_BY_NAME} from "./Actions/getUserByName";
 
 const initialState = {
   activities: [],
@@ -32,7 +33,8 @@ const initialState = {
   reservation: {},
   userDetail: [],
   allReservations: [],
-
+  allUsers: [],
+  
 };
 
 const reducer = (state = initialState, action) => {
@@ -165,6 +167,17 @@ const reducer = (state = initialState, action) => {
         ...state, userDetail: action.payload
       }
     
+    case GET_ALL_USERS:
+      return{
+        ...state,
+        allUsers: action.payload
+      }
+    
+    case GET_USER_BY_NAME:
+      return{
+        ...state,
+        allUsers: action.payload
+      }
 
     case SAVE_RESERVATION:
       return {
