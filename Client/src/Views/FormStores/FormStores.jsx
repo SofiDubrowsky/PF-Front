@@ -241,7 +241,7 @@ const FormStores = () => {
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            disabled={form.picture.length > 1}
+            disabled={form.picture.length === 1}
             className={style.inputForm}
           />
           {errors.picture && <p>{errors.picture}</p>}
