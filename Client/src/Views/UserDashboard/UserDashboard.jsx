@@ -20,6 +20,8 @@ const UserDashboard = () => {
 
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showAlertLog, setShowAlertLog] = useState(false);
+  const [showAlertReview, setShowAlertReview] = useState(false);
+  const [showAlertCancel, setShowAlertCancel] = useState(false);
   
   useEffect(() => {
     dispatch(getUser(idUser));
@@ -36,17 +38,23 @@ const UserDashboard = () => {
   
   const editProfile = () => {
       setShowAlertLog(true);
-      setShowBackdrop(true);
-    
+      setShowBackdrop(true);  
   }
-
-
+  const addReview = () => {
+    setShowAlertReview(true);
+    setShowBackdrop(true);  
+}
+const cancelation = () => {
+  setShowAlertCancel(true);
+  setShowBackdrop(true);  
+}
   const handleClose = () => {
     setShowAlertLog(false);
+    setShowAlertReview(false);
+    setShowAlertCancel(false);
     setShowBackdrop(false);
   }
-  
-  
+   
   const paginate = (pageNumber) => {
     const totalPages = Math.ceil(reservations?.length / gamesPerPage);
     if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -72,7 +80,6 @@ const UserDashboard = () => {
           <h2>E-mail: {userDetail?.email}</h2>
           <h2>Telefono: {userDetail?.phone} </h2>
           <button className={style.btn} onClick={editProfile} disabled={loger!=='true'}>Editar Datos</button>
-          
         <button className={style.btn}>
           <NavLink
             to="/home"
@@ -107,13 +114,10 @@ const UserDashboard = () => {
             onClick={() => paginate(pageNumber)}
             className={`${style.paginationButton} ${
               currentPage === pageNumber ? style.active : ""
-            }`}
-          >
-            {pageNumber}
-          </button>
+            }`}>
+            {pageNumber}</button>
         );
       }
-
       return null;
     }
   )}
@@ -121,8 +125,7 @@ const UserDashboard = () => {
   <button
     className={style.paginationButton}
     disabled={currentPage === Math.ceil(reservations?.length / gamesPerPage)}
-    onClick={() => paginate(currentPage + 1)}
-  >
+    onClick={() => paginate(currentPage + 1)}>
     <h3>🡺</h3>
   </button>
 </div>
@@ -130,21 +133,17 @@ const UserDashboard = () => {
           currentGames?.map((reserv) => {
             return (
               <div className={style.gameContainer} key={reserv.id}>
-                <div className={style.containerImageReservation}>
-                  {reserv?.pay === true ? (
-                    <img
-                      className={style.imageCheck}
-                      src={userPicture}
-                      alt="notFound"
-                    />
-                  ) : (
-                    <img
-                      className={style.imageCheck}
-                      src="https://cdn-icons-png.flaticon.com/128/399/399426.png"
-                      alt="notFound"
-                    />
-                  )}
+                <div className={style.containerImage}>
+                  <img
+                    className={style.image}
+                    src={
+                      activities?.find(
+                        (act) => act?.id === Number(reserv?.activityId)
+                      )?.picture[0]
+                    }
+                    alt="notFound"/>
                 </div>
+               
                 <div className={style.containerData}>
                   <div className={style.data}>
                     <h3 style={{ color: "#9AC71F" }}>
@@ -170,25 +169,18 @@ const UserDashboard = () => {
                         )?.cost
                       }
                     </h4>
-                    
-                      {reserv?.pay === true ? (
-                        <h3 style={{ color: "green" }}>Estado: Pago Aprobado</h3>
-                      ) : (
-                        <h3 style={{ color: "red" }}>Estado: No Aprobado</h3>
-                      )}
-                    
                   </div>
                 </div>
-                <div className={style.containerImage}>
-                  <img
-                    className={style.image}
-                    src={
-                      activities?.find(
-                        (act) => act?.id === Number(reserv?.activityId)
-                      )?.picture[0]
-                    }
-                    alt="notFound"
-                  />
+                <div className={style.buttons}>
+                                      
+                {reserv?.pay === true ? (
+                        <h3 style={{ color: "green" , fontSize: "24px" }}>Estado: Pago Aprobado ✔</h3>
+                      ) : (
+                        <h3 style={{ color: "red" , fontSize: "24px" , marginBottom:"1rem" }}>Estado: No Aprobado ❌</h3>
+                      )} 
+
+                 <button className={style.btn} onClick={cancelation}>Cancelar Reserva</button> 
+                 <button className={style.btn} onClick={addReview}>Dejar Opinión</button>
                 </div>
               </div>
             );
@@ -210,9 +202,29 @@ const UserDashboard = () => {
             </div>
           )}
 
+      
+        {showAlertReview && (
+            <div className={style.popup}>
+              <div className={style.containerBtn}>
+                tu componente form aqui
+                <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
+              </div>
+            </div>
+          )}
+
+        {showAlertCancel && (
+            <div className={style.popup}>
+              <div className={style.container}>
+                <h2>CANCELACION DE RESERVA</h2>
+              </div>
+              estai seguro?
+              <div>
+                <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
+              </div>
+            </div>
+          )}
+
         {showBackdrop && <div className={style.backdrop} />}
-
-
     </div>
   );
 };
