@@ -54,14 +54,15 @@ const UserDashboard = () => {
     }
   };
 
-  const userPicture = (userDetail?.picture)===null?"https://www.iconpacks.net/icons/2/free-check-mark-icon-3281-thumb.png": (userDetail?.picture);
+  const userPicture = ((userDetail?.picture)===undefined||(userDetail?.picture)===null||(userDetail?.picture)==="")?"https://img.freepik.com/free-icon/user_318-804790.jpg": (userDetail?.picture);
+  console.log(userPicture)
   return (
     <div className={style.user}>
       <div className={style.title}>
         <div className={style.imgBox}>
           <img
             className={style.img}
-            src="https://img.freepik.com/free-icon/user_318-804790.jpg"
+            src={userPicture}
             alt="https://img.freepik.com/free-icon/user_318-804790.jpg"
           />
         </div>

@@ -8,11 +8,13 @@ import { postStore } from "../../redux/Actions/postStore";
 import { getStores } from "../../redux/Actions/getStores";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { GoogleMap, Autocomplete, LoadScript } from "@react-google-maps/api";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUD_NAME;
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_SECRET = import.meta.env.VITE_API_SECRET;
 const PRESET = import.meta.env.VITE_PRESET;
+const API_KEY_GOOGLE = import.meta.env.VITE_APY_KEY_GOOGLE;
 
 const reload = () => {
   window.location.reload(false);
@@ -34,6 +36,7 @@ const FormStores = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [autocomplete, setAutocomplete] = useState(null);
 
   useEffect(() => {
     isClient === 'true' && navigate('/home')
@@ -52,6 +55,22 @@ const FormStores = () => {
     );
   };
 
+  const handlePlaceSelect = () => {
+    if (autocomplete && autocomplete.getPlace) {
+      const place = autocomplete.getPlace();
+      if (place && place.geometry && place.geometry.location) {
+        const { lat, lng } = place.geometry.location;
+        const mapsUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.4638070892015!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432991f01067b25%3A0x50ecf42223ab5c6!2sLa%20Hierra%203117%2C%20X5009%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1689737842043!5m2!1ses-419!2sar`;
+        setForm((prevForm) => ({
+          ...prevForm,
+          address: place.formatted_address,
+          maps: mapsUrl,
+        }));
+      }
+    }
+  };
+  
+  
 
   const handleRemoveImage = (imageUrl) => {
     setForm((prevForm) => ({
@@ -192,16 +211,66 @@ const FormStores = () => {
           />
           {errors.phone && <p>{errors.phone}</p>}
         </div>
-       
+
         <div className={style.content}>
-          {/* <h3>Subir Fotos</h3> */}
+            <LoadScript
+              googleMapsApiKey={API_KEY_GOOGLE}
+              libraries={["places"]}
+            >
+              <Autocomplete
+                onLoad={(ac) => {
+                  setAutocomplete(ac);
+                }}
+                onPlaceChanged={handlePlaceSelect}
+              >
+                <input
+                  type="text"
+                  value={form.address}
+                  name="address"
+                  onChange={handleChange}
+                  placeholder="Dirección"
+                  className={style.inputForm}
+                />
+              </Autocomplete>
+            </LoadScript>
+            {errors.address && <p>{errors.address}</p>}
+          </div>
+
+          <div className={style.content}>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            disabled={form.picture.length > 1}
+            disabled={form.picture.length === 1}
             className={style.inputForm}
           />
+          {errors.picture && <p>{errors.picture}</p>}
+          </div>
+
+           <div className={style.contentt}>
+           {form.maps ? (
+              <iframe
+                src={form.maps}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className={style.mapIframe}
+              ></iframe>
+            ) 
+            :
+            (
+              <iframe
+                src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d217955.001848276!2d-64.35902612598491!3d-31.399054704450794!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432985f478f5b69%3A0xb0a24f9a5366b092!2zQ8OzcmRvYmE!5e0!3m2!1ses-419!2sar!4v1689742534911!5m2!1ses-419!2sar'
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className={style.mapIframe}
+              ></iframe>
+            )
+          }
+          </div>
+
+          <div className={style.content}>
           <div className={style.imagepreview}>
             {form.picture?.map((imageUrl) => (
               <div key={imageUrl} className={style.imagecontainer}>
@@ -217,36 +286,8 @@ const FormStores = () => {
               </div>
             ))}
           </div>
-          {errors.picture && <p>{errors.picture}</p>}
-        </div>
-
-        <div className={style.content}>
-          {/* <h3>Titulo: </h3> */}
-          <input
-            type="text"
-            value={form.address}
-            name="address"
-            onChange={handleChange}
-            placeholder="Dirección"
-            className={style.inputForm}
-          />
-          {errors.address && <p>{errors.address}</p>}
-        </div>
-
-        <div className={style.content}>
-          {/* <h3>Titulo: </h3> */}
-          <input
-            type="text"
-            value={form.maps}
-            name="maps"
-            onChange={handleChange}
-            placeholder="Mapa"
-            className={style.inputForm}
-          />
-          {errors.maps && <p>{errors.maps}</p>}
-        </div>
-
-        </div>
+           </div>
+          </div>
 
         
         <div className={style.btnContainer}>

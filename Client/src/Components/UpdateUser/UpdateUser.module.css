@@ -52,7 +52,58 @@
     color: var(--font-color-sub);
     opacity: 0.8;
   }
+  .inputPass {
+    width: 26rem;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+    margin-bottom: 3px;
+  }
+  
+  .inputPass input::placeholder{
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
   
   input:focus {
     border: 2px solid var(--input-focus);
   }
+  .toggleButton {
+    font-size: 1.5rem; 
+    padding: 0 20px; 
+  }
+  .imagepreview {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  
+  .imagecontainer {
+    border-radius: 3rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    object-fit: cover;
+    display: inline-block;
+  }
+  
+  .imagepreview img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    border-radius: 2rem;
+  }
+  
+.removebutton {
+  border: none;
+  color: white;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
