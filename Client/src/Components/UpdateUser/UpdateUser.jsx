@@ -26,6 +26,10 @@ let url = imagePreviewUrl
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
+  const reload = () => {
+    window.location.reload(false);
+  };
+
   const handleChange = (event) => {
     setForm({
       ...form,
@@ -78,7 +82,7 @@ let url = imagePreviewUrl
         setImagePreviewUrl(data.secure_url);
         setForm((prevForm) => ({
             ...prevForm,
-            picture: [data.secure_url],
+            picture: data.secure_url,
           }));
       })
       
@@ -102,6 +106,7 @@ let url = imagePreviewUrl
     } else {
       console.log(form)
       dispatch(updateUser(form));
+      setTimeout(reload, 1500)
     }
   };
 
