@@ -6,16 +6,21 @@ import { getUser } from "../../redux/Actions/getUser";
 import getActivities from "../../redux/Actions/getActivities";
 import image from "../../assets/logo-blanco.png";
 import { useState } from "react";
+import UpdateUser from "../../Components/UpdateUser/UpdateUser";
 
 const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage] = useState(3);
 
+  const loger = localStorage.getItem('loger')
   const userDetail = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const idUser = localStorage.getItem("clientId");
   const activities = useSelector((state) => state.allActivities);
 
+  const [showBackdrop, setShowBackdrop] = useState(false);
+  const [showAlertLog, setShowAlertLog] = useState(false);
+  
   useEffect(() => {
     dispatch(getUser(idUser));
   }, []);
@@ -29,6 +34,17 @@ const UserDashboard = () => {
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
   const currentGames = reservations?.slice(indexOfFirstGame, indexOfLastGame);
   
+  const editProfile = () => {
+      setShowAlertLog(true);
+      setShowBackdrop(true);
+    
+  }
+
+
+  const handleClose = () => {
+    setShowAlertLog(false);
+    setShowBackdrop(false);
+  }
   
   
   const paginate = (pageNumber) => {
@@ -38,6 +54,7 @@ const UserDashboard = () => {
     }
   };
 
+  const userPicture = (userDetail?.picture)===null?"https://www.iconpacks.net/icons/2/free-check-mark-icon-3281-thumb.png": (userDetail?.picture);
   return (
     <div className={style.user}>
       <div className={style.title}>
@@ -45,7 +62,7 @@ const UserDashboard = () => {
           <img
             className={style.img}
             src="https://img.freepik.com/free-icon/user_318-804790.jpg"
-            alt=""
+            alt="https://img.freepik.com/free-icon/user_318-804790.jpg"
           />
         </div>
         <div className={style.data}>
@@ -53,7 +70,7 @@ const UserDashboard = () => {
           <h1 style={{ color: "#9AC71F" }}>Usuario: {userDetail?.name}</h1>
           <h2>E-mail: {userDetail?.email}</h2>
           <h2>Telefono: {userDetail?.phone} </h2>
-          <button className={style.btn}>Editar Datos</button>
+          <button className={style.btn} onClick={editProfile} disabled={loger!=='true'}>Editar Datos</button>
           
         <button className={style.btn}>
           <NavLink
@@ -116,7 +133,7 @@ const UserDashboard = () => {
                   {reserv?.pay === true ? (
                     <img
                       className={style.imageCheck}
-                      src="https://www.iconpacks.net/icons/2/free-check-mark-icon-3281-thumb.png"
+                      src={userPicture}
                       alt="notFound"
                     />
                   ) : (
@@ -179,7 +196,21 @@ const UserDashboard = () => {
           <h2 className={style.notFound}>No hay reservas por el momento</h2>
         )}
       </div>
-    
+
+      {showAlertLog && (
+            <div className={style.popup}>
+              <div className={style.container}>
+                <h2>Editar Datos Personales</h2>
+              </div>
+              <div className={style.containerBtn}>
+                <UpdateUser/>
+                <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
+              </div>
+            </div>
+          )}
+
+        {showBackdrop && <div className={style.backdrop} />}
+
 
     </div>
   );
