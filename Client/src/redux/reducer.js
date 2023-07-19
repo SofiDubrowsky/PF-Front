@@ -13,6 +13,7 @@ import { POST_RESERVATION } from "./Actions/postReservation";
 import { GET_USER } from "./Actions/getUser";
 import {GET_RESERVATIONS} from "./Actions/getReservations";
 
+
 const initialState = {
   activities: [],
   allActivities: [],
@@ -30,6 +31,7 @@ const initialState = {
   reservation: {},
   userDetail: [],
   allReservations: [],
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -159,6 +161,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state, userDetail: action.payload
       }
+    
 
     case SAVE_RESERVATION:
       return {
