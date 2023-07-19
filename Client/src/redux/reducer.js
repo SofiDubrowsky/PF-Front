@@ -12,6 +12,7 @@ import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
 import { POST_RESERVATION } from "./Actions/postReservation";
 import { GET_USER } from "./Actions/getUser";
 import {GET_RESERVATIONS} from "./Actions/getReservations";
+import { POST_STORE } from "./Actions/postStore";
 
 
 const initialState = {
@@ -61,6 +62,8 @@ const reducer = (state = initialState, action) => {
     case POST_RESERVATION:
       return { ...state };
 
+    case POST_STORE:
+      return { ...state };
 
     case ORDER_BY_COST:
       let filtered = [...state.activities]
