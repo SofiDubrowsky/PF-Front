@@ -451,7 +451,7 @@ const Form = () => {
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            disabled={form.picture.length > 1}
+            disabled={form.picture.length === 1}
             className={style.inputForm}
           />
           <div className={style.imagepreview}>
