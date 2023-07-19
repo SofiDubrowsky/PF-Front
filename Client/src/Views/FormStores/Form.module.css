@@ -9,6 +9,7 @@ body {
   background: linear-gradient(#000000, #0a1017);
 }
 
+
 *{
   margin: 0;
   padding: 0;
@@ -84,6 +85,15 @@ h4 {
   justify-content: center;
   margin: 1rem 0
 }
+.contentt{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+
 
 .inputForm {
   width: 250px;
@@ -237,3 +247,9 @@ textarea:focus {
   font-weight: 400;
   color: #ffffff;
 }
+
+.mapIframe{
+  width: 15rem;
+  height: 10rem;
+}
+
