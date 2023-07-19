@@ -1,0 +1,58 @@
+.label{
+    color: white;
+    font-size: large;
+}
+.divInput{
+    color: #9AC71F;
+}
+.input{
+    color:black;
+}
+.error{
+    font-size: 15px;
+    color:crimson;  
+}
+.editarBtn {
+    height: 80%;
+    width: 100%;
+    font-size: 19px;
+    border-radius: 13px;
+    font-weight: bold;
+    border: none;
+    transition: height 0.3s ease, width 0.3s ease, font-size 0.3s ease;
+  }
+  
+  .editarBtn {
+    background-color: #9AC71F;
+    color: #FDF2E9;
+    margin-top: 7px;
+  }
+  .editarBtn:hover {
+    height: 60%;
+    width: 90%;
+    font-size: 21px;
+    cursor: pointer;
+  }
+  .inputForm {
+    width: 30rem;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+    margin-bottom: 3px;
+  }
+  
+  .inputForm input::placeholder{
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
+  
+  input:focus {
+    border: 2px solid var(--input-focus);
+  }
