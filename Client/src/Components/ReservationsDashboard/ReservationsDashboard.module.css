@@ -27,6 +27,9 @@ body {
   box-shadow: 4px 4px var(--main-color);
   background: none;
   border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+
 }
 
 .inputSearch input:active {
@@ -39,6 +42,7 @@ body {
   font-family: var(--manrope);
   /* opacity: 0.8; */
   text-align: center;
+
 }
 
 .inputSearch .icon {
@@ -140,6 +144,7 @@ body {
   color: white;
   text-align: center;
   letter-spacing: 4px;
+  text-transform: uppercase;
 }
 
 .filters option {
@@ -149,4 +154,36 @@ body {
 }
 .filtersContainer .filters select:active {
   box-shadow: 2px 2px 10px #919191 inset;
+}
+
+.btnApply {
+  width: 12rem;
+  height: 35px;
+  border-radius: 5px;
+  border: 2px solid var(--main-color);
+  box-shadow: 4px 4px var(--main-color);
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  letter-spacing: 4px;
+  font-weight: bold;
+  text-transform: uppercase;
+
+ }
+
+.btnApply:hover {
+  overflow: hidden;
+  position: relative;
+  background-size: 1000% 1000%;
+  animation: gradient 3s ease infinite;
+  transition-duration: 0.1s;
+  background-color: white;
+  color: black;
+}
+
+.btnApply:active {
+  transform: translate(2px, 2px);
+  transition-duration: 0.1s;
 }

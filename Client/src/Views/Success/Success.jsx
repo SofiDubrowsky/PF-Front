@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import style from "./Success.module.css";
 import { NavLink } from "react-router-dom";
 import { getUser } from "../../redux/Actions/getUser";
-import getActivities from "../../redux/Actions/getActivities";
+import {getActivities} from "../../redux/Actions/getActivities";
 import { getStores } from "../../redux/Actions/getStores";
 import axios from 'axios';
 import Swal from "sweetalert2";

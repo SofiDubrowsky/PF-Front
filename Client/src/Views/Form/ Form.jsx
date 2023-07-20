@@ -5,7 +5,7 @@ import style from "./Form.module.css";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import validate from "./validate";
 import { postActivity } from "../../redux/Actions/postActivity";
-import getActivities from "../../redux/Actions/getActivities";
+import {getActivities} from "../../redux/Actions/getActivities";
 import { getStores } from "../../redux/Actions/getStores";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";

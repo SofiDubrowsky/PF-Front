@@ -32,6 +32,9 @@
   box-shadow: 4px 4px var(--main-color);
   background: none;
   border-radius: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+
 }
 
 .inputSearch input:active {

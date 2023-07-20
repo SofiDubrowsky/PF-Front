@@ -40,7 +40,7 @@ const UserDashboard = () => {
         <div className={style.inputSearch}>
           <input
             type="text"
-            placeholder="Buscar por usuario"
+            placeholder="Buscar usuario"
             value={name}
             onChange={handleInputChange}
           />
