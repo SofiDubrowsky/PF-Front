@@ -60,7 +60,11 @@ const FormStores = () => {
       const place = autocomplete.getPlace();
       if (place && place.geometry && place.geometry.location) {
         const { lat, lng } = place.geometry.location;
-        const mapsUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3406.4638070892015!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9432991f01067b25%3A0x50ecf42223ab5c6!2sLa%20Hierra%203117%2C%20X5009%20C%C3%B3rdoba!5e0!3m2!1ses-419!2sar!4v1689737842043!5m2!1ses-419!2sar`;
+  
+        // Genera la nueva URL de Google Maps con las coordenadas de la dirección seleccionada
+        const mapsUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d${lat}!2d${lng}!3d${lat}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s${place.name}!2s${place.formatted_address}!5e0!3m2!1ses-419!2sar!4v1689881473464!5m2!1ses-419!2sar`;
+  
+        // Actualiza el estado o realiza las acciones necesarias con la nueva URL generada
         setForm((prevForm) => ({
           ...prevForm,
           address: place.formatted_address,
@@ -69,6 +73,7 @@ const FormStores = () => {
       }
     }
   };
+  
   
   
 
