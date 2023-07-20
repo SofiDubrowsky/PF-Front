@@ -20,10 +20,16 @@ import { GET_RESERVATIONS } from "./Actions/getReservations";
 import { POST_STORE } from "./Actions/postStore";
 import { GET_ALL_USERS } from "./Actions/getAllUsers";
 import { GET_USER_BY_NAME } from "./Actions/getUserByName";
-import { GET_USER_BY_EMAIL } from"./Actions/getUserByEmail";
+import { GET_USER_BY_EMAIL } from "./Actions/getUserByEmail";
 import { PUT_USER } from "./Actions/updateUser";
 import { DELETE_USER } from "./Actions/deleteUser";
 import { DELETE_RESERVATION } from "./Actions/deleteReservations";
+import {
+  ORDER_BY_DATE,
+  ALL_FILTERS_ADMIN,
+  SET_FILTERS_ADMIN,
+  SET_ORDER_BY_DATE,
+} from "./Actions/filtersAdmin";
 
 const initialState = {
   activities: [],
@@ -35,13 +41,19 @@ const initialState = {
     ages: "all",
     players: "all",
   },
+  filtersAdmin: {
+    store: "all",
+    activity: "all",
+  },
   order: "",
+  orderDate: "",
   clientId: 0,
   isClient: true,
   access: false,
   reservation: {},
   userDetail: [],
   allReservations: [],
+  reservationsFiltered: [],
   allUsers: [],
 };
 
@@ -139,7 +151,6 @@ const reducer = (state = initialState, action) => {
       };
 
     case LOGIN:
-      console.log(action.payload);
       localStorage.setItem("clientId", action.payload.user.id);
       localStorage.setItem("isClient", action.payload.user.client);
       /* localStorage.setItem("access", true) */
@@ -162,7 +173,6 @@ const reducer = (state = initialState, action) => {
       localStorage.setItem("clientId", action.payload.id);
       localStorage.setItem("isClient", action.payload.client);
       localStorage.setItem("loger", true);
-      console.log(action.payload);
       return {
         ...state,
         clientId: action.payload.id,
@@ -191,12 +201,12 @@ const reducer = (state = initialState, action) => {
         ...state,
         allUsers: action.payload,
       };
-    
+
     case GET_USER_BY_EMAIL:
-      return{
+      return {
         ...state,
-        allReservations: action.payload
-      }
+        allReservations: action.payload,
+      };
 
     case DELETE_USER:
       return {
@@ -217,6 +227,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allReservations: action.payload,
+        reservationsFiltered: action.payload,
       };
 
     case DELETE_RESERVATION:
@@ -225,6 +236,62 @@ const reducer = (state = initialState, action) => {
         reservation: action.payload,
       };
 
+    case ALL_FILTERS_ADMIN:
+      let activityFiltered = [...state.allReservations];
+
+      if (state.filtersAdmin.store !== "all") {
+        activityFiltered = activityFiltered.filter((el) =>
+          el.activity?.stores[0]?.name.includes(state.filtersAdmin.store)
+        );
+      }
+
+      if (state.filtersAdmin.activity !== "all") {
+        activityFiltered = activityFiltered.filter((el) =>
+          el.activity?.name.includes(state.filtersAdmin.activity)
+        );
+      }
+
+      return {
+        ...state,
+        reservationsFiltered: activityFiltered,
+      };
+
+    case SET_FILTERS_ADMIN:
+      const changedFilter = {
+        activity: action.payload.activity,
+        store: action.payload.store,
+      };
+      return {
+        ...state,
+        filtersAdmin: changedFilter,
+      };
+
+    case SET_ORDER_BY_DATE:
+      return {
+        ...state,
+        orderDate: action.payload,
+      };
+
+    case ORDER_BY_DATE:
+      let ordered = [...state.reservationsFiltered];
+      if (state.orderDate === "ascendent") {
+        ordered = state.reservationsFiltered.sort((prev, next) => {
+          if (parseInt(prev.id) > parseInt(next.id)) return 1;
+          if (parseInt(prev.id) < parseInt(next.id)) return -1;
+          return 0;
+        });
+      }
+      if (state.orderDate === "descendent") {
+        ordered = state.reservationsFiltered.sort((prev, next) => {
+          if (parseInt(prev.id) > parseInt(next.id)) return -1;
+          if (parseInt(prev.id) < parseInt(next.id)) return 1;
+          return 0;
+        });
+      }
+      return {
+        ...state,
+        reservationsFiltered: ordered,
+      };
     default:
       return state;
   }

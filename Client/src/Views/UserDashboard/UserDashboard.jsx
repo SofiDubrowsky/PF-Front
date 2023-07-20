@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { getUser } from "../../redux/Actions/getUser";
-import getActivities from "../../redux/Actions/getActivities";
+import {getActivities} from "../../redux/Actions/getActivities";
 import image from "../../assets/logo-blanco.png";
 import { useState } from "react";
 import UpdateUser from "../../Components/UpdateUser/UpdateUser";
