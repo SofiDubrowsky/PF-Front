@@ -2,7 +2,7 @@ import style from "./ReservationsDashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getReservations } from "../../redux/Actions/getReservations";
-import { NavLink } from "react-router-dom";
+
 
 const ReservationsDashboard = () => {
   const dispatch = useDispatch();
