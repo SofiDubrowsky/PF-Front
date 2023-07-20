@@ -7,13 +7,14 @@ import { postStore } from "../../redux/Actions/postStore";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import ReactStars from "react-stars";
+import { postReview } from "../../redux/Actions/postReview";
 
 
 const reload = () => {
   window.location.reload(false);
 };
 
-const FormReview = () => {
+const FormReview = ({handleClose, idUser, activityId, idReservation}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
@@ -26,6 +27,7 @@ const FormReview = () => {
     description: '',
     userId: '',
     activityId: '', 
+    reservationId: '',
   });
   
   const [errors, setErrors] = useState({});
@@ -48,6 +50,9 @@ const FormReview = () => {
       setForm({
         ...form,
         points: newRating,
+        userId: idUser,
+        activityId: activityId,
+        reservationId: idReservation,
       });
       setErrors(
         validate({
@@ -60,14 +65,10 @@ const FormReview = () => {
     const handleSubmit = (event) => {
       event.preventDefault();
       const errorSave = validate(form);
-      if (Object.values(errorSave).length !== 0){
-        Swal.fire({
-          text: 'Debes completar todos los datos obligatorios',
-          timerProgressBar: true
-        })
-      }
-      else {
-        dispatch(postStore(form));
+      if (Object.values(errorSave).length === 0){
+        
+        dispatch(postReview(form));
+        handleClose()
         Swal.fire({
           text: 'Calificación enviada!',
           icon: 'success',
@@ -78,7 +79,6 @@ const FormReview = () => {
         }).then((result) => {
           if (result.isConfirmed) {
             navigate('/dashboard')
-            setTimeout(reload, 3000);  // Espera 3 segundos antes de llamar a reload()
           } else {
             navigate('/home');
           }
@@ -88,8 +88,10 @@ const FormReview = () => {
           description: '',
           userId: '',
           activityId: '', 
+          reservationId: '',
         });
       }
+      
   };
 
 
@@ -130,12 +132,12 @@ const FormReview = () => {
         
         <div className={style.contenttt}>
 
-        <button className={style.btn} type="submit">
+        <button className={style.btn} onClick={()=>{handleClose()}}>
           Cerrar
         </button>
         
         
-        <button className={style.btn} type="submit">
+        <button className={style.btn} type="submit" disabled={form.description === '' || form.points ===0}>
           Enviar
         </button>
         </div>

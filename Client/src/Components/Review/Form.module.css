@@ -51,7 +51,7 @@
   .form {
     width: 25rem;
     /* background: rgba(0,0,0,.5); */
-    background-color: rgba(33, 32, 32, 0.559);
+    background-color: rgb(0, 0, 0);
     box-shadow: 0 15px 25px rgba(80, 79, 79, 0.896);
     font-size: 14px;
     font-family: inherit;
@@ -213,7 +213,19 @@
     transform: translate(10%) scale(1.1);
   
   }
+
+  .contenttt button:disabled{
+    color: rgb(110, 110, 110);
+    transform: none;
+    cursor:default
   
+  }
+  
+  .contenttt button:disabled::before{
+    color: rgb(110, 110, 110);
+    transform: none;
+  }
+
   .inputUpload{
     background: none;
   }
@@ -252,7 +264,13 @@
     color: #ffffff;
   }
   
- 
-  
+  .sweet-alert-container {
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
   
   
