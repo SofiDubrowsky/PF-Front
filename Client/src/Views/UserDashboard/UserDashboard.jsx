@@ -7,10 +7,13 @@ import {getActivities} from "../../redux/Actions/getActivities";
 import image from "../../assets/logo-blanco.png";
 import { useState } from "react";
 import UpdateUser from "../../Components/UpdateUser/UpdateUser";
+import FormReview from "../../Components/Review/FormReview";
+import { deleteReservation } from "../../redux/Actions/deleteReservations";
 
 const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage] = useState(3);
+  const [selectedReservationId, setSelectedReservationId] = useState(null);
 
   const loger = localStorage.getItem('loger')
   const userDetail = useSelector((state) => state.userDetail);
@@ -23,6 +26,10 @@ const UserDashboard = () => {
   const [showAlertReview, setShowAlertReview] = useState(false);
   const [showAlertCancel, setShowAlertCancel] = useState(false);
   
+  const reload = () => {
+    window.location.reload(false);
+  };
+
   useEffect(() => {
     dispatch(getUser(idUser));
   }, []);
@@ -44,7 +51,9 @@ const UserDashboard = () => {
     setShowAlertReview(true);
     setShowBackdrop(true);  
 }
-const cancelation = () => {
+const cancelation = (reservationId) => {
+  console.log(reservationId);
+  setSelectedReservationId(reservationId);
   setShowAlertCancel(true);
   setShowBackdrop(true);  
 }
@@ -61,9 +70,15 @@ const cancelation = () => {
       setCurrentPage(pageNumber);
     }
   };
+  console.log(userDetail?.picture)
+  const userPicture = (userDetail?.picture === null ||userDetail?.picture === undefined)?"https://img.freepik.com/free-icon/user_318-804790.jpg":(userDetail?.picture)
 
-  const userPicture = ((userDetail?.picture)===undefined||(userDetail?.picture)===null||(userDetail?.picture)==="")?"https://img.freepik.com/free-icon/user_318-804790.jpg": (userDetail?.picture);
-  console.log(userPicture)
+  const handleDelete = ()=>{
+    event.preventDefault();
+      dispatch(deleteReservation(selectedReservationId));
+      reload()
+    }
+  
   return (
     <div className={style.user}>
       <div className={style.title}>
@@ -131,6 +146,7 @@ const cancelation = () => {
 </div>
       {currentGames?.length > 0 ? (
           currentGames?.map((reserv) => {
+
             return (
               <div className={style.gameContainer} key={reserv.id}>
                 <div className={style.containerImage}>
@@ -179,15 +195,28 @@ const cancelation = () => {
                         <h3 style={{ color: "red" , fontSize: "24px" , marginBottom:"1rem" }}>Estado: No Aprobado ❌</h3>
                       )} 
 
-                 <button className={style.btn} onClick={cancelation}>Cancelar Reserva</button> 
+                 <button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button> 
                  <button className={style.btn} onClick={addReview}>Dejar Opinión</button>
+
+                 {showAlertReview && (
+                  <div className={style.popupp}>
+                  
+                      <FormReview handleClose={handleClose} idUser={idUser} activityId={reserv?.activityId} idReservation={reserv?.id}/>
+                    
+                  </div>
+                )}
                 </div>
               </div>
+            
+            
             );
           })
         ) : (
           <h2 className={style.notFound}>No hay reservas por el momento</h2>
         )}
+      
+
+
       </div>
 
       {showAlertLog && (
@@ -203,21 +232,16 @@ const cancelation = () => {
           )}
 
       
-        {showAlertReview && (
-            <div className={style.popup}>
-              <div className={style.containerBtn}>
-                tu componente form aqui
-                <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
-              </div>
-            </div>
-          )}
 
         {showAlertCancel && (
             <div className={style.popup}>
               <div className={style.container}>
                 <h2>CANCELACION DE RESERVA</h2>
+                <p>¿Esta seguro de eliminar esta reserva?</p>
               </div>
-              estai seguro?
+              <div>
+                <button className={style.btnCancel} onClick={() => handleDelete()}>Eliminar</button>
+              </div>
               <div>
                 <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
               </div>

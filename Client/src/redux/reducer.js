@@ -30,6 +30,8 @@ import {
   SET_FILTERS_ADMIN,
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
+import { POST_REVIEW } from "./Actions/postReview";
+
 
 const initialState = {
   activities: [],
@@ -85,6 +87,9 @@ const reducer = (state = initialState, action) => {
 
     case POST_STORE:
       return { ...state };
+
+    case POST_REVIEW:
+      return { ...state };  
 
     case ORDER_BY_COST:
       let filtered = [...state.activities];
