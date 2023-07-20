@@ -1,0 +1,14 @@
+import axios from "axios";
+
+export const DELETE_RESERVATION = "DELETE_RESERVATION";
+
+export function deleteReservation(id) {
+  return async function (dispatch) {
+    // const result = await axios.delete(`http://localhost:3001/reservations/${id}`);
+    const result = await axios.get(`https://sportiverse-server.onrender.com/users/${id}`);
+    return dispatch({
+      type: DELETE_RESERVATION,
+      payload: result.data,
+    });
+  };
+}

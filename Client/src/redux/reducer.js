@@ -6,15 +6,24 @@ import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
 import { LOGIN } from "./Actions/login";
 import { LOGIN_GOOGLE } from "./Actions/loginGoogle";
 import { LOGOUT } from "./Actions/logout";
-import { CREATE_USER } from "./Actions/createUser"
-import { ORDER_BY_COST, ALL_FILTER, SET_FILTERS, SET_ORDER } from "./Actions/filters";
+import { CREATE_USER } from "./Actions/createUser";
+import {
+  ORDER_BY_COST,
+  ALL_FILTER,
+  SET_FILTERS,
+  SET_ORDER,
+} from "./Actions/filters";
 import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
 import { POST_RESERVATION } from "./Actions/postReservation";
 import { GET_USER } from "./Actions/getUser";
-import {GET_RESERVATIONS} from "./Actions/getReservations";
+import { GET_RESERVATIONS } from "./Actions/getReservations";
 import { POST_STORE } from "./Actions/postStore";
+import { GET_ALL_USERS } from "./Actions/getAllUsers";
+import { GET_USER_BY_NAME } from "./Actions/getUserByName";
+import { GET_USER_BY_EMAIL } from"./Actions/getUserByEmail";
 import { PUT_USER } from "./Actions/updateUser";
-
+import { DELETE_USER } from "./Actions/deleteUser";
+import { DELETE_RESERVATION } from "./Actions/deleteReservations";
 
 const initialState = {
   activities: [],
@@ -24,7 +33,7 @@ const initialState = {
   filters: {
     store: "all",
     ages: "all",
-    players: "all"
+    players: "all",
   },
   order: "",
   clientId: 0,
@@ -33,13 +42,12 @@ const initialState = {
   reservation: {},
   userDetail: [],
   allReservations: [],
-
+  allUsers: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ACTIVITIES:
-
       return {
         ...state,
         activities: action.payload,
@@ -67,13 +75,13 @@ const reducer = (state = initialState, action) => {
       return { ...state };
 
     case ORDER_BY_COST:
-      let filtered = [...state.activities]
+      let filtered = [...state.activities];
       if (state.order === "ascendent") {
         filtered = state.activities.sort((prev, next) => {
           if (parseInt(prev.cost) > parseInt(next.cost)) return 1;
           if (parseInt(prev.cost) < parseInt(next.cost)) return -1;
           return 0;
-        })
+        });
       }
       if (state.order === "descendent") {
         filtered = state.activities.sort((prev, next) => {
@@ -88,101 +96,137 @@ const reducer = (state = initialState, action) => {
       };
 
     case ALL_FILTER:
-      let activitiesFiltered = [...state.allActivities]
+      let activitiesFiltered = [...state.allActivities];
 
       if (state.filters.store !== "all") {
-        activitiesFiltered = activitiesFiltered.filter(el => el.stores[0]?.name.includes(state.filters.store))
+        activitiesFiltered = activitiesFiltered.filter((el) =>
+          el.stores[0]?.name.includes(state.filters.store)
+        );
       }
 
       if (state.filters.players !== "all") {
-        activitiesFiltered = activitiesFiltered.filter((el) => el.players.includes(state.filters.players));
+        activitiesFiltered = activitiesFiltered.filter((el) =>
+          el.players.includes(state.filters.players)
+        );
       }
 
       if (state.filters.ages !== "all") {
-        activitiesFiltered = activitiesFiltered.filter(el => el.age.includes(state.filters.ages))
+        activitiesFiltered = activitiesFiltered.filter((el) =>
+          el.age.includes(state.filters.ages)
+        );
       }
 
       return {
         ...state,
         activities: activitiesFiltered,
-      }
+      };
 
     case SET_FILTERS:
       const filtersChanged = {
         store: action.payload.store,
         ages: action.payload.ages,
-        players: action.payload.players
-      }
+        players: action.payload.players,
+      };
       return {
         ...state,
-        filters: filtersChanged
-      }
+        filters: filtersChanged,
+      };
 
     case SET_ORDER:
       return {
         ...state,
-        order: action.payload
-      }
+        order: action.payload,
+      };
 
     case LOGIN:
       console.log(action.payload);
-      localStorage.setItem("clientId", action.payload.user.id)
-      localStorage.setItem("isClient", action.payload.user.client)
+      localStorage.setItem("clientId", action.payload.user.id);
+      localStorage.setItem("isClient", action.payload.user.client);
       /* localStorage.setItem("access", true) */
       return {
         ...state,
         clientId: action.payload.id,
         isClient: action.payload.client,
-        access: true
-      }
+        access: true,
+      };
 
     case LOGOUT:
-
       return {
         ...state,
         clientId: 0,
         isClient: true,
-        access: false
-      }
+        access: false,
+      };
 
     case LOGIN_GOOGLE:
-      localStorage.setItem("clientId", action.payload.id)
-      localStorage.setItem("isClient", action.payload.client)
-      localStorage.setItem("loger", true)
+      localStorage.setItem("clientId", action.payload.id);
+      localStorage.setItem("isClient", action.payload.client);
+      localStorage.setItem("loger", true);
       console.log(action.payload);
       return {
         ...state,
         clientId: action.payload.id,
         isClient: action.payload.client,
-        access: true
-      }
+        access: true,
+      };
 
     case CREATE_USER:
       return {
         ...state,
-      }
+      };
     case GET_USER:
       return {
-        ...state, userDetail: action.payload
-      }
-    case PUT_USER:
-      return{ ...state}
+        ...state,
+        userDetail: action.payload,
+      };
 
-    case SAVE_RESERVATION:
+    case GET_ALL_USERS:
       return {
         ...state,
-        reservation: action.payload
-      }
+        allUsers: action.payload,
+      };
 
-    case GET_RESERVATIONS:
+    case GET_USER_BY_NAME:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+    
+    case GET_USER_BY_EMAIL:
       return{
         ...state,
         allReservations: action.payload
       }
 
+    case DELETE_USER:
+      return {
+        ...state,
+        allUsers: action.payload,
+      };
+
+    case PUT_USER:
+      return { ...state };
+
+    case SAVE_RESERVATION:
+      return {
+        ...state,
+        reservation: action.payload,
+      };
+
+    case GET_RESERVATIONS:
+      return {
+        ...state,
+        allReservations: action.payload,
+      };
+
+    case DELETE_RESERVATION:
+      return {
+        ...state,
+        reservation: action.payload,
+      };
+
     default:
       return state;
   }
-
 };
 export default reducer;

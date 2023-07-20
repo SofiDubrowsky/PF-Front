@@ -1,31 +1,53 @@
 import style from "./ReservationsDashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getReservations } from "../../redux/Actions/getReservations";
+import { deleteReservation } from "../../redux/Actions/deleteReservations";
+import { getUserByEmail } from "../../redux/Actions/getUserByEmail";
+import { useNavigate } from "react-router-dom";
 
 
 const ReservationsDashboard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const reservations = useSelector((state) => state.allReservations);
+
+  const [email, setEmail] = useState("");
 
   useEffect(() => {
     dispatch(getReservations());
   }, []);
 
+  const handleDelete = (event, id) => {
+    event.preventDefault();
+    dispatch(deleteReservation(id));
+    navigate("/home")
+  }
+
+  const handleChange = (event) => {
+    event.preventDefault();
+    setEmail(event.target.value);
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    dispatch(getUserByEmail(email));
+  }
+
   return (
     <div className={style.main}>
           <div className={style.inputSearch}>
             <input
-              //   onChange={(e) => handleinputChange(e)}
-              //   type="text"
+                onChange={(event) => handleChange(event)}
+                type="text"
               placeholder="Buscar por email"
-              //   value={name}
+                value={email}
             />
             <div
-              //   type="submit"
-              //   onClick={handleSubmit}
-              //   value="buscar"
+                type="submit"
+                onClick={handleSubmit}
+                value="buscar"
               className={style.icon}
             >
               <svg
@@ -89,6 +111,9 @@ const ReservationsDashboard = () => {
                   Usuario
                 </th>
                 <th scope="col" class="px-6 py-3">
+                  Email
+                </th>
+                <th scope="col" class="px-6 py-3">
                   Fecha
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -105,7 +130,7 @@ const ReservationsDashboard = () => {
                 </th>
               </tr>
             </thead>
-            {reservations?.map((reservation) => {
+            {Array.isArray(reservations) && reservations?.map((reservation) => {
               return (
                 <tbody>
                   <tr class="border-b bg-light-grey dark:border-white ">
@@ -116,6 +141,7 @@ const ReservationsDashboard = () => {
                       {reservation?.activity?.name}
                     </th>
                     <td class="px-6 py-4 ">{reservation?.user?.name}</td>
+                    <td class="px-6 py-4 ">{reservation?.user?.email}</td>
                     <td class="px-6 py-4">{reservation?.date}</td>
                     <td class="px-6 py-4">{reservation?.hour}</td>
                     <td class="px-6 py-4">
@@ -128,7 +154,7 @@ const ReservationsDashboard = () => {
                     </td>
 
                     <td class="px-6 py-4">
-                      <button className={style.editButton2}>
+                      <button onClick={(event) => handleDelete(event, reservation?.id)} className={style.editButton2}>
                         <svg
                           viewBox="0 0 448 512"
                           className={style.editSvgIcon}
