@@ -23,8 +23,8 @@ const Success = () => {
 
   useEffect(()=>{
     async function putReserva(){
-      // await axios.put(`http://localhost:3001/reservations/${idReserva}`)
-      await axios.put(`https://sportiverse-server.onrender.com/reservations/${idReserva}`)
+      await axios.put(`http://localhost:3001/reservations/${idReserva}`)
+      // await axios.put(`https://sportiverse-server.onrender.com/reservations/${idReserva}`)
     }
       putReserva()  
   }, [])
@@ -60,8 +60,8 @@ const Success = () => {
 
   const sendEmailData = async () => {
     try {
-      //await axios.post('http://localhost:3001/emailReservation', emailInfo);
-      await axios.post('https://sportiverse-server.onrender.com/emailReservation', emailInfo);
+      await axios.post('http://localhost:3001/emailReservation', emailInfo);
+      // await axios.post('https://sportiverse-server.onrender.com/emailReservation', emailInfo);
       console.log('Datos enviados por email exitosamente');
       setEmailSent(true);
     // Mostrar la alerta de éxito
