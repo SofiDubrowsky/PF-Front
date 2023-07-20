@@ -264,6 +264,25 @@ h2{
     font-size: 19px;
     margin-top: 7px;
   }
+
+  .popupp{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(33, 32, 32, 0);
+    padding: 20px;
+    
+    z-index: 9999;
+    border-radius: 13px;
+    width: 40%;
+    height: auto;
+    justify-content: center;
+    text-align: center;
+    font-family: inherit;
+    color: white;
+  }
+  
 .container {
     display: flex;
     flex-direction: column;

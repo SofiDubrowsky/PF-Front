@@ -24,6 +24,7 @@ import { GET_USER_BY_EMAIL } from"./Actions/getUserByEmail";
 import { PUT_USER } from "./Actions/updateUser";
 import { DELETE_USER } from "./Actions/deleteUser";
 import { DELETE_RESERVATION } from "./Actions/deleteReservations";
+import { POST_REVIEW } from "./Actions/postReview";
 
 const initialState = {
   activities: [],
@@ -73,6 +74,9 @@ const reducer = (state = initialState, action) => {
 
     case POST_STORE:
       return { ...state };
+
+    case POST_REVIEW:
+      return { ...state };  
 
     case ORDER_BY_COST:
       let filtered = [...state.activities];
