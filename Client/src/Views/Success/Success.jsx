@@ -69,6 +69,11 @@ const Success = () => {
       icon: 'success',
       title: 'Email enviado',
       text: 'El correo ha sido enviado correctamente',
+      showConfirmButton: false,
+      color: "#FFFFFF",
+      background: "#666",
+      timer: 3000,
+      timerProgressBar: true
     });
   } catch (error) {
     console.error('Error al enviar los datos por email:', error);
@@ -78,6 +83,10 @@ const Success = () => {
       icon: 'error',
       title: 'Error',
       text: 'Hubo un error al enviar el correo',
+      color: "#FFFFFF",
+      background: "#666",
+      timer: 3000,
+      timerProgressBar: true
     });
   }
 };
