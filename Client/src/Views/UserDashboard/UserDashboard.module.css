@@ -198,6 +198,19 @@ h2{
     color: black;
     transition: all .5s;
 }
+
+.btn:disabled{
+  color: rgb(110, 110, 110);
+  transform: none;
+  cursor:default;
+  background: none;
+}
+.btn:disabled::before{
+  color: rgb(110, 110, 110);
+  transform: none;
+  background: none;
+}
+
 .reserva{
     text-align: center
 }
