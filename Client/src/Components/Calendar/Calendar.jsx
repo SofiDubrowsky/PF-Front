@@ -11,6 +11,7 @@ import axios from "axios";
 import { postReservation } from '../../redux/Actions/postReservation';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { deleteReservation } from '../../redux/Actions/deleteReservations';
 
 const VITE_CREDENTIAL_SELLER = import.meta.env.VITE_CREDENTIAL_SELLER;
 
@@ -128,13 +129,16 @@ export default function CalendarComponent() {
 
 
 
+  
 
   const handleBuy = async () => {
+   
     if (loger === 'true') {
       const id = await createPreference();
       if (id) {
         localStorage.setItem('reservation', null);
         dispatch(postReservation(reservation));
+        
         setPreferenceId(id)
         setShowAlert(true);
         setShowBackdrop(true);
@@ -146,54 +150,45 @@ export default function CalendarComponent() {
       setShowBackdrop(true);
     }
   }
+  
 
-  const reservationLs = localStorage.getItem('reservation');
+  // useEffect(() => {
+  //   const reservationIdFromLocalStorage = localStorage.getItem('reservation');
+  //   setReservationId(reservationIdFromLocalStorage);
+  // }, []);
 
-  const reservationParse = reservationLs ? JSON.parse(reservationLs) : null;
+  // const [reservationId, setReservationId] = useState(localStorage.getItem('reservation'))
 
-  const idReservation = reservationParse?.id
+  // let reservationParse = reservationId ? JSON.parse(reservationId) : null;
 
-  const deleteReservation = async () => {
-    try {
-      if (idReservation) {
-        await axios.delete(`http://localhost:3001/reservations/${idReservation}`);
-        // await axios.delete(`https://sportiverse-server.onrender.com/reservations/${idReservation}`);
-        Swal.fire({
-          icon: 'success',
-          title: 'Reserva cancelada',
-          timer: 2000,
-          timerProgressBar: true,
-          showConfirmButton: false,
-          color: "#FFFFFF",
-          background: "#666"
-        });
-      }
+  // let idReservation = reservationParse?.id
 
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al eliminar la reserva',
-        text: error.message,
-        showConfirmButton: false,
-        color: "#FFFFFF",
-        background: "#666"
-      });
-    }
-  };
 
   const handleCancelTransaction = () => {
-    setShowAlert(false);
-    deleteReservation();
-    setShowBackdrop(false);
-    Swal.fire({
-      icon: 'success',
-      title: 'Reserva Cancelada',
-      showConfirmButton: false,
-      color: "#FFFFFF",
-      background: "#666",
-      timer: 3000,
-      timerProgressBar: true
-    });
+    
+    setTimeout(() => {
+      
+      const reservationIdFromLocalStorage = localStorage.getItem('reservation');
+      let idReservation = null;
+      if (reservationIdFromLocalStorage) {
+        const reservationParse = JSON.parse(reservationIdFromLocalStorage);
+        idReservation = reservationParse?.id;
+      }
+      setShowAlert(false);
+      dispatch(deleteReservation(idReservation))
+     
+      setShowBackdrop(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Reserva Cancelada',
+        showConfirmButton: false,
+        color: "#FFFFFF",
+        background: "#666",
+        timer: 3000,
+        timerProgressBar: true
+      });
+    }, 1500);
+
   };
 
   const handleRenderWallet = () => {
