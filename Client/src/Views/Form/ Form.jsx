@@ -155,7 +155,6 @@ const Form = () => {
         timer: 3000,
         showConfirmButton: false,
         timerProgressBar: true,
-        showConfirmButton: false,
         background: "#666",
         color: "#FFFFFF"
       });
