@@ -1,7 +1,78 @@
 .mainContainer{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
     width: 100%;
 }
+
+.graphReservationsPerStore{
+    display: grid;
+    grid-template: 2rem 1fr 2rem / 1fr 1fr;
+    height: 30rem;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #9ac71f;
+    border-radius: 5px;
+}
+
+.graphReservationsPaid{
+    display: grid;
+    grid-template: 2rem 1fr 2rem / 1fr 1fr;
+    height: 30rem;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #9ac71f;
+    border-radius: 5px;
+}
+
+.graphEarnings{
+    display: grid;
+    grid-template: 2rem 1fr 2rem / 1fr 1fr;
+    height: 30rem;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #9ac71f;
+    border-radius: 5px;
+}
+
+.graphPerMonth{
+    display: grid;
+    grid-template: 2rem 1fr 2rem / 1fr 1fr;
+    height: 30rem;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #9ac71f;
+    border-radius: 5px;
+}
+
+.title{
+    grid-area: 1 / 1 / 3 / 2;
+}
+
 .graphContainer{
-    width: 400px;
-    height: 400px;
+    grid-area: 2 / 1 / 3 / 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    height: 75%;
+    margin: 3rem;
+}
+
+.dataTable{
+    grid-area: 2 / 2 / 3 / 3;
+    color: white;
+    display:grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+}
+
+.total{
+    grid-area: 3 / 1 / 4 / 3;
+    color: white;
+}
+
+.dataTable p {
+    text-transform: capitalize;
 }
