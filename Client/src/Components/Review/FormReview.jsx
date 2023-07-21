@@ -70,7 +70,8 @@ const FormReview = ({handleClose, idUser, activityId, idReservation}) => {
         dispatch(postReview(form));
         handleClose()
         Swal.fire({
-          text: 'Calificación enviada!',
+          title: '¡Calificación enviada!',
+          text: '¡Gracias! Tu opinión nos ayuda a mejorar 🙌',
           icon: 'success',
           showConfirmButton: true,
           showCancelButton: true, 
@@ -79,6 +80,7 @@ const FormReview = ({handleClose, idUser, activityId, idReservation}) => {
         }).then((result) => {
           if (result.isConfirmed) {
             navigate('/dashboard')
+            reload()
           } else {
             navigate('/home');
           }

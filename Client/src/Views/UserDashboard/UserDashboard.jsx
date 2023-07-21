@@ -9,6 +9,7 @@ import { useState } from "react";
 import UpdateUser from "../../Components/UpdateUser/UpdateUser";
 import FormReview from "../../Components/Review/FormReview";
 import { deleteReservation } from "../../redux/Actions/deleteReservations";
+import { format } from 'date-fns-tz';
 
 const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,6 +21,7 @@ const UserDashboard = () => {
   const dispatch = useDispatch();
   const idUser = localStorage.getItem("clientId");
   const activities = useSelector((state) => state.allActivities);
+  const myReviews = userDetail?.reviews
 
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showAlertLog, setShowAlertLog] = useState(false);
@@ -47,10 +49,11 @@ const UserDashboard = () => {
       setShowAlertLog(true);
       setShowBackdrop(true);  
   }
-  const addReview = () => {
+  const addReview = (reservationId) => {
+    setSelectedReservationId(reservationId);
     setShowAlertReview(true);
-    setShowBackdrop(true);  
-}
+    setShowBackdrop(true);
+  };
 const cancelation = (reservationId) => {
   console.log(reservationId);
   setSelectedReservationId(reservationId);
@@ -79,6 +82,7 @@ const cancelation = (reservationId) => {
       reload()
     }
   
+
   return (
     <div className={style.user}>
       <div className={style.title}>
@@ -146,7 +150,14 @@ const cancelation = (reservationId) => {
 </div>
       {currentGames?.length > 0 ? (
           currentGames?.map((reserv) => {
-
+          const [day, month, year] =(reserv?.date?.split(" ").slice(1).join(" ").split("/"))
+          const fechita = new Date(Number(year), Number(month) - 1, Number(day))
+          const existsRes = myReviews?.map(rev=>rev?.reservationId)
+          const exist = existsRes?.includes(reserv?.id)
+          console.log(existsRes);
+          console.log(reserv?.id);
+          console.log(exist);
+          
             return (
               <div className={style.gameContainer} key={reserv.id}>
                 <div className={style.containerImage}>
@@ -190,18 +201,19 @@ const cancelation = (reservationId) => {
                 <div className={style.buttons}>
                                       
                 {reserv?.pay === true ? (
-                        <h3 style={{ color: "green" , fontSize: "24px" }}>Estado: Pago Aprobado ✔</h3>
+                        <h3 style={{ color: "green" , fontSize: "24px" , marginBottom:"1rem" }}>Estado: Pago Aprobado ✔</h3>
                       ) : (
                         <h3 style={{ color: "red" , fontSize: "24px" , marginBottom:"1rem" }}>Estado: No Aprobado ❌</h3>
                       )} 
 
-                 <button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button> 
-                 <button className={style.btn} onClick={addReview}>Dejar Opinión</button>
+                  {(fechita > new Date())?(<button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button>):null}
+
+                 {(fechita < new Date().setHours(0, 0, 0, 0))?(<button className={style.btn} onClick={() => addReview(reserv?.id)} disabled={existsRes.includes(reserv?.id)}>{existsRes.includes(reserv?.id) ? "Opinión Enviada ✔" : "Dejar Opinión ✉"} </button>): null }
 
                  {showAlertReview && (
                   <div className={style.popupp}>
                   
-                      <FormReview handleClose={handleClose} idUser={idUser} activityId={reserv?.activityId} idReservation={reserv?.id}/>
+                      <FormReview handleClose={handleClose} idUser={idUser} activityId={reserv?.activityId} idReservation={selectedReservationId}/>
                     
                   </div>
                 )}
