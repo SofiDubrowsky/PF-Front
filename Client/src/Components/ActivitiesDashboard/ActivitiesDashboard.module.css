@@ -16,6 +16,7 @@
     background-color: var(--bg-color);
     border-radius: 10px;
     overflow: hidden;
+    margin-bottom: 1rem;
   }
   
   .button, .button__icon, .button__text {
@@ -74,3 +75,75 @@
     margin-right: 2.5rem;
     justify-content: flex-end;
   }
+
+  
+.editButton2 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  /* transition-duration: 0.3s; */
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+  transform: translate(0%);
+}
+.editButton1 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgb(20, 20, 20);
+  border: none;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+  cursor: pointer;
+  /* transition-duration: 0.3s; */
+  overflow: hidden;
+  position: relative;
+  text-decoration: none !important;
+  transform: translate(0%);
+}
+
+.editSvgIcon {
+  width: 17px;
+  /* transition-duration: 0.3s; */
+}
+
+.editSvgIcon path {
+  fill: white;
+}
+
+.editButton2:hover {
+  /* width: 120px; */
+  border-radius: 50px;
+  /* transition-duration: 0.3s; */
+  background-color: rgb(255, 69, 69);
+  align-items: center;
+}
+
+.editButton1:hover {
+  /* width: 120px; */
+  border-radius: 50px;
+  /* transition-duration: 0.3s; */
+  background-color: rgb(69, 85, 255);
+  align-items: center;
+}
+
+
+.editButton2:active{
+  transform: translate(0%) scale(1.1);
+}
+
+.editButton1:active{
+  transform: translate(0%) scale(1.1);
+}
