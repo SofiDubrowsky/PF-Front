@@ -31,7 +31,8 @@ import {
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
 import { POST_REVIEW } from "./Actions/postReview";
-
+import { DELETE_ACTIVITY } from "./Actions/deleteActivity";
+import { UPDATE_ACTIVITY } from "./Actions/updateActivity";
 
 const initialState = {
   activities: [],
@@ -89,7 +90,7 @@ const reducer = (state = initialState, action) => {
       return { ...state };
 
     case POST_REVIEW:
-      return { ...state };  
+      return { ...state };
 
     case ORDER_BY_COST:
       let filtered = [...state.activities];
@@ -218,6 +219,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         allUsers: action.payload,
       };
+
+    case DELETE_ACTIVITY:
+      return {
+        ...state,
+        activities: action.payload,
+      };
+    
+    case UPDATE_ACTIVITY:
+      return {
+        ...state
+      }
 
     case PUT_USER:
       return { ...state };

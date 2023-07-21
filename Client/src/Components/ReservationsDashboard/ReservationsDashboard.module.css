@@ -69,15 +69,16 @@ body {
   justify-content: center;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
   cursor: pointer;
-  transition-duration: 0.3s;
+  /* transition-duration: 0.3s; */
   overflow: hidden;
   position: relative;
   text-decoration: none !important;
+  transform: translate(0%);
 }
 
 .editSvgIcon {
   width: 17px;
-  transition-duration: 0.3s;
+  /* transition-duration: 0.3s; */
 }
 
 .editSvgIcon path {
@@ -85,40 +86,17 @@ body {
 }
 
 .editButton2:hover {
-  width: 120px;
+  /* width: 120px; */
   border-radius: 50px;
-  transition-duration: 0.3s;
+  /* transition-duration: 0.3s; */
   background-color: rgb(255, 69, 69);
   align-items: center;
 }
 
-.editButton2:hover .edit-svgIcon {
-  width: 20px;
-  transition-duration: 0.3s;
-  transform: translateY(60%);
-  -webkit-transform: rotate(360deg);
-  -moz-transform: rotate(360deg);
-  -o-transform: rotate(360deg);
-  -ms-transform: rotate(360deg);
-  transform: rotate(360deg);
+.editButton2:active{
+  transform: translate(0%) scale(1.1);
 }
 
-.editButton2::before {
-  display: none;
-  content: "Delete";
-  color: white;
-  transition-duration: 0.3s;
-  font-size: 2px;
-}
-
-.editButton2:hover::before {
-  display: block;
-  padding-right: 10px;
-  font-size: 13px;
-  opacity: 1;
-  transform: translateY(0px);
-  transition-duration: 0.3s;
-}
 
 .filtersContainer {
   display: flex;

@@ -26,6 +26,7 @@ const ReservationsDashboard = () => {
   }, []);
 
   const reservations = useSelector((state) => state.reservationsFiltered);
+  // console.log(reservations)
   const activities = useSelector((state) => state.activities);
   const stores = useSelector((state) => state.stores);
   const filtersSelected = useSelector((state) => state.filtersAdmin);
@@ -39,7 +40,7 @@ const ReservationsDashboard = () => {
   const handleDelete = (event, id) => {
     event.preventDefault();
     dispatch(deleteReservation(id));
-    navigate("/home");
+    navigate("/admin");
   };
 
   const handleChange = (event) => {
