@@ -16,7 +16,7 @@
   /* border-bottom: 1px solid #9AC71F; */
 }
 
-.navegacion{
+.navegacion {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -45,7 +45,7 @@
   margin-left: 1rem;
 }
 
-.logoutButton{
+.logoutButton {
   border: none;
   background-color: none;
   background: none;
@@ -69,7 +69,7 @@
   overflow: hidden;
   transition-duration: .3s;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.199);
-  background-color:white;
+  background-color: white;
 }
 
 /* plus sign */
@@ -88,6 +88,7 @@
 .sign svg path {
   fill: black;
 }
+
 /* text */
 .text {
   position: absolute;
@@ -99,6 +100,7 @@
   font-weight: 600;
   transition-duration: .3s;
 }
+
 /* hover effect on button width */
 .btn:hover {
   width: 125px;
@@ -111,6 +113,7 @@
   transition-duration: .3s;
   padding-left: 20px;
 }
+
 /* hover effect button's text */
 .btn:hover .text {
   opacity: 1;
@@ -118,9 +121,10 @@
   transition-duration: .3s;
   padding-right: 10px;
 }
+
 /* button click effect*/
 .btn:active {
-  transform: translate(2px ,2px);
+  transform: translate(2px, 2px);
 }
 
 .avatarButton {
@@ -129,14 +133,72 @@
   border-radius: 50%;
   cursor: pointer;
   height: 100%;
-  
+
   /* padding: 0; */
 }
 
 .avatarImage {
   margin-top: 0.5rem;
-  width: 40px; /* Ajusta el tamaño según tus necesidades */
+  width: 40px;
+  /* Ajusta el tamaño según tus necesidades */
   height: 40px;
   border-radius: 50%;
   fill: white;
+}
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+
+@media (max-width:768px) {
+  .img {
+    height: 4rem;
+    margin-left: 0;
+  }
+
+  .container {
+    /* height: 60px; 
+    flex-wrap: wrap; */
+    /* justify-content: center; */
+    height: auto; 
+    flex-direction: column; 
+    justify-content: center
+  }
+
+  .navegacion {
+    /* margin-right: 0;
+    gap: 1rem; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 0.5rem;  */
+    flex-direction: row; 
+    align-items: center; 
+    gap: 0.5rem; 
+    margin-top: 0.5rem; 
+  }
+
+  .navlink {
+    font-size: 15px; 
+  }
+
+  .btn {
+    width: 35px; 
+    height: 35px;
+  }
+
+  .sign svg {
+    width: 12px;
+  }
+
+  .text {
+    font-size: 0.7em;
+  }
+
+  .avatarImage {
+    width: 30px;
+    height: 30px;
+  }
+
+  .navegacion {
+    gap: 0.5rem; 
+  }
 }
