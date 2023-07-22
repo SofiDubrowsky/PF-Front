@@ -12,23 +12,27 @@
     margin: .5rem;
     height: 18rem;
 }
-.average{
+
+.average {
     justify-content: center;
     text-align: center;
     align-self: center;
 }
+
 .controlButton {
     color: white;
     font-size: 4rem;
 }
+
 .controlButton:disabled {
     color: rgb(85, 85, 85);
     font-size: 4rem;
 }
+
 .starsContainer {
     display: flex;
     align-items: center;
-    height:2rem;
+    height: 2rem;
     min-height: 2rem;
     max-height: 2rem;
 }
@@ -84,6 +88,8 @@ h2 {
     height: 10rem;
     max-height: 10rem;
     min-height: 10rem;
+    overflow: auto
+
     overflow:auto;
     width: 100%;
 }
@@ -123,52 +129,45 @@ h2 {
     /* Alinear elementos verticalmente en el centro */
 }
 
-/* Estilos para hacerlo responsive */
-@media screen and (max-width: 768px) {
-    .carouselContainer {
-      flex-direction: column; /* Cambiar a disposición vertical en pantallas pequeñas */
-      align-items: center; /* Centrar elementos verticalmente en pantallas pequeñas */
-    }
-  
-    .contenedor {
-      max-width: 100%; /* Hacer que el contenedor ocupe todo el ancho en pantallas pequeñas */
-      height: auto; /* Eliminar la altura fija para adaptar al contenido en pantallas pequeñas */
-      margin: 0.5rem 0; /* Reducir el margen vertical en pantallas pequeñas */
-    }
-  
-    .review img {
-      width: 100px;
-      height: 100px;
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  
-    .review>div:not(:last-child) {
-      margin-right: 0;
-      margin-bottom: 10px;
-    }
-  
-    .review>div:nth-child(2) {
-      text-align: center; /* Centrar el texto en pantallas pequeñas */
-    }
-  
-    .user {
-      flex-direction: column; /* Cambiar a disposición vertical en pantallas pequeñas */
-      align-items: center; /* Centrar elementos verticalmente en pantallas pequeñas */
-    }
-  }
-
-  .toggleButton {
+.toggleButton {
     background-color: none;  /* Color de fondo del botón */
     color: rgba(107, 107, 107, 0.589); /* Color del texto del botón */
     border: none; /* Elimina el borde del botón */
     cursor: pointer; /* Cambia el cursor al hacer hover */
     font-weight: bold;
   }
-
   
   .toggleButton:hover {
     color: #0056b3;
     text-decoration: underline;
     font-weight: bold;
   }
+
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .carouselContainer {
+        flex-direction: column; 
+        align-items: center; 
+      }
+    
+      .review img {
+        width: 60px; 
+        height: 60px;
+      }
+    
+      .review>div:not(:last-child) {
+        margin-right: 0; 
+        margin-bottom: 10px; 
+      }
+    
+      .review>div:nth-child(2) {
+        text-align: center; 
+      }
+}
+
+  
+    
+  
+  

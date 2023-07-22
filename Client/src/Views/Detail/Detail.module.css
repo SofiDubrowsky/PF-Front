@@ -19,19 +19,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row; /* Add this line to make the stars display horizontally */
+  flex-direction: row;
+  /* Add this line to make the stars display horizontally */
 }
 
-.sucursal span{
-    font-size: 40px;
-    color: white;
-    letter-spacing: 7px;
-    font-weight: bold;
-    text-transform: uppercase;
-    text-shadow: 0 3px 10px rgba(174, 174, 174, 0.896);
+.sucursal span {
+  font-size: 40px;
+  color: white;
+  letter-spacing: 7px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 3px 10px rgba(174, 174, 174, 0.896);
 }
 
-.h2special{
+.h2special {
   font-size: 40px;
   color: white;
   letter-spacing: 7px;
@@ -58,9 +59,10 @@
   margin: 0;
   width: 90%;
 }
-.average{
+
+.average {
   background-color: #93b44700;
-  color:white
+  color: white
 }
 
 
@@ -68,7 +70,7 @@
   width: 95%;
   text-align: center;
   background-color: rgb(0, 0, 0)
-/*   box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896); */
+    /*   box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896); */
 }
 
 .text {
@@ -98,8 +100,9 @@
 
 .description h3 {
   font-size: 24px;
-  color:#9ac71f;
+  color: #9ac71f;
 }
+
 .description p {
   font-size: 18px;
 }
@@ -124,7 +127,7 @@
   height: 40rem;
   object-fit: cover;
   border-radius: 1rem;
-/*   box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896); */
+  /*   box-shadow: 0 13px 25px rgba(80, 79, 79, 0.896); */
 }
 
 
@@ -196,7 +199,7 @@
   /* margin:5px; */
   /* border-color: #00000000;
     background-color: rgb(255, 248, 248); */
-    border: none;
+  border: none;
   border: 2px solid var(--main-color);
   background-color: var(--bg-color);
   box-shadow: 4px 4px var(--main-color);
@@ -213,48 +216,14 @@
   font-weight: bold;
 }
 
-
-/* 
-.navBar{
-    background-color: aqua;
-    height: 75px;
-    width: 100%;
-}
-
-.footer{
-    background-color: aqua;
-    height: 80px;
-    width: 100%;
-} */
-
-/* .minimage{
-    display: flex;
-    flex-wrap: wrap;
-    background-color: rgba(226, 209, 186, 0.637);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 100%;
-    justify-content: center;
-    border-radius: 1rem;
-}
-.image{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-self: top;
-    margin:15px;
-    height:90px;
-    width: 130px;
-    background-color:rgba(137, 43, 226, 0.11); 
-    border-radius: 2rem;
-}   */
 .review {
   width: 20%;
 }
+
 .review svg:not(:last-child) {
   margin-right: 5px;
 }
+
 .reviewbox {
   background-color: grey;
   align-items: center;
@@ -285,11 +254,171 @@ label {
   margin-top: 1rem;
 }
 
-@media only screen and (max-width: 600px) {
-  .containerPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+
+@media (max-width:768px) {
+  .image_info {
+    grid-template-columns: 1fr;
+    gap: 5rem;
   }
+
+  .logo {
+    display: none;
+  }
+
+  .boxLogo {
+    padding-left: 1rem;
+  }
+
+.average {
+  background-color: #93b44700;
+  color: white;
 }
+
+.description {
+  width: 95%;
+  text-align: center;
+  background-color: rgb(0, 0, 0);
+}
+
+.text {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  align-content: center;
+  letter-spacing: 2px;
+  padding: 1rem 2rem;
+  gap: 15px;
+  margin-bottom: 2rem;
+}
+
+.text span {
+  color: white;
+  margin-left: 2em;
+  align-items: flex-start;
+}
+
+.description h2 {
+  text-transform: capitalize;
+  letter-spacing: 7px;
+  font-size: 40px;
+}
+
+.description h3 {
+  font-size: 24px;
+  color: #9ac71f;
+}
+
+.description p {
+  font-size: 18px;
+}
+
+.text h5 {
+  position: absolute;
+  top: 10%;
+  right: 10%;
+  font-size: 30px;
+}
+
+.cost {
+  font-size: 20px;
+  color: #94b447;
+  text-align: center;
+  justify-content: center;
+}
+
+.bigImage {
+  width: 100%;
+  height: 30rem;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.calendar {
+  border-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  font-size: medium;
+}
+
+.calendar h5 {
+  font-size: 35px;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  gap: 0.5rem;
+}
+
+.buyButton,
+.backButton {
+  border: none;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  background: none;
+  width: 7rem;
+  height: 2rem;
+  color: white;
+  border-radius: 2rem;
+  transition: 0.5s;
+  cursor: pointer;
+  transform: translate(0%);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: bold;
+}
+
+.buyButton:hover,
+.backButton:hover {
+  opacity: 0.9;
+  color: white;
+  transform: translate(0%) scale(1.1);
+}
+
+.review {
+  width: 20%;
+}
+
+.review svg:not(:last-child) {
+  margin-right: 5px;
+}
+
+.reviewbox {
+  background-color: grey;
+  align-items: center;
+  flex-direction: row;
+  text-align: center;
+  font-size: medium;
+  color: white;
+  padding: 30px;
+  font-size: large;
+}
+
+label {
+  display: inline-block;
+  background-color: transparent;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-family: "Segoe UI", Verdana, sans-serif;
+  font-size: 20px;
+
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  width: 180px;
+  font-weight: bolder;
+  text-align: left;
+}
+
+
+
+
