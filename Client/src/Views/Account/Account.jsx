@@ -45,6 +45,8 @@ const Account = () => {
             title: "Cuenta creada exitosamente",
             showConfirmButton: false,
             timer: 1500,
+            color: "#FFFFFF",
+            background: "#666"
           });
 
           setUser({
@@ -62,12 +64,22 @@ const Account = () => {
               icon: "error",
               title: "Error",
               text: error.response.data.error,
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              color: "#FFFFFF",
+              background: "#666"
             });
           } else {
             Swal.fire({
               icon: "error",
               title: "Error",
               text: error.message,
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              color: "#FFFFFF",
+              background: "#666"
             });
           }
         });
@@ -76,6 +88,11 @@ const Account = () => {
         icon: "error",
         title: "Error de validación",
         text: "Por favor, complete correctamente todos los campos.",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        color: "#FFFFFF",
+        background: "#666",
       });
     }
   };
@@ -114,7 +131,7 @@ const Account = () => {
             />
             {errors.name && <span className={style.error}>{errors.name}</span>}
           </div>
-          
+
           <div className={style.content}>
             <input
               type="text"

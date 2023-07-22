@@ -154,13 +154,20 @@ const Form = () => {
         icon: 'error',
         timer: 3000,
         showConfirmButton: false,
-        timerProgressBar: true
+        timerProgressBar: true,
+        background: "#666",
+        color: "#FFFFFF"
       });
     }
     else if (Object.values(errorSave).length !== 0){
       Swal.fire({
         text: 'Debes completar todos los datos obligatorios',
-        timerProgressBar: true
+        icon: "warning",
+        timerProgressBar: true,
+        showConfirmButton: false,
+        timer: 3000,
+        background: "#666",
+        color: "#FFFFFF"
       })
     }
     else {
@@ -172,6 +179,8 @@ const Form = () => {
         showCancelButton: true, 
         confirmButtonText: 'Agregar nueva actividad', 
         cancelButtonText: 'Volver al Inicio', 
+        background: "#666",
+        color: "#FFFFFF"
       }).then((result) => {
         if (result.isConfirmed) {
          navigate('/post')

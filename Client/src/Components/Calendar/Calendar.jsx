@@ -11,6 +11,7 @@ import axios from "axios";
 import { postReservation } from '../../redux/Actions/postReservation';
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { deleteReservation } from '../../redux/Actions/deleteReservations';
 
 const VITE_CREDENTIAL_SELLER = import.meta.env.VITE_CREDENTIAL_SELLER;
 
@@ -24,13 +25,13 @@ export default function CalendarComponent() {
   const [selectedHour, setSelectedHour] = useState(null);
   const activity = useSelector((state) => state.detail);
   let selected = selectedDate ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}` : null
- 
+
   const dayReservations = activity?.reservations?.filter(reserv => reserv.date === selected)
   const hoursReserved = dayReservations?.map(reserv => reserv.hour)
 
   const id = activity?.id
   const idActLs = localStorage.getItem('detail');
- 
+
   const cost = activity?.cost
   const name = activity?.name
 
@@ -74,7 +75,7 @@ export default function CalendarComponent() {
 
   };
 
-  const idAct = id === undefined? idActLs : id
+  const idAct = id === undefined ? idActLs : id
 
   const handleClick = (hour) => {
     if (selectedHour === hour) {
@@ -108,7 +109,7 @@ export default function CalendarComponent() {
   const createPreference = async () => {
     try {
       const response = await axios.post('http://localhost:3001/create_preference', {
-      //const response = await axios.post('https://sportiverse-server.onrender.com/create_preference', {
+        //const response = await axios.post('https://sportiverse-server.onrender.com/create_preference', {
         description: name,
         price: cost,
         quantity: 1
@@ -125,64 +126,69 @@ export default function CalendarComponent() {
   const [showWallet, setShowWallet] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showAlertLog, setShowAlertLog] = useState(false);
+
+
+
   
-  
-  
-  
+
   const handleBuy = async () => {
-    if(loger==='true'){
-        const id = await createPreference();
-        if (id) {
-            localStorage.setItem('reservation' , null);
-            dispatch(postReservation(reservation));
-            setPreferenceId(id)
-            setShowAlert(true);
-            setShowBackdrop(true);
-              
-            
-        }
+   
+    if (loger === 'true') {
+      const id = await createPreference();
+      if (id) {
+        localStorage.setItem('reservation', null);
+        dispatch(postReservation(reservation));
+        
+        setPreferenceId(id)
+        setShowAlert(true);
+        setShowBackdrop(true);
+
+
+      }
     } else {
       setShowAlertLog(true);
       setShowBackdrop(true);
     }
   }
+  
 
-  const reservationLs = localStorage.getItem('reservation');
+  // useEffect(() => {
+  //   const reservationIdFromLocalStorage = localStorage.getItem('reservation');
+  //   setReservationId(reservationIdFromLocalStorage);
+  // }, []);
 
-  const reservationParse = reservationLs ? JSON.parse(reservationLs) : null;
+  // const [reservationId, setReservationId] = useState(localStorage.getItem('reservation'))
 
-  const idReservation = reservationParse?.id
+  // let reservationParse = reservationId ? JSON.parse(reservationId) : null;
 
-  const deleteReservation = async () => {
-    try {
-      if (idReservation) {
-        await axios.delete(`http://localhost:3001/reservations/${idReservation}`);
-        // await axios.delete(`https://sportiverse-server.onrender.com/reservations/${idReservation}`);
-        Swal.fire({
-          icon: 'success',
-          title: 'Reserva cancelada',
-          timer: 2000,
-          timerProgressBar: true
-        });
-      }
+  // let idReservation = reservationParse?.id
 
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Error al eliminar la reserva',
-        text: error.message,
-      });
-    }
-  };
 
   const handleCancelTransaction = () => {
-    setShowAlert(false);
-    deleteReservation();
-    setShowBackdrop(false); 
-    Swal.fire({
-      icon: 'success',
-      title: 'Reserva Cancelada',
-    });
+    
+    setTimeout(() => {
+      
+      const reservationIdFromLocalStorage = localStorage.getItem('reservation');
+      let idReservation = null;
+      if (reservationIdFromLocalStorage) {
+        const reservationParse = JSON.parse(reservationIdFromLocalStorage);
+        idReservation = reservationParse?.id;
+      }
+      setShowAlert(false);
+      dispatch(deleteReservation(idReservation))
+     
+      setShowBackdrop(false);
+      Swal.fire({
+        icon: 'success',
+        title: 'Reserva Cancelada',
+        showConfirmButton: false,
+        color: "#FFFFFF",
+        background: "#666",
+        timer: 3000,
+        timerProgressBar: true
+      });
+    }, 1500);
+
   };
 
   const handleRenderWallet = () => {
@@ -194,15 +200,15 @@ export default function CalendarComponent() {
     setShowAlertLog(false);
     setShowBackdrop(false);
   }
-  
+
   const handleRedirectLog = () => {
-      const detailReservation= localStorage.getItem('detail');
-          if (detailReservation) {
-              localStorage.setItem('detail', null)
-            }
-          localStorage.setItem('detail', id)
-          
-          navigate('/login')
+    const detailReservation = localStorage.getItem('detail');
+    if (detailReservation) {
+      localStorage.setItem('detail', null)
+    }
+    localStorage.setItem('detail', id)
+
+    navigate('/login')
   }
 
   return (
@@ -254,16 +260,16 @@ export default function CalendarComponent() {
         )}
 
         {showAlertLog && (
-            <div className={styles.popup}>
-              <div className={styles.container}>
-                <h2>Para realizar una reserva debes iniciar sesion</h2>
-              </div>
-              <div className={styles.containerBtn}>
-                <button className={styles.btnCancel} onClick={handleRedirectLog}>Iniciar Sesion</button>
-                <button className={styles.btnCancelarInicio} onClick={handleClose}>Cancelar</button>
-              </div>
+          <div className={styles.popup}>
+            <div className={styles.container}>
+              <h2>Para realizar una reserva debes iniciar sesion</h2>
             </div>
-          )}
+            <div className={styles.containerBtn}>
+              <button className={styles.btnCancel} onClick={handleRedirectLog}>Iniciar Sesion</button>
+              <button className={styles.btnCancelarInicio} onClick={handleClose}>Cancelar</button>
+            </div>
+          </div>
+        )}
 
         {showBackdrop && <div className={styles.backdrop} />}
 

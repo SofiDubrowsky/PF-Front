@@ -9,7 +9,8 @@ import { useState } from "react";
 import UpdateUser from "../../Components/UpdateUser/UpdateUser";
 import FormReview from "../../Components/Review/FormReview";
 import { deleteReservation } from "../../redux/Actions/deleteReservations";
-import { format } from "date-fns-tz";
+import { format } from 'date-fns-tz';
+import Swal from "sweetalert2";
 
 const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -49,6 +50,7 @@ const UserDashboard = () => {
     setShowAlertLog(true);
     setShowBackdrop(true);
   };
+
   const addReview = (reservationId) => {
     setSelectedReservationId(reservationId);
     setShowAlertReview(true);
@@ -60,6 +62,7 @@ const UserDashboard = () => {
     setShowAlertCancel(true);
     setShowBackdrop(true);
   };
+
   const handleClose = () => {
     setShowAlertLog(false);
     setShowAlertReview(false);
@@ -67,12 +70,15 @@ const UserDashboard = () => {
     setShowBackdrop(false);
   };
 
+
+  const totalPages = Math.ceil(reservations?.length / gamesPerPage);
+
   const paginate = (pageNumber) => {
-    const totalPages = Math.ceil(reservations?.length / gamesPerPage);
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
     }
   };
+
   const userPicture =
     userDetail?.picture === null || userDetail?.picture === undefined
       ? "https://img.freepik.com/free-icon/user_318-804790.jpg"
@@ -81,41 +87,48 @@ const UserDashboard = () => {
   const handleDelete = () => {
     event.preventDefault();
     dispatch(deleteReservation(selectedReservationId));
-    reload();
-  };
+    setShowAlertCancel(false);
+    setShowBackdrop(false);
+    Swal.fire({
+      icon: 'success',
+      title: 'Reserva Cancelada',
+      text: "Tu devolución impactará dentro de las proximas 48hs",
+      showConfirmButton: true,
+      confirmButtonText: 'Volver a mi perfil',
+      color: "#FFFFFF",
+      background: "#666",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        reload();  
+      }
+    })
+
+  }
+
+  const today = (format(new Date(), 'dd/MM/yyyy')).toString()
 
   return (
     <div className={style.user}>
       <div className={style.title}>
         <div className={style.imgBox}>
-          <img
-            className={style.img}
-            src={userPicture}
-            alt="https://img.freepik.com/free-icon/user_318-804790.jpg"
-          />
+          <img className={style.img} src={userPicture} alt="https://img.freepik.com/free-icon/user_318-804790.jpg" />
         </div>
         <div className={style.data}>
           <img src={image} alt="" />
           <h1 style={{ color: "#9AC71F" }}>Usuario: {userDetail?.name}</h1>
           <h2>E-mail: {userDetail?.email}</h2>
           <h2>Telefono: {userDetail?.phone} </h2>
-          <button
-            className={style.btn}
-            onClick={editProfile}
-            disabled={loger !== "true"}
-          >
-            Editar Datos
-          </button>
+          <button className={style.btn} onClick={editProfile} disabled={loger !== 'true'}>Editar Datos</button>
           <button className={style.btn}>
-            <NavLink to="/home" className={style.nav}>
-              Volver
-            </NavLink>
+            <NavLink to="/home" className={style.nav}> Volver </NavLink>
           </button>
         </div>
       </div>
 
       <div className={style.games}>
-        <h1 className={style.reserva}>Reservas </h1>
+        <h1 className={style.reserva}>Mis Reservas </h1>
+        <p style={{ color: "white", textAlign: "center", fontSize: "1.5rem" }}> Fecha Actual: {today}</p>
+        <p style={{ color: "white", textAlign: "center", fontSize: "1rem" }}>*Recuerda que solo puedes cancelar con un día de anticipación.</p>
         <div className={style.pagination}>
           <button
             className={style.paginationButton}
@@ -155,6 +168,17 @@ const UserDashboard = () => {
             onClick={() => paginate(currentPage + 1)}
           >
             <h3>🡺</h3>
+            onClick={() => paginate(currentPage - 1)}>
+            <h1 >{"<"}</h1>
+          </button>
+
+          <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+
+          <button
+            className={style.paginationButton}
+            disabled={currentPage === totalPages}
+            onClick={() => paginate(currentPage + 1)}>
+            <h1 >{">"}</h1>
           </button>
         </div>
         {currentGames?.length > 0 ? (
@@ -175,6 +199,7 @@ const UserDashboard = () => {
             console.log(reserv?.id);
             console.log(exist);
 
+
             return (
               <div className={style.gameContainer} key={reserv.id}>
                 <div className={style.containerImage}>
@@ -185,8 +210,7 @@ const UserDashboard = () => {
                         (act) => act?.id === Number(reserv?.activityId)
                       )?.picture[0]
                     }
-                    alt="notFound"
-                  />
+                    alt="notFound" />
                 </div>
 
                 <div className={style.containerData}>
@@ -197,16 +221,19 @@ const UserDashboard = () => {
                         ?.find((act) => act?.id === Number(reserv?.activityId))
                         ?.name?.toUpperCase()}
                     </h3>
-                    <h4>
-                      Fecha: {reserv?.date} {reserv?.hour} hs
+                    <h4 style={{ fontSize: "1.5rem" }}>
+                      Fecha: {reserv?.date}
                     </h4>
-                    <h4>
+                    <h4 style={{ fontSize: "1.5rem" }}>
+                      Turno: {reserv?.hour} hs
+                    </h4>
+                    <h4 style={{ fontSize: "1.2rem" }}>
                       Sucursal:{" "}
                       {activities
                         ?.find((act) => act?.id === Number(reserv?.activityId))
                         ?.stores?.map((e) => e.name)}
                     </h4>
-                    <h4>
+                    <h4 style={{ fontSize: "1.2rem" }}>
                       ${" "}
                       {
                         activities?.find(

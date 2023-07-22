@@ -74,10 +74,12 @@
     background: black;
     border: 2px solid var(--main-color);
     box-shadow: 4px 4px var(--main-color);
-    margin: 2rem;
+    margin-bottom: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     border-radius: 1rem;
     max-height: 40vh;
-    height: 27%;
+    height: 25%;
     width: 90%;
 }
 h1{
@@ -193,12 +195,12 @@ h2{
     background-color: white;
     color: black;
 }
-
+.btnCancel:hover a,
 .btn:hover a{
     color: black;
     transition: all .5s;
 }
-
+.btnCancel:disabled,
 .btn:disabled{
   color: rgb(110, 110, 110);
   transform: none;
@@ -212,7 +214,11 @@ h2{
 }
 
 .reserva{
-    text-align: center
+    text-align: center;
+    margin:0
+}
+p{
+  margin:0
 }
 
 .pagination {
@@ -224,14 +230,16 @@ h2{
   background-color: transparent;
   color: #9ac71f;
   border: none;
-  margin-right: 10px;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .paginationButton:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
-
+.paginationButton:disabled{
+  color: grey;
+}
 .paginationButton.active {
   color: white;
   font-weight: bold;
@@ -239,7 +247,13 @@ h2{
 .nav:hover{
     color: black;
 }
-
+.pag{
+  display:flex;
+  color: #9AC71F;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
 .popup,
 .container button {
  justify-content: center;  
@@ -249,7 +263,7 @@ h2{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(33, 32, 32, 0.559);
+    background-color: rgba(0, 0, 0, 0.925);
     padding: 20px;
     box-shadow: 0 15px 25px rgba(80, 79, 79, 0.896);
     z-index: 9999;
@@ -283,7 +297,7 @@ h2{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: rgba(33, 32, 32, 0);
+    background-color: rgba(0, 0, 0, 0);
     padding: 20px;
     
     z-index: 9999;
@@ -303,22 +317,35 @@ h2{
   }
  
   .btnCancel:hover {
-  height: 60%;
-  width: 90%;
-  font-size: 21px;
+    background-color: white;
+    color: black;
 }
 .btnCancel {
-  height: 80%;
-  width: 100%;
-  font-size: 19px;
-  border-radius: 13px;
-  font-weight: bold;
   border: none;
-  transition: height 0.3s ease, width 0.3s ease, font-size 0.3s ease;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  background: none;
+  height: 35px;
+  width: 12rem;
+  transition: all .5s;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  opacity: 0.8;
+  text-align: center;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin:1rem;
 }
 
 .btnCancel {
-  background-color: #60615e;
+  background-color: #000000;
   color: #FDF2E9;
   margin-top: 7px;
 }
@@ -359,5 +386,4 @@ h2{
     justify-content: center;
     align-items: center;
     height: 100%;
-   
   }
