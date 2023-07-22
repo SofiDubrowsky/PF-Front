@@ -7,20 +7,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
   <title>Sportiverse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&family=Play:wght@700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Orbitron&family=Play:wght@700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
   <div id="root"></div>
 
-   <!-- ChatBot -->
-   <script>
+  <!-- ChatBot -->
+  <script>
     window.addEventListener('mouseover', initLandbot, { once: true });
     window.addEventListener('touchstart', initLandbot, { once: true });
     var myLandbot;
     function initLandbot() {
       if (!myLandbot) {
-        var s = document.createElement('script');s.type = 'text/javascript';s.async = true;
-        s.addEventListener('load', function() {
+        var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true;
+        s.addEventListener('load', function () {
           var myLandbot = new Landbot.Livechat({
             configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1663592-QZTECBQBFH4I5G53/index.json',
           });
@@ -30,7 +38,7 @@
         x.parentNode.insertBefore(s, x);
       }
     }
-    </script>
+  </script>
 
   <script type="module" src="/src/main.jsx"></script>
 </body>

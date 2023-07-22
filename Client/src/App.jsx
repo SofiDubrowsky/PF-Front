@@ -15,7 +15,7 @@ import './App.css'
 import Success from './Views/Success/Success'
 import Failure from './Views/Failure/Failure'
 import UserDashboard from './Views/UserDashboard/UserDashboard'
-
+import AboutProgrammers from './Views/AboutProgrammers/AboutProgrammers'
 
 function App() {
   const location = useLocation();
@@ -39,6 +39,7 @@ function App() {
       <Route path='/success' element={<Success/>} />
       <Route path='/failure' element={<Failure/>} />
       <Route path='/dashboard' element={<UserDashboard/>} />
+      <Route path='/programmers' element={<AboutProgrammers/>} />
     </Routes>
     {!isLandingPage && location.pathname !== '/admin' && <Footer />}
       

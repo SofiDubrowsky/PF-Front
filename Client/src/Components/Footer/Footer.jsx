@@ -3,11 +3,15 @@ import instagram from "../../assets/instagram.png";
 import facebook from "../../assets/facebook-circular-logo.png";
 import youtube from "../../assets/youtube.png";
 import tiktok from "../../assets/tiktok.png";
-import twitter from "../../assets/twitter.png";
+import twitter from "../../assets/twitter.png"
 import sportiverse2 from "../../assets/sportiverse2.png";
 import logoBlanco from "../../assets/logo-shadow-1.png";
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
+  function irAPaginaSuperior() {
+    window.scrollTo(0, 0);
+  }
   return (
     <div className={style.mainConatiner}>
       <div className={style.content}>
@@ -15,7 +19,8 @@ const Footer = () => {
           <img src={logoBlanco} alt="logo" className={style.img} />
         </div>
         <div className={style.boxNames}>
-          <h3 className={style.conocenos}>Conócenos</h3>
+          <NavLink to='/programmers' className={style.conocenos} onClick={irAPaginaSuperior}>Nuestro equipo</NavLink>
+
           <div className={style.gridContainer}>
             <a
               href="https://www.linkedin.com/in/nadia-martel-admin/"

@@ -18,8 +18,9 @@
 
 
 h1{
-    letter-spacing: 4px;
+    letter-spacing: 2px;
     font-weight: 500;
     font-size: 3rem;
-
+    font-family: 'Orbitron', sans-serif;
+    
 }

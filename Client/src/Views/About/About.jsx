@@ -33,10 +33,10 @@ const About = () => {
   return (
     <div>
       <div>
-        <h1 className={style.ab}>Nuestro proposito❤</h1>
+        <h1 className={style.ab}>Nuestro proposito</h1>
       </div>
 
-      <div className={style.aboutContainer}>
+      <div className={style.aboutContainer2}>
         <div className={style.containerImage}>
           <div className={style.bigImage}>
             <img
@@ -58,7 +58,7 @@ const About = () => {
           </div>
         </div>
         <div className={style.description}>
-          <h1 className={style.h1}>Misión:</h1>
+          <h1 className={style.h1}>Misión</h1>
           <p className={style.text}>
             En el complejo deportivo Sportiverse, nuestra misión es crear un
             espacio acogedor y amigable que promueva el bienestar y la diversión
@@ -69,7 +69,7 @@ const About = () => {
             una experiencia cálida y gratificante.
           </p>
           <hr />
-          <h1 className={style.h1}>Visión:</h1>
+          <h1 className={style.h1}>Visión</h1>
           <p className={style.text}>
             Nos visualizamos como un lugar excepcionalmente acogedor, donde el
             bienestar y la diversión sean los pilares fundamentales. Buscamos

@@ -1,0 +1,198 @@
+.aboutArticle {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    letter-spacing: 0.1rem;
+    text-align: start;
+    gap: 1rem;
+    align-items: center;
+    background-image: linear-gradient(rgba(107, 107, 106, 0.67), rgba(3, 3, 3, 0.67));
+    padding: 4rem;
+    
+}
+
+h3{
+    font-family: Bahnschrift SemiCondensed;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+
+}
+b{
+    color: rgb(250, 249, 247);
+    font-family:  Bahnschrift SemiCondensed;
+    font-size: 1.5rem;
+    text-shadow: #9AC71F 0 0 10px;
+    
+}
+.logoHenry{
+    color: rgb(250, 249, 247);
+    font-family:  "Manrope", sans-serif;
+    font-size: 1.3rem;
+    text-shadow: #070707 0 0 10px;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.aboutArticleApp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    letter-spacing: 0.1rem;
+    text-align: start;
+    gap: 1rem;
+    align-items: center;
+    background-color: rgba(3, 3, 3, 0.473);
+    padding: 4rem;
+}
+
+.aboutConteinerPrincipal{
+    display: flex;
+    flex-direction: column;
+    padding: 4rem;
+    align-items: center;
+    gap: 2rem;
+}
+.aboutConteiner{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 2rem;
+}
+
+.aboutSection{
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: 2rem;
+    width: calc(50% - 2rem);
+    height: 40%;
+}
+.aboutSectionContainer{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.aboutSectionImg{
+    width: 4rem;
+    height: 4rem;
+}
+.aboutSectionTitle{
+    font-size: 2rem;
+    letter-spacing: 1px;
+    font-family:  Bahnschrift SemiCondensed;
+}
+.aboutConteinerParrafo{
+    width: 100%;
+    height: 100%;
+}
+.aboutParrafo{
+    font-family:  Bahnschrift SemiCondensed;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    line-height: 1.4;
+    color: rgb(250, 250, 247);
+}
+.aboutContainerDetail {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    height: fit-content;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5rem;
+    gap: 8rem;
+
+}
+.aboutContainerDetailTeam{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    height: fit-content;
+    width: fit-content;
+    position: relative;
+    perspective: 1000px;
+    transition: transform .3s ease;
+    transform: none;
+}
+.aboutContainerDetailTeamImg{
+    width: 14rem;
+    height: 14rem;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    transition: transform .3s ease;
+    object-fit: cover;
+    
+}
+.aboutContainerDetailTeamTitle{
+    font-size: 1.3rem;
+}
+.aboutContainerDetailTeamRedes{
+    display: flex;
+    gap: 1rem;
+}
+.aboutContainerDetailTeamIcons{
+    width: 3rem;
+    height: 3rem;
+}
+#email {
+    display: none;
+    padding: 5px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    position: absolute;
+    top: 0;
+    left: 50px; 
+  }
+  #icon {
+    width: 40px;
+    height: 40px;
+    background-image: url(../../assets/gmail.png);
+    background-size: cover;
+  }
+.swal2-popup {
+    box-shadow: 0 0 10px rgba(250, 249, 249, 0.151);
+    border: 2px solid #9AC71F; /* Cambia el color del borde aquí */
+    border-radius: 8px; /* Ajusta el radio del borde si es necesario */
+  }
+  
+
+  @media (max-width: 900px) {
+    .aboutConteinerPrincipal{
+        align-items: center;
+        padding: 4rem;
+    }
+    .aboutArticleApp {
+        align-items: center;
+        padding: 4rem;
+    }
+    .aboutSection {
+      width: 100%; /* Ocupa todo el ancho disponible */
+      height: auto; /* Ajusta automáticamente la altura según el contenido */
+    }
+    .aboutSectionContainer {
+      flex-direction: column; /* Coloca los elementos en una columna */
+      align-items: flex-start; /* Alinea los elementos a la izquierda */
+    }
+    .aboutSectionImg {
+      width: 100%;
+      max-width: 4rem;
+      height: auto; /* Ajusta automáticamente la altura según el contenido */
+    }
+    .aboutConteinerParrafo {
+      width: 100%;
+    }
+    .aboutConteiner {
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+      }
+
+  }
