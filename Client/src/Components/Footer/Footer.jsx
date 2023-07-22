@@ -1,10 +1,4 @@
 import style from "../Footer/Footer.module.css";
-import instagram from "../../assets/instagram.png";
-import facebook from "../../assets/facebook-circular-logo.png";
-import youtube from "../../assets/youtube.png";
-import tiktok from "../../assets/tiktok.png";
-import twitter from "../../assets/twitter.png"
-import sportiverse2 from "../../assets/sportiverse2.png";
 import logoBlanco from "../../assets/logo-shadow-1.png";
 import { NavLink } from "react-router-dom";
 
