@@ -88,9 +88,7 @@ h2 {
     height: 10rem;
     max-height: 10rem;
     min-height: 10rem;
-    overflow: auto
-
-    overflow:auto;
+    overflow: auto;
     width: 100%;
 }
 
