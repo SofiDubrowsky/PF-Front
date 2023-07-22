@@ -47,6 +47,7 @@ const initialState = {
   filtersAdmin: {
     store: "all",
     activity: "all",
+    date: "",
   },
   order: "",
   orderDate: "",
@@ -225,11 +226,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         activities: action.payload,
       };
-    
+
     case UPDATE_ACTIVITY:
       return {
-        ...state
-      }
+        ...state,
+      };
 
     case PUT_USER:
       return { ...state };
@@ -268,6 +269,12 @@ const reducer = (state = initialState, action) => {
         );
       }
 
+      if (state.filtersAdmin.date) {
+        activityFiltered = activityFiltered.filter((element) =>
+          element.date?.includes(state.filtersAdmin.date)
+        );
+      }
+
       return {
         ...state,
         reservationsFiltered: activityFiltered,
@@ -277,6 +284,7 @@ const reducer = (state = initialState, action) => {
       const changedFilter = {
         activity: action.payload.activity,
         store: action.payload.store,
+        date: action.payload.date,
       };
       return {
         ...state,
