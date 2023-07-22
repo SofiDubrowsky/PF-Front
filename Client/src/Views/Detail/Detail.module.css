@@ -15,6 +15,12 @@
   margin: 2rem 0;
 }
 
+.starsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row; /* Add this line to make the stars display horizontally */
+}
 
 .sucursal span{
     font-size: 40px;
@@ -24,6 +30,16 @@
     text-transform: uppercase;
     text-shadow: 0 3px 10px rgba(174, 174, 174, 0.896);
 }
+
+.h2special{
+  font-size: 40px;
+  color: white;
+  letter-spacing: 7px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 0 3px 10px rgba(174, 174, 174, 0.896);
+}
+
 
 .contenedor {
   display: flex;
@@ -40,7 +56,10 @@
   margin: 0;
   width: 90%;
 }
-
+.average{
+  background-color: #93b44700;
+  color:white
+}
 
 
 .description {
@@ -229,9 +248,10 @@
     border-radius: 2rem;
 }   */
 .review {
-  align-items: center;
-  flex-direction: row;
-  text-align: center;
+  width: 20%;
+}
+.review svg:not(:last-child) {
+  margin-right: 5px;
 }
 .reviewbox {
   background-color: grey;
