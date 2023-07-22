@@ -1,5 +1,5 @@
 .contenedor {
-    width: 26rem;
+    width: 25%;
     padding: 1rem;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -50,11 +50,7 @@
     height: 400px
 }
 
-.star {
-    width: .4rem;
-    height: .4rem;
-    fill: #f1c40f;
-}
+
 
 .date {
     margin: 0.5rem;
@@ -93,6 +89,9 @@ h2 {
     max-height: 10rem;
     min-height: 10rem;
     overflow: auto
+
+    overflow:auto;
+    width: 100%;
 }
 
 /* Estilos para cada review individual */
@@ -130,6 +129,21 @@ h2 {
     /* Alinear elementos verticalmente en el centro */
 }
 
+.toggleButton {
+    background-color: none;  /* Color de fondo del botón */
+    color: rgba(107, 107, 107, 0.589); /* Color del texto del botón */
+    border: none; /* Elimina el borde del botón */
+    cursor: pointer; /* Cambia el cursor al hacer hover */
+    font-weight: bold;
+  }
+  
+  .toggleButton:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+
 /* DEJAR ESTO SIEMPRE AL FINAL */
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
@@ -152,3 +166,8 @@ h2 {
         text-align: center; 
       }
 }
+
+  
+    
+  
+  

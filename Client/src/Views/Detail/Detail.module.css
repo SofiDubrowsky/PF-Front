@@ -39,6 +39,8 @@
   font-weight: bold;
   text-transform: uppercase;
   text-shadow: 0 3px 10px rgba(174, 174, 174, 0.896);
+  margin-bottom: 0;
+  margin-top: 2rem;
 }
 
 
@@ -86,8 +88,8 @@
 
 .text span {
   color: white;
-  margin-left: 2em;
   align-items: flex-start;
+  text-transform: capitalize; 
 }
 
 .description h2 {
@@ -247,14 +249,11 @@ label {
   text-align: left;
 }
 
-/* @media only screen and (max-width: 600px) {
-  .containerPage {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-} */
+.carousel{
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}
+
 
 /* DEJAR ESTO SIEMPRE AL FINAL */
 /* RESPONSIVE DESIGN */
@@ -420,4 +419,6 @@ label {
   text-align: left;
 }
 
-}
+
+
+

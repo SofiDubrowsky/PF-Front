@@ -23,10 +23,10 @@ const Detail = () => {
     const starsArray = [];
     const roundedStars = Math.round(fullStars);
     for (let i = 0; i < roundedStars; i++) {
-        starsArray.push(<img key={i} style={{ width: "2rem", height: "2rem" }} src={"https://tevispropane.com/wp-content/uploads/2016/11/Review-star.png"} alt="star" className={style.stars} />);
+      starsArray.push(<img key={i} style={{ width: "2rem", height: "2rem" }} src={"https://tevispropane.com/wp-content/uploads/2016/11/Review-star.png"} alt="star" className={style.stars} />);
     }
     return <div className={style.starsContainer}>{starsArray}</div>;
-};
+  };
 
   const calculateAverageStars = () => {
     if (!reviews || reviews.length === 0) return 0;
@@ -34,7 +34,7 @@ const Detail = () => {
     const totalStars = reviews.reduce((sum, rev) => sum + (rev.points || 0), 0);
     const averageStars = totalStars / reviews.length;
     return averageStars;
-};
+  };
 
   return (
     <div className={style.body}>
@@ -61,9 +61,9 @@ const Detail = () => {
 
           <div className={style.text}>
             <h3>Sucursal: </h3>
-            <span>{activity?.stores?.map((store) => (store?.name).toUpperCase())}</span>
+            <span style={{ fontSize: "2rem", marginLeft: "2rem" }}>{activity?.stores?.map((store) => store?.name)}</span>
             <h3>Descripción: </h3>
-            <span>{activity?.description}</span>
+            <span style={{ marginLeft: "2rem" }}>{activity?.description}</span>
             {/*               <h3>Jugadores: </h3>
                 <span>{activity?.players?.join(', ')}</span>
               <h3>Edad: </h3>
@@ -118,14 +118,18 @@ const Detail = () => {
                   <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
                 </svg>
                 <h3 class="text-white leading-relaxed">Horarios</h3>
-                <p class="title-font font-medium text-3xl text-white">{activity?.hours?.join('hs, ')}</p>
+                <p class="title-font font-medium text-3xl text-white">{activity?.hours?.join('hs, ')}hs</p>
               </div>
             </div>
           </div>
-<h2 className={style.h2special}>Opiniones de usuarios</h2>
-<div className={style.average}>Calificacion promedio {Math.round(calculateAverageStars())}/5 {renderStars(calculateAverageStars())}</div>
+          <h2 className={style.h2special}>OPINIONES DE USUARIOS</h2>
+          <div className={style.average}>Calificacion promedio {Math.round(calculateAverageStars())}/5 {renderStars(calculateAverageStars())}</div>
         </div>
-        <ReviewCarousel></ReviewCarousel>
+
+        <div className={style.carousel}>
+          <ReviewCarousel></ReviewCarousel>
+        </div>
+
       </div>
 
     </div>
