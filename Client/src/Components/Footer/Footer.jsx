@@ -35,7 +35,7 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
             >
-              <h3 className={style.navlink}>Juan Mora</h3>
+              <h3 className={style.navlink}>Juan Pablo Mora</h3>
             </a>
             <a
               href="https://www.linkedin.com/in/luciano-velasquez-a73252269/"

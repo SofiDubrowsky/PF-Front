@@ -12,23 +12,27 @@
     margin: .5rem;
     height: 18rem;
 }
-.average{
+
+.average {
     justify-content: center;
     text-align: center;
     align-self: center;
 }
+
 .controlButton {
     color: white;
     font-size: 4rem;
 }
+
 .controlButton:disabled {
     color: rgb(85, 85, 85);
     font-size: 4rem;
 }
+
 .starsContainer {
     display: flex;
     align-items: center;
-    height:2rem;
+    height: 2rem;
     min-height: 2rem;
     max-height: 2rem;
 }
@@ -88,7 +92,7 @@ h2 {
     height: 10rem;
     max-height: 10rem;
     min-height: 10rem;
-    overflow:auto
+    overflow: auto
 }
 
 /* Estilos para cada review individual */
@@ -126,30 +130,25 @@ h2 {
     /* Alinear elementos verticalmente en el centro */
 }
 
-/* Estilos para hacerlo responsive */
-@media screen and (max-width: 768px) {
-    .contenedor {
-        max-width: 100%;
-        padding: 10px;
-    }
-
-    .review {
-        flex-wrap: wrap;
-    }
-
-    .review img {
-        width: 100px;
-        height: 100px;
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    .review>div:not(:last-child) {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
-
-    .review>div:nth-child(2) {
-        text-align: left;
-    }
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .carouselContainer {
+        flex-direction: column; 
+        align-items: center; 
+      }
+    
+      .review img {
+        width: 60px; 
+        height: 60px;
+      }
+    
+      .review>div:not(:last-child) {
+        margin-right: 0; 
+        margin-bottom: 10px; 
+      }
+    
+      .review>div:nth-child(2) {
+        text-align: center; 
+      }
 }
