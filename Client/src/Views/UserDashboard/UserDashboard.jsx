@@ -18,12 +18,12 @@ const UserDashboard = () => {
   const [gamesPerPage] = useState(3);
   const [selectedReservationId, setSelectedReservationId] = useState(null);
 
-  const loger = localStorage.getItem("loger");
+  const loger = localStorage.getItem('loger')
   const userDetail = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const idUser = localStorage.getItem("clientId");
   const activities = useSelector((state) => state.allActivities);
-  const myReviews = userDetail?.reviews;
+  const myReviews = userDetail?.reviews
 
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [showAlertLog, setShowAlertLog] = useState(false);
@@ -41,7 +41,7 @@ const UserDashboard = () => {
     dispatch(getActivities());
   }, [dispatch]);
 
-  const reservations = userDetail?.reservations?.sort((a, b) => b.id - a.id);
+  const reservations = (userDetail?.reservations)?.sort((a, b) => b.id - a.id);
 
   const indexOfLastGame = currentPage * gamesPerPage;
   const indexOfFirstGame = indexOfLastGame - gamesPerPage;
@@ -50,8 +50,7 @@ const UserDashboard = () => {
   const editProfile = () => {
     setShowAlertLog(true);
     setShowBackdrop(true);
-  };
-
+  }
   const addReview = (reservationId) => {
     setSelectedReservationId(reservationId);
     setShowAlertReview(true);
@@ -62,28 +61,21 @@ const UserDashboard = () => {
     setSelectedReservationId(reservationId);
     setShowAlertCancel(true);
     setShowBackdrop(true);
-  };
-
+  }
   const handleClose = () => {
     setShowAlertLog(false);
     setShowAlertReview(false);
     setShowAlertCancel(false);
     setShowBackdrop(false);
-  };
-
+  }
 
   const totalPages = Math.ceil(reservations?.length / gamesPerPage);
-
   const paginate = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
     }
   };
-
-  const userPicture =
-    userDetail?.picture === null || userDetail?.picture === undefined
-      ? "https://img.freepik.com/free-icon/user_318-804790.jpg"
-      : userDetail?.picture;
+  const userPicture = (userDetail?.picture === null || userDetail?.picture === undefined) ? "https://img.freepik.com/free-icon/user_318-804790.jpg" : (userDetail?.picture)
 
 //////////////////////////////////////////////
   const sendEmailData = async (emailInfo) => {
@@ -159,41 +151,6 @@ const UserDashboard = () => {
           <button
             className={style.paginationButton}
             disabled={currentPage === 1}
-            onClick={() => paginate(currentPage - 1)}
-          >
-            <h3>🡸</h3>
-          </button>
-
-          {Array.from({
-            length: Math.min(3, Math.ceil(reservations?.length / gamesPerPage)),
-          }).map((item, index) => {
-            const pageNumber = currentPage + index - 1;
-            const totalPages = Math.ceil(reservations?.length / gamesPerPage);
-
-            if (pageNumber >= 1 && pageNumber <= totalPages) {
-              return (
-                <button
-                  key={pageNumber}
-                  onClick={() => paginate(pageNumber)}
-                  className={`${style.paginationButton} ${
-                    currentPage === pageNumber ? style.active : ""
-                  }`}
-                >
-                  {pageNumber}
-                </button>
-              );
-            }
-            return null;
-          })}
-
-          <button
-            className={style.paginationButton}
-            disabled={
-              currentPage === Math.ceil(reservations?.length / gamesPerPage)
-            }
-            onClick={() => paginate(currentPage + 1)}
-          >
-            <h3>🡺</h3>
             onClick={() => paginate(currentPage - 1)}>
             <h1 >{"<"}</h1>
           </button>
@@ -209,22 +166,10 @@ const UserDashboard = () => {
         </div>
         {currentGames?.length > 0 ? (
           currentGames?.map((reserv) => {
-            const [day, month, year] = reserv?.date
-              ?.split(" ")
-              .slice(1)
-              .join(" ")
-              .split("/");
-            const fechita = new Date(
-              Number(year),
-              Number(month) - 1,
-              Number(day)
-            );
-            const existsRes = myReviews?.map((rev) => rev?.reservationId);
-            const exist = existsRes?.includes(reserv?.id);
-            console.log(existsRes);
-            console.log(reserv?.id);
-            console.log(exist);
-
+            const [day, month, year] = (reserv?.date?.split(" ").slice(1).join(" ").split("/"))
+            const fechita = new Date(Number(year), Number(month) - 1, Number(day))
+            const existsRes = myReviews?.map(rev => rev?.reservationId)
+            const exist = existsRes?.includes(reserv?.id)
 
             const emailInfo={
               reservId:reserv?.id,
@@ -280,57 +225,20 @@ const UserDashboard = () => {
                   </div>
                 </div>
                 <div className={style.buttons}>
+
                   {reserv?.pay === true ? (
-                    <h3
-                      style={{
-                        color: "green",
-                        fontSize: "24px",
-                        marginBottom: "1rem",
-                      }}
-                    >
-                      Estado: Pago Aprobado ✔
-                    </h3>
+                    <h3 style={{ color: "green", fontSize: "24px", marginBottom: "1rem" }}>Estado: Pago Aprobado ✔</h3>
                   ) : (
-                    <h3
-                      style={{
-                        color: "red",
-                        fontSize: "24px",
-                        marginBottom: "1rem",
-                      }}
-                    >
-                      Estado: No Aprobado ❌
-                    </h3>
+                    <h3 style={{ color: "red", fontSize: "24px", marginBottom: "1rem" }}>Estado: No Aprobado ❌</h3>
                   )}
 
-                  {fechita > new Date() ? (
-                    <button
-                      className={style.btn}
-                      onClick={() => cancelation(reserv?.id)}
-                    >
-                      Cancelar Reserva
-                    </button>
-                  ) : null}
+                  {(fechita > new Date()) ? (<button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button>) : null}
 
-                  {fechita < new Date().setHours(0, 0, 0, 0) ? (
-                    <button
-                      className={style.btn}
-                      onClick={() => addReview(reserv?.id)}
-                      disabled={existsRes.includes(reserv?.id)}
-                    >
-                      {existsRes.includes(reserv?.id)
-                        ? "Opinión Enviada ✔"
-                        : "Dejar Opinión ✉"}{" "}
-                    </button>
-                  ) : null}
+                  {(fechita < new Date().setHours(0, 0, 0, 0)) ? (<button className={style.btn} onClick={() => addReview(reserv?.id)} disabled={existsRes.includes(reserv?.id)}>{existsRes.includes(reserv?.id) ? "Opinión Enviada ✔" : "Dejar Opinión ✉"} </button>) : null}
 
                   {showAlertReview && (
                     <div className={style.popupp}>
-                      <FormReview
-                        handleClose={handleClose}
-                        idUser={idUser}
-                        activityId={reserv?.activityId}
-                        idReservation={selectedReservationId}
-                      />
+                      <FormReview handleClose={handleClose} idUser={idUser} activityId={reserv?.activityId} idReservation={selectedReservationId} />
                     </div>
                   )}
 
@@ -355,6 +263,9 @@ const UserDashboard = () => {
         ) : (
           <h2 className={style.notFound}>No hay reservas por el momento</h2>
         )}
+
+
+
       </div>
 
       {showAlertLog && (
@@ -364,17 +275,19 @@ const UserDashboard = () => {
           </div>
           <div className={style.containerBtn}>
             <UpdateUser />
-            <button className={style.btnCancel} onClick={handleClose}>
-              Cancelar
-            </button>
+            <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
           </div>
         </div>
       )}
 
 
+
+
       {showBackdrop && <div className={style.backdrop} />}
+
     </div>
   );
 };
 
 export default UserDashboard;
+
