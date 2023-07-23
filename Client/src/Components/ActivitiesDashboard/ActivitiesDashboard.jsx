@@ -6,7 +6,9 @@ import { NavLink } from "react-router-dom";
 import { getActivities } from "../../redux/Actions/getActivities";
 import { deleteActivity } from "../../redux/Actions/deleteActivity";
 import UpdateActivity from "../UpdateActivity/UpdateActivity";
+import { getActivityDetail } from "../../redux/Actions/getActivityDetail";
 const ActivitiesDashboard = () => {
+  const details = useSelector((state) => state.detail);
   const activities = useSelector((state) => state.activities);
   const [showUpdate, setShowUpdate] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
@@ -24,15 +26,16 @@ const ActivitiesDashboard = () => {
     navigate("/admin");
   };
 
-  const handleUpdate = () => {
+  const handleUpdate = (event, id) => {
+    event.preventDefault();
     setShowUpdate(true);
     setShowBackdrop(true);
+    dispatch(getActivityDetail(id))
   };
 
   const handleClose = () => {
     setShowUpdate(false);
     setShowBackdrop(false);
-   
   };
 
 
@@ -123,7 +126,7 @@ const ActivitiesDashboard = () => {
                     </td>
                     <td class="px-6 py-4">
                       <button
-                        onClick={(event) => handleUpdate(event)}
+                        onClick={(event) => handleUpdate(event, activity?.id)}
                         className={style.editButton1}
                       >
                         <svg
@@ -158,7 +161,7 @@ const ActivitiesDashboard = () => {
               <h2>Editar Actividades</h2>
             </div>
             <div className={style.containerBtn}>
-              <UpdateActivity />
+              <UpdateActivity details={details}/>
               <button className={style.btnCancel} onClick={handleClose}>
                 Cancelar
               </button>

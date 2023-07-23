@@ -4,20 +4,44 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Swal from "sweetalert2";
 import { updateActivity } from "../../redux/Actions/updateActivity";
-import { getActivities } from "../../redux/Actions/getActivities";
-import { getStores } from "../../redux/Actions/getStores";
 import { useDispatch, useSelector } from "react-redux";
+import validate from "../../Views/Form/validate";
+import { useParams } from "react-router-dom";
 
-const UpdateActivity = () => {
+
+const UpdateActivity = ({details}) => {
   const dispatch = useDispatch();
-  const [form, setForm] = useState({})
+  // const { id } = useParams();
+  // const details = useSelector((state) => state.detail);
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedHour, setSelectedHour] = useState("");
-  const [selectedStore, setSelectedStore] = useState("");
+  // const [selectedStore, setSelectedStore] = useState("");
   const [selectedAge, setSelectedAge] = useState("");
   const [selectedPlayers, setSelectedPlayers] = useState("");
-  const allActivities = useSelector((state) => state.activities);
-  const allStores = useSelector((state) => state.stores);
+  const [errors, setErrors] = useState({});
+
+  const id = details?.id;
+  const [form, setForm] = useState({
+    name: details?.name || "",
+    cost: details?.cost || 0,
+    age: details?.age || [],
+    players: details?.players || [],
+    days: details?.days || [],
+    hours: details?.hours || [],
+    stores: details?.stores || []
+  })
+  
+  useEffect(() => {
+    setForm({
+      name: details?.name || "",
+      cost: details?.cost || 0,
+      age: details?.age || [],
+      players: details?.players || [],
+      days: details?.days || [],
+      hours: details?.hours || [],
+      stores: details?.stores || []
+    });
+  }, [details]);
 
   const handleChange = (event) => {
     setForm({
@@ -27,16 +51,45 @@ const UpdateActivity = () => {
   }
 
   const handleSelect = (event) => {
-    setForm({
-      ...form,
-      [event.target.name] : event.target.value
-    })
+    const repet = form[event.target.name].includes(event.target.value);
+    if (!repet) {
+      setForm({
+        ...form,
+        [event.target.name]: [...form[event.target.name], event.target.value],
+      });
+      setErrors(
+        validate({
+          ...form,
+          [event.target.name]: [...form[event.target.name], event.target.value],
+        })
+      );
+    }
   }
+  const handleRemove = (key, item) => {
+    event.preventDefault();
+    setForm((prevForm) => ({
+      ...prevForm,
+      [key]: prevForm[key].filter((selectedItem) => selectedItem !== item),
+    }));
+
+    if (key === "days") {
+      setSelectedDay("");
+    } else if (key === "hours") {
+      setSelectedHour("");
+    } else if (key === "age") {
+      setSelectedAge("");
+    } else if (key === "players") {
+      setSelectedPlayers("");
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateActivity())
+    dispatch(updateActivity(form, id))
+    
   }
+
+
   return (
     <div>
       <form
@@ -47,29 +100,27 @@ const UpdateActivity = () => {
           <div className={style.content}>
             <input
               type="text"
-              value={form.name}
+              value={form?.name}
               name="name"
               onChange={(event) => handleChange(event)}
               placeholder="Nombre"
               className={style.inputForm}
             />
-            {/* {errors.name && <p>{errors.name}</p>} */}
           </div>
+
           <div className={style.content}>
-            {/* <h3>Precio: $</h3> */}
             <input
               type="number"
               min="0"
-              value={form.cost}
+              value={form?.cost}
               name="cost"
               onChange={handleChange}
               placeholder="Precio"
               className={style.inputForm}
             />
-            {/* {errors.cost && <p>{errors.cost}</p>} */}
           </div>
+
           <div className={style.content}>
-            {/* <h3>Dias: </h3> */}
             <select
               type="text"
               name="days"
@@ -87,11 +138,10 @@ const UpdateActivity = () => {
               <option value="Viernes">Viernes</option>
               <option value="Sábado">Sabado</option>
             </select>
-            {/* {errors.days && <p>{errors.days}</p>} */}
             <div>
               <div className={style.inputDelete}>
                 {form?.days?.length > 0 ? (
-                  form?.days?.map((day) => (
+                  (form?.days)?.map((day) => (
                     <div className={style.inputDel} key={day}>
                       <button onClick={() => handleRemove("days", day)}>
                         X
@@ -99,15 +149,13 @@ const UpdateActivity = () => {
                       <h3>{day}</h3>
                     </div>
                   ))
-                ) : (
-                  <p>No se han seleccionado dias</p>
-                )}
+                ) : null
+                }
               </div>
             </div>
           </div>
 
           <div className={style.content}>
-            {/* <h3>Horarios: </h3> */}
             <select
               type="text"
               name="hours"
@@ -129,7 +177,6 @@ const UpdateActivity = () => {
               <option value="18-19">18hs a 19hs</option>
               <option value="19-20">19hs a 20hs</option>
             </select>
-            {/* {errors.hours && <p>{errors.hours}</p>} */}
             <div>
               <div className={style.inputDelete}>
                 {form?.hours?.length > 0 ? (
@@ -141,15 +188,12 @@ const UpdateActivity = () => {
                       <h3>{hour}hs</h3>
                     </div>
                   ))
-                ) : (
-                  <p>No se han seleccionado horarios</p>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
 
           <div className={style.content}>
-            {/* <h3>Edades: </h3> */}
             <select
               type="text"
               name="age"
@@ -163,7 +207,6 @@ const UpdateActivity = () => {
               <option value="Niños">Niños</option>
               <option value="Adultos">Adultos</option>
             </select>
-            {/* {errors.age && <p>{errors.age}</p>} */}
             <div>
               <div className={style.inputDelete}>
                 {form?.age?.length > 0 ? (
@@ -173,15 +216,12 @@ const UpdateActivity = () => {
                       <h3>{ag}</h3>
                     </div>
                   ))
-                ) : (
-                  <p>No se han seleccionado edades</p>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
 
           <div className={style.content}>
-            {/* <h3>Cantidad de jugadores: </h3> */}
             <select
               type="text"
               name="players"
@@ -196,11 +236,10 @@ const UpdateActivity = () => {
               <option value="4-8">4 a 8 jugadores</option>
               <option value="+8">+8 jugadores</option>
             </select>
-            {/* {errors.players && <p>{errors.players}</p>} */}
             <div>
               <div className={style.inputDelete}>
                 {form?.players?.length > 0 ? (
-                  form?.players?.map((player) => (
+                  form?.players?.map(player => (
                     <div className={style.inputDel} key={player}>
                       <button onClick={() => handleRemove("players", player)}>
                         X
@@ -208,14 +247,11 @@ const UpdateActivity = () => {
                       <h3>{player} jugadores</h3>
                     </div>
                   ))
-                ) : (
-                  <p>No se han seleccionado cantidades de jugadores</p>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
-          <div className={style.content}>
-            {/* <h3>Sucursales: </h3> */}
+          {/* <div className={style.content}>
             <select
               type="number"
               name="store"
@@ -226,16 +262,15 @@ const UpdateActivity = () => {
               <option value="" disabled selected>
                 Sucursales
               </option>
-              {allStores.map((store) => (
-                <option value={parseInt(store.id)}>{store.name}</option>
+              {allStores?.map((store) => (
+                <option value={parseInt(store?.id)}>{store?.name}</option>
               ))}
             </select>
-            {/* {errors.store && <p>{errors.store}</p>} */}
             <div className={style.inputDelete}>
-              {form?.store?.length > 0 ? (
-                form?.store?.map((storeId) => {
-                  const selectedStore = allStores.find(
-                    (store) => Number(store.id) === Number(storeId)
+              {form?.stores?.length > 0 ? (
+                form?.stores?.map((storeId) => {
+                  const selectedStore = allStores?.find(
+                    (store) => Number(store?.id) === Number(storeId)
                   );
                   // const storeName = selectedStore.name
                   return (
@@ -243,15 +278,13 @@ const UpdateActivity = () => {
                       <button onClick={() => handleRemove("store", storeId)}>
                         X
                       </button>
-                      <h3>{selectedStore.name}</h3>
+                      <h3>{selectedStore?.name}</h3>
                     </div>
                   );
                 })
-              ) : (
-                <p>No se han seleccionado sucursales</p>
-              )}
+              ) : null}
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={style.btnContainer}>
           <button className={style.btn} type="submit">
