@@ -227,9 +227,9 @@ const UserDashboard = () => {
                 <div className={style.buttons}>
 
                   {reserv?.pay === true ? (
-                    <h3 style={{ color: "green", fontSize: "24px", marginBottom: "1rem" }}>Estado: Pago Aprobado ✔</h3>
+                    <h3 style={{ color: "green", fontSize: "24px", marginBottom: "1rem" }}>Pago Aprobado ✔</h3>
                   ) : (
-                    <h3 style={{ color: "red", fontSize: "24px", marginBottom: "1rem" }}>Estado: No Aprobado ❌</h3>
+                    <h3 style={{ color: "red", fontSize: "24px", marginBottom: "1rem" }}>No Aprobado ❌</h3>
                   )}
 
                   {(fechita > new Date()) ? (<button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button>) : null}
