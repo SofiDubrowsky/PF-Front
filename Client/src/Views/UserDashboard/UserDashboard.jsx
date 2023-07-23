@@ -11,6 +11,7 @@ import FormReview from "../../Components/Review/FormReview";
 import { deleteReservation } from "../../redux/Actions/deleteReservations";
 import { format } from 'date-fns-tz';
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -84,11 +85,36 @@ const UserDashboard = () => {
       ? "https://img.freepik.com/free-icon/user_318-804790.jpg"
       : userDetail?.picture;
 
-  const handleDelete = () => {
+//////////////////////////////////////////////
+  const sendEmailData = async (emailInfo) => {
+    try {
+      const dataToSend = {
+        reservId: emailInfo.reservId,
+        activity: emailInfo.activity,
+        date: emailInfo.date,
+        hour: emailInfo.hour,
+        cost: emailInfo.cost,
+        user: emailInfo.user,
+        store: emailInfo.store
+      };
+
+      await axios.post('http://localhost:3001/refund', dataToSend);
+      // await axios.post('https://sportiverse-server.onrender.com/refund', emailInfo);
+      console.log('Datos enviados por email exitosamente');
+    // Mostrar la alerta de éxito
+  } catch (error) {
+    console.error('Error al enviar los datos por email:', error);
+    
+  }
+};
+
+  const handleDelete = (emailInfo) => {
     event.preventDefault();
     dispatch(deleteReservation(selectedReservationId));
     setShowAlertCancel(false);
     setShowBackdrop(false);
+    sendEmailData(emailInfo);
+
     Swal.fire({
       icon: 'success',
       title: 'Reserva Cancelada',
@@ -200,6 +226,16 @@ const UserDashboard = () => {
             console.log(exist);
 
 
+            const emailInfo={
+              reservId:reserv?.id,
+              activity:activities?.find((act) => act?.id === Number(reserv?.activityId))?.name?.toUpperCase(),
+              date:reserv?.date,
+              hour:reserv?.hour,
+              cost:reserv?.cost,
+              user:userDetail?.name,
+              store:activities?.find((act) => act?.id === Number(reserv?.activityId))?.stores?.map((e) => e?.name)
+            }
+          
             return (
               <div className={style.gameContainer} key={reserv.id}>
                 <div className={style.containerImage}>
@@ -297,6 +333,21 @@ const UserDashboard = () => {
                       />
                     </div>
                   )}
+
+                {showAlertCancel && (
+                  <div className={style.popup}>
+                    <div className={style.container}>
+                      <h2>CANCELACION DE RESERVA</h2>
+                      <p>Recuerda que puedes cancelar tu reserva hasta el día anterior al turno</p>
+                      <p style={{ fontSize: "1.5rem" }}>⚠︎ ¿Esta seguro de eliminar esta reserva? ⚠︎ </p>
+                    </div>
+                    <div style={{ display: "flex", justifyContent: "center" }}>
+                      <button className={style.btnCancel} onClick={() => handleDelete(emailInfo)}>Eliminar</button>
+                      <button className={style.btnCancel} onClick={handleClose}>Volver</button>
+                    </div>
+                  </div>
+                )}
+
                 </div>
               </div>
             );
@@ -320,24 +371,6 @@ const UserDashboard = () => {
         </div>
       )}
 
-      {showAlertCancel && (
-        <div className={style.popup}>
-          <div className={style.container}>
-            <h2>CANCELACION DE RESERVA</h2>
-            <p>¿Esta seguro de eliminar esta reserva?</p>
-          </div>
-          <div>
-            <button className={style.btnCancel} onClick={() => handleDelete()}>
-              Eliminar
-            </button>
-          </div>
-          <div>
-            <button className={style.btnCancel} onClick={handleClose}>
-              Cancelar
-            </button>
-          </div>
-        </div>
-      )}
 
       {showBackdrop && <div className={style.backdrop} />}
     </div>
