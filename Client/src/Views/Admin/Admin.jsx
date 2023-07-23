@@ -18,7 +18,7 @@ const Admin = () => {
   }, []);
 
   useEffect(() => {
-    isClient === "true" && navigate("/home");
+    isClient !== "false" && navigate("/home");
   }, [isClient]);
 
   return (
