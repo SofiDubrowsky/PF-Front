@@ -275,7 +275,7 @@ const UserDashboard = () => {
           </div>
           <div className={style.containerBtn}>
             <UpdateUser />
-            <button className={style.btnCancel} onClick={handleClose}>Cancelar</button>
+           <div style={{display:"flex",justifyContent:"center"}}><button className={style.btnCancel}  onClick={handleClose}>Cancelar</button></div> 
           </div>
         </div>
       )}

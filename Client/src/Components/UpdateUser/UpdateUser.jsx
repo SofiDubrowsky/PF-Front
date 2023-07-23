@@ -198,13 +198,13 @@ const UpdateUser = () => {
           </div>
         </div>
       )}
-      <button
+      <div style={{display:"flex",justifyContent:"center"}}><button
         className={style.editarBtn}
         type="submit"
         disabled={buttonDisabled}
       >
         Aplicar Cambios
-      </button>
+      </button></div>
     </form>
   );
 };
