@@ -63,7 +63,7 @@ const Detail = () => {
             <h3>Sucursal: </h3>
             <span style={{ fontSize: "2rem", marginLeft: "2rem" }}>{activity?.stores?.map((store) => store?.name)}</span>
             <h3>Descripción: </h3>
-            <span style={{ marginLeft: "2rem" }}>{activity?.description}</span>
+            <span style={{ marginLeft: "2rem", display: "block", textAlign: "center", maxWidth: "100%" }}>{activity?.description}</span>
             {/*               <h3>Jugadores: </h3>
                 <span>{activity?.players?.join(', ')}</span>
               <h3>Edad: </h3>

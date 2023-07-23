@@ -260,7 +260,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #666;
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   z-index: 9999;
@@ -272,14 +272,15 @@
 }
 
 .popup h2 {
-  color: black;
+  color: #ffffff;
   padding-top: 3px;
+  font-weight: bold;
 }
 
 .popup h4 {
   font-size: 19px;
   margin-top: 7px;
-  color: black;
+  color: #ffffff;
 }
 
 .btnCancel,
