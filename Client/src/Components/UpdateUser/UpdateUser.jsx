@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
-import style from "./UpdateUser.module.css"
+import style from "./UpdateUser.module.css";
 import { updateUser } from "../../redux/Actions/updateUser";
 import { useSelector, useDispatch } from "react-redux";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
@@ -13,14 +13,14 @@ const PRESET = import.meta.env.VITE_PRESET;
 const UpdateUser = () => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
   const userDetail = useSelector((state) => state.userDetail);
-  const [imagePreviewUrl, setImagePreviewUrl] = useState("")
+  const [imagePreviewUrl, setImagePreviewUrl] = useState("");
   const dispatch = useDispatch();
-let url = imagePreviewUrl
+  let url = imagePreviewUrl;
   const [form, setForm] = useState({
     name: userDetail?.name,
     phone: userDetail?.phone,
-    picture: '' ,
-    password: userDetail?.password
+    picture: "",
+    password: userDetail?.password,
   });
 
   const [errors, setErrors] = useState({});
@@ -33,12 +33,12 @@ let url = imagePreviewUrl
   const handleChange = (event) => {
     setForm({
       ...form,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
     setErrors(
       validate({
         ...form,
-        [event.target.name]: event.target.value
+        [event.target.name]: event.target.value,
       })
     );
   };
@@ -64,55 +64,53 @@ let url = imagePreviewUrl
     return errors;
   };
 
-  
   const handleImageUpload = (event) => {
     const files = event.target.files;
     if (files.length > 0) {
       const formData = new FormData();
       formData.append("file", files[0]);
-      formData.append("upload_preset", PRESET); 
+      formData.append("upload_preset", PRESET);
       console.log(files);
       fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
         method: "POST",
         body: formData,
       })
-      .then((response) => response.json())
-      
-      .then((data) => {
-        setImagePreviewUrl(data.secure_url);
-        setForm((prevForm) => ({
+        .then((response) => response.json())
+
+        .then((data) => {
+          setImagePreviewUrl(data.secure_url);
+          setForm((prevForm) => ({
             ...prevForm,
             picture: data.secure_url,
           }));
-      })
-      
-      .catch((error) => {
-        console.error("Error al subir la imagen a Cloudinary:", error);
-      });
+        })
+
+        .catch((error) => {
+          console.error("Error al subir la imagen a Cloudinary:", error);
+        });
     }
   };
-  
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setForm({
       ...form,
-      picture: url}
-    );
-   
+      picture: url,
+    });
+
     setErrors(validate(form));
     const error = validate(form);
     if (Object.values(error).length !== 0) {
       alert("Debe rellenar el campo obligatorio");
     } else {
-      console.log(form)
+      console.log(form);
       dispatch(updateUser(form));
-      setTimeout(reload, 1500)
+      setTimeout(reload, 1500);
     }
   };
 
-
   useEffect(() => {
-    const requiredFields = ["name","password"];
+    const requiredFields = ["name", "password"];
     const allFieldsHaveValue = requiredFields.every((field) => form[field]);
     setButtonDisabled(!allFieldsHaveValue);
   }, [form]);
@@ -127,45 +125,84 @@ let url = imagePreviewUrl
       ...prevForm,
       picture: "",
     }));
-    setImagePreviewUrl("")
+    setImagePreviewUrl("");
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div className={style.divInput}>
-        <input className={style.inputForm} type="text" value={form.name} name="name" placeholder="Nombre" onChange={handleChange}/>
+        <input
+          className={style.inputForm}
+          type="text"
+          value={form.name}
+          name="name"
+          placeholder="Nombre"
+          onChange={handleChange}
+        />
         {errors.name && <p className={style.error}>{errors.name}</p>}
       </div>
 
       <div className={style.divInput}>
-        <input className={style.inputForm} type="text" value={form.phone} name="phone" placeholder="Teléfono" onChange={handleChange}/>
+        <input
+          className={style.inputForm}
+          type="text"
+          value={form.phone}
+          name="phone"
+          placeholder="Teléfono"
+          onChange={handleChange}
+        />
         {errors.phone && <p className={style.error}>{errors.phone}</p>}
       </div>
-      {(userDetail?.password)?.length>10? undefined:
-      <div className={style.divInput}>
-        <input className={style.inputPass} type={showPassword ? "text" : "password"} value={form.password} name="password" placeholder="Contraseña" onChange={handleChange}/>
-        {errors.password && <p className={style.error}>{errors.password}</p>}
-        <button type="button" className={style.toggleButton} onClick={togglePasswordVisibility}>
-          {showPassword ? "⦿" : "◠"} 
-        </button>
-      </div>}
+      {userDetail?.password?.length > 10 ? undefined : (
+        <div className={style.divInput}>
+          <input
+            className={style.inputPass}
+            type={showPassword ? "text" : "password"}
+            value={form.password}
+            name="password"
+            placeholder="Contraseña"
+            onChange={handleChange}
+          />
+          {errors.password && <p className={style.error}>{errors.password}</p>}
+          <button
+            type="button"
+            className={style.toggleButton}
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? "⦿" : "◠"}
+          </button>
+        </div>
+      )}
 
       <div className={style.divInput}>
-        <input className={style.inputForm} type="file" accept="image/*" name="picture" title="Subir Imagen" onChange={handleImageUpload}/>
+        <input
+          className={style.inputForm}
+          type="file"
+          accept="image/*"
+          name="picture"
+          title="Subir Imagen"
+          onChange={handleImageUpload}
+        />
         {errors.picture && <p className={style.error}>{errors.picture}</p>}
       </div>
       {imagePreviewUrl && (
-  <div className={style.imagepreview}>
-    <div className={style.imagecontainer}>
+        <div className={style.imagepreview}>
+          <div className={style.imagecontainer}>
+            <button
+              className={style.removebutton}
+              onClick={() => handleRemoveImage()}
+            >
+              X
+            </button>
+            <img src={imagePreviewUrl} alt="Preview" />
+          </div>
+        </div>
+      )}
       <button
-        className={style.removebutton}
-        onClick={() => handleRemoveImage()}
-      >X</button>
-      <img src={imagePreviewUrl} alt="Preview"/>
-    </div>
-  </div>
-)}
-      <button className={style.editarBtn} type="submit" disabled={buttonDisabled}>
+        className={style.editarBtn}
+        type="submit"
+        disabled={buttonDisabled}
+      >
         Aplicar Cambios
       </button>
     </form>

@@ -11,9 +11,8 @@ import {
   orderDate,
   allFiltersAdmin,
   setFiltersAdmin,
-  setOrderByDate
+  setOrderByDate,
 } from "../../redux/Actions/filtersAdmin";
-
 
 const ReservationsDashboard = () => {
   const dispatch = useDispatch();
@@ -22,11 +21,10 @@ const ReservationsDashboard = () => {
   useEffect(() => {
     dispatch(getReservations());
     dispatch(getActivities());
-    dispatch(getStores())
+    dispatch(getStores());
   }, []);
 
   const reservations = useSelector((state) => state.reservationsFiltered);
-  // console.log(reservations)
   const activities = useSelector((state) => state.activities);
   const stores = useSelector((state) => state.stores);
   const filtersSelected = useSelector((state) => state.filtersAdmin);
@@ -35,12 +33,13 @@ const ReservationsDashboard = () => {
   const [email, setEmail] = useState("");
   const [storeFilter, setStoreFilter] = useState(filtersSelected.store);
   const [activityFilter, setActivityFilter] = useState(filtersSelected.activity);
+  const [filterDate, setFilterDate] = useState(filtersSelected.date);
   const [date, setDate] = useState("");
 
   const handleDelete = (event, id) => {
     event.preventDefault();
     dispatch(deleteReservation(id));
-    navigate("/admin");
+    navigate("/home");
   };
 
   const handleChange = (event) => {
@@ -63,10 +62,16 @@ const ReservationsDashboard = () => {
     setStoreFilter(event.target.value);
   };
 
-  const handleFilter = () => {
+  const handleDateChange = (event) => {
+    setFilterDate(event.target.value);
+  };
+
+  const handleFilter = () => { 
+    let splitDate = filterDate.split("-").reverse().join("/")
     let filters = {
       store: storeFilter,
       activity: activityFilter,
+      date: splitDate
     };
 
     dispatch(setFiltersAdmin(filters));
@@ -74,13 +79,13 @@ const ReservationsDashboard = () => {
     setDate("");
   };
 
+
   const orderByDate = (event) => {
     event.preventDefault();
     dispatch(setOrderByDate(event.target.value));
     dispatch(orderDate(event.target.value));
     setDate(event.target.value);
   };
-
 
   return (
     <div className={style.main}>
@@ -116,15 +121,18 @@ const ReservationsDashboard = () => {
         </div>
       </div>
       <div className={style.filtersContainer}>
-      <div className={style.filters}>
-            <select onChange={(event) => orderByDate(event)} value={orderSelected}>
+        <div className={style.filters}>
+          <select
+            onChange={(event) => orderByDate(event)}
+            value={orderSelected}
+          >
             <option value="" disabled hidden>
-                Ordenar
-              </option>
-              <option value="ascendent">Antiguas</option>
-              <option value="descendent">Recientes</option>
-            </select>
-          </div>
+              Ordenar
+            </option>
+            <option value="ascendent">Antiguas</option>
+            <option value="descendent">Recientes</option>
+          </select>
+        </div>
         <div className={style.filters}>
           <select
             onChange={(event) => handleFilterActivity(event)}
@@ -151,7 +159,19 @@ const ReservationsDashboard = () => {
             ))}
           </select>
         </div>
-        <button type="submit" onClick={handleFilter} className={style.btnApply}>Aplicar</button>
+        <div className={style.filters}>
+          <input
+            type="date"
+            min="2022-01-01"
+            max="2028-01-01"
+            value={filterDate}
+            onChange={handleDateChange}
+            className={style.inputDate}
+          />
+        </div>
+        <button type="submit" onClick={handleFilter} className={style.btnApply}>
+          Aplicar
+        </button>
       </div>
 
       <div>
