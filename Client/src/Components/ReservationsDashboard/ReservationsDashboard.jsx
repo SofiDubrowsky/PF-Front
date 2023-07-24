@@ -77,7 +77,18 @@ const ReservationsDashboard = () => {
           return new Promise((resolve) => {
             setTimeout(() => {
               resolve();
-            }, 1000);
+            }, 1000).then(
+              setTimeout(() => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Reserva eliminada con éxito',
+                  text: 'La reserva ha sido eliminada correctamente.',
+                  color: "#FFFFFF",
+                  background: "#666",
+                  timer: 2000,
+                })
+              }, 1000)
+              )
           });
         } catch (error) {
           console.error(error);
