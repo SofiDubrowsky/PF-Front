@@ -14,6 +14,7 @@ import {
   setOrderByDate,
 } from "../../redux/Actions/filtersAdmin";
 import { format } from "date-fns-tz";
+import Swal from "sweetalert2";
 
 const ReservationsDashboard = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const ReservationsDashboard = () => {
   const stores = useSelector((state) => state.stores);
   const filtersSelected = useSelector((state) => state.filtersAdmin);
   const orderSelected = useSelector((state) => state.orderDate);
+
 
   const [email, setEmail] = useState("");
   const [storeFilter, setStoreFilter] = useState(filtersSelected.store);
@@ -57,9 +59,39 @@ const ReservationsDashboard = () => {
 
   const handleDelete = (event, id) => {
     event.preventDefault();
-    dispatch(deleteReservation(id));
-    navigate("/home");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Eliminar Reserva',
+      text: "⚠︎ ¿Esta seguro de eliminar esta reserva? ⚠︎",
+      showConfirmButton: true,
+      showCancelButton: true, 
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Volver', 
+      color: "#FFFFFF",
+      background: "#666",
+      allowOutsideClick: () => !Swal.isLoading(), 
+      preConfirm: async () => {
+        try {
+          await dispatch(deleteReservation(id));
+          await dispatch(getReservations());
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000);
+          });
+        } catch (error) {
+          console.error(error);
+          return Promise.reject();
+        }
+      },
+    });
+    if (result.isConfirmed) {
+      Swal.close();
+    } else {
+      navigate("/admin");
+    }
   };
+
 
   const handleChange = (event) => {
     event.preventDefault();
