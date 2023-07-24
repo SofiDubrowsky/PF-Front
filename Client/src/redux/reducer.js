@@ -36,6 +36,12 @@ import {
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
 
+import { POST_REVIEW } from "./Actions/postReview";
+import { DELETE_ACTIVITY } from "./Actions/deleteActivity";
+import { UPDATE_ACTIVITY } from "./Actions/updateActivity";
+import { SET_FILTER_STATS } from "./Actions/filterStats"
+
+
 const initialState = {
   activities: [],
   allActivities: [],
@@ -51,6 +57,7 @@ const initialState = {
     activity: "all",
     date: "",
   },
+  filtersStats: "",
   order: "",
   orderDate: "",
   clientId: 0,
@@ -60,6 +67,7 @@ const initialState = {
   userDetail: [],
   allReservations: [],
   reservationsFiltered: [],
+  reservationsStatsFiltered: [],
   allUsers: [],
   admins: []
 };
@@ -261,6 +269,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         allReservations: action.payload,
         reservationsFiltered: action.payload,
+        reservationsStatsFiltered: action.payload
       };
 
     case DELETE_RESERVATION:
@@ -332,6 +341,20 @@ const reducer = (state = initialState, action) => {
         ...state,
         reservationsFiltered: ordered,
       };
+
+    case SET_FILTER_STATS:
+      let reservations = state.allReservations
+      let filter = []
+      if (action.payload === "all") {
+        filter = reservations
+      }else{
+        filter = reservations.filter(activity => activity.date.includes(action.payload))
+      }
+      return {
+        ...state,
+        reservationsStatsFiltered: filter
+      }
+
     default:
       return state;
   }
