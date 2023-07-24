@@ -22,6 +22,7 @@ import { GET_STORES } from "./Actions/getStores";
 import { POST_STORE } from "./Actions/postStore";
 import { DELETE_STORE } from "./Actions/deleteStore";
 import { POST_REVIEW } from "./Actions/postReview";
+import { GET_ADMINS } from "./Actions/getAdmin";
 import {
   ORDER_BY_COST,
   ALL_FILTER,
@@ -60,10 +61,17 @@ const initialState = {
   allReservations: [],
   reservationsFiltered: [],
   allUsers: [],
+  admins: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case GET_ADMINS:
+      return{
+        ...state,
+        admins: action.payload
+      }
+      
     case GET_ACTIVITIES:
       return {
         ...state,
