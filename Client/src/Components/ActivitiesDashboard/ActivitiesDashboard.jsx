@@ -13,6 +13,22 @@ const ActivitiesDashboard = () => {
   const [showUpdate, setShowUpdate] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [activitiesPerPage] = useState(4);
+  const indexOfLastActivity = currentPage * activitiesPerPage;
+  const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
+  const currentActivities = activities?.slice(
+    indexOfFirstActivity,
+    indexOfLastActivity
+  );
+
+  const totalPages = Math.ceil(activities?.length / activitiesPerPage);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -30,14 +46,13 @@ const ActivitiesDashboard = () => {
     event.preventDefault();
     setShowUpdate(true);
     setShowBackdrop(true);
-    dispatch(getActivityDetail(id))
+    dispatch(getActivityDetail(id));
   };
 
   const handleClose = () => {
     setShowUpdate(false);
     setShowBackdrop(false);
   };
-
 
   return (
     <div className={style.mainContainer}>
@@ -99,8 +114,8 @@ const ActivitiesDashboard = () => {
               </th>
             </tr>
           </thead>
-          {Array.isArray(activities) &&
-            activities?.map((activity) => {
+          {Array.isArray(currentActivities) &&
+            currentActivities?.map((activity) => {
               return (
                 <tbody>
                   <tr class="border-b bg-light-grey dark:border-white ">
@@ -121,9 +136,7 @@ const ActivitiesDashboard = () => {
                     <td class="px-6 py-4 ">
                       {activity?.hours?.map((hour) => hour).join(", ")}
                     </td>
-                    <td class="px-6 py-4">
-                      ${activity?.cost}
-                    </td>
+                    <td class="px-6 py-4">${activity?.cost}</td>
                     <td class="px-6 py-4">
                       <button
                         onClick={(event) => handleUpdate(event, activity?.id)}
@@ -161,7 +174,7 @@ const ActivitiesDashboard = () => {
               <h2>Editar Actividades</h2>
             </div>
             <div className={style.containerBtn}>
-              <UpdateActivity details={details}/>
+              <UpdateActivity details={details} />
               <button className={style.btnCancel} onClick={handleClose}>
                 Cancelar
               </button>
@@ -169,6 +182,25 @@ const ActivitiesDashboard = () => {
           </div>
         )}
         {showBackdrop && <div className={style.backdrop} />}
+      </div>
+      <div className={style.pagination}>
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === 1}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          <h1>{"<"}</h1>
+        </button>
+
+        <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === totalPages}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          <h1>{">"}</h1>
+        </button>
       </div>
     </div>
   );
