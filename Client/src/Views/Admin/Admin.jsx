@@ -6,7 +6,7 @@ import StatsDashboard from "../../Components/StatsDashboard/StatsDashboard";
 import UserDashboard from "../../Components/UserDashboard/UserDashboard";
 import ActivitiesDashboard from "../../Components/ActivitiesDashboard/ActivitiesDashboard";
 import ConfigDashboard from "../../Components/ConfigDashboard/ConfigDashboard";
-
+import StoresDashboard from "../../Components/StoresDashboard/StoresDashboard";
 const Admin = () => {
   const navigate = useNavigate();
   const isClient = localStorage.getItem("isClient");
@@ -53,6 +53,13 @@ const Admin = () => {
           >
             Actividades
           </button>
+          <button
+            className={style.windowButtton}
+            onClick={() => handleClick("stores")}
+            disabled={actualWindow === "stores"}
+          >
+            Stores
+          </button>
         </div>
         <button
           onClick={() => handleClick("config")}
@@ -76,6 +83,10 @@ const Admin = () => {
 
             case "activities":
               return <ActivitiesDashboard />;
+
+            case "stores":
+              return <StoresDashboard />;
+
             case "config":
               return <ConfigDashboard />;
 
