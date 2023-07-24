@@ -1,38 +1,39 @@
-import { GET_STORES } from "./Actions/getStores";
-import { POST_ACTIVITY } from "./Actions/postActivity";
 import { GET_ACTIVITIES } from "./Actions/getActivities";
 import { GET_ACT_BY_NAME } from "./Actions/getActByName";
 import { GET_ACTIVITY_DETAIL } from "./Actions/getActivityDetail";
+import { POST_ACTIVITY } from "./Actions/postActivity";
+import { UPDATE_ACTIVITY } from "./Actions/updateActivity";
+import { DELETE_ACTIVITY } from "./Actions/deleteActivity";
 import { LOGIN } from "./Actions/login";
 import { LOGIN_GOOGLE } from "./Actions/loginGoogle";
 import { LOGOUT } from "./Actions/logout";
 import { CREATE_USER } from "./Actions/createUser";
+import { GET_RESERVATIONS } from "./Actions/getReservations";
+import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
+import { POST_RESERVATION } from "./Actions/postReservation";
+import { DELETE_RESERVATION } from "./Actions/deleteReservations";
+import { GET_USER } from "./Actions/getUser";
+import { GET_ALL_USERS } from "./Actions/getAllUsers";
+import { GET_USER_BY_NAME } from "./Actions/getUserByName";
+import { GET_USER_BY_EMAIL } from "./Actions/getUserByEmail";
+import { PUT_USER } from "./Actions/updateUser";
+import { DELETE_USER } from "./Actions/deleteUser";
+import { GET_STORES } from "./Actions/getStores";
+import { POST_STORE } from "./Actions/postStore";
+import { DELETE_STORE } from "./Actions/deleteStore";
+import { POST_REVIEW } from "./Actions/postReview";
 import {
   ORDER_BY_COST,
   ALL_FILTER,
   SET_FILTERS,
   SET_ORDER,
 } from "./Actions/filters";
-import { SAVE_RESERVATION } from "./Actions/saveInfoReservation";
-import { POST_RESERVATION } from "./Actions/postReservation";
-import { GET_USER } from "./Actions/getUser";
-import { GET_RESERVATIONS } from "./Actions/getReservations";
-import { POST_STORE } from "./Actions/postStore";
-import { GET_ALL_USERS } from "./Actions/getAllUsers";
-import { GET_USER_BY_NAME } from "./Actions/getUserByName";
-import { GET_USER_BY_EMAIL } from "./Actions/getUserByEmail";
-import { PUT_USER } from "./Actions/updateUser";
-import { DELETE_USER } from "./Actions/deleteUser";
-import { DELETE_RESERVATION } from "./Actions/deleteReservations";
 import {
   ORDER_BY_DATE,
   ALL_FILTERS_ADMIN,
   SET_FILTERS_ADMIN,
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
-import { POST_REVIEW } from "./Actions/postReview";
-import { DELETE_ACTIVITY } from "./Actions/deleteActivity";
-import { UPDATE_ACTIVITY } from "./Actions/updateActivity";
 
 const initialState = {
   activities: [],
@@ -89,6 +90,12 @@ const reducer = (state = initialState, action) => {
 
     case POST_STORE:
       return { ...state };
+
+    case DELETE_STORE:
+      return {
+        ...state,
+        stores: action.payload,
+      };
 
     case POST_REVIEW:
       return { ...state };
