@@ -130,3 +130,13 @@
   border: none;
   background: none;
 }
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+
+@media (max-width:768px){
+  .imagepreview{
+  justify-content: center;
+  }
+
+}

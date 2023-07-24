@@ -92,10 +92,17 @@ const UserDashboard = () => {
 
       await axios.post('http://localhost:3001/refund', dataToSend);
       // await axios.post('https://sportiverse-server.onrender.com/refund', emailInfo);
-      console.log('Datos enviados por email exitosamente');
     // Mostrar la alerta de éxito
   } catch (error) {
-    console.error('Error al enviar los datos por email:', error);
+    Swal.fire({
+      icon: "error",
+      title: "Error al enviar los datos por mail",
+      text: "Revise que la direccion de correo elecotronico sea correcta",
+      showConfirmButton: false,
+      timer:3000,
+      timerProgressBar: true,
+    })
+    // console.error('Error al enviar los datos por email:', error);
     
   }
 };
