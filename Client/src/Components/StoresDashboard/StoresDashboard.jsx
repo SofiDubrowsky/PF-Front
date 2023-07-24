@@ -1,39 +1,45 @@
-import style from "./ConfigDashboard.module.css";
-import { getAdmins } from "../../redux/Actions/getAdmin";
-import { useEffect, useState } from "react";
+import style from "./StoresDashboard.module.css";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getStores } from "../../redux/Actions/getStores";
 import { NavLink } from "react-router-dom";
+import { deleteStore } from "../../redux/Actions/deleteStore";
 
-
-const ConfigDashboard = () => {
-  const admins = useSelector((state) => state.admins);
-  console.log(admins);
+const StoresDashboard = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const stores = useSelector((state) => state.stores);
 
   useEffect(() => {
-    dispatch(getAdmins());
+    dispatch(getStores());
   }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [adminsPerPage] = useState(4);
-  const indexOfLastAdmin = currentPage * adminsPerPage;
-  const indexOfFirstAdmin = indexOfLastAdmin - adminsPerPage;
-  const currentAdmins = admins?.slice(indexOfFirstAdmin, indexOfLastAdmin);
+  const [storesPerPage] = useState(4);
+  const indexOfLastStore = currentPage * storesPerPage;
+  const indexOfFirstStore = indexOfLastStore - storesPerPage;
+  const currentStores = stores?.slice(indexOfFirstStore, indexOfLastStore);
 
-  const totalPages = Math.ceil(admins?.length / adminsPerPage);
+  const totalPages = Math.ceil(stores?.length / storesPerPage);
   const paginate = (pageNumber) => {
     if (pageNumber >= 1 && pageNumber <= totalPages) {
       setCurrentPage(pageNumber);
     }
   };
-
+  const handleDelete = (event, id) => {
+    event.preventDefault();
+    dispatch(deleteStore(id));
+    navigate("/admin");
+  };
   return (
     <div className={style.container}>
-      <h2>Administradores</h2>
+      <h2>Sucursales</h2>
       <div className={style.activity}>
         <NavLink to="/postStores">
           <button className={style.button} type="button">
-            <span className={style.button__text}>Crear Admin</span>
+            <span className={style.button__text}>Crear sucursal</span>
             <span className={style.button__icon}>
               <svg
                 className={style.svg}
@@ -68,12 +74,15 @@ const ConfigDashboard = () => {
                 Teléfono
               </th>
               <th scope="col" class="px-6 py-3">
+                Dirección
+              </th>
+              <th scope="col" class="px-6 py-3">
                 Eliminar
               </th>
             </tr>
           </thead>
-          {Array.isArray(currentAdmins) &&
-            currentAdmins?.map((admin) => {
+          {Array.isArray(currentStores) &&
+            currentStores?.map((store) => {
               return (
                 <tbody>
                   <tr class="border-b bg-light-grey dark:border-white ">
@@ -81,13 +90,14 @@ const ConfigDashboard = () => {
                       scope="row"
                       class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
-                      {admin?.name}
+                      {store?.name}
                     </th>
-                    <td class="px-6 py-4 ">{admin.email}</td>
-                    <td class="px-6 py-4">{admin.phone}</td>
+                    <td class="px-6 py-4 ">{store.email}</td>
+                    <td class="px-6 py-4">{store.phone}</td>
+                    <td class="px-6 py-4">{store.address}</td>
                     <td class="px-6 py-4">
                       <button
-                        onClick={(event) => handleDelete(event, admin?.id)}
+                        onClick={(event) => handleDelete(event, store?.id)}
                         className={style.editButton2}
                       >
                         <svg
@@ -127,4 +137,4 @@ const ConfigDashboard = () => {
   );
 };
 
-export default ConfigDashboard;
+export default StoresDashboard;

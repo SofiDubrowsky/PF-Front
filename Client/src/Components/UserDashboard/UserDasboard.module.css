@@ -102,3 +102,36 @@
   transform: translate(0%) scale(1.1);
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.paginationButton {
+  background-color: transparent;
+  color: #9ac71f;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.paginationButton:hover {
+  text-decoration: none;
+}
+.paginationButton:disabled{
+  color: grey;
+}
+.paginationButton.active {
+  color: white;
+  font-weight: bold;
+}
+.nav:hover{
+    color: black;
+}
+.pag{
+  display:flex;
+  color: #9AC71F;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}

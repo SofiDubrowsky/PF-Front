@@ -173,7 +173,7 @@
     box-shadow: 0 15px 25px rgba(80, 79, 79, 0.896);
     z-index: 9999;
     border-radius: 13px;
-    width: 40%;
+    width: fit-content;
     height: auto;
     justify-content: center;
     text-align: center;
@@ -189,18 +189,49 @@
     color: #fff;
     text-align: center;
     margin-bottom: 1rem;
-      
   }
   
   .popup h4 {
     font-size: 19px;
     margin-top: 7px;
   }
-
    
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center;    
+    align-items: center; 
   }
  
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationButton {
+    background-color: transparent;
+    color: #9ac71f;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .paginationButton:hover {
+    text-decoration: none;
+  }
+  .paginationButton:disabled{
+    color: grey;
+  }
+  .paginationButton.active {
+    color: white;
+    font-weight: bold;
+  }
+  .nav:hover{
+      color: black;
+  }
+  .pag{
+    display:flex;
+    color: #9AC71F;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }

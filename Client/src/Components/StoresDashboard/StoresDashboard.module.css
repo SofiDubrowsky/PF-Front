@@ -5,7 +5,8 @@
     margin-right: 2.5rem;
     justify-content: flex-end;
   }
-  .button {
+
+.button {
     --main-focus: #2d8cf0;
     --font-color: #323232;
     --bg-color-sub: #dedede;

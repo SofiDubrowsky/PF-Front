@@ -13,6 +13,7 @@ import {
   setFiltersAdmin,
   setOrderByDate,
 } from "../../redux/Actions/filtersAdmin";
+import { format } from "date-fns-tz";
 
 const ReservationsDashboard = () => {
   const dispatch = useDispatch();
@@ -32,9 +33,27 @@ const ReservationsDashboard = () => {
 
   const [email, setEmail] = useState("");
   const [storeFilter, setStoreFilter] = useState(filtersSelected.store);
-  const [activityFilter, setActivityFilter] = useState(filtersSelected.activity);
+  const [activityFilter, setActivityFilter] = useState(
+    filtersSelected.activity
+  );
   const [filterDate, setFilterDate] = useState(filtersSelected.date);
   const [date, setDate] = useState("");
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [reservationsPerPage] = useState(4);
+  const indexOfLastReservation = currentPage * reservationsPerPage;
+  const indexOfFirstReservation = indexOfLastReservation - reservationsPerPage;
+  const currentReservations = reservations?.slice(
+    indexOfFirstReservation,
+    indexOfLastReservation
+  );
+
+  const totalPages = Math.ceil(reservations?.length / reservationsPerPage);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
 
   const handleDelete = (event, id) => {
     event.preventDefault();
@@ -66,19 +85,18 @@ const ReservationsDashboard = () => {
     setFilterDate(event.target.value);
   };
 
-  const handleFilter = () => { 
-    let splitDate = filterDate.split("-").reverse().join("/")
+  const handleFilter = () => {
+    let splitDate = filterDate.split("-").reverse().join("/");
     let filters = {
       store: storeFilter,
       activity: activityFilter,
-      date: splitDate
+      date: splitDate,
     };
 
     dispatch(setFiltersAdmin(filters));
     dispatch(allFiltersAdmin(filters));
     setDate("");
   };
-
 
   const orderByDate = (event) => {
     event.preventDefault();
@@ -87,37 +105,44 @@ const ReservationsDashboard = () => {
     setDate(event.target.value);
   };
 
+  const today = format(new Date(), "dd/MM/yyyy").toString();
+
   return (
     <div className={style.main}>
-      <div className={style.inputSearch}>
-        <input
-          onChange={(event) => handleChange(event)}
-          type="text"
-          placeholder="Buscar por email"
-          value={email}
-        />
-        <div
-          type="submit"
-          onClick={handleSubmit}
-          value="buscar"
-          className={style.icon}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="icon icon-tabler icon-tabler-search"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="#FFFFFF"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+      <div className={style.header}>
+        <div className={style.inputSearch}>
+          <input
+            onChange={(event) => handleChange(event)}
+            type="text"
+            placeholder="Buscar por email"
+            value={email}
+          />
+          <div
+            type="submit"
+            onClick={handleSubmit}
+            value="buscar"
+            className={style.icon}
           >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
-            <path d="M21 21l-6 -6" />
-          </svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="icon icon-tabler icon-tabler-search"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="#FFFFFF"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+              <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+              <path d="M21 21l-6 -6" />
+            </svg>
+          </div>
+        </div>
+        <div className={style.today}>
+          <h3>Hoy: {today}</h3>
         </div>
       </div>
       <div className={style.filtersContainer}>
@@ -205,8 +230,8 @@ const ReservationsDashboard = () => {
                 </th>
               </tr>
             </thead>
-            {Array.isArray(reservations) &&
-              reservations?.map((reservation) => {
+            {Array.isArray(currentReservations) &&
+              currentReservations?.map((reservation) => {
                 return (
                   <tbody>
                     <tr class="border-b bg-light-grey dark:border-white ">
@@ -250,6 +275,25 @@ const ReservationsDashboard = () => {
               })}
           </table>
         </div>
+      </div>
+      <div className={style.pagination}>
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === 1}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          <h1>{"<"}</h1>
+        </button>
+
+        <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === totalPages}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          <h1>{">"}</h1>
+        </button>
       </div>
     </div>
   );

@@ -31,7 +31,6 @@ import imgAgustina from '../../assets/images/agustina.jpg';
 import imgGonzalo from '../../assets/images/gonzalo.png';
 import imgNadia from '../../assets/images/nadia.jpg';
 import imgLuciano from '../../assets/images/luciano.jpg';
-import imgLeidy from '../../assets/images/leidy.jpg';
 
 const AboutProgrammers = () => {
 
@@ -94,13 +93,8 @@ const AboutProgrammers = () => {
             linkedinLink: "https://www.linkedin.com/in/luciano-velasquez-a73252269/",
             email: emailLuciano,
         },
-        {
-            name: "Leidy Sánchez",
-            imgSrc: imgLeidy,
-            githubLink: "https://github.com/L-J-Sanchez-Zamora",
-            linkedinLink: "https://www.linkedin.com/in/leidy-johanna-s%C3%A1nchez-zamora-9370731a3/",
-            email: emailLeidy,
-        },
+        
+         
     ];
 
 

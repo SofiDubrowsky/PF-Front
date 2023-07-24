@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
 
-export const updateActivity = (form) => {
+export const updateActivity = (form, id) => {
   return async (dispatch) => {
     // const id = localStorage.getItem("clientId");
     //  const info = await axios.put(`https://sportiverse-server.onrender.com/activities/${id}`, form);

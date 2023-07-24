@@ -11,6 +11,30 @@ body {
   gap: 2rem;
   margin-top: 2rem;
 }
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  text-align: center;
+}
+
+.today{
+  height: 35px;
+  width: 18rem;
+  color: white;
+  outline: none;
+  border: none;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  background: none;
+  border-radius: 5px;
+  text-transform: uppercase;
+}
+
 .inputSearch {
   position: relative;
 }
@@ -184,4 +208,38 @@ body {
 .btnApply:active {
   transform: translate(2px, 2px);
   transition-duration: 0.1s;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.paginationButton {
+  background-color: transparent;
+  color: #9ac71f;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.paginationButton:hover {
+  text-decoration: none;
+}
+.paginationButton:disabled{
+  color: grey;
+}
+.paginationButton.active {
+  color: white;
+  font-weight: bold;
+}
+.nav:hover{
+    color: black;
+}
+.pag{
+  display:flex;
+  color: #9AC71F;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
 }

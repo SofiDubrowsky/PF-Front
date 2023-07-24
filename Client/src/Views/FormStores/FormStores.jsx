@@ -131,13 +131,19 @@ const FormStores = () => {
         icon: 'error',
         timer: 3000,
         showConfirmButton: false,
-        timerProgressBar: true
+        timerProgressBar: true,
+        color: "#FFFFFF",
+        background: "#666",
       });
     }
     else if (Object.values(errorSave).length !== 0){
       Swal.fire({
         text: 'Debes completar todos los datos obligatorios',
-        timerProgressBar: true
+        icon: "warning",
+        timer: 3000,
+        timerProgressBar: true,
+        color: "#FFFFFF",
+        background: "#666",
       })
     }
     else {
@@ -149,6 +155,8 @@ const FormStores = () => {
         showCancelButton: true, 
         confirmButtonText: 'Agregar nueva sucursal', 
         cancelButtonText: 'Volver al Inicio', 
+        color: "#FFFFFF",
+        background: "#666",
       }).then((result) => {
         if (result.isConfirmed) {
          navigate('/postStore')
