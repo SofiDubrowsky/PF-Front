@@ -18,6 +18,22 @@ const UserDashboard = () => {
     dispatch(getAllUsers());
   }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(4);
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users?.slice(
+    indexOfFirstUser,
+    indexOfLastUser
+  );
+
+  const totalPages = Math.ceil(users?.length / usersPerPage);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
   const handleInputChange = (event) => {
     event.preventDefault();
     setName(event.target.value);
@@ -90,8 +106,8 @@ const UserDashboard = () => {
               </th>
             </tr>
           </thead>
-          {Array.isArray(users) &&
-            users?.map((user) => {
+          {Array.isArray(currentUsers) &&
+            currentUsers?.map((user) => {
               return (
                 <tbody>
                   <tr class="border-b bg-light-grey dark:border-white ">
@@ -121,6 +137,25 @@ const UserDashboard = () => {
               );
             })}
         </table>
+      </div>
+      <div className={style.pagination}>
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === 1}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          <h1>{"<"}</h1>
+        </button>
+
+        <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === totalPages}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          <h1>{">"}</h1>
+        </button>
       </div>
     </div>
   );

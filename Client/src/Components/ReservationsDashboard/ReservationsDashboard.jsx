@@ -39,19 +39,22 @@ const ReservationsDashboard = () => {
   const [filterDate, setFilterDate] = useState(filtersSelected.date);
   const [date, setDate] = useState("");
 
-  // const [reservationsPerPage] = useState(5);
-  // const indexOfLastReservation = currentPage * gamesPerPage;
-  // const indexOfFirstReservation = indexOfLastGame - gamesPerPage;
-  // const currentReservations = reservations?.slice(
-  //   indexOfFirstReservation,
-  //   indexOfLastReservation
-  // );
-  // const totalPages = Math.ceil(reservations?.length / reservationsPerPage);
-  // const paginate = (pageNumber) => {
-  //   if (pageNumber >= 1 && pageNumber <= totalPages) {
-  //     setCurrentPage(pageNumber);
-  //   }
-  // };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [reservationsPerPage] = useState(4);
+  const indexOfLastReservation = currentPage * reservationsPerPage;
+  const indexOfFirstReservation = indexOfLastReservation - reservationsPerPage;
+  const currentReservations = reservations?.slice(
+    indexOfFirstReservation,
+    indexOfLastReservation
+  );
+
+  const totalPages = Math.ceil(reservations?.length / reservationsPerPage);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
+
   const handleDelete = (event, id) => {
     event.preventDefault();
     dispatch(deleteReservation(id));
@@ -227,8 +230,8 @@ const ReservationsDashboard = () => {
                 </th>
               </tr>
             </thead>
-            {Array.isArray(reservations) &&
-              reservations?.map((reservation) => {
+            {Array.isArray(currentReservations) &&
+              currentReservations?.map((reservation) => {
                 return (
                   <tbody>
                     <tr class="border-b bg-light-grey dark:border-white ">
@@ -273,7 +276,25 @@ const ReservationsDashboard = () => {
           </table>
         </div>
       </div>
-      
+      <div className={style.pagination}>
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === 1}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          <h1>{"<"}</h1>
+        </button>
+
+        <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === totalPages}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          <h1>{">"}</h1>
+        </button>
+      </div>
     </div>
   );
 };

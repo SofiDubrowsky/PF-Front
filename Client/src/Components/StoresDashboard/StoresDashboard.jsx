@@ -16,6 +16,18 @@ const StoresDashboard = () => {
     dispatch(getStores());
   }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [storesPerPage] = useState(4);
+  const indexOfLastStore = currentPage * storesPerPage;
+  const indexOfFirstStore = indexOfLastStore - storesPerPage;
+  const currentStores = stores?.slice(indexOfFirstStore, indexOfLastStore);
+
+  const totalPages = Math.ceil(stores?.length / storesPerPage);
+  const paginate = (pageNumber) => {
+    if (pageNumber >= 1 && pageNumber <= totalPages) {
+      setCurrentPage(pageNumber);
+    }
+  };
   const handleDelete = (event, id) => {
     event.preventDefault();
     dispatch(deleteStore(id));
@@ -23,8 +35,8 @@ const StoresDashboard = () => {
   };
   return (
     <div className={style.container}>
-        <h2>Sucursales</h2>
-        <div className={style.activity}>
+      <h2>Sucursales</h2>
+      <div className={style.activity}>
         <NavLink to="/postStores">
           <button className={style.button} type="button">
             <span className={style.button__text}>Crear sucursal</span>
@@ -69,8 +81,8 @@ const StoresDashboard = () => {
               </th>
             </tr>
           </thead>
-          {Array.isArray(stores) &&
-            stores?.map((store) => {
+          {Array.isArray(currentStores) &&
+            currentStores?.map((store) => {
               return (
                 <tbody>
                   <tr class="border-b bg-light-grey dark:border-white ">
@@ -101,6 +113,25 @@ const StoresDashboard = () => {
               );
             })}
         </table>
+      </div>
+      <div className={style.pagination}>
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === 1}
+          onClick={() => paginate(currentPage - 1)}
+        >
+          <h1>{"<"}</h1>
+        </button>
+
+        <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+
+        <button
+          className={style.paginationButton}
+          disabled={currentPage === totalPages}
+          onClick={() => paginate(currentPage + 1)}
+        >
+          <h1>{">"}</h1>
+        </button>
       </div>
     </div>
   );
