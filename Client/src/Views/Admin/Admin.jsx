@@ -1,6 +1,8 @@
 import style from "./Admin.module.css";
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getReservations } from "../../redux/Actions/getReservations";
 import ReservationsDashboard from "../../Components/ReservationsDashboard/ReservationsDashboard";
 import StatsDashboard from "../../Components/StatsDashboard/StatsDashboard";
 import UserDashboard from "../../Components/UserDashboard/UserDashboard";
@@ -8,12 +10,20 @@ import ActivitiesDashboard from "../../Components/ActivitiesDashboard/Activities
 import ConfigDashboard from "../../Components/ConfigDashboard/ConfigDashboard";
 
 const Admin = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const isClient = localStorage.getItem("isClient");
+  const reservations = useSelector((state) => state.allReservations);
   const [actualWindow, setActualWindow] = useState("stats");
 
   useEffect(() => {
-    isClient === "true" && navigate("/home");
+    if (!reservations?.length) {
+      dispatch(getReservations());
+    }
+  }, [])
+
+  useEffect(() => {
+    isClient !== "false" && navigate("/home");
   }, [isClient]);
 
   const handleClick = (data) => {

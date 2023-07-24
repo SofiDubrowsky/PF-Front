@@ -1,34 +1,47 @@
 import style from "./StatsDashboard.module.css";
-import { getReservations } from "../../redux/Actions/getReservations";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { useState } from "react";
+import { getReservations } from "../../redux/Actions/getReservations";
 import "chart.js/auto";
 import { Chart } from "react-chartjs-2";
+import { setFilterStats } from "../../redux/Actions/filterStats";
 
 const StatsDashboard = () => {
   const dispatch = useDispatch();
-  const reservations = useSelector((state) => state.allReservations);
+  const reservations = useSelector((state) => state.reservationsStatsFiltered);
+  const allReservations = useSelector((state) => state.allReservations);
   const [earningsPerStore, setEarningsPerStore] = useState({});
   const [totalEarnings, setTotalEarnings] = useState(0);
   const [reservationsPerStore, setReservationsPerStore] = useState({});
   const [totalReservation, setTotalReservatios] = useState(0);
   const [paidReservations, setPaidReservations] = useState({});
   const [reservationsPerMonth, setReservationsPerMonth] = useState([]);
+  const [dateFilter, setDateFilter] = useState("all");
+  const [dateFilterAux, setDateFilterAux] = useState("");
 
   useEffect(() => {
     if (!reservations?.length) {
       dispatch(getReservations());
     }
+
     if (reservations?.length > 0) {
       setReservationsPerStore(getReservationsPerStore());
-      setEarningsPerStore(getReservationsPriceStore());
+      setEarningsPerStore(getEarningsPerStore());
       setPaidReservations(getPaidReservations());
-      setTotalEarnings(getTotalEarnings());
       setTotalReservatios(getTotalReservations());
+      setTotalEarnings(getTotalEarnings());
       setReservationsPerMonth(getReservationsPerMonth());
     }
   }, []);
+
+  useEffect(() => {
+    setReservationsPerStore(getReservationsPerStore());
+    setEarningsPerStore(getEarningsPerStore());
+    setPaidReservations(getPaidReservations());
+    setTotalReservatios(getTotalReservations());
+    setTotalEarnings(getTotalEarnings());
+  }, [dateFilter]);
 
   const getReservationsPerMonth = () => {
     let result = {
@@ -45,18 +58,18 @@ const StatsDashboard = () => {
       "/11": 0,
       "/12": 0,
     };
+
     let resultArray = [];
-    for (let i = 0; i < reservations.length; i++) {
-      let index = reservations[i].date.indexOf("/");
-      result[reservations[i].date.slice(index, index + 3)] += 1;
+
+    for (let i = 0; i < allReservations.length; i++) {
+      let index = allReservations[i].date.indexOf("/");
+      result[allReservations[i].date.slice(index, index + 3)] += 1;
     }
 
     for (const month in result) {
       resultArray.push(result[month]);
     }
 
-    console.log(result);
-    console.log(resultArray);
     return resultArray;
   };
 
@@ -76,21 +89,21 @@ const StatsDashboard = () => {
     for (let i = 0; i < reservations.length; i++) {
       total += 1;
     }
-
     return total;
   };
 
   const getTotalEarnings = () => {
     let total = 0;
 
-    for (const store in earningsPerStore) {
-      total += earningsPerStore[store];
+    for (let i = 0; i < reservations?.length; i++) {
+      if (reservations[i]?.pay === true) {
+        total += reservations[i]?.activity?.cost;
+      }
     }
-
     return total;
   };
 
-  const getReservationsPriceStore = () => {
+  const getEarningsPerStore = () => {
     let reservationsPriceStore = {};
     for (let i = 0; i < reservations?.length; i++) {
       if (reservations[i]?.pay === true) {
@@ -99,9 +112,10 @@ const StatsDashboard = () => {
         ) {
           reservationsPriceStore[reservations[i]?.activity?.stores[0]?.name] =
             reservations[i]?.activity?.cost;
+        } else {
+          reservationsPriceStore[reservations[i]?.activity?.stores[0]?.name] +=
+            reservations[i]?.activity?.cost;
         }
-        reservationsPriceStore[reservations[i]?.activity?.stores[0]?.name] +=
-          reservations[i]?.activity?.cost;
       }
     }
     return reservationsPriceStore;
@@ -119,8 +133,32 @@ const StatsDashboard = () => {
     return paidReservations;
   };
 
+  const handleDateOnChange = (event) => {
+    setDateFilterAux("/" + event.target.value.split("-").reverse().join("/"));
+  };
+
+  const handleMonthClick = (event) => {
+    event.preventDefault();
+    dispatch(setFilterStats(dateFilterAux));
+    setDateFilter(dateFilterAux);
+  };
+
+  const handleAllMonthsClick = (event) => {
+    event.preventDefault();
+    dispatch(setFilterStats("all"));
+    setDateFilter("all");
+  };
+
   return (
     <div className={style.mainContainer}>
+      <div className={style.filter}>
+        <div className={style.filterContainer}>
+          <label htmlFor="date" className={style.labelInput}>Elige fecha para buscar:</label>
+          <input type="month" id="date" onChange={handleDateOnChange} className={style.inputDate}/>
+        </div>
+        <button onClick={handleMonthClick}>Aplicar filtros</button>
+        <button onClick={handleAllMonthsClick}>Todas las Fechas</button>
+      </div>
       <div className={style.graphReservationsPerStore}>
         <h3 className={style.title}>Reservaciones por sucursal:</h3>
         <div className={style.graphContainer}>
@@ -306,7 +344,7 @@ const StatsDashboard = () => {
             options={{ maintainAspectRatio: false }}
           />
         </div>
-        <div className={style.dataTable}>
+        <div className={style.dataTableMonths}>
           <p>Enero: {reservationsPerMonth[0]}</p>
           <p>Febrero: {reservationsPerMonth[1]}</p>
           <p>Marzo: {reservationsPerMonth[2]}</p>
