@@ -16,6 +16,9 @@ const ActivitiesDashboard = () => {
   const [showBackdrop, setShowBackdrop] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
+
+  const[actualizar, setActualizar] = useState(false)
+
   const [activitiesPerPage] = useState(4);
   const indexOfLastActivity = currentPage * activitiesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
@@ -36,7 +39,8 @@ const ActivitiesDashboard = () => {
 
   useEffect(() => {
     dispatch(getActivities());
-  }, []);
+    setActualizar(false)
+  }, [actualizar]);
 
   const handleDelete = (event, id) => {
     event.preventDefault();
@@ -102,7 +106,7 @@ const ActivitiesDashboard = () => {
       <h2>Actividades</h2>
       <div className={style.activity}>
         <NavLink to="/post">
-          <button className={style.button} type="button">
+          <button className={style.button} onClick={()=>(localStorage.setItem('preview', 'activities'))} type="button">
             <span className={style.button__text}>Crear actividad</span>
             <span className={style.button__icon}>
               <svg
@@ -214,7 +218,7 @@ const ActivitiesDashboard = () => {
         {showUpdate && (
           <div className={style.popup}>
             <div className={style.containerBtn}>
-              <UpdateActivity details={details} setShowBackdrop={setShowBackdrop} setShowUpdate={setShowUpdate} handleClose={handleClose}/>
+              <UpdateActivity details={details} setShowBackdrop={setShowBackdrop} setShowUpdate={setShowUpdate} handleClose={handleClose} setActualizar={setActualizar}/>
             </div>
           </div>
         )}

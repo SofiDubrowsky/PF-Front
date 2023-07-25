@@ -211,6 +211,10 @@ const Form = () => {
     dispatch(getStores());
   }, [dispatch]);
 
+  const handleGoBack = () => {
+    navigate(-1, { replace: true });
+  };
+
   return (
     <div className={style.contenedor}>
 
@@ -518,7 +522,9 @@ const Form = () => {
                 </div>
               </div> */}
         <div className={style.btnContainer}>
-
+        <button className={style.btn} type="button" onClick={handleGoBack}>
+            Volver
+          </button>
         <button className={style.btn} type="submit">
           Crear
         </button>

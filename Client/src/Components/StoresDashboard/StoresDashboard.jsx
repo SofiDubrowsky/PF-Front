@@ -81,7 +81,7 @@ const StoresDashboard = () => {
       <h2>Sucursales</h2>
       <div className={style.activity}>
         <NavLink to="/postStores">
-          <button className={style.button} type="button">
+          <button className={style.button} onClick={()=>(localStorage.setItem('preview', 'stores'))}type="button">
             <span className={style.button__text}>Crear sucursal</span>
             <span className={style.button__icon}>
               <svg

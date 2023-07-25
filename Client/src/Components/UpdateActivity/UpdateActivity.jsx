@@ -7,9 +7,10 @@ import { updateActivity } from "../../redux/Actions/updateActivity";
 import { useDispatch, useSelector } from "react-redux";
 import validate from "../../Views/Form/validate";
 import { useParams } from "react-router-dom";
+import { getActivities } from "../../redux/Actions/getActivities";
 
 
-const UpdateActivity = ({details, setShowBackdrop, setShowUpdate, handleClose}) => {
+const UpdateActivity = ({details, setShowBackdrop, setShowUpdate, handleClose, setActualizar}) => {
   const dispatch = useDispatch();
   // const { id } = useParams();
   // const details = useSelector((state) => state.detail);
@@ -86,6 +87,7 @@ const UpdateActivity = ({details, setShowBackdrop, setShowUpdate, handleClose}) 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateActivity(form, id))
+    setActualizar(true)
     setShowBackdrop(false);
     setShowUpdate(false)
     Swal.fire({
@@ -96,7 +98,13 @@ const UpdateActivity = ({details, setShowBackdrop, setShowUpdate, handleClose}) 
       color: "#FFFFFF",
       background: "#666",
       timer: 3000,
-    })
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setActualizar(true)
+      } else {
+       navigate('/admin');
+      }})
+    
   }
 
 

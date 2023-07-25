@@ -31,48 +31,59 @@ const Admin = () => {
     setActualWindow(data);
   };
 
+  const handleChange = (data) =>{
+    handleClick(data);
+    localStorage.setItem('preview', data)
+  }
+
+  useEffect(() => {
+    let preview = localStorage.getItem('preview')
+      handleClick(preview);
+      localStorage.setItem('preview', "reservations")
+  }, []);
+
   return (
     <div className={style.gridContainer}>
       <div className={style.sideBar}>
         <div className={style.windowSelector}>
           <button
             className={style.windowButtton}
-            onClick={() => handleClick("reservations")}
+            onClick={() => handleChange("reservations")}
             disabled={actualWindow === "reservations"}
           >
             Reservas
           </button>
           <button
             className={style.windowButtton}
-            onClick={() => handleClick("stats")}
+            onClick={() =>handleChange("stats")}
             disabled={actualWindow === "stats"}
           >
             Estadísticas
           </button>
           <button
             className={style.windowButtton}
-            onClick={() => handleClick("users")}
+            onClick={() => handleChange("users")}
             disabled={actualWindow === "users"}
           >
             Usuarios
           </button>
           <button
             className={style.windowButtton}
-            onClick={() => handleClick("activities")}
+            onClick={() => handleChange("activities")}
             disabled={actualWindow === "activities"}
           >
             Actividades
           </button>
           <button
             className={style.windowButtton}
-            onClick={() => handleClick("stores")}
+            onClick={() => handleChange("stores")}
             disabled={actualWindow === "stores"}
           >
             Stores
           </button>
         </div>
         <button
-          onClick={() => handleClick("config")}
+          onClick={() => handleChange("config")}
           className={style.configButton}
           disabled={actualWindow === "config"}
         >
