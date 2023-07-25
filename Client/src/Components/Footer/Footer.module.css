@@ -99,8 +99,12 @@ a:active {
   height: 100%;
   background-color: transparent;
   grid-area: 1 / 2 / 2 / 3;
-  padding: 3rem;
-  margin-left: 2.7rem;
+  /* padding: 3rem; */
+  /* margin-left: 2.7rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .boxLogo {
@@ -336,7 +340,7 @@ a:active {
     align-items: center;
     justify-items: center;
     width: 100%;
-    margin-left: 7rem;
+    /* margin-left: 7rem; */
   }
 
   .card {
@@ -379,3 +383,47 @@ a:active {
     transform: scale(1);
   }
 }
+
+.center{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items:flex-start;
+  justify-items: center;
+
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 .5rem;
+}
+
+.column h4{
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: .5rem;
+  font-size: 1.2rem;
+}
+
+.navlinks{
+  letter-spacing: 1px;
+  transform: translate(0%);
+}
+
+.navlinks:hover{
+  transform: translate(0%) scale(1.1);
+  font-weight: bold;
+  color: #9ac71f;
+}
+
+.sesion{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+
+

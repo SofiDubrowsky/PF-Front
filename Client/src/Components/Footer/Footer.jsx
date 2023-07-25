@@ -1,79 +1,79 @@
 import style from "../Footer/Footer.module.css";
 import logoBlanco from "../../assets/logo-shadow-1.png";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/Actions/logout";
 
 const Footer = () => {
-  function irAPaginaSuperior() {
-    window.scrollTo(0, 0);
-  }
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const loger = localStorage.getItem("loger");
+  const isClient = localStorage.getItem("isClient");
+
+  const handleLogout = () => {
+    dispatch(logout()).then(() => {
+      navigate("/home");
+    });
+    localStorage.setItem("loger", false);
+    localStorage.setItem("detail", null);
+  };
+
   return (
     <div className={style.mainConatiner}>
       <div className={style.content}>
         <div className={style.boxLogo}>
           <img src={logoBlanco} alt="logo" className={style.img} />
         </div>
-        <div className={style.boxNames}>
-          <NavLink to='/programmers' className={style.conocenos} onClick={irAPaginaSuperior}>Nuestro equipo</NavLink>
+        <div className={style.center}>
+          <div className={style.column}>
+            <h4>General</h4>
+            <NavLink className={style.navlinks} to="/home">
+              Inicio
+            </NavLink>
+            <NavLink className={style.navlinks} to="/about">
+              Nosotros
+            </NavLink>
+            <NavLink className={style.navlinks} to="/stores">
+              Sucursales
+            </NavLink>
+          </div>
+          <div className={style.column}>
+            <h4>Mi Cuenta</h4>
+            {loger === "true" ? (
+              <div className={style.sesion}>
+                {isClient === "true" && (
+                  <NavLink to="/dashboard" className={style.navlinks}>
+                    Mis Reservas
+                  </NavLink>
+                )}
 
-          <div className={style.gridContainer}>
-            <a
-              href="https://www.linkedin.com/in/nadia-martel-admin/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Nadia Martel</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/leidy-johanna-s%C3%A1nchez-zamora-9370731a3/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Leidy Sánchez</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/juanpablomora61/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Juan Pablo Mora</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/luciano-velasquez-a73252269/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Luciano Velasquez</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/fabrizio-vettorelo-0629a3263/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Fabrizio Vettorelo</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/disof%C3%ADadubrowsky/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Sofía Dubrowsky</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/gonzalo-schmidt-240903250/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Gonzalo Schmidt</h3>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/agustinatahhan/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <h3 className={style.navlink}>Agustina Tahhan</h3>
-            </a>
+                {isClient === "false" && (
+                  <NavLink to="/admin" className={style.navlinks}>
+                    Dashboard
+                  </NavLink>
+                )}
+
+                <NavLink
+                  onClick={handleLogout}
+                  className={style.navlinks}
+                  to=""
+                >
+                  Cerrar Sesión
+                </NavLink>
+              </div>
+            ) : (
+              <div className={style.sesion}>
+                <NavLink className={style.navlinks} to="/account">
+                  Registrarse
+                </NavLink>
+                <NavLink className={style.navlinks} to="/login">
+                  Iniciar Sesión
+                </NavLink>
+              </div>
+            )}
           </div>
         </div>
+
         <div className={style.contenedorRedes}>
           <div>
             <h4>Seguinos en nuestras redes!</h4>
