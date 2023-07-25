@@ -79,7 +79,7 @@ const Admin = () => {
             onClick={() => handleChange("stores")}
             disabled={actualWindow === "stores"}
           >
-            Stores
+            Sucursales
           </button>
         </div>
         <button
