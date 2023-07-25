@@ -5,11 +5,37 @@
   justify-content: center;
 }
 
-.grid {
-  width: 50rem;
-  height: 50rem;
+.team{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.team h2{
+  font-size: 3rem;
+  letter-spacing: 5px;
+  margin-top: 2rem;
+
+}
+
+.team h3{
+  letter-spacing: 2px;
+  margin: 2rem 7rem 5rem 7rem;
+  font-size: 1.5rem;
+
+}
+
+.gridContainer{
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   width: fit-content;
 }
 
@@ -97,9 +123,12 @@
   color: white;
   letter-spacing: 2px;
   font-size: 1.5rem;
-  
+  font-weight: bold;
 }
 
+.card .content .detail h5{
+  color: #9AC71F;
+}
 
 .card:hover .content .detail {
   color: #181818;
@@ -108,10 +137,25 @@
   transition-delay: 0.3s;
 }
 
+.dev{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 .cardd {
   display: flex;
   height: 70px;
   width: 270px;
+
+}
+
+.cardd a{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3rem;
 }
 
 .cardd svg {
@@ -134,7 +178,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25%;
+  width: 22%;
   color: whitesmoke;
   font-size: 24px;
   text-decoration: none;
@@ -173,4 +217,42 @@
   100% {
     transform: scale(1);
   }
+}
+
+.contentText{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gridIcons{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.aboutConteiner{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem;
+}
+.aboutSectionContainer{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.aboutSectionImg{
+  width: 4rem;
+  height: 4rem;
+}
+.aboutSectionTitle{
+  font-size: 2rem;
+  letter-spacing: 1px;
+  font-family:  Bahnschrift SemiCondensed;
 }

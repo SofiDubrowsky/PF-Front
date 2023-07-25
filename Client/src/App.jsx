@@ -32,7 +32,6 @@ function App() {
       <Route path='/detail/:id' element={<Detail />}/>
       <Route path='/post' element={<Form />} />
       <Route path='/postStores' element={<FormStores />} />
-      <Route path='/about' element={<About />} />
       <Route path='/stores' element={<Stores />} />
       <Route path='/login' element={<Login/>} />
       <Route path='/account' element={<Account/>} />
@@ -40,8 +39,7 @@ function App() {
       <Route path='/success' element={<Success/>} />
       <Route path='/failure' element={<Failure/>} />
       <Route path='/dashboard' element={<UserDashboard/>} />
-      <Route path='/programmers' element={<AboutProgrammers/>} />
-      <Route path="/aboutus" element={<AboutUs/>}/>
+      <Route path='/about' element={<AboutUs/>} />
     </Routes>
     {!isLandingPage && location.pathname !== '/admin' && <Footer />}
       
