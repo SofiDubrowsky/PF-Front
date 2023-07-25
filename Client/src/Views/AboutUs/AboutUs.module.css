@@ -256,3 +256,31 @@
   letter-spacing: 1px;
   font-family:  Bahnschrift SemiCondensed;
 }
+
+
+
+/* No escribir codigo debajo de esto
+Design responsive */
+@media (max-width:768px){
+  .contentText{
+    display: none;
+  }
+
+  .container{
+    max-width: 95%;
+  }
+
+  .team{
+    max-width: 90%;
+  }
+
+  .gridContainer{
+    max-width: 90%;
+    grid-template-columns: 1fr; 
+    gap: 1rem;
+    justify-content: flex-start; 
+    padding: 0 1rem;
+  }
+}
+
+
