@@ -89,7 +89,7 @@
 .text span {
   color: white;
   align-items: flex-start;
-  text-transform: capitalize; 
+  font-size: large;
 }
 
 .description h2 {
