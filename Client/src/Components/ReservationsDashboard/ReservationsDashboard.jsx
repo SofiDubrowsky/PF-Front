@@ -44,7 +44,7 @@ const ReservationsDashboard = () => {
 
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [reservationsPerPage] = useState(4);
+  const [reservationsPerPage] = useState(5);
   const indexOfLastReservation = currentPage * reservationsPerPage;
   const indexOfFirstReservation = indexOfLastReservation - reservationsPerPage;
   const currentReservations = reservations?.slice(
@@ -256,7 +256,7 @@ const ReservationsDashboard = () => {
       </div>
 
       <div>
-        <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative mx-10 mt-5 overflow-x-auto shadow-md sm:rounded-lg">
           <table class=" w-full  text-sm text-left text-white">
             <thead class=" text-white text-base uppercase  bg-dark-grey ">
               <tr>
@@ -332,6 +332,7 @@ const ReservationsDashboard = () => {
           </table>
         </div>
       </div>
+      {totalPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
@@ -350,7 +351,7 @@ const ReservationsDashboard = () => {
         >
           <h1>{">"}</h1>
         </button>
-      </div>
+      </div>}
     </div>
   );
 };
