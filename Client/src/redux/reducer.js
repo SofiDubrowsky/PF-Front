@@ -35,8 +35,10 @@ import {
   SET_FILTERS_ADMIN,
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
-
-import { SET_FILTER_STATS } from "./Actions/filterStats"
+import { GET_BAN_USERS } from "./Actions/getBanUsers";
+import { SET_FILTER_STATS } from "./Actions/filterStats";
+import { RESTORE_USER } from "./Actions/restoreUser";
+import { GET_USER_BAN_BY_NAME } from "./Actions/getUsersBanByName";
 
 
 
@@ -67,17 +69,40 @@ const initialState = {
   reservationsFiltered: [],
   reservationsStatsFiltered: [],
   allUsers: [],
+  banUsers: [],
+  banUsersFiltered: [],
   admins: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ADMINS:
-      return{
+      return {
         ...state,
         admins: action.payload
       }
-      
+
+    case GET_USER_BAN_BY_NAME:
+      let banFiltered = state.banUsers
+      let result = banFiltered.filter(user => user.name.toLowerCase().includes(action.payload.toLowerCase()))
+      console.log(result);
+      return{
+        ...state,
+        banUsersFiltered: result
+      }
+
+    case RESTORE_USER:
+      return{
+        ...state
+      }
+
+    case GET_BAN_USERS:
+      return {
+        ...state,
+        banUsers: action.payload,
+        banUsersFiltered: action.payload
+      }
+
     case GET_ACTIVITIES:
       return {
         ...state,
@@ -342,7 +367,7 @@ const reducer = (state = initialState, action) => {
       let filter = []
       if (action.payload === "all") {
         filter = reservations
-      }else{
+      } else {
         filter = reservations.filter(activity => activity.date.includes(action.payload))
       }
       return {
