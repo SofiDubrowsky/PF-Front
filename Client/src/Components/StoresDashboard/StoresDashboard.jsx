@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { getStores } from "../../redux/Actions/getStores";
 import { NavLink } from "react-router-dom";
 import { deleteStore } from "../../redux/Actions/deleteStore";
+import Swal from "sweetalert2";
 
 const StoresDashboard = () => {
   const dispatch = useDispatch();
@@ -30,9 +31,51 @@ const StoresDashboard = () => {
   };
   const handleDelete = (event, id) => {
     event.preventDefault();
-    dispatch(deleteStore(id));
-    navigate("/admin");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Eliminar Sucursal',
+      text: "⚠︎ ¿Esta seguro de eliminar esta sucursal? ⚠︎",
+      showConfirmButton: true,
+      showCancelButton: true, 
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Volver', 
+      color: "#FFFFFF",
+      background: "#666",
+      allowOutsideClick: () => !Swal.isLoading(), 
+      preConfirm: async () => {
+        try {
+          await dispatch(deleteStore(id));
+          await dispatch(getStores());
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000).then(
+              setTimeout(() => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Sucursal eliminada con éxito',
+                  text: 'La sucursal ha sido eliminada correctamente.',
+                  showConfirmButton: false,
+                  color: "#FFFFFF",
+                  background: "#666",
+                  timer: 2000,
+                })
+              }, 1000)
+              )
+          });
+        } catch (error) {
+          console.error(error);
+          return Promise.reject();
+        }
+      },
+    });
+    if (result.isConfirmed) {
+      Swal.close();
+    } else {
+      navigate("/admin");
+    }
   };
+
   return (
     <div className={style.container}>
       <h2>Sucursales</h2>
