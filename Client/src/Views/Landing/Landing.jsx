@@ -52,9 +52,9 @@ const Landing = () => {
   
   return (
     <div className={style.mainContainer}>
-      <div className={style.barr}> <div><img src="https://cdn-icons-png.flaticon.com/512/147/147243.png" alt="" style={{height:"4.5rem",marginBottom:"1.3rem"}}/> <p>Alquiler para</p> <p>Actividades Deportivas</p></div> 
-      <div><img src="https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png" alt="" style={{height:"6rem",marginBottom:".4rem"}}/> <p>Sucursales en</p><p>Córdoba Argentina</p></div>
-      <div><img src="https://aguerrea.com.ar/wp-content/uploads/elementor/thumbs/mercado-pago-gris-p8x74l49a8gcnhn784eehg0lm9lq0ld6ix6hsur83g.png" alt="" style={{height:"7rem"}}/><p>Pagos Online con</p><p>Mercado Pago</p></div></div>
+      <div className={style.barr}> <div className={style.contImg}><img src="https://cdn-icons-png.flaticon.com/512/147/147243.png" alt="" style={{height:"4.5rem",marginBottom:"1.3rem"}}/> <p>Alquiler para</p> <p>Actividades Deportivas</p></div> 
+      <div className={style.contImg} ><img src="https://www.hangtimemedia.com/wp-content/uploads/2018/06/location-icon-png-3.png" alt="" style={{height:"6rem",marginBottom:".4rem"}}/> <p>Sucursales en</p><p>Córdoba Argentina</p></div>
+      <div className={style.contImg}><img src="https://aguerrea.com.ar/wp-content/uploads/elementor/thumbs/mercado-pago-gris-p8x74l49a8gcnhn784eehg0lm9lq0ld6ix6hsur83g.png" alt="" style={{height:"7rem"}}/><p>Pagos Online con</p><p>Mercado Pago</p></div></div>
       <div className={style.sliderFrame}>
         <ul>
           <li>
