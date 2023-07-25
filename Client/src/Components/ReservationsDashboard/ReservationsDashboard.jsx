@@ -15,6 +15,7 @@ import {
 } from "../../redux/Actions/filtersAdmin";
 import { format } from "date-fns-tz";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const ReservationsDashboard = () => {
   const dispatch = useDispatch();
@@ -41,6 +42,7 @@ const ReservationsDashboard = () => {
   const [filterDate, setFilterDate] = useState(filtersSelected.date);
   const [date, setDate] = useState("");
 
+
   const [currentPage, setCurrentPage] = useState(1);
   const [reservationsPerPage] = useState(4);
   const indexOfLastReservation = currentPage * reservationsPerPage;
@@ -57,7 +59,7 @@ const ReservationsDashboard = () => {
     }
   };
 
-  const handleDelete = (event, id) => {
+  const handleDelete = (event, id, date, cost, user, activity, hour, store) => {
     event.preventDefault();
     Swal.fire({
       icon: 'warning',
@@ -74,6 +76,15 @@ const ReservationsDashboard = () => {
         try {
           await dispatch(deleteReservation(id));
           await dispatch(getReservations());
+          await axios.post('http://localhost:3001/refund/admin', {
+          reservId: id,
+          activity: activity,
+          date: date,
+          hour: hour,
+          cost: cost,
+          user: user,
+          store: store,});
+          
           return new Promise((resolve) => {
             setTimeout(() => {
               resolve();
@@ -301,7 +312,7 @@ const ReservationsDashboard = () => {
                       <td class="px-6 py-4">
                         <button
                           onClick={(event) =>
-                            handleDelete(event, reservation?.id)
+                            handleDelete(event, reservation?.id, reservation?.date, reservation?.cost, reservation?.user?.name, reservation?.activity?.name, reservation?.hour, reservation?.activity?.stores[0]?.name)
                           }
                           className={style.editButton2}
                         >
