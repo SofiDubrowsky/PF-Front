@@ -252,7 +252,7 @@ export default function CalendarComponent() {
             </div>
             <div className={styles.containerBtn}>
               <button className={styles.btnCancel} onClick={handleCancelTransaction}>Cancelar reserva</button>
-              <button className={styles.btnConfirm} onClick={handleRenderWallet} disabled={showWallet}>Continuar con Mercado Pago</button>
+              <button className={styles.btnCancel} onClick={handleRenderWallet} disabled={showWallet}>Continuar con Mercado Pago</button>
               {showWallet && <Wallet initialization={{ preferenceId }} />}
 
             </div>
