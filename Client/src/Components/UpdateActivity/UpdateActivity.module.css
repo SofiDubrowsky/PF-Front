@@ -144,13 +144,13 @@
   
   }
   
-  .btn{
+  /* .btn{
     border: none;
     border: 2px solid var(--main-color);
     background-color: var(--bg-color);
     box-shadow: 4px 4px var(--main-color);
     background: none;
-    width: 7rem;
+    width: 9rem;
     height: 2rem;
     color: white;
     border-radius: 2rem;
@@ -160,12 +160,12 @@
     text-transform: uppercase;
     letter-spacing: 4px;
     font-weight: bold;
-  }
+  } */
   
-  .btn:hover{
+  /* .btn:hover{
     transform: translate(20%) scale(1.1);
   
-  }
+  } */
   
   .inputUpload{
     background: none;
@@ -203,4 +203,36 @@
   .inputDel h3 {
     font-weight: 400;
     color: #ffffff;
+  }
+
+  .contenttt{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .contenttt button{
+    border: none;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    background: none;
+    width: 9rem;
+    height: 2rem;
+    color: white;
+    border-radius: 2rem;
+    transition: .5s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin: 0 1rem;
+  }
+
+  .btn:hover{
+    transform: translate(10%) scale(1.1);
+  
   }

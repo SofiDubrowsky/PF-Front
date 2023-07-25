@@ -7,6 +7,8 @@ import { getActivities } from "../../redux/Actions/getActivities";
 import { deleteActivity } from "../../redux/Actions/deleteActivity";
 import UpdateActivity from "../UpdateActivity/UpdateActivity";
 import { getActivityDetail } from "../../redux/Actions/getActivityDetail";
+import Swal from "sweetalert2";
+
 const ActivitiesDashboard = () => {
   const details = useSelector((state) => state.detail);
   const activities = useSelector((state) => state.activities);
@@ -38,8 +40,49 @@ const ActivitiesDashboard = () => {
 
   const handleDelete = (event, id) => {
     event.preventDefault();
-    dispatch(deleteActivity(id));
-    navigate("/admin");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Eliminar Actividad',
+      text: "⚠︎ ¿Esta seguro de eliminar esta actividad? ⚠︎",
+      showConfirmButton: true,
+      showCancelButton: true, 
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Volver', 
+      color: "#FFFFFF",
+      background: "#666",
+      allowOutsideClick: () => !Swal.isLoading(), 
+      preConfirm: async () => {
+        try {
+          await dispatch(deleteActivity(id));
+          await dispatch(getActivities());
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000).then(
+              setTimeout(() => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Actividad eliminada con éxito',
+                  text: 'La actividad ha sido eliminada correctamente.',
+                  showConfirmButton: false,
+                  color: "#FFFFFF",
+                  background: "#666",
+                  timer: 2000,
+                })
+              }, 1000)
+              )
+          });
+        } catch (error) {
+          console.error(error);
+          return Promise.reject();
+        }
+      },
+    });
+    if (result.isConfirmed) {
+      Swal.close();
+    } else {
+      navigate("/admin");
+    }
   };
 
   const handleUpdate = (event, id) => {
@@ -170,14 +213,8 @@ const ActivitiesDashboard = () => {
         </table>
         {showUpdate && (
           <div className={style.popup}>
-            <div className={style.container}>
-              <h2>Editar Actividades</h2>
-            </div>
             <div className={style.containerBtn}>
-              <UpdateActivity details={details} />
-              <button className={style.btnCancel} onClick={handleClose}>
-                Cancelar
-              </button>
+              <UpdateActivity details={details} setShowBackdrop={setShowBackdrop} setShowUpdate={setShowUpdate} handleClose={handleClose}/>
             </div>
           </div>
         )}
