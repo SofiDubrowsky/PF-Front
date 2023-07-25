@@ -36,10 +36,7 @@ import {
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
 
-import { POST_REVIEW } from "./Actions/postReview";
-import { DELETE_ACTIVITY } from "./Actions/deleteActivity";
-import { UPDATE_ACTIVITY } from "./Actions/updateActivity";
-import { SET_FILTER_STATS } from "./Actions/filterStats"
+import { SET_FILTER_STATS } from "./Actions/filterStats";
 
 
 const initialState = {

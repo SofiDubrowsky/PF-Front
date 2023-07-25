@@ -2,12 +2,12 @@ import style from "./ConfigDashboard.module.css";
 import { getAdmins } from "../../redux/Actions/getAdmin";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { deleteUser } from "../../redux/Actions/deleteUser";
+import  UpdateAdmin  from "../UpdateAdmin/UpdateAdmin"
 
 
 const ConfigDashboard = () => {
   const admins = useSelector((state) => state.admins);
-  console.log(admins);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -19,6 +19,21 @@ const ConfigDashboard = () => {
   const indexOfLastAdmin = currentPage * adminsPerPage;
   const indexOfFirstAdmin = indexOfLastAdmin - adminsPerPage;
   const currentAdmins = admins?.slice(indexOfFirstAdmin, indexOfLastAdmin);
+  const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(admins.length < 2);
+  const [deleted, setDeleted] = useState(false)
+  const [showUpdate, setShowUpdate] = useState(false);
+  const [showBackdrop, setShowBackdrop] = useState(false);
+
+  useEffect(() => {
+    setIsEditButtonDisabled(currentAdmins.length < 2);
+  }, [admins]);
+
+  useEffect(() => {
+    dispatch(getAdmins());
+    setDeleted(false)
+  }, [deleted]);
+
+
 
   const totalPages = Math.ceil(admins?.length / adminsPerPage);
   const paginate = (pageNumber) => {
@@ -27,12 +42,28 @@ const ConfigDashboard = () => {
     }
   };
 
+  const handleDelete = (event, id) => {
+    event.preventDefault();
+    dispatch(deleteUser(id));
+    setDeleted(true)
+  };
+
+  const createAdmin = (event) => {
+    event.preventDefault();
+    setShowUpdate(true);
+    setShowBackdrop(true);
+  }
+
+  const handleClose = () => {
+    setShowUpdate(false);
+    setShowBackdrop(false);
+  };
+
   return (
     <div className={style.container}>
       <h2>Administradores</h2>
       <div className={style.activity}>
-        <NavLink to="/postStores">
-          <button className={style.button} type="button">
+          <button className={style.button} type="button" onClick={createAdmin}>
             <span className={style.button__text}>Crear Admin</span>
             <span className={style.button__icon}>
               <svg
@@ -52,7 +83,6 @@ const ConfigDashboard = () => {
               </svg>
             </span>
           </button>
-        </NavLink>
       </div>
       <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
@@ -88,7 +118,8 @@ const ConfigDashboard = () => {
                     <td class="px-6 py-4">
                       <button
                         onClick={(event) => handleDelete(event, admin?.id)}
-                        className={style.editButton2}
+                        className={style.editButton2} 
+                        disabled={isEditButtonDisabled}
                       >
                         <svg
                           viewBox="0 0 448 512"
@@ -104,6 +135,20 @@ const ConfigDashboard = () => {
             })}
         </table>
       </div>
+      {showUpdate && (
+          <div className={style.popup}>
+            <div className={style.container}>
+              <h2>Crear Administrador</h2>
+            </div>
+            <div className={style.containerBtn}>
+              <UpdateAdmin  />
+              <button className={style.btnCancel} onClick={handleClose}>
+                Cancelar
+              </button>
+            </div>
+          </div>
+        )}
+        {showBackdrop && <div className={style.backdrop} />}
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
