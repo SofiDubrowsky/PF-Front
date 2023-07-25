@@ -1,9 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope&display=swap");
+:root{
+    --manrope: "Manrope", sans-serif;
+   
+        --input-focus: #9AC71F;
+        --font-color: #323232;
+        --font-color-sub: #666;
+        --bg-color: #fff;
+        --main-color: #424242;
+        /* #424242 */
+}
 .mainContainer{
     display: grid;
     grid-template-rows: 4rem ;
     grid-template-columns:  repeat(2, 1fr);
 
     width: 100%;
+    font-family: var(--manrope);
 }
 
 .graphReservationsPerStore{
@@ -14,6 +26,7 @@
     padding: 1rem;
     border: 1px solid #9ac71f;
     border-radius: 5px;
+    font-family: var(--manrope);
 }
 
 .graphReservationsPaid{
@@ -24,6 +37,7 @@
     padding: 1rem;
     border: 1px solid #9ac71f;
     border-radius: 5px;
+    font-family: var(--manrope);
 }
 
 .graphEarnings{
@@ -34,6 +48,7 @@
     padding: 1rem;
     border: 1px solid #9ac71f;
     border-radius: 5px;
+    font-family: var(--manrope);
 }
 
 .graphPerMonth{
@@ -44,10 +59,12 @@
     padding: 1rem;
     border: 1px solid #9ac71f;
     border-radius: 5px;
+    font-family: var(--manrope);
 }
 
 .title{
     grid-area: 1 / 1 / 3 / 2;
+    font-family: var(--manrope);
 }
 
 .filter{
@@ -57,11 +74,13 @@
     align-items: center;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
+    font-family: var(--manrope);
 }
 
 .labelInput{
     color: white;
     width: 70%;
+    font-family: var(--manrope);
 }
 
 .inputDate{
@@ -70,6 +89,7 @@
     box-shadow: 4px 4px var(--main-color);
     color: white;
     background-color: rgba(251, 248, 248, 0.202);
+    font-family: var(--manrope);
 }
 
 .filter button{
@@ -84,6 +104,7 @@
     letter-spacing: 4px;
     font-weight: bold;
     text-transform: uppercase;
+    font-family: var(--manrope);
 }
 
 .graphContainer{
@@ -94,6 +115,7 @@
     width: 75%;
     height: 75%;
     margin: 3rem;
+    font-family: var(--manrope);
 }
 
 .dataTable{
@@ -103,22 +125,33 @@
     width: 100%;
     grid-template-rows: repeat(1rem);
     text-align: center;
+    letter-spacing: .3rem;
+    font-size: 1.4rem;
+    font-family: var(--manrope);
 }
 
 .dataTableMonths{
     grid-area: 2 / 2 / 3 / 3;
+    font-family: var(--manrope);
     color: white;
     display:grid;
     width: 100%;
     grid-template-columns: repeat(2, 1fr);
     text-align: center;
+    letter-spacing: .3rem;
+    font-size: 1.2rem;
 }
 
 .total{
     grid-area: 3 / 1 / 4 / 3;
+    font-family: var(--manrope);
     color: white;
+    letter-spacing: .3rem;
+    font-size: 1.3rem;
+    text-align: center;
 }
 
 .dataTable p {
+    font-family: var(--manrope);
     text-transform: capitalize;
 }
