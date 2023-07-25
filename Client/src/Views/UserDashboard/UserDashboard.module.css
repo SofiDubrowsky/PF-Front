@@ -27,7 +27,8 @@
   align-items: center;
   justify-content: center;
   border-radius: 1rem;
-  margin: 1rem
+  margin: 1rem;
+  overflow: hidden;
 }
 
 .data {

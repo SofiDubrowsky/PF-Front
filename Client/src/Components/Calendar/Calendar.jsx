@@ -215,7 +215,7 @@ export default function CalendarComponent() {
     <div className={styles.containerGeneral}>
       <div >
         <Calendar onChange={handleDateChange} value={value} tileClassName={getTileClassName} />
-        <h1 style={{ color: "white" }} className={styles.fechaSeleccionada}>
+        <h1 style={{ color: "white",paddingTop:"2rem" }} className={styles.fechaSeleccionada}>
           ✔ Fecha seleccionada:{' '}
           {selectedDate
             ? `${selectedDate.dayName} ${format(selectedDate.date, 'dd/MM/yyyy', { locale: es })}`
