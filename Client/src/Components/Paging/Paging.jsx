@@ -16,7 +16,7 @@ export default function Paginated({
 
   return (
     <nav>
-      <ul className={style.ul}>
+     {totalPages<2? <div style={{height:'5rem'}}></div> : <ul className={style.ul}>
         {currentPage > 1 && (
           <li className={style.li}>
             <a className={style.flechita} onClick={() => paginado(currentPage - 1)}>←</a>
@@ -41,7 +41,7 @@ export default function Paginated({
             <a className={style.flechita} onClick={() => paginado(currentPage + 1)}>→</a>
           </li>
         )}
-      </ul>
+      </ul>}
     </nav>
   );
 }
