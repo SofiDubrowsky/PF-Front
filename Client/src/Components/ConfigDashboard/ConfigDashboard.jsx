@@ -12,7 +12,7 @@ const ConfigDashboard = () => {
 
   useEffect(() => {
     dispatch(getAdmins());
-  }, []);
+  },[]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [adminsPerPage] = useState(4);
@@ -23,17 +23,17 @@ const ConfigDashboard = () => {
   const [deleted, setDeleted] = useState(false)
   const [showUpdate, setShowUpdate] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setIsEditButtonDisabled(currentAdmins.length < 2);
-  }, [admins]);
+  },[admins]);
+
 
   useEffect(() => {
     dispatch(getAdmins());
-    setDeleted(false)
-  }, [deleted]);
-
-
+    setUpdate(false)
+  },[update])
 
   const totalPages = Math.ceil(admins?.length / adminsPerPage);
   const paginate = (pageNumber) => {
@@ -45,7 +45,7 @@ const ConfigDashboard = () => {
   const handleDelete = (event, id) => {
     event.preventDefault();
     dispatch(deleteUser(id));
-    setDeleted(true)
+    setUpdate(true)
   };
 
   const createAdmin = (event) => {
@@ -141,7 +141,7 @@ const ConfigDashboard = () => {
               <h2>Crear Administrador</h2>
             </div>
             <div className={style.containerBtn}>
-              <UpdateAdmin  />
+              <UpdateAdmin  setUpdate={setUpdate} setShowUpdate={setShowUpdate} setShowBackdrop={setShowBackdrop}/>
               <button className={style.btnCancel} onClick={handleClose}>
                 Cancelar
               </button>

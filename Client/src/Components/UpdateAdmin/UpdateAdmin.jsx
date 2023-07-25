@@ -7,7 +7,7 @@ import { createUser } from "../../redux/Actions/createUser";
 
 
 
-const UpdateAdmin = () => {
+const UpdateAdmin = ({setUpdate, setShowBackdrop, setShowUpdate}) => {
   const [buttonDisabled, setButtonDisabled] = useState(true);
 
   const dispatch = useDispatch();
@@ -23,9 +23,9 @@ const UpdateAdmin = () => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  const reload = () => {
-    window.location.reload(false);
-  };
+  // const reload = () => {
+  //   window.location.reload(false);
+  // };
 
   const handleChange = (event) => {
     setForm({
@@ -78,8 +78,12 @@ const UpdateAdmin = () => {
     } else {
       console.log(form);
       dispatch(createUser(form));
-      setTimeout(reload, 1500);
+      setUpdate(true)
+      // setTimeout(reload, 1500);
     }
+
+    setShowBackdrop(false)
+    setShowUpdate(false)
   };
 
   useEffect(() => {
@@ -115,7 +119,7 @@ const UpdateAdmin = () => {
           placeholder="Email"
           onChange={handleChange}
         />
-        {errors.name && <p className={style.error}>{errors.name}</p>}
+        {errors.email && <p className={style.error}>{errors.email}</p>}
       </div>
 
       <div className={style.divInput}>
