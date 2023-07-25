@@ -9,7 +9,7 @@ import validate from "../../Views/Form/validate";
 import { useParams } from "react-router-dom";
 
 
-const UpdateActivity = ({details}) => {
+const UpdateActivity = ({details, setShowBackdrop, setShowUpdate, handleClose}) => {
   const dispatch = useDispatch();
   // const { id } = useParams();
   // const details = useSelector((state) => state.detail);
@@ -86,7 +86,17 @@ const UpdateActivity = ({details}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateActivity(form, id))
-    
+    setShowBackdrop(false);
+    setShowUpdate(false)
+    Swal.fire({
+      icon: 'success',
+      title: 'Actividad Actualizada',
+      text: 'La actividad ha sido actualizada correctamente.',
+      showConfirmButton: false,
+      color: "#FFFFFF",
+      background: "#666",
+      timer: 3000,
+    })
   }
 
 
@@ -96,6 +106,7 @@ const UpdateActivity = ({details}) => {
         className={style.formContainer}
         onSubmit={(event) => handleSubmit(event)}
       >
+        <h2>Editar Actividades</h2>
         <div className={style.allInputs}>
           <div className={style.content}>
             <input
@@ -286,10 +297,14 @@ const UpdateActivity = ({details}) => {
             </div>
           </div> */}
         </div>
-        <div className={style.btnContainer}>
+        <div className={style.contenttt}>
+          <button className={style.btn} onClick={handleClose}>
+                Cancelar
+          </button>
           <button className={style.btn} type="submit">
             Editar
           </button>
+              
         </div>
       </form>
     </div>
