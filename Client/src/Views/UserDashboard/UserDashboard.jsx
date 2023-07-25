@@ -12,6 +12,7 @@ import { deleteReservation } from "../../redux/Actions/deleteReservations";
 import { format } from 'date-fns-tz';
 import Swal from "sweetalert2";
 import axios from "axios";
+import { hr } from "date-fns/locale";
 
 const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -138,7 +139,7 @@ const UserDashboard = () => {
     <div className={style.user}>
       <div className={style.title}>
         <div className={style.imgBox}>
-          <img className={style.img} src={userPicture} alt="https://img.freepik.com/free-icon/user_318-804790.jpg" />
+          <img className={style.img} src={userPicture} alt="User" />
         </div>
         <div className={style.data}>
           <img src={image} alt="" />
@@ -156,6 +157,7 @@ const UserDashboard = () => {
         <h1 className={style.reserva}>Mis Reservas </h1>
         <p style={{ color: "white", textAlign: "center", fontSize: "1.5rem" }}> Fecha Actual: {today}</p>
         <p style={{ color: "white", textAlign: "center", fontSize: "1rem" }}>*Recuerda que solo puedes cancelar con un día de anticipación.</p>
+        {totalPages<2?<hr/>:
         <div className={style.pagination}>
           <button
             className={style.paginationButton}
@@ -173,6 +175,7 @@ const UserDashboard = () => {
             <h1 >{">"}</h1>
           </button>
         </div>
+        }
         {currentGames?.length > 0 ? (
           currentGames?.map((reserv) => {
             const [day, month, year] = (reserv?.date?.split(" ").slice(1).join(" ").split("/"))

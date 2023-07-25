@@ -52,14 +52,14 @@ const UpdateUser = () => {
     if (!/^(?! *$)[A-Za-z0-9 ]{5,25}$/.test(form.name)) {
       errors.name = "El nombre debe contener letras 5-25 caracteres";
     }
-    if (!/^[0-9]{1,10}$/.test(form.phone)) {
+    if (!/^[0-9]{0,10}$/.test(form.phone)) {
       errors.phone = "El teléfono solo puede contener 10 números sin espacios";
     }
     if (!form.password) {
-      errors.name = "Se requiere una contraseña";
+      errors.password = "Se requiere una contraseña";
     }
     if (!/^(?! *$)[A-Za-z0-9 ]{6,25}$/.test(form.password)) {
-      errors.phone = "La contraseña debe contener 6-10 caracteres";
+      errors.password = "La contraseña debe contener 6-10 caracteres";
     }
     return errors;
   };
@@ -100,9 +100,8 @@ const UpdateUser = () => {
 
     setErrors(validate(form));
     const error = validate(form);
-    if (Object.values(error).length !== 0) {
-      alert("Debe rellenar el campo obligatorio");
-    } else {
+    console.log(error);
+    if (Object.values(error).length === 0) {
       console.log(form);
       dispatch(updateUser(form));
       setTimeout(reload, 1500);

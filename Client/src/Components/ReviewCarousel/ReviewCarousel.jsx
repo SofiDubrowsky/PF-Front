@@ -63,7 +63,7 @@ const ReviewCarousel = () => {
 
                   <div className={style.review}>
                     <div className={style.user}>
-                      <img src={rev?.user?.picture} alt="User" />
+                      <img src={ (rev?.user?.picture === null || rev?.user?.picture === undefined) ? "https://img.freepik.com/free-icon/user_318-804790.jpg" : (rev?.user?.picture)} alt="User" />
                       <div className={style.name}>{rev?.user?.name} {renderStars(rev?.points)}</div>
                     </div>
 
@@ -71,9 +71,9 @@ const ReviewCarousel = () => {
                       ? rev?.description
                       : `${rev?.description?.length > 229
                           ? rev?.description?.slice(0, 229)
-                          : rev?.description}...`}
+                          : rev?.description}`}
                       {rev?.description.length > 229 ? <button className={style.toggleButton} onClick={() => handleToggleText(index)}>
-                      {expandedReviews[index] ? "...ver menos" : "ver más"}
+                      {expandedReviews[index] ? "...ver menos" : "...ver más"}
                       </button> : null}
                     </div>
 

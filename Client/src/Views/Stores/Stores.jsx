@@ -30,23 +30,23 @@ const Stores = () => {
               <div className={style.containerImage}>
                 <img
                   className={style.image}
-                  src={store.picture}
+                  src={store?.picture}
                   alt="notFound"
                 />
               </div>
               <div className={style.containerData}>
                 <div className={style.data}>
                   <h3>
-                    Sucursal: <span>"{store.name}"</span>
+                    Sucursal: <span>{(store?.name).toUpperCase()}</span>
                   </h3>
-                  <h3>Dirección: <span>{store.address}</span></h3>
-                  <h3>Teléfono: <span>{store.phone}</span></h3>
-                  <h3>Email: <span>{store.email}</span></h3>
+                  <h3>Dirección: <span>{store?.address}</span></h3>
+                  <h3>Teléfono: <span>{store?.phone}</span></h3>
+                  <h3>Email: <span>{store?.email}</span></h3>
                 </div>
               </div>
               <div className={style.map}>
                 <iframe
-                  src={store.maps}
+                  src={store?.maps}
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
