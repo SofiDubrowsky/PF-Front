@@ -229,17 +229,16 @@ const UserDashboard = () => {
                         )?.cost
                       }
                     </h4>
-                  </div>
-                </div>
-                <div className={style.buttons}>
-
                   {reserv?.pay === true ? (
                     <h3 style={{ color: "green", fontSize: "24px", marginBottom: "1rem" }}>Pago Aprobado ✔</h3>
                   ) : (
                     <h3 style={{ color: "red", fontSize: "24px", marginBottom: "1rem" }}>No Aprobado ❌</h3>
                   )}
-
+                  </div>
+                </div>
+                <div className={style.buttons}>
                   {(fechita > new Date()) ? (<button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button>) : null}
+                  <button>holii</button>
 
                   {(fechita < new Date().setHours(0, 0, 0, 0)) ? (<button className={style.btn} onClick={() => addReview(reserv?.id)} disabled={existsRes.includes(reserv?.id)}>{existsRes.includes(reserv?.id) ? "Opinión Enviada ✔" : "Dejar Opinión ✉"} </button>) : null}
 

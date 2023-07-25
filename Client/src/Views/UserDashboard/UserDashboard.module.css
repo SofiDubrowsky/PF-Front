@@ -409,7 +409,7 @@ p {
 }
 
 .buttons {
-
+  /* background-color: red; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -478,10 +478,12 @@ p {
     height: auto;
   }
 
-  /* .buttons{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  } */
+  .buttons{
+    grid-area: 2 / 1 / 3 / 3;
+    margin-top: 0.2rem;
+  }
   
+  .pagination{
+    max-width: 95%;
+  }
 }
