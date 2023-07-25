@@ -5,7 +5,7 @@ import style from "./Form.module.css";
 import { Image, Transformation, CloudinaryContext } from "cloudinary-react";
 import validate from "./validate";
 import { postActivity } from "../../redux/Actions/postActivity";
-import {getActivities} from "../../redux/Actions/getActivities";
+import { getActivities } from "../../redux/Actions/getActivities";
 import { getStores } from "../../redux/Actions/getStores";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -48,7 +48,7 @@ const Form = () => {
 
   useEffect(() => {
     isClient === 'true' && navigate('/home')
-  },[isClient])
+  }, [isClient])
 
   const handleChange = (event) => {
     setForm({
@@ -148,7 +148,7 @@ const Form = () => {
     )
       ? 1
       : 0;
-    if (existName === 1){
+    if (existName === 1) {
       Swal.fire({
         text: `Ya existe la actividad "${form.name}"`,
         icon: 'error',
@@ -159,7 +159,7 @@ const Form = () => {
         color: "#FFFFFF"
       });
     }
-    else if (Object.values(errorSave).length !== 0){
+    else if (Object.values(errorSave).length !== 0) {
       Swal.fire({
         text: 'Debes completar todos los datos obligatorios',
         icon: "warning",
@@ -176,17 +176,17 @@ const Form = () => {
         text: 'Actividad Creada!',
         icon: 'success',
         showConfirmButton: true,
-        showCancelButton: true, 
-        confirmButtonText: 'Agregar nueva actividad', 
-        cancelButtonText: 'Volver al Inicio', 
+        showCancelButton: true,
+        confirmButtonText: 'Agregar nueva actividad',
+        cancelButtonText: 'Volver al Inicio',
         background: "#666",
         color: "#FFFFFF"
       }).then((result) => {
         if (result.isConfirmed) {
-         navigate('/post')
+          navigate('/post')
           setTimeout(reload, 3000);  // Espera 3 segundos antes de llamar a reload()
         } else {
-         navigate('/home');
+          navigate('/home');
         }
       })
       setForm({
@@ -219,271 +219,271 @@ const Form = () => {
     <div className={style.contenedor}>
 
       <form className={style.form} onSubmit={(e) => handleSubmit(e)}>
-      <h2>Crear nueva actividad:</h2>
+        <h2>Crear nueva actividad:</h2>
         <div className={style.allInputs}>
-        <div className={style.content}>
-          {/* <h3>Titulo: </h3> */}
-          <input
-            type="text"
-            value={form.name}
-            name="name"
-            onChange={handleChange}
-            placeholder="Nombre"
-            className={style.inputForm}
-          />
-          {errors.name && <p>{errors.name}</p>}
-        </div>
+          <div className={style.content}>
+            {/* <h3>Titulo: </h3> */}
+            <input
+              type="text"
+              value={form.name}
+              name="name"
+              onChange={handleChange}
+              placeholder="Nombre"
+              className={style.inputForm}
+            />
+            {errors.name && <p>{errors.name}</p>}
+          </div>
 
-        <div className={style.content}>
-          {/* <h3>Precio: $</h3> */}
-          <input
-            type="number"
-            min="0"
-            value={form.cost}
-            name="cost"
-            onChange={handleChange}
-            placeholder="Precio"
-            className={style.inputForm}
+          <div className={style.content}>
+            {/* <h3>Precio: $</h3> */}
+            <input
+              type="number"
+              min="0"
+              value={form.cost}
+              name="cost"
+              onChange={handleChange}
+              placeholder="Precio"
+              className={style.inputForm}
 
             />
-          {errors.cost && <p>{errors.cost}</p>}
-        </div>
+            {errors.cost && <p>{errors.cost}</p>}
+          </div>
 
-        <div className={style.content}>
-          {/* <h3>Dias: </h3> */}
-          <select
-            type="text"
-            name="days"
-            value={selectedDay}
-            onChange={handleSelect}
-            className={style.inputForm}
+          <div className={style.content}>
+            {/* <h3>Dias: </h3> */}
+            <select
+              type="text"
+              name="days"
+              value={selectedDay}
+              onChange={handleSelect}
+              className={style.inputForm}
 
-          >
-            <option value="" disabled selected hidden>
-              Días
-            </option>
-            <option value="Lunes">Lunes</option>
-            <option value="Martes">Martes</option>
-            <option value="Miércoles">Miercoles</option>
-            <option value="Jueves">Jueves</option>
-            <option value="Viernes">Viernes</option>
-            <option value="Sábado">Sabado</option>
-          </select>
-          {errors.days && <p>{errors.days}</p>}
-          <div>
-            <div className={style.inputDelete}>
-              {form?.days?.length > 0 ? (
-                form?.days?.map((day) => (
-                  <div className={style.inputDel} key={day}>
-                    <button onClick={() => handleRemove("days", day)}>X</button>
-                    <h3>{day}</h3>
-                  </div>
-                ))
-              ) : (
-                <p>No se han seleccionado dias</p>
-              )}
+            >
+              <option value="" disabled selected hidden>
+                Días
+              </option>
+              <option value="Lunes">Lunes</option>
+              <option value="Martes">Martes</option>
+              <option value="Miércoles">Miercoles</option>
+              <option value="Jueves">Jueves</option>
+              <option value="Viernes">Viernes</option>
+              <option value="Sábado">Sabado</option>
+            </select>
+            {errors.days && <p>{errors.days}</p>}
+            <div>
+              <div className={style.inputDelete}>
+                {form?.days?.length > 0 ? (
+                  form?.days?.map((day) => (
+                    <div className={style.inputDel} key={day}>
+                      <button onClick={() => handleRemove("days", day)}>X</button>
+                      <h3>{day}</h3>
+                    </div>
+                  ))
+                ) : (
+                  <p>No se han seleccionado dias</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className={style.content}>
-          {/* <h3>Horarios: </h3> */}
-          <select
-            type="text"
-            name="hours"
-            value={selectedHour}
-            onChange={handleSelect}
-            className={style.inputForm}
+          <div className={style.content}>
+            {/* <h3>Horarios: </h3> */}
+            <select
+              type="text"
+              name="hours"
+              value={selectedHour}
+              onChange={handleSelect}
+              className={style.inputForm}
 
-          >
-            <option value="" disabled selected>
-              Horarios
-            </option>
-            <option value="10-11">10hs a 11hs</option>
-            <option value="11-12">11hs a 12hs</option>
-            <option value="12-13">12hs a 13hs</option>
-            <option value="13-14">13hs a 14hs</option>
-            <option value="14-15">14hs a 15hs</option>
-            <option value="15-16">15hs a 16hs</option>
-            <option value="16-17">16hs a 17hs</option>
-            <option value="17-18">17hs a 18hs</option>
-            <option value="18-19">18hs a 19hs</option>
-            <option value="19-20">19hs a 20hs</option>
-          </select>
-          {errors.hours && <p>{errors.hours}</p>}
-          <div>
-            <div className={style.inputDelete}>
-              {form?.hours?.length > 0 ? (
-                form?.hours?.map((hour) => (
-                  <div className={style.inputDel} key={hour}>
-                    <button onClick={() => handleRemove("hours", hour)}>
-                      X
-                    </button>
-                    <h3>{hour}hs</h3>
-                  </div>
-                ))
-              ) : (
-                <p>No se han seleccionado horarios</p>
-              )}
+            >
+              <option value="" disabled selected>
+                Horarios
+              </option>
+              <option value="10-11">10hs a 11hs</option>
+              <option value="11-12">11hs a 12hs</option>
+              <option value="12-13">12hs a 13hs</option>
+              <option value="13-14">13hs a 14hs</option>
+              <option value="14-15">14hs a 15hs</option>
+              <option value="15-16">15hs a 16hs</option>
+              <option value="16-17">16hs a 17hs</option>
+              <option value="17-18">17hs a 18hs</option>
+              <option value="18-19">18hs a 19hs</option>
+              <option value="19-20">19hs a 20hs</option>
+            </select>
+            {errors.hours && <p>{errors.hours}</p>}
+            <div>
+              <div className={style.inputDelete}>
+                {form?.hours?.length > 0 ? (
+                  form?.hours?.map((hour) => (
+                    <div className={style.inputDel} key={hour}>
+                      <button onClick={() => handleRemove("hours", hour)}>
+                        X
+                      </button>
+                      <h3>{hour}hs</h3>
+                    </div>
+                  ))
+                ) : (
+                  <p>No se han seleccionado horarios</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className={style.content}>
-          {/* <h3>Edades: </h3> */}
-          <select
-            type="text"
-            name="age"
-            value={selectedAge}
-            onChange={handleSelect}
-            className={style.inputForm}
+          <div className={style.content}>
+            {/* <h3>Edades: </h3> */}
+            <select
+              type="text"
+              name="age"
+              value={selectedAge}
+              onChange={handleSelect}
+              className={style.inputForm}
 
-          >
-            <option value="" disabled selected>
-              Edades
-            </option>
-            <option value="Niños">Niños</option>
-            <option value="Adultos">Adultos</option>
-          </select>
-          {errors.age && <p>{errors.age}</p>}
-          <div>
-            <div className={style.inputDelete}>
-              {form?.age?.length > 0 ? (
-                form?.age?.map((ag) => (
-                  <div className={style.inputDel} key={ag}>
-                    <button onClick={() => handleRemove("age", ag)}>X</button>
-                    <h3>{ag}</h3>
-                  </div>
-                ))
-              ) : (
-                <p>No se han seleccionado edades</p>
-              )}
+            >
+              <option value="" disabled selected>
+                Edades
+              </option>
+              <option value="Niños">Niños</option>
+              <option value="Adultos">Adultos</option>
+            </select>
+            {errors.age && <p>{errors.age}</p>}
+            <div>
+              <div className={style.inputDelete}>
+                {form?.age?.length > 0 ? (
+                  form?.age?.map((ag) => (
+                    <div className={style.inputDel} key={ag}>
+                      <button onClick={() => handleRemove("age", ag)}>X</button>
+                      <h3>{ag}</h3>
+                    </div>
+                  ))
+                ) : (
+                  <p>No se han seleccionado edades</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className={style.content}>
-          {/* <h3>Cantidad de jugadores: </h3> */}
-          <select
-            type="text"
-            name="players"
-            value={selectedPlayers}
-            onChange={handleSelect}
-            className={style.inputForm}
+          <div className={style.content}>
+            {/* <h3>Cantidad de jugadores: </h3> */}
+            <select
+              type="text"
+              name="players"
+              value={selectedPlayers}
+              onChange={handleSelect}
+              className={style.inputForm}
 
-          >
-            <option value="" disabled selected>
-              Participantes
-            </option>
-            <option value="2-4">2 a 4 jugadores</option>
-            <option value="4-8">4 a 8 jugadores</option>
-            <option value="+8">+8 jugadores</option>
-          </select>
-          {errors.players && <p>{errors.players}</p>}
-          <div >
-            <div className={style.inputDelete}>
-              {form?.players?.length > 0 ? (
-                form?.players?.map((player) => (
-                  <div className={style.inputDel} key={player}>
-                    <button onClick={() => handleRemove("players", player)}>
-                      X
-                    </button>
-                    <h3>{player} jugadores</h3>
-                  </div>
-                ))
-              ) : (
-                <p>No se han seleccionado cantidades de jugadores</p>
-              )}
+            >
+              <option value="" disabled selected>
+                Participantes
+              </option>
+              <option value="2-4">2 a 4 jugadores</option>
+              <option value="4-8">4 a 8 jugadores</option>
+              <option value="+8">+8 jugadores</option>
+            </select>
+            {errors.players && <p>{errors.players}</p>}
+            <div >
+              <div className={style.inputDelete}>
+                {form?.players?.length > 0 ? (
+                  form?.players?.map((player) => (
+                    <div className={style.inputDel} key={player}>
+                      <button onClick={() => handleRemove("players", player)}>
+                        X
+                      </button>
+                      <h3>{player} jugadores</h3>
+                    </div>
+                  ))
+                ) : (
+                  <p>No se han seleccionado cantidades de jugadores</p>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* <h3>Sucursales: </h3>
+          {/* <h3>Sucursales: </h3>
               <select type="text" name='storeId' value={selectedStore} onChange={handleSelect}>
                 <option value="" disabled selected>Seleccionar</option>
                 <option value="cerroID">Cerro de las Rosas</option>
               </select>
               {errors.storeId && <p>{errors.storeId}</p>} */}
 
-        <div className={style.content}>
-          {/* <h3>Sucursales: </h3> */}
-          <select
-            type="number"
-            name="store"
-            value={selectedStore}
-            onChange={handleSelect}
-            className={style.inputForm}
+          <div className={style.content}>
+            {/* <h3>Sucursales: </h3> */}
+            <select
+              type="number"
+              name="store"
+              value={selectedStore}
+              onChange={handleSelect}
+              className={style.inputForm}
 
-          >
-            <option value="" disabled selected>
-              Sucursales
-            </option>
-            {allStores.map((store) => (
-              <option value={parseInt(store.id)}>{store.name}</option>
-            ))}
-          </select>
-          {errors.store && <p>{errors.store}</p>}
-          <div className={style.inputDelete}>
-            {form?.store?.length > 0 ? (
-              form?.store?.map((storeId) => {
-                const selectedStore = allStores.find(
-                  (store) => Number(store.id) === Number(storeId)
-                );
-                // const storeName = selectedStore.name
-                return (
-                  <div className={style.inputDel} key={storeId}>
-                    <button onClick={() => handleRemove("store", storeId)}>
-                      X
-                    </button>
-                    <h3>{selectedStore.name}</h3>
-                  </div>
-                );
-              })
-            ) : (
-              <p>No se han seleccionado sucursales</p>
-            )}
+            >
+              <option value="" disabled selected>
+                Sucursales
+              </option>
+              {allStores.map((store) => (
+                <option value={parseInt(store.id)}>{store.name}</option>
+              ))}
+            </select>
+            {errors.store && <p>{errors.store}</p>}
+            <div className={style.inputDelete}>
+              {form?.store?.length > 0 ? (
+                form?.store?.map((storeId) => {
+                  const selectedStore = allStores.find(
+                    (store) => Number(store.id) === Number(storeId)
+                  );
+                  // const storeName = selectedStore.name
+                  return (
+                    <div className={style.inputDel} key={storeId}>
+                      <button onClick={() => handleRemove("store", storeId)}>
+                        X
+                      </button>
+                      <h3>{selectedStore.name}</h3>
+                    </div>
+                  );
+                })
+              ) : (
+                <p>No se han seleccionado sucursales</p>
+              )}
+            </div>
           </div>
-        </div>
 
-        <div className={style.content}>
-          {/* <h3>Descripción: </h3> */}
-          <textarea
-            type="text"
-            value={form.description}
-            name="description"
-            onChange={handleChange}
-            placeholder="Descripción"
-            className={style.textareaForm}
+          <div className={style.content}>
+            {/* <h3>Descripción: </h3> */}
+            <textarea
+              type="text"
+              value={form.description}
+              name="description"
+              onChange={handleChange}
+              placeholder="Descripción"
+              className={style.textareaForm}
 
             />
-          {errors.description && <p>{errors.description}</p>}
-        </div>
-        <div className={style.content}>
-          {/* <h3>Subir Fotos</h3> */}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleImageUpload}
-            disabled={form.picture.length === 1}
-            className={style.inputForm}
-          />
-          <div className={style.imagepreview}>
-            {form.picture?.map((imageUrl) => (
-              <div key={imageUrl} className={style.imagecontainer}>
-                <Image publicId={imageUrl} cloudName={CLOUD_NAME}>
-                  <Transformation width="100" height="100" crop="thumb" />
-                </Image>
-                <button
-                  className={style.removebutton}
-                  onClick={() => handleRemoveImage(imageUrl)}
-                >
-                  X
-                </button>
-              </div>
-            ))}
+            {errors.description && <p>{errors.description}</p>}
           </div>
-          {errors.picture && <p>{errors.picture}</p>}
-        </div>
+          <div className={style.content}>
+            {/* <h3>Subir Fotos</h3> */}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+              disabled={form.picture.length === 1}
+              className={style.inputForm}
+            />
+            <div className={style.imagepreview}>
+              {form.picture?.map((imageUrl) => (
+                <div key={imageUrl} className={style.imagecontainer}>
+                  <Image publicId={imageUrl} cloudName={CLOUD_NAME}>
+                    <Transformation width="100" height="100" crop="thumb" />
+                  </Image>
+                  <button
+                    className={style.removebutton}
+                    onClick={() => handleRemoveImage(imageUrl)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
+            {errors.picture && <p>{errors.picture}</p>}
+          </div>
         </div>
         {/* <div className="storesConteiner">
                 <div className="storesSelected">
@@ -521,13 +521,14 @@ const Form = () => {
                   }
                 </div>
               </div> */}
-        <div className={style.btnContainer}>
-        <button className={style.btn} type="button" onClick={handleGoBack}>
+        <div className={style.contenttt1}>
+
+          <button className={style.btn} type="button" onClick={handleGoBack}>
             Volver
           </button>
-        <button className={style.btn} type="submit">
-          Crear
-        </button>
+          <button className={style.btn} type="submit">
+            Crear
+          </button>
         </div>
       </form>
     </div>

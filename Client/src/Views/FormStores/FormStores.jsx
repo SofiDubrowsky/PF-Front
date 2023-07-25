@@ -308,7 +308,7 @@ const FormStores = () => {
           </div>
 
         
-        <div className={style.btnContainer}>
+        <div className={style.contenttt1}>
 
         <button className={style.btn} type="button" onClick={handleGoBack}>
             Volver
