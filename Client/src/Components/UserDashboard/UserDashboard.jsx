@@ -5,6 +5,7 @@ import { getAllUsers } from "../../redux/Actions/getAllUsers";
 import { getUsersByName } from "../../redux/Actions/getUserByName";
 import { deleteUser } from "../../redux/Actions/deleteUser";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UserDashboard = () => {
   const dispatch = useDispatch();
@@ -46,8 +47,56 @@ const UserDashboard = () => {
 
   const handleDelete = (event, id) => {
     event.preventDefault();
-    dispatch(deleteUser(id));
-    navigate("/admin");
+    Swal.fire({
+      icon: 'warning',
+      title: 'Eliminar Usuario',
+      text: "⚠︎ ¿Esta seguro de eliminar este usuario? ⚠︎",
+      showConfirmButton: true,
+      showCancelButton: true, 
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Volver', 
+      color: "#FFFFFF",
+      background: "#666",
+      allowOutsideClick: () => !Swal.isLoading(), 
+      preConfirm: async () => {
+        try {
+          await dispatch(deleteUser(id));
+          await dispatch(getAllUsers());
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000).then(
+              setTimeout(() => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Usuario eliminado con éxito',
+                  text: 'El usuario ha sido eliminado correctamente.',
+                  color: "#FFFFFF",
+                  background: "#666",
+                  timer: 2000,
+                })
+              }, 1000)
+              )
+          });
+        } catch (error) {
+          console.error(error);
+          return Promise.reject();
+        }
+      },
+    });
+    if (result.isConfirmed) {
+       Swal.fire({
+        icon: 'success',
+        title: 'Usuario eliminado con éxito',
+        text: 'El usuario ha sido eliminado correctamente.',
+        color: "#FFFFFF",
+        background: "#666",
+        timer: 2000,
+      });
+      navigate("/admin");
+    } else {
+      navigate("/admin");
+    }
   };
 
   return (

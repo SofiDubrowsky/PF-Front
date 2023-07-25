@@ -36,7 +36,8 @@ import {
   SET_ORDER_BY_DATE,
 } from "./Actions/filtersAdmin";
 
-import { SET_FILTER_STATS } from "./Actions/filterStats";
+import { SET_FILTER_STATS } from "./Actions/filterStats"
+
 
 
 const initialState = {
@@ -107,7 +108,6 @@ const reducer = (state = initialState, action) => {
     case DELETE_STORE:
       return {
         ...state,
-        stores: action.payload,
       };
 
     case POST_REVIEW:
@@ -238,13 +238,11 @@ const reducer = (state = initialState, action) => {
     case DELETE_USER:
       return {
         ...state,
-        allUsers: action.payload,
       };
 
     case DELETE_ACTIVITY:
       return {
         ...state,
-        activities: action.payload,
       };
 
     case UPDATE_ACTIVITY:
