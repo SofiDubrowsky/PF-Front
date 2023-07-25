@@ -17,6 +17,7 @@ const UserDashboard = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage] = useState(3);
   const [selectedReservationId, setSelectedReservationId] = useState(null);
+  const [selectedActivity, setSelectedActivity] = useState(null)
 
   const loger = localStorage.getItem('loger')
   const userDetail = useSelector((state) => state.userDetail);
@@ -51,8 +52,9 @@ const UserDashboard = () => {
     setShowAlertLog(true);
     setShowBackdrop(true);
   }
-  const addReview = (reservationId) => {
+  const addReview = (reservationId, activityId) => {
     setSelectedReservationId(reservationId);
+    setSelectedActivity(activityId)
     setShowAlertReview(true);
     setShowBackdrop(true);
   };
@@ -240,11 +242,11 @@ const UserDashboard = () => {
                   {(fechita > new Date()) ? (<button className={style.btn} onClick={() => cancelation(reserv?.id)}>Cancelar Reserva</button>) : null}
                   <button>holii</button>
 
-                  {(fechita < new Date().setHours(0, 0, 0, 0)) ? (<button className={style.btn} onClick={() => addReview(reserv?.id)} disabled={existsRes.includes(reserv?.id)}>{existsRes.includes(reserv?.id) ? "Opinión Enviada ✔" : "Dejar Opinión ✉"} </button>) : null}
+                  {(fechita < new Date().setHours(0, 0, 0, 0)) ? (<button className={style.btn} onClick={() => addReview(reserv?.id,reserv?.activityId)} disabled={existsRes.includes(reserv?.id)}>{existsRes.includes(reserv?.id) ? "Opinión Enviada ✔" : "Dejar Opinión ✉"} </button>) : null}
 
                   {showAlertReview && (
                     <div className={style.popupp}>
-                      <FormReview handleClose={handleClose} idUser={idUser} activityId={reserv?.activityId} idReservation={selectedReservationId} />
+                      <FormReview handleClose={handleClose} idUser={idUser} activityId={selectedActivity} idReservation={selectedReservationId} />
                     </div>
                   )}
 
