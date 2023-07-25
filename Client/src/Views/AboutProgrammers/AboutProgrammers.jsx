@@ -28,7 +28,7 @@ import imgJuan from '../../assets/images/juan.jpg';
 import imgSofia from '../../assets/images/sofi.jpg';
 import imgFabrizio from '../../assets/images/fabri.jpg';
 import imgAgustina from '../../assets/images/agustina.jpg';
-import imgGonzalo from '../../assets/images/gonzalo.png';
+import imgGonzalo from '../../assets/images/gonz.jpeg';
 import imgNadia from '../../assets/images/nadia.jpg';
 import imgLuciano from '../../assets/images/luciano.jpg';
 
