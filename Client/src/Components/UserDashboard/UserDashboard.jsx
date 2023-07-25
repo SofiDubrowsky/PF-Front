@@ -189,7 +189,7 @@ const UserDashboard = () => {
         <div className={style.inputSearch}>
           <input
             type="text"
-            placeholder="Buscar usuario"
+            placeholder="Buscar por nombre"
             value={name}
             onChange={handleInputChange}
           />
@@ -295,7 +295,7 @@ const UserDashboard = () => {
         <div className={style.inputSearch}>
           <input
             type="text"
-            placeholder="Buscar usuario"
+            placeholder="Buscar por nombre"
             value={banName}
             onChange={handleInputBanChange}
           />
