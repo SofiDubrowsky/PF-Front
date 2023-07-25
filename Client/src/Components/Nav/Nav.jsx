@@ -26,7 +26,7 @@ const Nav = () => {
         </div>
       </NavLink>
       <div className={style.navegacion}>
-        <NavLink to="/about" className={style.navlink}>
+        <NavLink to="/" className={style.navlink}>
           Nosotros
         </NavLink>
         <NavLink to="/stores" className={style.navlink}>
