@@ -20,7 +20,6 @@ const ConfigDashboard = () => {
   const indexOfFirstAdmin = indexOfLastAdmin - adminsPerPage;
   const currentAdmins = admins?.slice(indexOfFirstAdmin, indexOfLastAdmin);
   const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(admins.length < 2);
-  const [deleted, setDeleted] = useState(false)
   const [showUpdate, setShowUpdate] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [update, setUpdate] = useState(false)
@@ -45,7 +44,10 @@ const ConfigDashboard = () => {
   const handleDelete = (event, id) => {
     event.preventDefault();
     dispatch(deleteUser(id));
-    setUpdate(true)
+    setTimeout(() => {
+      
+      setUpdate(true)
+    }, 1000);
   };
 
   const createAdmin = (event) => {

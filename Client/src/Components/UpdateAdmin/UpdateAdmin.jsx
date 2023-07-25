@@ -23,10 +23,6 @@ const UpdateAdmin = ({setUpdate, setShowBackdrop, setShowUpdate}) => {
   const [errors, setErrors] = useState({});
   const [showPassword, setShowPassword] = useState(false);
 
-  // const reload = () => {
-  //   window.location.reload(false);
-  // };
-
   const handleChange = (event) => {
     setForm({
       ...form,
@@ -76,10 +72,11 @@ const UpdateAdmin = ({setUpdate, setShowBackdrop, setShowUpdate}) => {
     if (Object.values(error).length !== 0) {
       alert("Debe rellenar el campo obligatorio");
     } else {
-      console.log(form);
+
       dispatch(createUser(form));
-      setUpdate(true)
-      // setTimeout(reload, 1500);
+      setTimeout(() => {
+        setUpdate(true)
+      }, 1500);
     }
 
     setShowBackdrop(false)
