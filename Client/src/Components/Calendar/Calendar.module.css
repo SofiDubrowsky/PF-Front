@@ -260,58 +260,76 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #666;
+  background-color: rgba(0, 0, 0, 0.925);
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 15px 25px rgba(80, 79, 79, 0.896);
   z-index: 9999;
-  color: #000000;
   border-radius: 13px;
-  width: 45%;
+  width: 40%;
   height: auto;
   justify-content: center;
+  text-align: center;
+  font-family: inherit;
+  color: white;
 }
 
 .popup h2 {
-  color: #ffffff;
-  padding-top: 3px;
   font-weight: bold;
+  text-shadow: 2px 2px var(--main-color), 2px 2px rgba(242, 242, 242, 0.361);
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .popup h4 {
   font-size: 19px;
   margin-top: 7px;
-  color: #ffffff;
 }
 
-.btnCancel,
-.btnConfirm,
-.btnCancelarInicio {
-  height: 80%;
-  width: 100%;
-  font-size: 19px;
-  border-radius: 13px;
-  font-weight: bold;
-  border: none;
-  transition: height 0.3s ease, width 0.3s ease, font-size 0.3s ease;
-}
-
-.btnCancel {
-  background-color: #9AC71F;
-  color: #FDF2E9;
-  margin-top: 7px;
-}
-
-.containerBtn{
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.btnConfirm {
-  background-color: #85C1E9;
-  color: #154360;
-  margin-top: 7px;
+.btnCancel:hover {
+  background-color: white;
+  color: black;
 }
+
+.btnCancel {
+  border: none;
+  border: 2px solid var(--main-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px 4px var(--main-color);
+  background: none;
+  height: 35px;
+  width: 12rem;
+  transition: all .5s;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 5px;
+  color: white;
+  opacity: 0.8;
+  text-align: center;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1rem;
+}
+
+.btnCancel {
+  background-color: #000000;
+  color: #FDF2E9;
+  margin-top: 7px;
+  height: auto;
+}
+
 
 .backdrop {
   position: fixed;
@@ -323,25 +341,11 @@
   z-index: 9998;
 }
 
-.btnCancel:hover,
-.btnConfirm:hover,
-.btnCancelarInicio:hover {
-  height: 60%;
-  width: 90%;
-  font-size: 21px;
-}
-
-.container {
+.containerBtn{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  
+  justify-content: center;
 }
 
-.popup,
-.container button {
- justify-content: center;  
-}
 
 /* ----- Fecha Seleccionada para Reserva  ----- */
 .fechaSeleccionada{

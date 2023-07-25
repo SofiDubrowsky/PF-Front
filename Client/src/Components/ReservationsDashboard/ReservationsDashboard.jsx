@@ -83,6 +83,7 @@ const ReservationsDashboard = () => {
                   icon: 'success',
                   title: 'Reserva eliminada con éxito',
                   text: 'La reserva ha sido eliminada correctamente.',
+                  showConfirmButton: false,
                   color: "#FFFFFF",
                   background: "#666",
                   timer: 2000,

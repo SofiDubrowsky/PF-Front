@@ -7,9 +7,10 @@ import { updateActivity } from "../../redux/Actions/updateActivity";
 import { useDispatch, useSelector } from "react-redux";
 import validate from "../../Views/Form/validate";
 import { useParams } from "react-router-dom";
+import { getActivities } from "../../redux/Actions/getActivities";
 
 
-const UpdateActivity = ({details}) => {
+const UpdateActivity = ({details, setShowBackdrop, setShowUpdate, handleClose, setActualizar}) => {
   const dispatch = useDispatch();
   // const { id } = useParams();
   // const details = useSelector((state) => state.detail);
@@ -86,6 +87,23 @@ const UpdateActivity = ({details}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateActivity(form, id))
+    setActualizar(true)
+    setShowBackdrop(false);
+    setShowUpdate(false)
+    Swal.fire({
+      icon: 'success',
+      title: 'Actividad Actualizada',
+      text: 'La actividad ha sido actualizada correctamente.',
+      showConfirmButton: false,
+      color: "#FFFFFF",
+      background: "#666",
+      timer: 3000,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        setActualizar(true)
+      } else {
+       navigate('/admin');
+      }})
     
   }
 
@@ -96,6 +114,7 @@ const UpdateActivity = ({details}) => {
         className={style.formContainer}
         onSubmit={(event) => handleSubmit(event)}
       >
+        <h2>Editar Actividades</h2>
         <div className={style.allInputs}>
           <div className={style.content}>
             <input
@@ -286,10 +305,14 @@ const UpdateActivity = ({details}) => {
             </div>
           </div> */}
         </div>
-        <div className={style.btnContainer}>
+        <div className={style.contenttt}>
+          <button className={style.btn} onClick={handleClose}>
+                Cancelar
+          </button>
           <button className={style.btn} type="submit">
             Editar
           </button>
+              
         </div>
       </form>
     </div>

@@ -159,10 +159,10 @@ const FormStores = () => {
         background: "#666",
       }).then((result) => {
         if (result.isConfirmed) {
-         navigate('/postStore')
+         navigate('/postStores')
           setTimeout(reload, 3000);  // Espera 3 segundos antes de llamar a reload()
         } else {
-         navigate('/home');
+         navigate('/admin');
         }
       })
       setForm({
@@ -179,6 +179,11 @@ const FormStores = () => {
   useEffect(() => {
     dispatch(getStores());
   }, [dispatch]);
+
+  const handleGoBack = () => {
+    navigate(-1, { replace: true });
+  };
+
 
   return (
     <div className={style.contenedor}>
@@ -303,8 +308,11 @@ const FormStores = () => {
           </div>
 
         
-        <div className={style.btnContainer}>
+        <div className={style.contenttt1}>
 
+        <button className={style.btn} type="button" onClick={handleGoBack}>
+            Volver
+          </button>
         <button className={style.btn} type="submit">
           Crear
         </button>
