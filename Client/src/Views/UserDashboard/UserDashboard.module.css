@@ -409,7 +409,6 @@ p {
 }
 
 .buttons {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -478,10 +477,11 @@ p {
     height: auto;
   }
 
-  /* .buttons{
+  .buttons{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-  } */
+  } 
   
 }
