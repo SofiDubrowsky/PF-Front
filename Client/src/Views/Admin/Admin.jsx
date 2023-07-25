@@ -14,7 +14,7 @@ const Admin = () => {
   const navigate = useNavigate();
   const isClient = localStorage.getItem("isClient");
   const reservations = useSelector((state) => state.allReservations);
-  const [actualWindow, setActualWindow] = useState("stats");
+  const [actualWindow, setActualWindow] = useState("reservations");
 
   useEffect(() => {
     if (!reservations?.length) {
@@ -37,17 +37,17 @@ const Admin = () => {
         <div className={style.windowSelector}>
           <button
             className={style.windowButtton}
-            onClick={() => handleClick("stats")}
-            disabled={actualWindow === "stats"}
-          >
-            Estadísticas
-          </button>
-          <button
-            className={style.windowButtton}
             onClick={() => handleClick("reservations")}
             disabled={actualWindow === "reservations"}
           >
             Reservas
+          </button>
+          <button
+            className={style.windowButtton}
+            onClick={() => handleClick("stats")}
+            disabled={actualWindow === "stats"}
+          >
+            Estadísticas
           </button>
           <button
             className={style.windowButtton}
