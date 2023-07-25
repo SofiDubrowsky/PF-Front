@@ -85,7 +85,6 @@ const reducer = (state = initialState, action) => {
     case GET_USER_BAN_BY_NAME:
       let banFiltered = state.banUsers
       let result = banFiltered.filter(user => user.name.toLowerCase().includes(action.payload.toLowerCase()))
-      console.log(result);
       return{
         ...state,
         banUsersFiltered: result
@@ -255,9 +254,12 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_USER_BY_EMAIL:
+      let reservationsAll = state.allReservations
+      console.log(reservationsAll);
+      let reservationSearched = reservationsAll.filter((reservation) => reservation.user.email === action.payload)
       return {
         ...state,
-        allReservations: action.payload,
+        reservationsFiltered: reservationSearched,
       };
 
     case DELETE_USER:
