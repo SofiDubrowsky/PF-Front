@@ -176,7 +176,6 @@ export default function CalendarComponent() {
       }
       setShowAlert(false);
       dispatch(deleteReservation(idReservation))
-     
       setShowBackdrop(false);
       Swal.fire({
         icon: 'success',
@@ -236,7 +235,7 @@ export default function CalendarComponent() {
         </div>
 
         <div className={styles.reservar}>
-          <button onClick={handleBuy} disabled={selectedHour === null} className={styles.reservarBtn}>Reservar</button>
+          <button onClick={handleBuy} disabled={selectedHour === null} className={styles.reservarBtn} style={{marginTop:"1rem"}}>Reservar</button>
         </div>
 
 
@@ -251,11 +250,10 @@ export default function CalendarComponent() {
               <h4>Precio: ${cost}</h4>
             </div>
             <div className={styles.containerBtn}>
-              <button className={styles.btnCancel} onClick={handleCancelTransaction}>Cancelar reserva</button>
-              <button className={styles.btnCancel} onClick={handleRenderWallet} disabled={showWallet}>Continuar con Mercado Pago</button>
-              {showWallet && <Wallet initialization={{ preferenceId }} />}
-
+              <button className={styles.btnCancel} onClick={handleCancelTransaction} style={{backgroundColor:"rgba(255, 32, 32, 0.28)"}}>Cancelar reserva</button>
+              <button className={styles.btnCancel} onClick={handleRenderWallet} disabled={showWallet} style={{backgroundColor:"#04bcfc"}}>Continuar con Mercado Pago</button>
             </div>
+              {showWallet && <Wallet initialization={{ preferenceId }} />}
           </div>
         )}
 
@@ -266,7 +264,7 @@ export default function CalendarComponent() {
             </div>
             <div className={styles.containerBtn}>
               <button className={styles.btnCancel} onClick={handleRedirectLog}>Iniciar Sesion</button>
-              <button className={styles.btnCancelarInicio} onClick={handleClose}>Cancelar</button>
+              <button className={styles.btnCancel} onClick={handleClose}>Cancelar</button>
             </div>
           </div>
         )}
