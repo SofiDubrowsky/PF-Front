@@ -61,7 +61,7 @@ const Detail = () => {
 
           <div className={style.text}>
             <h3>Sucursal: </h3>
-            <span style={{ fontSize: "2rem", marginLeft: "2rem" , fontWeight:"bold"}}>{(activity?.stores?.map((store) => store?.name))[0]?.toUpperCase()}</span>
+            <span style={{ fontSize: "2rem", marginLeft: "2rem" , fontWeight:"bold", textTransform:"uppercase"}}>{(activity?.stores?.map((store) => store?.name))}</span>
             <h3>Descripción: </h3>
             <span style={{ marginLeft: "2rem", display: "block", textAlign: "center", maxWidth: "100%" ,fontWeight:"bold" }}>{activity?.description}</span>
             {/*               <h3>Jugadores: </h3>
