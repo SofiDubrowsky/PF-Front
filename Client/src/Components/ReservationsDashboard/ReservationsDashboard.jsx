@@ -124,6 +124,7 @@ const ReservationsDashboard = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getUserByEmail(email));
+    setEmail("");
   };
 
   const handleFilterActivity = (event) => {
