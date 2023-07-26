@@ -16,6 +16,7 @@ const API_SECRET = import.meta.env.VITE_API_SECRET;
 const PRESET = import.meta.env.VITE_PRESET;
 const API_KEY_GOOGLE = import.meta.env.VITE_APY_KEY_GOOGLE;
 
+
 const reload = () => {
   window.location.reload(false);
 };
@@ -25,7 +26,11 @@ const FormStores = () => {
   const navigate = useNavigate();
   const allStores = useSelector((state) => state.stores);
   const isClient = localStorage.getItem('isClient')
-
+  
+  useEffect(() => {
+    isClient !== "false" && navigate("/home");
+  }, [isClient]);
+  
   const [form, setForm] = useState({
     name: "",
     address: "",
