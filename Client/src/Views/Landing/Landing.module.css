@@ -325,3 +325,52 @@ h2 {
 
 
   }
+
+  @media (min-width:769px) and (max-width:1500px){
+    .mainContainer{
+      height: 90vh;
+      max-width: 100%;
+    }
+  
+    .barr{
+      max-width: 100%;
+  
+    }
+  
+    .navlink{
+      display: flex;
+      justify-content: center;
+    }
+  
+      .contImg {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    
+      .contImg img {
+        height: 4.5rem;
+      }
+    
+      .barr p {
+        font-size: 0.7rem;
+        margin: 0;
+      }
+    
+      .textContainerb,
+      .textContainer {
+        width: 80%;
+        margin: 0 auto;
+      }
+    
+      .text h2 {
+        font-size: 1.1rem;
+        margin: 0;
+      }
+    
+      .text p {
+        font-size: 1rem;
+        margin: 0;
+      }
+  
+  
+  }
