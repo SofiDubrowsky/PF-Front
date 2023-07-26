@@ -150,7 +150,7 @@ h2 {
 /* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
     .contenedor {
-        width: 27rem;
+        width: 19rem;
     }
 
     .carouselContainer {

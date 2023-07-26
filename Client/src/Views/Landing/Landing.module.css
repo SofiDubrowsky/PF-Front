@@ -250,8 +250,7 @@ h2 {
   }
 
   .barr{
-    max-width: 100%;
-
+      display: none;
   }
 
   .title {
@@ -274,11 +273,13 @@ h2 {
   .navlink{
     display: flex;
     justify-content: center;
+    align-items: center;
+    transform: translate(45%);
   }
 
     .contImg {
       width: 100%;
-      margin-bottom: 1rem;
+      /* margin-bottom: 1rem; */
     }
   
     .contImg img {
