@@ -39,6 +39,7 @@ import { GET_BAN_USERS } from "./Actions/getBanUsers";
 import { SET_FILTER_STATS } from "./Actions/filterStats";
 import { RESTORE_USER } from "./Actions/restoreUser";
 import { GET_USER_BAN_BY_NAME } from "./Actions/getUsersBanByName";
+import { EDIT_ADMIN } from "./Actions/editAdmin";
 
 
 
@@ -388,6 +389,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         reservationsStatsFiltered: filter
+      }
+
+    case EDIT_ADMIN:
+      return{
+        ...state
       }
 
     default:
