@@ -27,7 +27,7 @@ const Nav = () => {
       </NavLink>
       <div className={style.navegacion}>
         <NavLink to="/" className={style.navlink}>
-          Nosotros
+          Inicio
         </NavLink>
         <NavLink to="/stores" className={style.navlink}>
           Sucursales
