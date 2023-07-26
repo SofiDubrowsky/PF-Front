@@ -76,7 +76,8 @@ const ReservationsDashboard = () => {
         try {
           await dispatch(deleteReservation(id));
           await dispatch(getReservations());
-          await axios.post('http://localhost:3001/refund/admin', {
+          // await axios.post('http://localhost:3001/refund/admin', {
+            await axios.post('https://sportiverse-server.onrender.com/refund/admin', {
           reservId: id,
           activity: activity,
           date: date,
