@@ -19,7 +19,7 @@ const ActivitiesDashboard = () => {
 
   const[actualizar, setActualizar] = useState(false)
 
-  const [activitiesPerPage] = useState(4);
+  const [activitiesPerPage] = useState(5);
   const indexOfLastActivity = currentPage * activitiesPerPage;
   const indexOfFirstActivity = indexOfLastActivity - activitiesPerPage;
   const currentActivities = activities?.slice(
