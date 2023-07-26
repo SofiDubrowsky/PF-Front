@@ -107,7 +107,7 @@ const ActivitiesDashboard = () => {
       <div className={style.activity}>
         <NavLink to="/post">
           <button className={style.button} onClick={()=>(localStorage.setItem('preview', 'activities'))} type="button">
-            <span className={style.button__text}>Crear actividad</span>
+            <span className={style.button__text}>Crear Actividad</span>
             <span className={style.button__icon}>
               <svg
                 className={style.svg}

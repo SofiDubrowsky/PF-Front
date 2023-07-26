@@ -49,7 +49,7 @@ const UserDashboard = () => {
 
   const totalBanPages = Math.ceil(banUsers?.length / usersBanPerPage);
   const paginateBan = (pageNumber) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
+    if (pageNumber >= 1 && pageNumber <= totalBanPages) {
       setCurrentBanPage(pageNumber);
     }
   };

@@ -165,6 +165,7 @@ const ReservationsDashboard = () => {
 
   return (
     <div className={style.main}>
+        <h2>Reservas</h2>
       <div className={style.header}>
         <div className={style.inputSearch}>
           <input
@@ -198,7 +199,7 @@ const ReservationsDashboard = () => {
           </div>
         </div>
         <div className={style.today}>
-          <h3>Hoy: {today}</h3>
+          <h3>{today}</h3>
         </div>
       </div>
       <div className={style.filtersContainer}>
