@@ -3,8 +3,8 @@ import { getAdmins } from "../../redux/Actions/getAdmin";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../../redux/Actions/deleteUser";
-import  UpdateAdmin  from "../UpdateAdmin/UpdateAdmin"
-
+import UpdateAdmin from "../UpdateAdmin/UpdateAdmin";
+import EditAdmin from "../EditAdmin/EditAdmin";
 
 const ConfigDashboard = () => {
   const admins = useSelector((state) => state.admins);
@@ -12,27 +12,30 @@ const ConfigDashboard = () => {
 
   useEffect(() => {
     dispatch(getAdmins());
-  },[]);
+  }, []);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [adminsPerPage] = useState(4);
   const indexOfLastAdmin = currentPage * adminsPerPage;
   const indexOfFirstAdmin = indexOfLastAdmin - adminsPerPage;
   const currentAdmins = admins?.slice(indexOfFirstAdmin, indexOfLastAdmin);
-  const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(admins.length < 2);
+  const [isEditButtonDisabled, setIsEditButtonDisabled] = useState(
+    admins.length < 2
+  );
   const [showUpdate, setShowUpdate] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
-  const [update, setUpdate] = useState(false)
+  const [update, setUpdate] = useState(false);
+  const [idEdit, setIdEdit] = useState(0)
 
   useEffect(() => {
     setIsEditButtonDisabled(currentAdmins.length < 2);
-  },[admins]);
-
+  }, [admins]);
 
   useEffect(() => {
     dispatch(getAdmins());
-    setUpdate(false)
-  },[update])
+    setUpdate(false);
+  }, [update]);
 
   const totalPages = Math.ceil(admins?.length / adminsPerPage);
   const paginate = (pageNumber) => {
@@ -45,8 +48,7 @@ const ConfigDashboard = () => {
     event.preventDefault();
     dispatch(deleteUser(id));
     setTimeout(() => {
-      
-      setUpdate(true)
+      setUpdate(true);
     }, 1000);
   };
 
@@ -54,10 +56,18 @@ const ConfigDashboard = () => {
     event.preventDefault();
     setShowUpdate(true);
     setShowBackdrop(true);
-  }
+  };
+
+  const handleEdit = (event, id) => {
+    event.preventDefault();
+    setIdEdit(id)
+    setShowEdit(true);
+    setShowBackdrop(true);
+  };
 
   const handleClose = () => {
     setShowUpdate(false);
+    setShowEdit(false)
     setShowBackdrop(false);
   };
 
@@ -65,26 +75,26 @@ const ConfigDashboard = () => {
     <div className={style.container}>
       <h2>Administradores</h2>
       <div className={style.activity}>
-          <button className={style.button} type="button" onClick={createAdmin}>
-            <span className={style.button__text}>Crear Admin</span>
-            <span className={style.button__icon}>
-              <svg
-                className={style.svg}
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <line x1="12" x2="12" y1="5" y2="19"></line>
-                <line x1="5" x2="19" y1="12" y2="12"></line>
-              </svg>
-            </span>
-          </button>
+        <button className={style.button} type="button" onClick={createAdmin}>
+          <span className={style.button__text}>Crear Admin</span>
+          <span className={style.button__icon}>
+            <svg
+              className={style.svg}
+              fill="none"
+              height="24"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              viewBox="0 0 24 24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line x1="12" x2="12" y1="5" y2="19"></line>
+              <line x1="5" x2="19" y1="12" y2="12"></line>
+            </svg>
+          </span>
+        </button>
       </div>
       <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
@@ -98,6 +108,9 @@ const ConfigDashboard = () => {
               </th>
               <th scope="col" class="px-6 py-3">
                 Teléfono
+              </th>
+              <th scope="col" class="px-6 py-3">
+                Editar
               </th>
               <th scope="col" class="px-6 py-3">
                 Eliminar
@@ -119,8 +132,32 @@ const ConfigDashboard = () => {
                     <td class="px-6 py-4">{admin.phone}</td>
                     <td class="px-6 py-4">
                       <button
+                        onClick={(event) => handleEdit(event, admin?.id)}
+                        className={style.editButton2}
+                        disabled={isEditButtonDisabled}
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="icon icon-tabler icon-tabler-pencil"
+                          width="30"
+                          height="30"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="#ffffff"
+                          fill="none"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                          <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                          <path d="M13.5 6.5l4 4" />
+                        </svg>
+                      </button>
+                    </td>
+                    <td class="px-6 py-4">
+                      <button
                         onClick={(event) => handleDelete(event, admin?.id)}
-                        className={style.editButton2} 
+                        className={style.editButton2}
                         disabled={isEditButtonDisabled}
                       >
                         <svg
@@ -137,20 +174,42 @@ const ConfigDashboard = () => {
             })}
         </table>
       </div>
-      {showUpdate && (
-          <div className={style.popup}>
-            <div className={style.container}>
-              <h2>Crear Administrador</h2>
-            </div>
-            <div className={style.containerBtn}>
-              <UpdateAdmin  setUpdate={setUpdate} setShowUpdate={setShowUpdate} setShowBackdrop={setShowBackdrop}/>
-              <button className={style.btnCancel} onClick={handleClose}>
-                Cancelar
-              </button>
-            </div>
+      {showEdit && (
+        <div className={style.popup}>
+          <div className={style.container}>
+            <h2>Cambiar cotraseña</h2>
           </div>
-        )}
-        {showBackdrop && <div className={style.backdrop} />}
+          <div className={style.containerBtn}>
+            <EditAdmin
+              setUpdate={setUpdate}
+              setShowEdit={setShowEdit}
+              setShowBackdrop={setShowBackdrop}
+              id={idEdit}
+            />
+            <button className={style.btnCancel} onClick={handleClose}>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+      {showUpdate && (
+        <div className={style.popup}>
+          <div className={style.container}>
+            <h2>Crear Administrador</h2>
+          </div>
+          <div className={style.containerBtn}>
+            <UpdateAdmin
+              setUpdate={setUpdate}
+              setShowUpdate={setShowUpdate}
+              setShowBackdrop={setShowBackdrop}
+            />
+            <button className={style.btnCancel} onClick={handleClose}>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      )}
+      {showBackdrop && <div className={style.backdrop} />}
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
