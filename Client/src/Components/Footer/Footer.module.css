@@ -282,18 +282,24 @@ a:active {
 
   .mainConatiner {
     height: 10rem;
+    max-width: 100%;
 }
 
   .center{
     justify-items: center;
     justify-content: center;
     display: flex;
-    margin-right: 90rem;
+    /* margin-right: 90rem; */
   }
 
   .contenedorRedes{
-    max-width: 50%;
-    justify-content: center;
+    /* max-width: 50%;
+    justify-content: center; */
+    display: none;
+  }
+
+  .column{
+    margin-left: 3rem;
   }
 }
 

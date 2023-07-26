@@ -65,8 +65,7 @@ const About = () => {
             para nuestros usuarios y sus familias. Nos esforzamos por ofrecer
             servicios de calidad en actividades sociales y deportivas, fomentando
             la convivencia, la salud y el entretenimiento. Nuestro compromiso se
-            basa en la integridad y respeto, buscando brindar a nuestros usuarios
-            una experiencia cálida y gratificante.
+            basa en la integridad y respeto.
           </p>
           <hr />
           <h1 className={style.h1}>Visión</h1>
@@ -78,8 +77,7 @@ const About = () => {
             nuestros usuarios y sus familias. A través de la excelencia en nuestros
             servicios, instalaciones modernas y accesibles, nos esforzamos por ser
             reconocidos como un complejo deportivo y social que inspire un estilo
-            de vida saludable y lleno de alegría, donde cada visita se convierta
-            en una experiencia memorable.
+            de vida saludable y lleno de alegría.
           </p>
         </div>
 

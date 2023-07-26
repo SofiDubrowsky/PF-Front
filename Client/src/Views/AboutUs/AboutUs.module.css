@@ -5,28 +5,28 @@
   justify-content: center;
 }
 
-.team{
+.team {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.team h2{
+.team h2 {
   font-size: 3rem;
   letter-spacing: 5px;
   margin-top: 2rem;
 
 }
 
-.team h3{
+.team h3 {
   letter-spacing: 2px;
   margin: 2rem 7rem 5rem 7rem;
   font-size: 1.5rem;
 
 }
 
-.gridContainer{
+.gridContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -119,14 +119,14 @@
   gap: 1rem;
 }
 
-.card .content .detail h4{
+.card .content .detail h4 {
   color: white;
   letter-spacing: 2px;
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-.card .content .detail h5{
+.card .content .detail h5 {
   color: #9AC71F;
 }
 
@@ -137,7 +137,7 @@
   transition-delay: 0.3s;
 }
 
-.dev{
+.dev {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -150,7 +150,7 @@
 
 }
 
-.cardd a{
+.cardd a {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -173,7 +173,8 @@
   cursor: pointer;
 }
 
-.cardd .socialLink1,.cardd .socialLink2  {
+.cardd .socialLink1,
+.cardd .socialLink2 {
   position: relative;
   display: flex;
   align-items: center;
@@ -219,14 +220,14 @@
   }
 }
 
-.contentText{
+.contentText {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.gridIcons{
+.gridIcons {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
@@ -234,7 +235,7 @@
   gap: 2rem;
 }
 
-.aboutConteiner{
+.aboutConteiner {
   display: flex;
   flex-direction: row;
   text-align: center;
@@ -242,45 +243,57 @@
   justify-content: flex-start;
   gap: 2rem;
 }
-.aboutSectionContainer{
+
+.aboutSectionContainer {
   display: flex;
   gap: 1rem;
   align-items: center;
 }
-.aboutSectionImg{
+
+.aboutSectionImg {
   width: 4rem;
   height: 4rem;
 }
-.aboutSectionTitle{
+
+.aboutSectionTitle {
   font-size: 2rem;
   letter-spacing: 1px;
-  font-family:  Bahnschrift SemiCondensed;
+  font-family: Bahnschrift SemiCondensed;
 }
 
 
 
 /* No escribir codigo debajo de esto
 Design responsive */
-@media (max-width:768px){
-  .contentText{
+@media (max-width:768px) {
+  .contentText {
     display: none;
   }
 
-  .container{
-    max-width: 95%;
+  .container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 80%;
   }
 
-  .team{
-    max-width: 90%;
+  .team h3 {
+    display: none;
   }
 
-  .gridContainer{
-    max-width: 90%;
-    grid-template-columns: 1fr; 
-    gap: 1rem;
-    justify-content: flex-start; 
-    padding: 0 1rem;
+  .gridContainer {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
   }
+
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 0;
+    width: 100%;
+  }
+
+  .team h2 {
+    font-size: 2rem;
+  }
+
 }
-
-
