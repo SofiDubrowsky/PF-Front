@@ -52,7 +52,7 @@ const UpdateAdmin = ({setUpdate, setShowBackdrop, setShowUpdate}) => {
       errors.phone = "El teléfono solo puede contener 10 números sin espacios";
     }
     if (!form.password) {
-      errors.name = "Se requiere una contraseña";
+      errors.password = "Se requiere una contraseña";
     }
     if (!/^(?! *$)[A-Za-z0-9 ]{6,25}$/.test(form.password)) {
       errors.password = "La contraseña debe contener 6-10 caracteres";
