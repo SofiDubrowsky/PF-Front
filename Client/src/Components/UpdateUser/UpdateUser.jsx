@@ -52,8 +52,8 @@ const UpdateUser = () => {
     if (!/^(?! *$)[A-Za-z0-9 ]{5,25}$/.test(form.name)) {
       errors.name = "El nombre debe contener letras 5-25 caracteres";
     }
-    if (!/^[0-9]{0,10}$/.test(form.phone)) {
-      errors.phone = "El teléfono solo puede contener 10 números sin espacios";
+    if (form.phone && !/^[0-9]{1,10}$/.test(form.phone)) {
+      errors.phone = "El teléfono solo puede contener hasta 10 números sin espacios";
     }
     if (!form.password) {
       errors.password = "Se requiere una contraseña";
