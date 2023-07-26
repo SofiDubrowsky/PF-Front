@@ -224,6 +224,7 @@ const ActivitiesDashboard = () => {
         )}
         {showBackdrop && <div className={style.backdrop} />}
       </div>
+      {totalPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
@@ -242,7 +243,7 @@ const ActivitiesDashboard = () => {
         >
           <h1>{">"}</h1>
         </button>
-      </div>
+      </div>}
     </div>
   );
 };

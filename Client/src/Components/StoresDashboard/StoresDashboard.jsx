@@ -157,6 +157,7 @@ const StoresDashboard = () => {
             })}
         </table>
       </div>
+      {totalPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
@@ -175,7 +176,7 @@ const StoresDashboard = () => {
         >
           <h1>{">"}</h1>
         </button>
-      </div>
+      </div>}
     </div>
   );
 };
