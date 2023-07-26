@@ -250,6 +250,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         allUsers: action.payload,
+        UserFiltered: action.payload
       };
 
     case GET_USER_BY_NAME:
