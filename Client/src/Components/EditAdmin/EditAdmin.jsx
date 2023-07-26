@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import style from "./EditAdmin.module.css";
 import { useDispatch } from "react-redux";
 import { editAdmin } from "../../redux/Actions/editAdmin";
-
+import Swal from "sweetalert2";
 
 
 
@@ -62,6 +62,21 @@ const EditAdmin = ({setUpdate, setShowBackdrop, setShowEdit, id}) => {
       setTimeout(() => {
         setUpdate(true)
       }, 1500);
+      Swal.fire({
+        icon: "success",
+        title: "Contraseña Actualizada!",
+        text: "La contraseña ha sido actualizada correctamente.",
+        showConfirmButton: false,
+        color: "#FFFFFF",
+        background: "#666",
+        timer: 3000,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setActualizar(true);
+        } else {
+          navigate("/admin");
+        }
+      });
     }
 
     setShowBackdrop(false)
