@@ -69,9 +69,11 @@ const initialState = {
   reservationsFiltered: [],
   reservationsStatsFiltered: [],
   allUsers: [],
+  UserFiltered: [],
   banUsers: [],
   banUsersFiltered: [],
   admins: []
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -85,6 +87,9 @@ const reducer = (state = initialState, action) => {
     case GET_USER_BAN_BY_NAME:
       let banFiltered = state.banUsers
       let result = banFiltered.filter(user => user.name.toLowerCase().includes(action.payload.toLowerCase()))
+      if (action.payload === '' ) {
+        result = banFiltered
+      }
       return{
         ...state,
         banUsersFiltered: result
@@ -248,15 +253,22 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_USER_BY_NAME:
-      return {
+      let UserAux = state.allUsers
+      let result1 = UserAux.filter(user => user.name.toLowerCase().includes(action.payload.toLowerCase()))
+      if (action.payload === '' ) {
+        result1 = UserAux
+      }
+      return{
         ...state,
-        allUsers: action.payload,
-      };
+        UserFiltered: result1
+      }
 
     case GET_USER_BY_EMAIL:
       let reservationsAll = state.allReservations
-      console.log(reservationsAll);
       let reservationSearched = reservationsAll.filter((reservation) => reservation.user.email === action.payload)
+      if(action.payload === ''){
+        reservationSearched=reservationsAll;
+      }
       return {
         ...state,
         reservationsFiltered: reservationSearched,
