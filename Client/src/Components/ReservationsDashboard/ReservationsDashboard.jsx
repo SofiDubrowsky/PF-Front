@@ -125,6 +125,7 @@ const ReservationsDashboard = () => {
     event.preventDefault();
     dispatch(getUserByEmail(email));
     setEmail("");
+    setCurrentPage(1)
   };
 
   const handleFilterActivity = (event) => {
@@ -152,6 +153,7 @@ const ReservationsDashboard = () => {
     dispatch(setFiltersAdmin(filters));
     dispatch(allFiltersAdmin(filters));
     setDate("");
+    setCurrentPage(1)
   };
 
   const orderByDate = (event) => {

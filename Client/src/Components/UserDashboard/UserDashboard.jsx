@@ -67,11 +67,13 @@ const UserDashboard = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getUsersByName(name));
+    setCurrentPage(1)
   };
 
   const handleBanSubmit = (event) => {
     event.preventDefault();
     dispatch(getUsersBanByName(banName));
+    setCurrentBanPage(1)
   };
 
   const handleDelete = (event, id) => {
@@ -389,7 +391,7 @@ const UserDashboard = () => {
             })}
         </table>
       </div>
-      {totalPages<2? <div style={{height:'5rem'}}></div> :
+      {totalBanPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
