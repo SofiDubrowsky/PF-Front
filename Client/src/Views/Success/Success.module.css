@@ -1,6 +1,16 @@
 .success{
     color:white;
     background-color: black;
+    height: 100vh;
+    padding-top: 5rem;
+}
+.success h3{
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.success h4{
+  font-weight: bold;
+  font-size: large;
 }
 .check{
     height: 20vh;

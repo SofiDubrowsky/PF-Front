@@ -69,7 +69,7 @@ a:link,
 a:visited,
 a:active {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 
 .navlink:hover {
@@ -253,6 +253,8 @@ a:active {
 }
 
 .navlinks{
+  text-decoration: none;
+  color: white;
   letter-spacing: 1px;
   transform: translate(0%);
 }

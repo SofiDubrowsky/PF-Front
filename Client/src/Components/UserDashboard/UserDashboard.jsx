@@ -249,13 +249,13 @@ const UserDashboard = () => {
                   <tr class="border-b bg-light-grey dark:border-white ">
                     <th
                       scope="row"
-                      class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                      class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
                       {user?.name}
                     </th>
-                    <td class="px-6 py-4 ">{user?.email}</td>
-                    <td class="px-6 py-4">{user?.phone}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4  font-bold">{user?.email}</td>
+                    <td class="px-6 py-4 font-bold">{user?.phone}</td>
+                    <td class="px-6 py-4 font-bold">
                       <button
                         onClick={(event) => handleDelete(event, user?.id)}
                         className={style.editButton2}
@@ -357,13 +357,13 @@ const UserDashboard = () => {
                   <tr class="border-b bg-light-grey dark:border-white ">
                     <th
                       scope="row"
-                      class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                      class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
                       {user?.name}
                     </th>
-                    <td class="px-6 py-4 ">{user?.email}</td>
-                    <td class="px-6 py-4">{user?.phone}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4  font-bold">{user?.email}</td>
+                    <td class="px-6 py-4 font-bold">{user?.phone}</td>
+                    <td class="px-6 py-4 font-bold">
                       <button
                         onClick={(event) => handleRestore(event, user?.id)}
                         className={style.restoreButton}
