@@ -43,24 +43,23 @@ const UpdateAdmin = ({setUpdate, setShowBackdrop, setShowUpdate}) => {
     if (!form.name) {
       errors.name = "Se requiere un nombre";
     }
-    if (!form.email) {
+    if (!form.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}$/i.test(form.email)) {
         errors.email = "Se requiere un email";
     }
-    if (!/^(?! *$)[A-Za-z0-9 ]{5,25}$/.test(form.name)) {
+    if (!/^(?! $)[A-Za-z0-9 ]{5,25}$/.test(form.name)) {
       errors.name = "El nombre debe contener letras 5-25 caracteres";
     }
-    if (!/^[0-9]{1,10}$/.test(form.phone)) {
+    if (form.phone && !/^[0-9]{1,10}$/.test(form.phone)) {
       errors.phone = "El teléfono solo puede contener 10 números sin espacios";
     }
     if (!form.password) {
       errors.password = "Se requiere una contraseña";
     }
-    if (!/^(?! *$)[A-Za-z0-9 ]{6,25}$/.test(form.password)) {
+    if (!/^(?!$)[A-Za-z0-9 ]{6,25}$/.test(form.password)) {
       errors.password = "La contraseña debe contener 6-10 caracteres";
     }
     return errors;
   };
-
   
   const handleSubmit = (event) => {
     event.preventDefault();
