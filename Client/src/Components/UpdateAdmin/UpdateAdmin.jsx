@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import style from "./UpdateAdmin.module.css";
 import { useDispatch } from "react-redux";
 import { createUser } from "../../redux/Actions/createUser";
+import Swal from "sweetalert2";
 
 
 
@@ -77,6 +78,21 @@ const UpdateAdmin = ({setUpdate, setShowBackdrop, setShowUpdate}) => {
       setTimeout(() => {
         setUpdate(true)
       }, 1500);
+      Swal.fire({
+        icon: "success",
+        title: "Administrador Creado!",
+        text: "El administrador ha sido creado correctamente.",
+        showConfirmButton: false,
+        color: "#FFFFFF",
+        background: "#666",
+        timer: 3000,
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setActualizar(true);
+        } else {
+          navigate("/admin");
+        }
+      });
     }
 
     setShowBackdrop(false)

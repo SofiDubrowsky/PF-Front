@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteUser } from "../../redux/Actions/deleteUser";
 import UpdateAdmin from "../UpdateAdmin/UpdateAdmin";
 import EditAdmin from "../EditAdmin/EditAdmin";
+import Swal from "sweetalert2";
 
 const ConfigDashboard = () => {
   const admins = useSelector((state) => state.admins);
@@ -46,10 +47,51 @@ const ConfigDashboard = () => {
 
   const handleDelete = (event, id) => {
     event.preventDefault();
-    dispatch(deleteUser(id));
-    setTimeout(() => {
-      setUpdate(true);
-    }, 1000);
+    Swal.fire({
+      icon: 'warning',
+      title: 'Eliminar Administrador',
+      text: "⚠︎ ¿Esta seguro de eliminar este administrador? ⚠︎",
+      showConfirmButton: true,
+      showCancelButton: true, 
+      confirmButtonText: 'Eliminar',
+      cancelButtonText: 'Volver', 
+      color: "#FFFFFF",
+      background: "#666",
+      allowOutsideClick: () => !Swal.isLoading(), 
+      preConfirm: async () => {
+        try {
+          await dispatch(deleteUser(id));
+          setTimeout(() => {
+            setUpdate(true);
+          }, 1000);
+          return new Promise((resolve) => {
+            setTimeout(() => {
+              resolve();
+            }, 1000).then(
+              setTimeout(() => {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Administrador eliminado con éxito',
+                  text: 'El administrador ha sido eliminado correctamente.',
+                  showConfirmButton: false,
+                  color: "#FFFFFF",
+                  background: "#666",
+                  timer: 2000,
+                })
+              }, 1000)
+              )
+          });
+        } catch (error) {
+          console.error(error);
+          return Promise.reject();
+        }
+      },
+    });
+    if (result.isConfirmed) {
+      Swal.close();
+    } else {
+      navigate("/admin");
+    }
   };
 
   const createAdmin = (event) => {
@@ -210,6 +252,7 @@ const ConfigDashboard = () => {
         </div>
       )}
       {showBackdrop && <div className={style.backdrop} />}
+      {totalPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
@@ -228,7 +271,7 @@ const ConfigDashboard = () => {
         >
           <h1>{">"}</h1>
         </button>
-      </div>
+      </div>}
     </div>
   );
 };
