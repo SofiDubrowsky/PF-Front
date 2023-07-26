@@ -65,7 +65,7 @@ const Form = () => {
 
   const handleSelect = (event) => {
     const repet = form[event.target.name].includes(event.target.value);
-    console.log(selectedStore);
+   
     if (!repet) {
       setForm({
         ...form,

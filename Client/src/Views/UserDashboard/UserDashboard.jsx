@@ -60,7 +60,7 @@ const UserDashboard = () => {
     setShowBackdrop(true);
   };
   const cancelation = (reservationId) => {
-    console.log(reservationId);
+   
     setSelectedReservationId(reservationId);
     setShowAlertCancel(true);
     setShowBackdrop(true);
@@ -93,8 +93,8 @@ const UserDashboard = () => {
         store: emailInfo.store
       };
 
-      await axios.post('http://localhost:3001/refund', dataToSend);
-      // await axios.post('https://sportiverse-server.onrender.com/refund', emailInfo);
+      // await axios.post('http://localhost:3001/refund', dataToSend);
+      await axios.post('https://sportiverse-server.onrender.com/refund', dataToSend);
     // Mostrar la alerta de éxito
   } catch (error) {
     Swal.fire({
