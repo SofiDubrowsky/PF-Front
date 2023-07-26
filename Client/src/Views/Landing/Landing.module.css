@@ -6,6 +6,8 @@
 }
 
 .mainContainer{
+  overflow:hidden;
+  position: relative;
   min-height: 100vh;
   height: 100vh;
 }
@@ -26,10 +28,13 @@ h2 {
 }
 
 .sliderFrame {
+  position: absolute;
+  top:0;
+  left:0;
   width: 100%;
   height: 100%;
   margin: 0 auto 0;
-  overflow: hidden;
+  z-index: -1;
 }
 
 .sliderFrame ul {
@@ -102,22 +107,13 @@ h2 {
   text-align: center;
 }
 
-/* .title h1 {
-  text-transform: uppercase;
-  color: white;
-  font-size: 5rem;
-  letter-spacing: 2rem;
-  font-weight: bold;
-  text-shadow: 0px 0px 5px #7b7b7b, 0px 0px 15px #000;
-} */
-
 .title img{
   width: 75rem;
 }
 
 .navlink {
   position: absolute;
-  top: 55%;
+  top: 50%;
   right: 45%;
   transform: translate(20%);
   text-decoration: none;
@@ -145,3 +141,236 @@ h2 {
     opacity: 1;
     transform: translate(20%) scale(1.1);;
 }
+
+.textContainer {
+  display: flex;
+  align-items: center; 
+  background-color: rgba(0, 0, 0, 0.603); 
+  padding: 20px;
+  text-align: center;
+  color: white;
+  font-size: large;
+  animation: fadeIn 5s;
+  margin:0;
+  width: 50%;
+  height: 100%;
+}
+.textContainerb {
+  display: flex;
+  align-items: center; 
+  background-color: rgba(0, 0, 0, 0.603); 
+  padding: 20px;
+  text-align: center;
+  align-self: flex-end;
+  color: white;
+  font-size: large;
+  animation: fadeIn 5s;
+  width:50%;
+  height:100%;
+}
+.textContainerb img,
+.textContainer img{
+  display: flex;
+  flex-direction: row;
+  align-self: flex-start;
+  height: 100%;
+  border-radius: 1rem;
+  margin:5px
+}
+.textContainerb p,
+.textContainer p{
+  display: flex;
+  flex-direction: row;
+  font-size: larger
+}
+.text{
+  flex-direction: column;
+  height: 100%;
+}
+.text h2{
+  font-size: 32px;
+  margin: 0;
+  text-transform: uppercase;
+  font-family: "Manrope";
+  font-weight: bold;
+}
+.bar{
+  display:flex;
+  animation: fadeIn 5s;
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  width: 100%;
+  height: 22%;
+  background-color: rgba(0, 0, 0, 0);
+  font-size: large;
+  text-align: center;
+  
+}
+.barr{
+  animation: fadeIn 5s;
+  position: absolute;
+  bottom: 75%;
+  left: 0;
+  width: 100%;
+  height: 18%;
+  background-color: rgba(0, 0, 0, 0.411);
+  font-size: large;
+  text-align: center;
+  display: flex;
+  align-items: center; 
+  justify-content: space-around;
+  padding-left: 4rem;
+  color:white;
+  text-align: center;
+  margin:0px;
+}
+.barr img{
+  display: inline-block;
+  align-items: center;
+  justify-content: center;
+  margin:0px;
+  align-self: center;
+  align-items: center;
+  object-fit: cover; 
+  object-position: center center;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .mainContainer{
+    height: 80vh;
+    max-width: 100%;
+  }
+
+  .barr{
+    max-width: 100%;
+
+  }
+
+  .title {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title img {
+    width: 30rem;
+    margin-right: 5rem;
+    margin-top: 15rem;
+  }
+
+  .navlink{
+    display: flex;
+    justify-content: center;
+  }
+
+    .contImg {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .contImg img {
+      height: 4.5rem;
+    }
+  
+    .barr p {
+      font-size: 0.8rem;
+      margin: 0;
+    }
+  
+    .title {
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  
+    .title img {
+      width: 80%;
+      max-width: 300px;
+      margin-right: 0;
+    }
+  
+    .textContainerb,
+    .textContainer {
+      width: 80%;
+      margin: 0 auto;
+    }
+  
+    .textContainer img,
+    .textContainerb img {
+      display: none;
+    }
+  
+    .text h2 {
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  
+    .text p {
+      font-size: 0.7rem;
+      margin: 0;
+    }
+
+
+  }
+
+  @media (min-width:769px) and (max-width:1500px){
+    .mainContainer{
+      height: 90vh;
+      max-width: 100%;
+    }
+  
+    .barr{
+      max-width: 100%;
+      height: 20%;
+    }
+  
+    .navlink{
+      display: flex;
+      justify-content: center;
+    }
+  
+      .contImg {
+        width: 100%;
+        margin-bottom: 1rem;
+      }
+    
+      .contImg img {
+        height: 4.5rem;
+      }
+    
+      .barr p {
+        font-size: 0.7rem;
+        margin: 0;
+      }
+    
+      .textContainerb,
+      .textContainer {
+        width: 80%;
+        margin: 0 auto;
+      }
+    
+      .text h2 {
+        font-size: 1.1rem;
+        margin: 0;
+      }
+    
+      .text p {
+        font-size: 1rem;
+        margin: 0;
+      }
+  
+  
+  }

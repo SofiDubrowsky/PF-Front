@@ -1,0 +1,179 @@
+.contenedor {
+    width: 25%;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    margin: .5rem;
+    height: 18rem;
+}
+
+.average {
+    justify-content: center;
+    text-align: center;
+    align-self: center;
+}
+
+.controlButton {
+    color: white;
+    font-size: 4rem;
+}
+
+.controlButton:disabled {
+    color: rgb(85, 85, 85);
+    font-size: 4rem;
+}
+
+.starsContainer {
+    display: flex;
+    align-items: center;
+    height: 2rem;
+    min-height: 2rem;
+    max-height: 2rem;
+}
+
+.carouselContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.revs {
+    display: flex;
+    flex-direction: row;
+    height: 400px
+}
+
+
+
+.date {
+    margin: 0.5rem;
+    color: grey;
+    font-size: small;
+    order: 1
+}
+
+.name {
+    font-size: large;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+/* Estilos para el título */
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    height: 3.5rem;
+    min-height: 3.5rem;
+    max-height: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.desc {
+    height: 10rem;
+    max-height: 10rem;
+    min-height: 10rem;
+    overflow: auto;
+    width: 100%;
+}
+
+/* Estilos para cada review individual */
+.review {
+    display: flex;
+    flex-direction: column;
+    text-align: left
+}
+
+.review img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.review span {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.review div {
+    flex: 1;
+}
+
+.review>div:not(:last-child) {
+    margin-right: 20px;
+}
+
+.review .starsContainer {
+    display: flex;
+    /* Agregar display: flex para que las estrellas se muestren en una fila */
+    align-items: center;
+    /* Alinear elementos verticalmente en el centro */
+}
+
+.toggleButton {
+    background-color: none;
+    /* Color de fondo del botón */
+    color: rgba(107, 107, 107, 0.589);
+    /* Color del texto del botón */
+    border: none;
+    /* Elimina el borde del botón */
+    cursor: pointer;
+    /* Cambia el cursor al hacer hover */
+    font-weight: bold;
+}
+
+.toggleButton:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .contenedor {
+        width: 27rem;
+    }
+
+    .carouselContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .review {
+        width: 80rem;
+        height: auto;
+    }
+
+    .review img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .review>div:not(:last-child) {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+
+    .review>div:nth-child(2) {
+        text-align: center;
+    }
+}

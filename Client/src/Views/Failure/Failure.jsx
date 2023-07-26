@@ -2,14 +2,15 @@ import { useEffect } from "react";
 import style from "./Failure.module.css";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useState } from "react";
 
 
 const Failure = () => {
-  const reservation = localStorage.getItem('reservation');
-  
-  const reservationParse = reservation ? JSON.parse(reservation) : null;
+  const [reservationId, setReservationId] = useState(localStorage.getItem('reservation'))
 
-  const id = reservationParse.id
+  let reservationParse = reservationId ? JSON.parse(reservationId) : null;
+
+  let idReservation = reservationParse?.id
 
   const activityId = reservationParse.activityId
 
@@ -18,9 +19,9 @@ const Failure = () => {
   useEffect(() => {
     const deleteReservation = async () => {
       try {
-        // await axios.delete(`http://localhost:3001/reservations/${id}`); 
-        await axios.delete(`https://sportiverse-server.onrender.com/reservations/${id}`); 
-        console.log('Reserva eliminada exitosamente');
+        // await axios.delete(`http://localhost:3001/reservations/${idReservation}`); 
+        await axios.delete(`https://sportiverse-server.onrender.com/reservations/${idReservation}`); 
+        
       } catch (error) {
         console.error('Error al eliminar la reserva', error);
       }

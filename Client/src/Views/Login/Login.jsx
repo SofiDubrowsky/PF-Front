@@ -92,7 +92,9 @@ const Login = () => {
             icon: "success",
             title: "Inicio de sesión exitoso",
             showConfirmButton: false,
-            timer: 1500,
+            timer: 2000,
+            background: "#666",
+            color: "#FFFFFF"
           });
 
           setUser({
@@ -114,12 +116,20 @@ const Login = () => {
               icon: "error",
               title: "Error",
               text: error.response.data.error,
+              background: "#666",
+              color: "#FFFFFF",
+              showConfirmButton: false,
+              timer: 2000
             });
           } else {
             Swal.fire({
               icon: "error",
               title: "Error",
               text: error.message,
+              background: "#666",
+              color: "#FFFFFF",
+              showConfirmButton: false,
+              timer: 2000
             });
           }
         });
@@ -128,6 +138,11 @@ const Login = () => {
         icon: "error",
         title: "Error de validación",
         text: "Por favor, complete correctamente todos los campos.",
+        background: "#666",
+        color: "#FFFFFF",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true
       });
     }
   };
@@ -165,7 +180,7 @@ const Login = () => {
         <div>
           <button className={style.btn}>Acceder</button>
         </div>
-        <p>O accede mediante</p>
+        <p className={style.p1Login}>O accede mediante</p>
         <div className={style.googleContainer}>
           <GoogleLogin
             clientId={clientID}
@@ -176,7 +191,7 @@ const Login = () => {
         </div>
         <div>
           <NavLink to="/account" className={style.account}>
-            <p>¿Aún no tienes cuenta?</p>
+            <p className={style.p2Login}>¿Aún no tienes cuenta?</p>
           </NavLink>
         </div>
       </form>

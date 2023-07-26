@@ -3,6 +3,7 @@ import Landing from './Views/Landing/Landing'
 import Home from './Views/Home/Home'
 import Detail from './Views/Detail/Detail'
 import Form from './Views/Form/ Form'
+import FormStores from './Views/FormStores/FormStores'
 import About from './Views/About/About'
 import Nav from './Components/Nav/Nav'
 import Stores from './Views/Stores/Stores'
@@ -14,7 +15,8 @@ import './App.css'
 import Success from './Views/Success/Success'
 import Failure from './Views/Failure/Failure'
 import UserDashboard from './Views/UserDashboard/UserDashboard'
-
+import AboutProgrammers from './Views/AboutProgrammers/AboutProgrammers'
+import AboutUs from './Views/AboutUs/AboutUs'
 
 function App() {
   const location = useLocation();
@@ -29,7 +31,7 @@ function App() {
       <Route path='/home' element={<Home/>} />
       <Route path='/detail/:id' element={<Detail />}/>
       <Route path='/post' element={<Form />} />
-      <Route path='/about' element={<About />} />
+      <Route path='/postStores' element={<FormStores />} />
       <Route path='/stores' element={<Stores />} />
       <Route path='/login' element={<Login/>} />
       <Route path='/account' element={<Account/>} />
@@ -37,6 +39,7 @@ function App() {
       <Route path='/success' element={<Success/>} />
       <Route path='/failure' element={<Failure/>} />
       <Route path='/dashboard' element={<UserDashboard/>} />
+      <Route path='/about' element={<AboutUs/>} />
     </Routes>
     {!isLandingPage && location.pathname !== '/admin' && <Footer />}
       

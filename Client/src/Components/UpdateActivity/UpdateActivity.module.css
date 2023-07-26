@@ -1,0 +1,179 @@
+:root{
+    --input-focus: #9AC71F;
+    --font-color: #323232;
+    --font-color-sub: #666;
+    --bg-color: #fff;
+    --main-color: #424242;
+  }
+  body {
+    background: linear-gradient(#000000, #0a1017);
+  }
+/*   
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  } */
+  
+   .formContainer h1,
+  h2,
+  h3,
+  h4 {
+    color: white;
+  }
+  
+  .formContainer{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+  }
+
+  .formBox h2{
+    margin-top: 3rem;
+  }
+
+  .allInputs{
+   
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
+    /* justify-items: flex-start; */
+    gap: 20px;
+    
+  }
+  
+  .formContainer h3 {
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: white;  
+  }
+  
+  .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .inputForm {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--font-color);
+    padding: 5px 10px;
+    outline: none;
+  }
+  
+  .inputForm input::placeholder{
+    /* color: white; */
+    color: var(--font-color-sub);
+    opacity: 0.8;
+  }
+  
+  input:focus {
+    border: 2px solid var(--input-focus);
+  }
+  
+   select:focus{
+    border: 2px solid var(--input-focus);
+  
+  }
+  
+  .removebutton {
+    position: absolute;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  
+  .btnContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  
+  }
+  
+  .inputUpload{
+    background: none;
+  }
+  
+  .inputDelete {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin-top: .7rem;
+    font-size: 10px;
+  }
+  
+  .inputDel {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .inputDel button {
+    width: 1.3rem;
+    border: none;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: 50%;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    font-size: 15px;
+  
+  }
+  
+  .inputDel h3 {
+    font-weight: 400;
+    color: #ffffff;
+    font-size: 13px;
+
+  }
+
+  .contenttt{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .contenttt button{
+    border: none;
+    border: 2px solid var(--main-color);
+    background-color: var(--bg-color);
+    box-shadow: 4px 4px var(--main-color);
+    background: none;
+    width: 9rem;
+    height: 2rem;
+    color: white;
+    border-radius: 2rem;
+    transition: .5s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: bold;
+    margin: 0 1rem;
+  }
+
+  .btn:hover{
+    transform: translate(10%) scale(1.1);
+  
+  }

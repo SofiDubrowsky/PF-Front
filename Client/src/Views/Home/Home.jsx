@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import style from '../Home/Home.module.css';
 import CardsContainer from '../../Components/CardsContainer/CardsContainer';
-import getActivities from '../../redux/Actions/getActivities';
+import {getActivities} from '../../redux/Actions/getActivities';
 import Loader from '../../Components/Loader/Loader'
 
 
@@ -22,11 +22,10 @@ let Home = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             if(activities.length === allActivities.length && order === "" ){
-                dispatch(getActivities()).then(() => {
-                    setIsLoading(false);
-                  });
-            }
-        }, 800);
+                dispatch(getActivities())
+              }
+              setIsLoading(false);
+       }, 500);
     
         return () => clearTimeout(timer);
       }, [dispatch]);

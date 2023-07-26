@@ -1,12 +1,12 @@
 const validate = (account) => {
   let errors = {};
 
-  if (!account.name || !/^[A-Za-z0-9\s]+$/.test(account.name) || account.name.length < 3 || account.name.length >= 25) {
+  if (!account.name || !/^(?!^\s*$)[A-Za-z0-9\s]{3,25}$/.test(account.name) || account.name.length < 3 || account.name.length >= 25) {
     errors.name = 'El nombre debe contener de 3 a 25 caracteres, solo letras y números';
   }
 
-  if (!account.phone || account.phone.length !== 10) {
-    errors.phone = 'El número móvil debe tener exactamente 10 dígitos';
+  if (!/^\d{10}$/.test(account.phone)) {
+    errors.phone = 'El número móvil debe tener 10 dígitos';
   }
 
   if (!account.email || !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(account.email)) {

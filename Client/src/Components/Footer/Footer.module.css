@@ -35,14 +35,26 @@
   white-space: nowrap;
   translate: 2s;
 }
+
 .enlaceRedes:hover {
   transform: scale(1.2);
 }
 
 .conocenos {
+  text-decoration: none;
+  opacity: 0.8;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 2px;
   font-size: 18px;
   margin-bottom: 0.5rem;
 }
+
+.conocenos:hover {
+  opacity: 3;
+}
+
 .navlink {
   text-decoration: none;
   opacity: 0.8;
@@ -50,6 +62,7 @@
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 2px;
+  margin-top: 10px;
 }
 
 a:link,
@@ -66,7 +79,7 @@ a:active {
 .logo {
   height: 100px;
   width: 350px;
-  padding-left: 2rem;
+  padding-left: 5rem;
 }
 
 .box {
@@ -86,8 +99,12 @@ a:active {
   height: 100%;
   background-color: transparent;
   grid-area: 1 / 2 / 2 / 3;
-  padding: 3rem;
-  margin-left: 2.7rem;
+  /* padding: 3rem; */
+  /* margin-left: 2.7rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .boxLogo {
@@ -156,31 +173,25 @@ a:active {
 
 .card .socialLink1:hover {
   background: #f09433;
-  background: -moz-linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-  background: -webkit-linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-  background: linear-gradient(
-    45deg,
-    #f09433 0%,
-    #e6683c 25%,
-    #dc2743 50%,
-    #cc2366 75%,
-    #bc1888 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f09433', endColorstr='#bc1888',GradientType=1 );
+  background: -moz-linear-gradient(45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%);
+  background: -webkit-linear-gradient(45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%);
+  background: linear-gradient(45deg,
+      #f09433 0%,
+      #e6683c 25%,
+      #dc2743 50%,
+      #cc2366 75%,
+      #bc1888 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f09433', endColorstr='#bc1888', GradientType=1);
   animation: bounce_613 0.4s linear;
 }
 
@@ -216,3 +227,71 @@ a:active {
     transform: scale(1);
   }
 }
+
+
+.center{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items:flex-start;
+  justify-items: center;
+
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin: 0 .5rem;
+}
+
+.column h4{
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: .5rem;
+  font-size: 1.2rem;
+}
+
+.navlinks{
+  letter-spacing: 1px;
+  transform: translate(0%);
+}
+
+.navlinks:hover{
+  transform: translate(0%) scale(1.1);
+  font-weight: bold;
+  color: #9ac71f;
+}
+
+.sesion{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+/* DEJAR ESTO SIEMPRE AL FINAL */
+/* RESPONSIVE DESIGN */
+
+@media (max-width:768px) {
+  .img {
+    display: none;
+  }
+
+  .mainConatiner {
+    height: 10rem;
+}
+
+  .center{
+    justify-items: center;
+    justify-content: center;
+    display: flex;
+    margin-right: 90rem;
+  }
+
+  .contenedorRedes{
+    max-width: 50%;
+    justify-content: center;
+  }
+}
+

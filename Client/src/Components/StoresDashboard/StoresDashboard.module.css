@@ -1,0 +1,155 @@
+.container h2{
+  font-weight: bold;
+  text-shadow: 2px 2px var(--main-color), 2px 2px rgba(242, 242, 242, 0.361);
+  text-transform: uppercase;
+  letter-spacing: 8px;
+  color: #fff;
+  text-align: center;
+  margin-bottom: .5rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+}
+
+.activity{
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 2.5rem;
+    justify-content: flex-end;
+  }
+
+.button {
+    --main-focus: #2d8cf0;
+    --font-color: #323232;
+    --bg-color-sub: #dedede;
+    --bg-color: #eee;
+    --main-color: #323232;
+    position: relative;
+    width: 150px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--main-color);
+    box-shadow: 4px 4px var(--main-color);
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .button, .button__icon, .button__text {
+    transition: all 0.3s;
+  }
+  
+  .button .button__text {
+    transform: translateX(22px);
+    color: var(--font-color);
+    font-weight: 600;
+    font-size: 11px;
+  }
+  
+  .button .button__icon {
+    position: absolute;
+    transform: translateX(109px);
+    height: 100%;
+    width: 39px;
+    background-color: var(--bg-color-sub);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button .svg {
+    width: 20px;
+    fill: var(--main-color);
+  }
+  
+  .button:hover {
+    background: var(--bg-color);
+  }
+  
+  .button:hover .button__text {
+    color: transparent;
+  }
+  
+  .button:hover .button__icon {
+    width: 148px;
+    transform: translateX(0);
+  }
+  
+  .button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0px 0px var(--main-color);
+  }
+
+  .editButton2 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgb(20, 20, 20);
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.164);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none !important;
+    transform: translate(0%);
+  }
+  
+  .editSvgIcon {
+    width: 17px;
+  }
+  
+  .editSvgIcon path {
+    fill: white;
+  }
+  
+  .editButton2:hover {
+    border-radius: 50px;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+  }
+
+  
+  .editButton2:active{
+    transform: translate(0%) scale(1.1);
+  }
+  
+  .pagination {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .paginationButton {
+    background-color: transparent;
+    color: #9ac71f;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .paginationButton:hover {
+    text-decoration: none;
+  }
+  .paginationButton:disabled{
+    color: grey;
+  }
+  .paginationButton.active {
+    color: white;
+    font-weight: bold;
+  }
+  .nav:hover{
+      color: black;
+  }
+  .pag{
+    display:flex;
+    color: #9AC71F;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
