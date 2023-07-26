@@ -69,10 +69,10 @@ const ReviewCarousel = () => {
 
                     <div className={style.desc} > {expandedReviews[index]
                       ? rev?.description
-                      : `${rev?.description?.length > 229
-                          ? rev?.description?.slice(0, 229)
+                      : `${rev?.description?.length > 170
+                          ? rev?.description?.slice(0, 170)
                           : rev?.description}`}
-                      {rev?.description.length > 229 ? <button className={style.toggleButton} onClick={() => handleToggleText(index)}>
+                      {rev?.description.length > 170 ? <button className={style.toggleButton} onClick={() => handleToggleText(index)}>
                       {expandedReviews[index] ? "...ver menos" : "...ver más"}
                       </button> : null}
                     </div>
