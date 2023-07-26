@@ -3,7 +3,7 @@
     background-color: black;
     height: 100vh;
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    margin-bottom: 5rem;
 }
 .success h3{
   font-size: 1.4rem;
