@@ -45,7 +45,7 @@ const ReviewCarousel = () => {
     <div>
 
       {reviews?.length === 0 ? (
-        <h3 style={{ margin: "2rem", fontSize: "2rem" }}>No hay opiniones aún</h3>
+        <h3 style={{ margin: "2rem", fontSize: "2rem" , textAlign: 'center', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>No hay opiniones aún</h3>
       )
         :
         (

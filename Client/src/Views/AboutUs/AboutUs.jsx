@@ -25,9 +25,8 @@ import iconSweetalert2 from "../../assets/sweetalert2.png";
 import iconGit from "../../assets/git.png";
 import iconTrello from "../../assets/trello.png";
 import iconGitHub from "../../assets/github.png";
-import iconLinkedin from "../../assets/linkedin2.png";
-import iconGitHub2 from "../../assets/github2.png";
-import iconGmail from "../../assets/gmail.png";
+import iconMaps from "../../assets/gomaps.png";
+import iconLandbot from "../../assets/landbot.webp";
 import iconReactChar from "../../assets/reactcharjs2.png";
 import iconJest from "../../assets/jest.png";
 
@@ -460,7 +459,7 @@ const AboutUs = () => {
                 src={iconReactChar}
                 alt="ReactChart.js2"
               />
-              <h2 className={style.aboutSectionTitle}>React Chart.js 2</h2>
+              <h2 className={style.aboutSectionTitle}>Chart.js 2</h2>
             </div>
 
             <div className={style.aboutConteiner}>
@@ -511,6 +510,24 @@ const AboutUs = () => {
                 alt="GitHub"
               />
               <h2 className={style.aboutSectionTitle}>GitHub</h2>
+            </div>
+
+            <div className={style.aboutConteiner}>
+              <img
+                className={style.aboutSectionImg}
+                src={iconMaps}
+                alt="GitHub"
+              />
+              <h2 className={style.aboutSectionTitle}>Google Maps</h2>
+            </div>
+
+            <div className={style.aboutConteiner}>
+              <img
+                className={style.aboutSectionImg}
+                src={iconLandbot}
+                alt="GitHub"
+              />
+              <h2 className={style.aboutSectionTitle}>Landbot</h2>
             </div>
           </div>
         </div>

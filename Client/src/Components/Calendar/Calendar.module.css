@@ -441,3 +441,12 @@
     justify-content: center;
     flex-direction: column;
   }
+
+
+  /* No escribir codigo debajo de esto
+  Design Responsive */
+  @media (max-width:768px){
+    .popup{
+      width: 90%;
+    }
+  }
