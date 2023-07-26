@@ -47,7 +47,7 @@ const Form = () => {
   const [selectedPlayers, setSelectedPlayers] = useState("");
 
   useEffect(() => {
-    isClient === 'true' && navigate('/home')
+    isClient !== 'false' && navigate('/home')
   }, [isClient])
 
   const handleChange = (event) => {
