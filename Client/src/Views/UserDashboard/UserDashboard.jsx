@@ -214,10 +214,10 @@ const UserDashboard = () => {
                         ?.find((act) => act?.id === Number(reserv?.activityId))
                         ?.name?.toUpperCase()}
                     </h3>
-                    <h4 style={{ fontSize: "1.5rem" }}>
+                    <h4 style={{ fontSize: "1.2rem" }}>
                       Fecha: {reserv?.date}
                     </h4>
-                    <h4 style={{ fontSize: "1.5rem" }}>
+                    <h4 style={{ fontSize: "1.2rem" }}>
                       Turno: {reserv?.hour} hs
                     </h4>
                     <h4 style={{ fontSize: "1.2rem" }}>
