@@ -12,15 +12,17 @@ import { deleteReservation } from "../../redux/Actions/deleteReservations";
 import { format } from 'date-fns-tz';
 import Swal from "sweetalert2";
 import axios from "axios";
-import { hr } from "date-fns/locale";
+import { useNavigate } from "react-router-dom";
 
 const UserDashboard = () => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [gamesPerPage] = useState(3);
   const [selectedReservationId, setSelectedReservationId] = useState(null);
   const [selectedActivity, setSelectedActivity] = useState(null)
 
   const loger = localStorage.getItem('loger')
+  const isClient = localStorage.getItem("isClient");
   const userDetail = useSelector((state) => state.userDetail);
   const dispatch = useDispatch();
   const idUser = localStorage.getItem("clientId");
@@ -31,6 +33,10 @@ const UserDashboard = () => {
   const [showAlertLog, setShowAlertLog] = useState(false);
   const [showAlertReview, setShowAlertReview] = useState(false);
   const [showAlertCancel, setShowAlertCancel] = useState(false);
+
+  useEffect(() => {
+    loger !== "true" && navigate("/home");
+  }, [isClient]);
 
   const reload = () => {
     window.location.reload(false);
@@ -60,7 +66,7 @@ const UserDashboard = () => {
     setShowBackdrop(true);
   };
   const cancelation = (reservationId) => {
-    console.log(reservationId);
+   
     setSelectedReservationId(reservationId);
     setShowAlertCancel(true);
     setShowBackdrop(true);
@@ -93,8 +99,8 @@ const UserDashboard = () => {
         store: emailInfo.store
       };
 
-      await axios.post('http://localhost:3001/refund', dataToSend);
-      // await axios.post('https://sportiverse-server.onrender.com/refund', emailInfo);
+      // await axios.post('http://localhost:3001/refund', dataToSend);
+      await axios.post('https://sportiverse-server.onrender.com/refund', dataToSend);
     // Mostrar la alerta de éxito
   } catch (error) {
     Swal.fire({

@@ -49,7 +49,7 @@ const UserDashboard = () => {
 
   const totalBanPages = Math.ceil(banUsers?.length / usersBanPerPage);
   const paginateBan = (pageNumber) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
+    if (pageNumber >= 1 && pageNumber <= totalBanPages) {
       setCurrentBanPage(pageNumber);
     }
   };
@@ -67,11 +67,13 @@ const UserDashboard = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(getUsersByName(name));
+    setCurrentPage(1)
   };
 
   const handleBanSubmit = (event) => {
     event.preventDefault();
     dispatch(getUsersBanByName(banName));
+    setCurrentBanPage(1)
   };
 
   const handleDelete = (event, id) => {
@@ -247,13 +249,13 @@ const UserDashboard = () => {
                   <tr class="border-b bg-light-grey dark:border-white ">
                     <th
                       scope="row"
-                      class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                      class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
                       {user?.name}
                     </th>
-                    <td class="px-6 py-4 ">{user?.email}</td>
-                    <td class="px-6 py-4">{user?.phone}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4  font-bold">{user?.email}</td>
+                    <td class="px-6 py-4 font-bold">{user?.phone}</td>
+                    <td class="px-6 py-4 font-bold">
                       <button
                         onClick={(event) => handleDelete(event, user?.id)}
                         className={style.editButton2}
@@ -355,13 +357,13 @@ const UserDashboard = () => {
                   <tr class="border-b bg-light-grey dark:border-white ">
                     <th
                       scope="row"
-                      class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                      class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
                       {user?.name}
                     </th>
-                    <td class="px-6 py-4 ">{user?.email}</td>
-                    <td class="px-6 py-4">{user?.phone}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4  font-bold">{user?.email}</td>
+                    <td class="px-6 py-4 font-bold">{user?.phone}</td>
+                    <td class="px-6 py-4 font-bold">
                       <button
                         onClick={(event) => handleRestore(event, user?.id)}
                         className={style.restoreButton}
@@ -389,7 +391,7 @@ const UserDashboard = () => {
             })}
         </table>
       </div>
-      {totalPages<2? <div style={{height:'5rem'}}></div> :
+      {totalBanPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}

@@ -70,7 +70,7 @@ const UpdateUser = () => {
       const formData = new FormData();
       formData.append("file", files[0]);
       formData.append("upload_preset", PRESET);
-      console.log(files);
+    
       fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/upload`, {
         method: "POST",
         body: formData,
@@ -102,7 +102,7 @@ const UpdateUser = () => {
     const error = validate(form);
     console.log(error);
     if (Object.values(error).length === 0) {
-      console.log(form);
+     
       dispatch(updateUser(form));
       setTimeout(reload, 1500);
     }

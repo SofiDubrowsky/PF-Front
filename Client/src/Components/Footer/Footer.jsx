@@ -27,7 +27,7 @@ const Footer = () => {
         <div className={style.center}>
           <div className={style.column}>
             <h4>General</h4>
-            <NavLink className={style.navlinks} to="/home">
+            <NavLink className={style.navlinks} to="/">
               Inicio
             </NavLink>
             <NavLink className={style.navlinks} to="/about">

@@ -107,7 +107,7 @@ const ActivitiesDashboard = () => {
       <div className={style.activity}>
         <NavLink to="/post">
           <button className={style.button} onClick={()=>(localStorage.setItem('preview', 'activities'))} type="button">
-            <span className={style.button__text}>Crear actividad</span>
+            <span className={style.button__text}>Crear Actividad</span>
             <span className={style.button__icon}>
               <svg
                 className={style.svg}
@@ -168,23 +168,23 @@ const ActivitiesDashboard = () => {
                   <tr class="border-b bg-light-grey dark:border-white ">
                     <th
                       scope="row"
-                      class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                      class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
                       {activity?.name}
                     </th>
-                    <td class="px-6 py-4">{activity?.stores[0]?.name}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 capitalize font-bold">{activity?.stores[0]?.name}</td>
+                    <td class="px-6 py-4 font-bold">
                       {activity?.players.map((player) => player)}
                     </td>
-                    <td class="px-6 py-4 ">{activity?.age[0]}</td>
-                    <td class="px-6 py-4 ">
+                    <td class="px-6 py-4 font-bold">{activity?.age[0]}</td>
+                    <td class="px-6 py-4 font-bold">
                       {activity?.days?.map((day) => day).join(", ")}
                     </td>
-                    <td class="px-6 py-4 ">
+                    <td class="px-6 py-4 font-bold">
                       {activity?.hours?.map((hour) => hour).join(", ")}
                     </td>
-                    <td class="px-6 py-4">${activity?.cost}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4  font-bold">${activity?.cost}</td>
+                    <td class="px-6 py-4 font-bold">
                       <button
                         onClick={(event) => handleUpdate(event, activity?.id)}
                         className={style.editButton1}

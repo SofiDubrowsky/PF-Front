@@ -76,7 +76,8 @@ const ReservationsDashboard = () => {
         try {
           await dispatch(deleteReservation(id));
           await dispatch(getReservations());
-          await axios.post('http://localhost:3001/refund/admin', {
+          // await axios.post('http://localhost:3001/refund/admin', {
+            await axios.post('https://sportiverse-server.onrender.com/refund/admin', {
           reservId: id,
           activity: activity,
           date: date,
@@ -125,6 +126,7 @@ const ReservationsDashboard = () => {
     event.preventDefault();
     dispatch(getUserByEmail(email));
     setEmail("");
+    setCurrentPage(1)
   };
 
   const handleFilterActivity = (event) => {
@@ -152,6 +154,7 @@ const ReservationsDashboard = () => {
     dispatch(setFiltersAdmin(filters));
     dispatch(allFiltersAdmin(filters));
     setDate("");
+    setCurrentPage(1)
   };
 
   const orderByDate = (event) => {
@@ -165,6 +168,7 @@ const ReservationsDashboard = () => {
 
   return (
     <div className={style.main}>
+        <h2>Reservas</h2>
       <div className={style.header}>
         <div className={style.inputSearch}>
           <input
@@ -198,7 +202,7 @@ const ReservationsDashboard = () => {
           </div>
         </div>
         <div className={style.today}>
-          <h3>Hoy: {today}</h3>
+          <h3>{today}</h3>
         </div>
       </div>
       <div className={style.filtersContainer}>
@@ -293,24 +297,24 @@ const ReservationsDashboard = () => {
                     <tr class="border-b bg-light-grey dark:border-white ">
                       <th
                         scope="row"
-                        class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                        class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                       >
                         {reservation?.activity?.name}
                       </th>
-                      <td class="px-6 py-4 ">{reservation?.user?.name}</td>
-                      <td class="px-6 py-4 ">{reservation?.user?.email}</td>
-                      <td class="px-6 py-4">{reservation?.date}</td>
-                      <td class="px-6 py-4">{reservation?.hour}</td>
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 capitalize  font-bold">{reservation?.user?.name}</td>
+                      <td class="px-6 py-4  font-bold">{reservation?.user?.email}</td>
+                      <td class="px-6 py-4 font-bold">{reservation?.date}</td>
+                      <td class="px-6 py-4 font-bold">{reservation?.hour}</td>
+                      <td class="px-6 capitalize py-4 font-bold">
                         {reservation?.activity?.stores?.map(
                           (store) => store.name
                         )}
                       </td>
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 font-bold">
                         {reservation?.pay ? "Pagado" : "No pagado"}
                       </td>
 
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 ">
                         <button
                           onClick={(event) =>
                             handleDelete(event, reservation?.id, reservation?.date, reservation?.cost, reservation?.user?.name, reservation?.activity?.name, reservation?.hour, reservation?.activity?.stores[0]?.name)

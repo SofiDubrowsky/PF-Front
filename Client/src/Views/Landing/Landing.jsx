@@ -13,9 +13,9 @@ const Landing = () => {
   
   
   const Texto1 = {title:"Misión",text:"Mediante nuestras instalaciones, crear un espacio que promueva el bienestar y ofrecer servicios de calidad en actividades sociales y deportivas, fomentando la convivencia, la salud y el entretenimiento.",
-  img: "http://localhost:3000/src/assets/images/paintball.png"}
+  img: "https://sportiverse-client.onrender.com/assets/paintball-8bb19d05.png"}
   const Texto2 = {title:"Visión" ,text:"Convertirnos en un referente a nivel nacional de entornos que promuevan el bienestar físico, emocional y social. Ser reconocidos e inspirar un estilo de vida saludable, donde cada visita se convierta en una experiencia memorable."
- ,img:"http://localhost:3000/src/assets/images/paddel.png"}
+ ,img:"https://sportiverse-client.onrender.com/assets/paddel-2f8dfeea.png"}
 
  const PromoA = {title:"Nuevas Actividades!",text:"Prueba nuestras nuevas actividades! Hemos sumado Airsoft y Paintball a nuestras actividades disponibles, disfruta del combate entre equipos y pon a prueba tus habilidades!"
  ,img:"https://images.squarespace-cdn.com/content/v1/5859d201ff7c50b1564c992f/1584669795040-DDMKDIM6A0824G04RAAC/image-asset.jpeg?format=1000w"}
