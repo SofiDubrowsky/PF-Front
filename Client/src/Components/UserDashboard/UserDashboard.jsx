@@ -14,7 +14,7 @@ const UserDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const users = useSelector((state) => state.allUsers);
+  const users = useSelector((state) => state.UserFiltered);
   const banUsers = useSelector((state) => state.banUsersFiltered);
 
   const [name, setName] = useState("");
@@ -185,6 +185,7 @@ const UserDashboard = () => {
 
   return (
     <div className={style.container}>
+      <h2>Usuarios</h2>
       <div className={style.principal}>
         <div className={style.inputSearch}>
           <input
@@ -221,7 +222,7 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="relative mx-10 mt-5 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
           <thead class=" text-white text-base uppercase  bg-dark-grey ">
             <tr>
@@ -271,6 +272,7 @@ const UserDashboard = () => {
             })}
         </table>
       </div>
+      {totalPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
@@ -289,8 +291,9 @@ const UserDashboard = () => {
         >
           <h1>{">"}</h1>
         </button>
-      </div>
+      </div>}
       {/* Tabla de usuarios baneados */}
+      <h2>Usuarios Banneados</h2>
       <div className={style.banUseres}>
         <div className={style.inputSearch}>
           <input
@@ -327,7 +330,7 @@ const UserDashboard = () => {
         </div>
       </div>
 
-      <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="relative mx-10 mt-5 overflow-x-auto shadow-md sm:rounded-lg">
         <table class=" w-full  text-sm text-left text-white">
           <thead class=" text-white text-base uppercase  bg-dark-grey ">
             <tr>
@@ -386,6 +389,7 @@ const UserDashboard = () => {
             })}
         </table>
       </div>
+      {totalPages<2? <div style={{height:'5rem'}}></div> :
       <div className={style.pagination}>
         <button
           className={style.paginationButton}
@@ -404,7 +408,7 @@ const UserDashboard = () => {
         >
           <h1>{">"}</h1>
         </button>
-      </div>
+      </div>}
     </div>
   );
 };
