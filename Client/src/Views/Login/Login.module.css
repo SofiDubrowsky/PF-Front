@@ -65,10 +65,11 @@ body {
   right: 88%;
   transform: translate(0%);
 }
-
+*/
 .arrow:hover {
-  transform: translate(0%) scale(1.1);
-} */
+  transform: translate(0%) scale(1.2);
+  cursor: pointer;
+} 
 
 .btn {
   border: none;
@@ -191,8 +192,20 @@ body {
   bottom: 0;
   right: 5%;
   transform: translate(0%);
+  
 }
 
 .account p:hover {
-  transform: translate(0%) scale(1.2);
+  transform: translate(0%) scale(1.1);
+}
+
+.p1Login{
+  font-size: 9px !important;
+  margin: 10px 0px 0px 0px !important;
+  font-family: "Manrope", sans-serif;
+}
+
+.p2Login{
+  font-size: 9px !important;
+  font-family: "Manrope", sans-serif;
 }
