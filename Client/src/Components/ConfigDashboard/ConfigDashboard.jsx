@@ -11,10 +11,6 @@ const ConfigDashboard = () => {
   const admins = useSelector((state) => state.admins);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getAdmins());
-  }, []);
-
   const [currentPage, setCurrentPage] = useState(1);
   const [adminsPerPage] = useState(4);
   const indexOfLastAdmin = currentPage * adminsPerPage;
@@ -27,11 +23,15 @@ const ConfigDashboard = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [showBackdrop, setShowBackdrop] = useState(false);
   const [update, setUpdate] = useState(false);
-  const [idEdit, setIdEdit] = useState(0)
+  const [idEdit, setIdEdit] = useState(0);
+
+  useEffect(() => {
+    dispatch(getAdmins());
+  }, []);
 
   useEffect(() => {
     setIsEditButtonDisabled(currentAdmins.length < 2);
-  }, [admins]);
+  }, [currentAdmins]);
 
   useEffect(() => {
     dispatch(getAdmins());
@@ -48,16 +48,16 @@ const ConfigDashboard = () => {
   const handleDelete = (event, id) => {
     event.preventDefault();
     Swal.fire({
-      icon: 'warning',
-      title: 'Eliminar Administrador',
+      icon: "warning",
+      title: "Eliminar Administrador",
       text: "⚠︎ ¿Esta seguro de eliminar este administrador? ⚠︎",
       showConfirmButton: true,
-      showCancelButton: true, 
-      confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Volver', 
+      showCancelButton: true,
+      confirmButtonText: "Eliminar",
+      cancelButtonText: "Volver",
       color: "#FFFFFF",
       background: "#666",
-      allowOutsideClick: () => !Swal.isLoading(), 
+      allowOutsideClick: () => !Swal.isLoading(),
       preConfirm: async () => {
         try {
           await dispatch(deleteUser(id));
@@ -70,16 +70,16 @@ const ConfigDashboard = () => {
             }, 1000).then(
               setTimeout(() => {
                 Swal.fire({
-                  icon: 'success',
-                  title: 'Administrador eliminado con éxito',
-                  text: 'El administrador ha sido eliminado correctamente.',
+                  icon: "success",
+                  title: "Administrador eliminado con éxito",
+                  text: "El administrador ha sido eliminado correctamente.",
                   showConfirmButton: false,
                   color: "#FFFFFF",
                   background: "#666",
                   timer: 2000,
-                })
+                });
               }, 1000)
-              )
+            );
           });
         } catch (error) {
           console.error(error);
@@ -102,14 +102,14 @@ const ConfigDashboard = () => {
 
   const handleEdit = (event, id) => {
     event.preventDefault();
-    setIdEdit(id)
+    setIdEdit(id);
     setShowEdit(true);
     setShowBackdrop(true);
   };
 
   const handleClose = () => {
     setShowUpdate(false);
-    setShowEdit(false)
+    setShowEdit(false);
     setShowBackdrop(false);
   };
 
@@ -176,7 +176,6 @@ const ConfigDashboard = () => {
                       <button
                         onClick={(event) => handleEdit(event, admin?.id)}
                         className={style.editButton2}
-                        disabled={isEditButtonDisabled}
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -252,26 +251,29 @@ const ConfigDashboard = () => {
         </div>
       )}
       {showBackdrop && <div className={style.backdrop} />}
-      {totalPages<2? <div style={{height:'5rem'}}></div> :
-      <div className={style.pagination}>
-        <button
-          className={style.paginationButton}
-          disabled={currentPage === 1}
-          onClick={() => paginate(currentPage - 1)}
-        >
-          <h1>{"<"}</h1>
-        </button>
+      {totalPages < 2 ? (
+        <div style={{ height: "5rem" }}></div>
+      ) : (
+        <div className={style.pagination}>
+          <button
+            className={style.paginationButton}
+            disabled={currentPage === 1}
+            onClick={() => paginate(currentPage - 1)}
+          >
+            <h1>{"<"}</h1>
+          </button>
 
-        <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
+          <h3 className={style.pag}>{`${currentPage}/${totalPages}`}</h3>
 
-        <button
-          className={style.paginationButton}
-          disabled={currentPage === totalPages}
-          onClick={() => paginate(currentPage + 1)}
-        >
-          <h1>{">"}</h1>
-        </button>
-      </div>}
+          <button
+            className={style.paginationButton}
+            disabled={currentPage === totalPages}
+            onClick={() => paginate(currentPage + 1)}
+          >
+            <h1>{">"}</h1>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
