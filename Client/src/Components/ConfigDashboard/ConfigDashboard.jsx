@@ -170,7 +170,7 @@ const ConfigDashboard = () => {
       </div> */}
         <div class="relative mx-10 mb-10 overflow-x-auto shadow-md sm:rounded-lg">
           <table class=" w-full  text-sm text-left text-white">
-            <thead class=" text-white text-base uppercase  bg-dark-grey ">
+            <thead class=" text-white text-lg uppercase  bg-dark-grey ">
               <tr>
                 <th scope="col" class="px-6 py-3 ">
                   Nombre
@@ -196,13 +196,13 @@ const ConfigDashboard = () => {
                     <tr class="border-b bg-light-grey dark:border-white ">
                       <th
                         scope="row"
-                        class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                        class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                       >
                         {admin?.name}
                       </th>
-                      <td class="px-6 py-4 ">{admin.email}</td>
-                      <td class="px-6 py-4">{admin.phone}</td>
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4  font-bold">{admin.email}</td>
+                      <td class="px-6 py-4 font-bold">{admin.phone}</td>
+                      <td class="px-6 py-4 font-bold">
                         <button
                           onClick={(event) => handleEdit(event, admin?.id)}
                           className={style.editButton2}

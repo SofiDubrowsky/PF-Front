@@ -131,14 +131,14 @@ const StoresDashboard = () => {
                   <tr class="border-b bg-light-grey dark:border-white ">
                     <th
                       scope="row"
-                      class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                      class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                     >
                       {store?.name}
                     </th>
-                    <td class="px-6 py-4 ">{store.email}</td>
-                    <td class="px-6 py-4">{store.phone}</td>
-                    <td class="px-6 py-4">{store.address}</td>
-                    <td class="px-6 py-4">
+                    <td class="px-6 py-4 font-bold">{store.email}</td>
+                    <td class="px-6 py-4 font-bold">{store.phone}</td>
+                    <td class="px-6 py-4 font-bold">{store.address}</td>
+                    <td class="px-6 py-4 font-bold">
                       <button
                         onClick={(event) => handleDelete(event, store?.id)}
                         className={style.editButton2}

@@ -297,24 +297,24 @@ const ReservationsDashboard = () => {
                     <tr class="border-b bg-light-grey dark:border-white ">
                       <th
                         scope="row"
-                        class="px-6 py-4 text-base capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
+                        class="px-6 py-4 text-lg capitalize tracking-widest	font-bold bg-light-grey text-white whitespace-nowrap"
                       >
                         {reservation?.activity?.name}
                       </th>
-                      <td class="px-6 py-4 ">{reservation?.user?.name}</td>
-                      <td class="px-6 py-4 ">{reservation?.user?.email}</td>
-                      <td class="px-6 py-4">{reservation?.date}</td>
-                      <td class="px-6 py-4">{reservation?.hour}</td>
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 capitalize  font-bold">{reservation?.user?.name}</td>
+                      <td class="px-6 py-4  font-bold">{reservation?.user?.email}</td>
+                      <td class="px-6 py-4 font-bold">{reservation?.date}</td>
+                      <td class="px-6 py-4 font-bold">{reservation?.hour}</td>
+                      <td class="px-6 capitalize py-4 font-bold">
                         {reservation?.activity?.stores?.map(
                           (store) => store.name
                         )}
                       </td>
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 font-bold">
                         {reservation?.pay ? "Pagado" : "No pagado"}
                       </td>
 
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 ">
                         <button
                           onClick={(event) =>
                             handleDelete(event, reservation?.id, reservation?.date, reservation?.cost, reservation?.user?.name, reservation?.activity?.name, reservation?.hour, reservation?.activity?.stores[0]?.name)
