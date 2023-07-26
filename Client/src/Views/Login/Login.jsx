@@ -180,7 +180,7 @@ const Login = () => {
         <div>
           <button className={style.btn}>Acceder</button>
         </div>
-        <p>O accede mediante</p>
+        <p className={style.p1Login}>O accede mediante</p>
         <div className={style.googleContainer}>
           <GoogleLogin
             clientId={clientID}
@@ -191,7 +191,7 @@ const Login = () => {
         </div>
         <div>
           <NavLink to="/account" className={style.account}>
-            <p>¿Aún no tienes cuenta?</p>
+            <p className={style.p2Login}>¿Aún no tienes cuenta?</p>
           </NavLink>
         </div>
       </form>
