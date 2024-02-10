@@ -6,6 +6,7 @@ import { getActivityDetail } from "../../redux/Actions/getActivityDetail";
 import { NavLink } from "react-router-dom";
 import style from "./Detail.module.css";
 import ReviewCarousel from "../../Components/ReviewCarousel/ReviewCarousel";
+import star from "../../assets/star.png"
 
 const Detail = () => {
   const { id } = useParams();
@@ -23,7 +24,7 @@ const Detail = () => {
     const starsArray = [];
     const roundedStars = Math.round(fullStars);
     for (let i = 0; i < roundedStars; i++) {
-      starsArray.push(<img key={i} style={{ width: "2rem", height: "2rem" }} src={"https://tevispropane.com/wp-content/uploads/2016/11/Review-star.png"} alt="star" className={style.stars} />);
+      starsArray.push(<img key={i} style={{ width: "2rem", height: "2rem" }} src={star} alt="star" className={style.stars} />);
     }
     return <div className={style.starsContainer}>{starsArray}</div>;
   };
