@@ -6,7 +6,7 @@ export const createUser = (user) => {
     return async function () {
       const response = await axios.post(
         //  "http://localhost:3001/users", user);
-       "https://sportiverse-server.onrender.com/users", user);
+       "https://sportiverseback.onrender.com/users", user);
       return response;
     };
 };

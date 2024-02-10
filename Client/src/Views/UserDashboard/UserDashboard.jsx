@@ -100,7 +100,7 @@ const UserDashboard = () => {
       };
 
       // await axios.post('http://localhost:3001/refund', dataToSend);
-      await axios.post('https://sportiverse-server.onrender.com/refund', dataToSend);
+      await axios.post('https://sportiverseback.onrender.com/refund', dataToSend);
     // Mostrar la alerta de éxito
   } catch (error) {
     Swal.fire({

@@ -6,7 +6,7 @@ export const postReservation = (reservation) => {
     return async (dispatch) => {
         
         //  const info = await axios.post('http://localhost:3001/reservations', reservation);
-        const info = await axios.post('https://sportiverse-server.onrender.com/reservations', reservation);
+        const info = await axios.post('https://sportiverseback.onrender.com/reservations', reservation);
        
         localStorage.setItem('reservation', JSON.stringify(info.data))
         

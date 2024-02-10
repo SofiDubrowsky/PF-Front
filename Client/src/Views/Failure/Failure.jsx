@@ -20,7 +20,7 @@ const Failure = () => {
     const deleteReservation = async () => {
       try {
         // await axios.delete(`http://localhost:3001/reservations/${idReservation}`); 
-        await axios.delete(`https://sportiverse-server.onrender.com/reservations/${idReservation}`); 
+        await axios.delete(`https://sportiverseback.onrender.com/reservations/${idReservation}`); 
         
       } catch (error) {
         console.error('Error al eliminar la reserva', error);
