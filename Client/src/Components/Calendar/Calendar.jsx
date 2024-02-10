@@ -109,7 +109,7 @@ export default function CalendarComponent() {
   const createPreference = async () => {
     try {
       // const response = await axios.post('http://localhost:3001/create_preference', {
-        const response = await axios.post('https://sportiverse-server.onrender.com/create_preference', {
+        const response = await axios.post('https://sportiverseback.onrender.com/create_preference', {
         description: name,
         price: cost,
         quantity: 1

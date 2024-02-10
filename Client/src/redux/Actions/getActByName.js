@@ -8,7 +8,7 @@ export default function getActByName(name) {
         try {
             let result = await axios.get(
                 //  `http://localhost:3001/activities?name=${name}`
-                `https://sportiverse-server.onrender.com/activities?name=${name}`
+                `https://sportiverseback.onrender.com/activities?name=${name}`
             );
 
             if (result.data.length === 0) {
