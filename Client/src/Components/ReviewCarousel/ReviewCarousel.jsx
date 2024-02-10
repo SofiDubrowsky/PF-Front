@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import style from './ReviewCarousel.module.css';
+import star from "../../assets/star.png"
 
 const ReviewCarousel = () => {
   const activity = useSelector((state) => state.detail);
@@ -25,7 +26,7 @@ const ReviewCarousel = () => {
     const fullStars = Math.min(Math.max(numStars, 0), totalStars);
     const starsArray = [];
     for (let i = 0; i < fullStars; i++) {
-      starsArray.push(<img key={i} style={{ width: "1.2rem", height: "1.2rem" }} src={"https://tevispropane.com/wp-content/uploads/2016/11/Review-star.png"} alt="star" />);
+      starsArray.push(<img key={i} style={{ width: "1.2rem", height: "1.2rem" }} src={star} alt="star" />);
     }
     return <div className={style.starsContainer}>{starsArray}</div>;
   };
